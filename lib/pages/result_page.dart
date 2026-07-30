@@ -53,8 +53,22 @@ class ResultPage extends StatelessWidget {
                                 Text('回饋：${result.rewardRate}%'),
                                 const SizedBox(height: 8),
                                 Text(
-                                  '條件：${result.matchedTags.join('、')}',
+                                  '命中方案：${result.matchedTags.join('、')}',
                                 ),
+                                if (result.requiredAction != null) ...[
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    '必要動作：${result.requiredAction}',
+                                    style: const TextStyle(color: Colors.orange),
+                                  ),
+                                ],
+                                if (result.constraints.isNotEmpty) ...[
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    '限制條件：${result.constraints.join('、')}',
+                                    style: Theme.of(context).textTheme.bodySmall,
+                                  ),
+                                ],
                               ],
                             ),
                           ),

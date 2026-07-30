@@ -1,43 +1,46 @@
 import '../../models/card_profiles/jiho_card_profile.dart';
+import '../../models/card_reward_rule.dart';
 import '../../models/merchant_query_context.dart';
 import '../../models/reward_evaluation_result.dart';
+import '../merchant_matcher.dart';
+import '../reward_rules_repository.dart';
+import '../rule_matcher.dart';
 
 class JihoRewardEvaluator {
+  JihoRewardEvaluator({List<CardRewardRule>? rules})
+      : _rules = rules ?? RewardRulesRepository.instance.rulesFor('ubot_jiho');
+
+  final List<CardRewardRule> _rules;
+
   RewardEvaluationResult evaluate({
     required JihoCardProfile profile,
     required MerchantQueryContext merchantContext,
   }) {
-    double rewardRate = 1.0;
-    final matchedTags = <String>[];
+    final normalizedQuery = MerchantMatcher.normalize(merchantContext.merchantName);
 
-    final merchantName = merchantContext.merchantName.toLowerCase();
+    final rule = RuleMatcher.selectBestRule(
+      rules: _rules,
+      normalizedQuery: normalizedQuery,
+      merchantTags: merchantContext.merchantTags,
+      currentLevel: null,
+    );
 
-    matchedTags.add('吉鶴卡基本回饋');
-
-    if (merchantName.contains('japan') ||
-        merchantName.contains('日本') ||
-        merchantName.contains('tokyo')) {
-      rewardRate += 2.0;
-      matchedTags.add('日本消費加碼');
-    }
-
-    if (merchantName.contains('travel') ||
-        merchantName.contains('trip') ||
-        merchantName.contains('agoda')) {
-      rewardRate += 1.5;
-      matchedTags.add('旅遊相關通路');
-    }
-
+    final matchedTags = <String>[rule.benefitLabel];
     if (profile.isNewCardHolder) {
-      rewardRate += 0.5;
-      matchedTags.add('新戶身份加成');
+      // Real new-customer bonus rows exist in jiho_reward_rules.json
+      // (is_synthetic_condition: true) but aren't reachable from a typed
+      // merchant name — see SCHEMA.md. Tag only, doesn't affect rewardRate
+      // yet; revisit once conditional rule matching is built.
+      matchedTags.add('新戶身份（尚未反映在回饋率，待條件式規則支援）');
     }
 
     return RewardEvaluationResult(
       cardId: 'ubot_jiho',
       cardName: '吉鶴卡',
-      rewardRate: rewardRate,
+      rewardRate: rule.rewardRate,
       matchedTags: matchedTags,
+      requiredAction: rule.requiredAction,
+      constraints: rule.constraints,
     );
   }
 }
