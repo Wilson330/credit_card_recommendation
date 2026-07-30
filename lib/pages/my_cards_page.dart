@@ -60,15 +60,17 @@ class MyCardsPage extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
+                      Icon(
                         CupertinoIcons.creditcard,
                         size: 48,
-                        color: CupertinoColors.systemGrey,
+                        color: CupertinoColors.systemGrey.resolveFrom(context),
                       ),
                       const SizedBox(height: 12),
-                      const Text(
+                      Text(
                         '目前還沒有加入任何卡片',
-                        style: TextStyle(color: CupertinoColors.secondaryLabel),
+                        style: TextStyle(
+                          color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                        ),
                       ),
                       const SizedBox(height: 16),
                       CupertinoButton.filled(
@@ -92,7 +94,7 @@ class MyCardsPage extends StatelessWidget {
                           background: Container(
                             alignment: Alignment.centerRight,
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            color: CupertinoColors.destructiveRed,
+                            color: CupertinoColors.destructiveRed.resolveFrom(context),
                             child: const Icon(
                               CupertinoIcons.delete,
                               color: CupertinoColors.white,

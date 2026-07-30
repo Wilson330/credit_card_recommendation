@@ -24,7 +24,9 @@ class ResultPage extends StatelessWidget {
             ? Center(
                 child: Text(
                   '找不到 $merchantName 的可用推薦',
-                  style: const TextStyle(color: CupertinoColors.secondaryLabel),
+                  style: TextStyle(
+                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                  ),
                 ),
               )
             : ListView(
@@ -81,10 +83,10 @@ class _ResultCard extends StatelessWidget {
                     const Spacer(),
                     Text(
                       '${result.rewardRate}%',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: CupertinoColors.systemBlue,
+                        color: CupertinoColors.systemBlue.resolveFrom(context),
                       ),
                     ),
                   ],
@@ -92,22 +94,26 @@ class _ResultCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   '命中方案：${result.matchedTags.join('、')}',
-                  style: const TextStyle(color: CupertinoColors.secondaryLabel),
+                  style: TextStyle(
+                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                  ),
                 ),
                 if (result.requiredAction != null) ...[
                   const SizedBox(height: 6),
                   Text(
                     '必要動作：${result.requiredAction}',
-                    style: const TextStyle(color: CupertinoColors.systemOrange),
+                    style: TextStyle(
+                      color: CupertinoColors.systemOrange.resolveFrom(context),
+                    ),
                   ),
                 ],
                 if (result.constraints.isNotEmpty) ...[
                   const SizedBox(height: 6),
                   Text(
                     '限制條件：${result.constraints.join('、')}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
-                      color: CupertinoColors.tertiaryLabel,
+                      color: CupertinoColors.tertiaryLabel.resolveFrom(context),
                     ),
                   ),
                 ],

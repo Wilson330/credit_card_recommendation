@@ -29,11 +29,11 @@ class CardThumbnail extends StatelessWidget {
         child: asset != null
             ? Image.asset(asset, fit: BoxFit.cover)
             : ColoredBox(
-                color: CupertinoColors.systemGrey5,
+                color: CupertinoColors.systemGrey5.resolveFrom(context),
                 child: Icon(
                   CupertinoIcons.creditcard,
                   size: _height * 0.5,
-                  color: CupertinoColors.systemGrey,
+                  color: CupertinoColors.systemGrey.resolveFrom(context),
                 ),
               ),
       ),

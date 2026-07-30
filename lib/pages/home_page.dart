@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> {
         clipBehavior: Clip.antiAlias,
         child: query.isEmpty
             ? _buildGroupedSuggestions(context)
-            : _buildFlatSuggestions(),
+            : _buildFlatSuggestions(context),
       ),
     );
   }
@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (history.isNotEmpty) ...[
-          _sectionHeader('歷史查詢'),
+          _sectionHeader(context, '歷史查詢'),
           ...history.map(
             (item) => CupertinoListTile(
               leading: const Icon(CupertinoIcons.clock, size: 20),
@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
-        _sectionHeader('熱門商家'),
+        _sectionHeader(context, '熱門商家'),
         ...PopularMerchants.suggestions.map(
           (item) => CupertinoListTile(
             leading: const Icon(CupertinoIcons.flame, size: 20),
@@ -170,13 +170,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildFlatSuggestions() {
+  Widget _buildFlatSuggestions(BuildContext context) {
     if (_currentSuggestions.isEmpty) {
-      return const Padding(
-        padding: EdgeInsets.all(16),
+      return Padding(
+        padding: const EdgeInsets.all(16),
         child: Text(
           '找不到符合的商家，仍可直接按 Enter 搜尋',
-          style: TextStyle(color: CupertinoColors.secondaryLabel),
+          style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
         ),
       );
     }
@@ -194,12 +194,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _sectionHeader(String label) {
+  Widget _sectionHeader(BuildContext context, String label) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
       child: Text(
         label,
-        style: const TextStyle(fontSize: 13, color: CupertinoColors.secondaryLabel),
+        style: TextStyle(
+          fontSize: 13,
+          color: CupertinoColors.secondaryLabel.resolveFrom(context),
+        ),
       ),
     );
   }
@@ -260,12 +263,12 @@ class _HomePageState extends State<HomePage> {
                 focusNode: _searchFocusNode,
                 placeholder: '輸入商家名稱，例如：全家、Uber Eats、UNIQLO',
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                prefix: const Padding(
-                  padding: EdgeInsets.only(left: 8),
+                prefix: Padding(
+                  padding: const EdgeInsets.only(left: 8),
                   child: Icon(
                     CupertinoIcons.search,
                     size: 18,
-                    color: CupertinoColors.secondaryLabel,
+                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
                   ),
                 ),
                 onSubmitted: _handleSearch,

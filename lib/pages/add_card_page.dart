@@ -27,7 +27,8 @@ class AddCardPage extends StatelessWidget {
       trailing: Text(
         isAdded ? '編輯' : '新增',
         style: TextStyle(
-          color: isAdded ? CupertinoColors.systemOrange : CupertinoColors.systemBlue,
+          color: (isAdded ? CupertinoColors.systemOrange : CupertinoColors.systemBlue)
+              .resolveFrom(context),
           fontWeight: FontWeight.w600,
         ),
       ),
