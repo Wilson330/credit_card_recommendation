@@ -1,0 +1,46 @@
+[
+  {
+    "merchant_id": "m_711",
+    "canonical_name": "7-11",
+    "display_name": "7-11",
+    "primary_category": "convenience_store",
+    "subcategory": "chain_convenience_store",
+    "channel": "offline",
+    "country": "TW",
+    "tags": ["chain_store", "daily_spend", "convenience_store"],
+    "active": true
+  },
+  {
+    "merchant_id": "m_kura",
+    "canonical_name": "藏壽司",
+    "display_name": "藏壽司",
+    "primary_category": "dining",
+    "subcategory": "sushi_chain",
+    "channel": "offline",
+    "country": "TW",
+    "tags": ["restaurant", "chain_store", "japanese_food"],
+    "active": true
+  },
+  {
+    "merchant_id": "m_louisa",
+    "canonical_name": "路易莎咖啡",
+    "display_name": "路易莎咖啡",
+    "primary_category": "dining",
+    "subcategory": "coffee_chain",
+    "channel": "offline",
+    "country": "TW",
+    "tags": ["restaurant", "coffee", "chain_store"],
+    "active": true
+  },
+  {
+    "merchant_id": "m_random_shop",
+    "canonical_name": "小北百貨",
+    "display_name": "小北百貨",
+    "primary_category": "retail",
+    "subcategory": "general_retail",
+    "channel": "offline",
+    "country": "TW",
+    "tags": ["retail", "daily_spend"],
+    "active": true
+  }
+]

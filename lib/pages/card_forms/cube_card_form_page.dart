@@ -1,0 +1,162 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/card_profiles/cube_card_profile.dart';
+import '../../models/user_card_bundle.dart';
+import '../../models/wallet_card.dart';
+import '../../state/user_cards_store.dart';
+
+class CubeCardFormPage extends StatefulWidget {
+  final UserCardBundle? existingCard;
+
+  const CubeCardFormPage({
+    super.key,
+    this.existingCard,
+  });
+
+  @override
+  State<CubeCardFormPage> createState() => _CubeCardFormPageState();
+}
+
+class _CubeCardFormPageState extends State<CubeCardFormPage> {
+  late bool isNewCardHolder;
+  late String selectedLevel;
+  late String selectedRights;
+  late String selectedNetwork;
+
+  bool get isEditMode => widget.existingCard != null;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final existingProfile = widget.existingCard?.cubeProfile;
+    final existingWalletCard = widget.existingCard?.walletCard;
+
+    isNewCardHolder = existingProfile?.isNewCardHolder ?? false;
+    selectedLevel = existingProfile?.selectedLevel ?? 'level_3';
+    selectedRights = existingProfile?.selectedRights ?? 'daily_select';
+    selectedNetwork = existingWalletCard?.network ?? 'Visa';
+  }
+
+  void _handleSave() {
+    final existingWalletCard = widget.existingCard?.walletCard;
+
+    final userCard = UserCardBundle(
+      walletCard: WalletCard(
+        id: existingWalletCard?.id ??
+            'wallet_cube_${DateTime.now().millisecondsSinceEpoch}',
+        cardId: 'cathay_cube',
+        bankName: '國泰世華',
+        cardName: 'CUBE Card',
+        network: selectedNetwork,
+      ),
+      cubeProfile: CubeCardProfile(
+        selectedLevel: selectedLevel,
+        selectedRights: selectedRights,
+        isNewCardHolder: isNewCardHolder,
+      ),
+    );
+
+    final store = context.read<UserCardsStore>();
+
+    if (isEditMode) {
+      store.updateCard(userCard);
+      Navigator.of(context).pop();
+    } else {
+      store.addCard(userCard);
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(isEditMode ? '編輯 CUBE Card' : '新增 CUBE Card'),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          DropdownButtonFormField<String>(
+            value: selectedNetwork,
+            decoration: const InputDecoration(
+              labelText: '發卡組織',
+            ),
+            items: const [
+              DropdownMenuItem(value: 'Visa', child: Text('Visa')),
+              DropdownMenuItem(value: 'Mastercard', child: Text('Mastercard')),
+              DropdownMenuItem(value: 'JCB', child: Text('JCB')),
+            ],
+            onChanged: (value) {
+              if (value == null) return;
+              setState(() {
+                selectedNetwork = value;
+              });
+            },
+          ),
+          const SizedBox(height: 12),
+          SwitchListTile(
+            title: const Text('CUBE 新戶'),
+            value: isNewCardHolder,
+            onChanged: (value) {
+              setState(() {
+                isNewCardHolder = value;
+              });
+            },
+          ),
+          DropdownButtonFormField<String>(
+            value: selectedLevel,
+            decoration: const InputDecoration(
+              labelText: 'CUBE 權益等級',
+            ),
+            items: const [
+              DropdownMenuItem(value: 'level_1', child: Text('Level 1')),
+              DropdownMenuItem(value: 'level_2', child: Text('Level 2')),
+              DropdownMenuItem(value: 'level_3', child: Text('Level 3')),
+            ],
+            onChanged: (value) {
+              if (value == null) return;
+              setState(() {
+                selectedLevel = value;
+              });
+            },
+          ),
+          const SizedBox(height: 12),
+          DropdownButtonFormField<String>(
+            value: selectedRights,
+            decoration: const InputDecoration(
+              labelText: 'CUBE 權益方案',
+            ),
+            items: const [
+              DropdownMenuItem(
+                value: 'daily_select',
+                child: Text('天天精選'),
+              ),
+              DropdownMenuItem(
+                value: 'travel_select',
+                child: Text('旅遊方案'),
+              ),
+              DropdownMenuItem(
+                value: 'shopping_select',
+                child: Text('購物方案'),
+              ),
+            ],
+            onChanged: (value) {
+              if (value == null) return;
+              setState(() {
+                selectedRights = value;
+              });
+            },
+          ),
+          const SizedBox(height: 24),
+          ElevatedButton(
+            onPressed: _handleSave,
+            child: Text(isEditMode ? '儲存變更' : '加入我的卡片'),
+          ),
+        ],
+      ),
+    );
+  }
+}

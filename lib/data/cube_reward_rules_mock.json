@@ -1,0 +1,92 @@
+[
+  {
+    "rule_id": "cube_rule_001",
+    "card_id": "cube_card",
+    "rule_type": "merchant",
+    "match_value": "m_711",
+    "priority": 100,
+    "reward_rate": 3.0,
+    "benefit_label": "集精選",
+    "required_action": "需切換至集精選權益方案",
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "若未切換至對應權益方案，可能不適用此回饋"
+    ],
+    "active": true
+  },
+  {
+    "rule_id": "cube_rule_002",
+    "card_id": "cube_card",
+    "rule_type": "merchant",
+    "match_value": "m_familymart",
+    "priority": 100,
+    "reward_rate": 3.0,
+    "benefit_label": "集精選",
+    "required_action": "需切換至集精選權益方案",
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "若未切換至對應權益方案，可能不適用此回饋"
+    ],
+    "active": true
+  },
+  {
+    "rule_id": "cube_rule_003",
+    "card_id": "cube_card",
+    "rule_type": "category",
+    "match_value": "dining",
+    "priority": 50,
+    "reward_rate": 3.3,
+    "benefit_label": "樂饗購",
+    "required_action": "需切換至樂饗購權益方案",
+    "constraints": [
+      "部分活動可能需登錄",
+      "實際回饋依當期公告為準"
+    ],
+    "active": true
+  },
+  {
+    "rule_id": "cube_rule_004",
+    "card_id": "cube_card",
+    "rule_type": "category",
+    "match_value": "online_subscription",
+    "priority": 50,
+    "reward_rate": 3.0,
+    "benefit_label": "玩數位",
+    "required_action": "需切換至玩數位權益方案",
+    "constraints": [
+      "僅適用指定數位消費情境",
+      "實際回饋依當期公告為準"
+    ],
+    "active": true
+  },
+  {
+    "rule_id": "cube_rule_005",
+    "card_id": "cube_card",
+    "rule_type": "category",
+    "match_value": "travel",
+    "priority": 50,
+    "reward_rate": 3.0,
+    "benefit_label": "趣旅行",
+    "required_action": "需切換至趣旅行權益方案",
+    "constraints": [
+      "僅適用指定旅遊消費情境",
+      "實際回饋依當期公告為準"
+    ],
+    "active": true
+  },
+  {
+    "rule_id": "cube_rule_006",
+    "card_id": "cube_card",
+    "rule_type": "default",
+    "match_value": "*",
+    "priority": 10,
+    "reward_rate": 0.3,
+    "benefit_label": "一般消費",
+    "required_action": null,
+    "constraints": [
+      "未命中特定權益規則時適用",
+      "實際回饋依當期公告為準"
+    ],
+    "active": true
+  }
+]
