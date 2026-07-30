@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import 'pages/home_page.dart';
@@ -22,13 +22,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserCardsStore()),
         ChangeNotifierProvider(create: (_) => SearchHistoryStore()),
       ],
-      child: MaterialApp(
+      child: const CupertinoApp(
         title: 'Credit Card Recommender',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorSchemeSeed: Colors.teal,
+        debugShowCheckedModeBanner: false,
+        theme: CupertinoThemeData(
+          primaryColor: CupertinoColors.systemBlue,
         ),
-        home: const HomePage(),
+        home: HomePage(),
       ),
     );
   }

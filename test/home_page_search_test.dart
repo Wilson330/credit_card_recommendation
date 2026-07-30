@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,7 @@ Future<void> _pumpHomePageWithOneCard(WidgetTester tester) async {
         ChangeNotifierProvider<UserCardsStore>.value(value: userCardsStore),
         ChangeNotifierProvider(create: (_) => SearchHistoryStore()),
       ],
-      child: const MaterialApp(home: HomePage()),
+      child: const CupertinoApp(home: HomePage()),
     ),
   );
 }
@@ -60,7 +60,7 @@ void main() {
   testWidgets('tapping the empty search field shows the 熱門商家 section', (tester) async {
     await _pumpHomePageWithOneCard(tester);
 
-    await tester.tap(find.byType(TextField));
+    await tester.tap(find.byType(CupertinoTextField));
     await tester.pumpAndSettle();
 
     expect(find.text('熱門商家'), findsOneWidget);
@@ -70,7 +70,7 @@ void main() {
   testWidgets('tapping a popular merchant navigates to ResultPage', (tester) async {
     await _pumpHomePageWithOneCard(tester);
 
-    await tester.tap(find.byType(TextField));
+    await tester.tap(find.byType(CupertinoTextField));
     await tester.pumpAndSettle();
 
     await _realisticTap(tester, find.text(PopularMerchants.suggestions.first));
@@ -81,7 +81,7 @@ void main() {
   testWidgets('a completed search is recorded and shows up as 歷史查詢 next time', (tester) async {
     await _pumpHomePageWithOneCard(tester);
 
-    await tester.tap(find.byType(TextField));
+    await tester.tap(find.byType(CupertinoTextField));
     await tester.pumpAndSettle();
     await _realisticTap(tester, find.text(PopularMerchants.suggestions.first));
 
@@ -89,7 +89,7 @@ void main() {
     await tester.pageBack();
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byType(TextField));
+    await tester.tap(find.byType(CupertinoTextField));
     await tester.pumpAndSettle();
 
     expect(find.text('歷史查詢'), findsOneWidget);

@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/card_profiles/cube_card_profile.dart';
 import '../../models/user_card_bundle.dart';
 import '../../models/wallet_card.dart';
 import '../../state/user_cards_store.dart';
+import '../widgets/card_thumbnail.dart';
 
 class CubeCardFormPage extends StatefulWidget {
   final UserCardBundle? existingCard;
@@ -69,63 +70,87 @@ class _CubeCardFormPageState extends State<CubeCardFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(isEditMode ? '編輯 CUBE Card' : '新增 CUBE Card'),
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(isEditMode ? '編輯 CUBE Card' : '新增 CUBE Card'),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          DropdownButtonFormField<String>(
-            value: selectedNetwork,
-            decoration: const InputDecoration(
-              labelText: '發卡組織',
+      child: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          children: [
+            Center(
+              child: CardThumbnail(cardId: 'cathay_cube', width: 240),
             ),
-            items: const [
-              DropdownMenuItem(value: 'Visa', child: Text('Visa')),
-              DropdownMenuItem(value: 'Mastercard', child: Text('Mastercard')),
-              DropdownMenuItem(value: 'JCB', child: Text('JCB')),
-            ],
-            onChanged: (value) {
-              if (value == null) return;
-              setState(() {
-                selectedNetwork = value;
-              });
-            },
-          ),
-          const SizedBox(height: 12),
-          SwitchListTile(
-            title: const Text('CUBE 新戶'),
-            value: isNewCardHolder,
-            onChanged: (value) {
-              setState(() {
-                isNewCardHolder = value;
-              });
-            },
-          ),
-          DropdownButtonFormField<String>(
-            value: selectedLevel,
-            decoration: const InputDecoration(
-              labelText: 'CUBE 權益等級',
+            const SizedBox(height: 24),
+            CupertinoFormSection.insetGrouped(
+              children: [
+                CupertinoFormRow(
+                  prefix: const Text('發卡組織'),
+                  child: CupertinoSlidingSegmentedControl<String>(
+                    groupValue: selectedNetwork,
+                    children: const {
+                      'Visa': Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('Visa'),
+                      ),
+                      'Mastercard': Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('Mastercard'),
+                      ),
+                      'JCB': Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('JCB'),
+                      ),
+                    },
+                    onValueChanged: (value) {
+                      if (value == null) return;
+                      setState(() => selectedNetwork = value);
+                    },
+                  ),
+                ),
+                CupertinoFormRow(
+                  prefix: const Text('CUBE 新戶'),
+                  child: CupertinoSwitch(
+                    value: isNewCardHolder,
+                    onChanged: (value) => setState(() => isNewCardHolder = value),
+                  ),
+                ),
+                CupertinoFormRow(
+                  prefix: const Text('CUBE 權益等級'),
+                  child: CupertinoSlidingSegmentedControl<String>(
+                    groupValue: selectedLevel,
+                    children: const {
+                      'level_1': Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('Level 1'),
+                      ),
+                      'level_2': Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('Level 2'),
+                      ),
+                      'level_3': Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('Level 3'),
+                      ),
+                    },
+                    onValueChanged: (value) {
+                      if (value == null) return;
+                      setState(() => selectedLevel = value);
+                    },
+                  ),
+                ),
+              ],
             ),
-            items: const [
-              DropdownMenuItem(value: 'level_1', child: Text('Level 1')),
-              DropdownMenuItem(value: 'level_2', child: Text('Level 2')),
-              DropdownMenuItem(value: 'level_3', child: Text('Level 3')),
-            ],
-            onChanged: (value) {
-              if (value == null) return;
-              setState(() {
-                selectedLevel = value;
-              });
-            },
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: _handleSave,
-            child: Text(isEditMode ? '儲存變更' : '加入我的卡片'),
-          ),
-        ],
+            const SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CupertinoButton.filled(
+                onPressed: _handleSave,
+                child: Text(isEditMode ? '儲存變更' : '加入我的卡片'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

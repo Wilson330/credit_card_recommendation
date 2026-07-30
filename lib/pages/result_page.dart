@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../models/reward_evaluation_result.dart';
+import 'widgets/card_thumbnail.dart';
 
 class ResultPage extends StatelessWidget {
   final String merchantName;
@@ -14,70 +15,106 @@ class ResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('推薦結果'),
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        middle: Text('推薦結果'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      child: SafeArea(
         child: results.isEmpty
             ? Center(
-                child: Text('找不到 $merchantName 的可用推薦'),
+                child: Text(
+                  '找不到 $merchantName 的可用推薦',
+                  style: const TextStyle(color: CupertinoColors.secondaryLabel),
+                ),
               )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            : ListView(
+                padding: const EdgeInsets.all(16),
                 children: [
                   Text(
                     '$merchantName 推薦卡片',
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: CupertinoTheme.of(context).textTheme.navTitleTextStyle,
                   ),
                   const SizedBox(height: 16),
-                  Expanded(
-                    child: ListView.separated(
-                      itemCount: results.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 12),
-                      itemBuilder: (context, index) {
-                        final result = results[index];
+                  for (var index = 0; index < results.length; index++) ...[
+                    _ResultCard(rank: index + 1, result: results[index]),
+                    const SizedBox(height: 12),
+                  ],
+                ],
+              ),
+      ),
+    );
+  }
+}
 
-                        return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${index + 1}. ${result.cardName}',
-                                  style: Theme.of(context).textTheme.titleMedium,
-                                ),
-                                const SizedBox(height: 8),
-                                Text('回饋：${result.rewardRate}%'),
-                                const SizedBox(height: 8),
-                                Text(
-                                  '命中方案：${result.matchedTags.join('、')}',
-                                ),
-                                if (result.requiredAction != null) ...[
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    '必要動作：${result.requiredAction}',
-                                    style: const TextStyle(color: Colors.orange),
-                                  ),
-                                ],
-                                if (result.constraints.isNotEmpty) ...[
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    '限制條件：${result.constraints.join('、')}',
-                                    style: Theme.of(context).textTheme.bodySmall,
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ),
-                        );
-                      },
+class _ResultCard extends StatelessWidget {
+  final int rank;
+  final RewardEvaluationResult result;
+
+  const _ResultCard({required this.rank, required this.result});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: CupertinoColors.secondarySystemGroupedBackground.resolveFrom(context),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CardThumbnail(cardId: result.cardId, width: 56),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      '#$rank ${result.cardName}',
+                      style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      '${result.rewardRate}%',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: CupertinoColors.systemBlue,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  '命中方案：${result.matchedTags.join('、')}',
+                  style: const TextStyle(color: CupertinoColors.secondaryLabel),
+                ),
+                if (result.requiredAction != null) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    '必要動作：${result.requiredAction}',
+                    style: const TextStyle(color: CupertinoColors.systemOrange),
+                  ),
+                ],
+                if (result.constraints.isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    '限制條件：${result.constraints.join('、')}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: CupertinoColors.tertiaryLabel,
                     ),
                   ),
                 ],
-              ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

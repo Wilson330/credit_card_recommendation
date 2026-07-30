@@ -1,14 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/popular_merchants.dart';
 import '../models/merchant_query_context.dart';
+import '../models/user_card_bundle.dart';
 import '../services/merchant_suggestion_index.dart';
 import '../services/recommendation_orchestrator.dart';
 import '../state/search_history_store.dart';
 import '../state/user_cards_store.dart';
 import 'my_cards_page.dart';
 import 'result_page.dart';
+import 'widgets/card_thumbnail.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     // Driven by our own listeners (not RawAutocomplete's built-in lazy
     // optionsBuilder, which only recomputes on a text VALUE change and
-    // does nothing on bare focus — see home_page.dart git history for why).
+    // does nothing on bare focus — see git history for why).
     _merchantController.addListener(_recomputeSuggestions);
     _searchFocusNode.addListener(_recomputeSuggestions);
   }
@@ -70,9 +72,7 @@ class _HomePageState extends State<HomePage> {
 
   void _openMyCardsPage() {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => const MyCardsPage(),
-      ),
+      CupertinoPageRoute(builder: (_) => const MyCardsPage()),
     );
   }
 
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
     setState(() => _showSuggestions = false);
 
     Navigator.of(context).push(
-      MaterialPageRoute(
+      CupertinoPageRoute(
         builder: (_) => ResultPage(
           merchantName: merchantName,
           results: results,
@@ -109,33 +109,32 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildCardStrip(List<UserCardBundle> userCards) {
+    return SizedBox(
+      height: 44,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: userCards.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 8),
+        itemBuilder: (context, index) =>
+            CardThumbnail(cardId: userCards[index].walletCard.cardId, width: 70),
+      ),
+    );
+  }
+
   Widget _buildSuggestionsPanel(BuildContext context) {
     final query = _merchantController.text.trim();
 
-    // Without this, EditableText's default onTapOutside fires on
-    // PointerDownEvent (see Flutter SDK editable_text.dart
-    // _defaultOnTapOutside) and unfocuses the field — which hides this
-    // panel via _recomputeSuggestions() before the ListTile's own tap
-    // gesture finishes resolving, so taps on suggestions silently do
-    // nothing. RawAutocomplete's own options view wraps itself in the
-    // same widget for the same reason (see Flutter SDK autocomplete.dart).
-    //
-    // This is intentionally NOT its own scrollable (no ListView here) even
-    // though it used to be one — nesting a second vertical scrollable
-    // inside the page's SingleChildScrollView makes ListTile.onTap
-    // unreliable with a mouse: any few-pixel drift between pointer-down
-    // and pointer-up (routine with a mouse, never happens with a
-    // synthetic test tap) can make the inner scrollable's drag recognizer
-    // win the gesture arena instead of the tap, silently swallowing the
-    // click. Flattening to one scroll region (the page itself) removes
-    // the competing recognizer entirely.
+    // TextFieldTapRegion + a single non-nested scroll region: see git
+    // history on this file for why both matter for tap reliability.
     return TextFieldTapRegion(
       child: Container(
-        margin: const EdgeInsets.only(top: 4),
+        margin: const EdgeInsets.only(top: 8),
         decoration: BoxDecoration(
-          border: Border.all(color: Theme.of(context).dividerColor),
-          borderRadius: BorderRadius.circular(8),
+          color: CupertinoColors.secondarySystemGroupedBackground.resolveFrom(context),
+          borderRadius: BorderRadius.circular(10),
         ),
+        clipBehavior: Clip.antiAlias,
         child: query.isEmpty
             ? _buildGroupedSuggestions(context)
             : _buildFlatSuggestions(),
@@ -148,24 +147,21 @@ class _HomePageState extends State<HomePage> {
 
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (history.isNotEmpty) ...[
-          _sectionHeader(context, '歷史查詢'),
+          _sectionHeader('歷史查詢'),
           ...history.map(
-            (item) => ListTile(
-              dense: true,
-              leading: const Icon(Icons.history, size: 18),
+            (item) => CupertinoListTile(
+              leading: const Icon(CupertinoIcons.clock, size: 20),
               title: Text(item),
               onTap: () => _selectSuggestion(item),
             ),
           ),
         ],
-        _sectionHeader(context, '熱門商家'),
+        _sectionHeader('熱門商家'),
         ...PopularMerchants.suggestions.map(
-          (item) => ListTile(
-            dense: true,
-            leading: const Icon(Icons.local_fire_department, size: 18),
+          (item) => CupertinoListTile(
+            leading: const Icon(CupertinoIcons.flame, size: 20),
             title: Text(item),
             onTap: () => _selectSuggestion(item),
           ),
@@ -177,8 +173,11 @@ class _HomePageState extends State<HomePage> {
   Widget _buildFlatSuggestions() {
     if (_currentSuggestions.isEmpty) {
       return const Padding(
-        padding: EdgeInsets.all(12),
-        child: Text('找不到符合的商家，仍可直接按 Enter 搜尋'),
+        padding: EdgeInsets.all(16),
+        child: Text(
+          '找不到符合的商家，仍可直接按 Enter 搜尋',
+          style: TextStyle(color: CupertinoColors.secondaryLabel),
+        ),
       );
     }
 
@@ -186,9 +185,8 @@ class _HomePageState extends State<HomePage> {
       mainAxisSize: MainAxisSize.min,
       children: [
         for (final option in _currentSuggestions)
-          ListTile(
-            dense: true,
-            leading: const Icon(Icons.storefront, size: 18),
+          CupertinoListTile(
+            leading: const Icon(CupertinoIcons.bag, size: 20),
             title: Text(option),
             onTap: () => _selectSuggestion(option),
           ),
@@ -196,15 +194,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _sectionHeader(BuildContext context, String label) {
+  Widget _sectionHeader(String label) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
       child: Text(
         label,
-        style: Theme.of(context)
-            .textTheme
-            .labelSmall
-            ?.copyWith(color: Colors.grey),
+        style: const TextStyle(fontSize: 13, color: CupertinoColors.secondaryLabel),
       ),
     );
   }
@@ -224,68 +219,66 @@ class _HomePageState extends State<HomePage> {
     final userCards = store.userCards;
     final hasCards = store.hasCards;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Cards'),
-        actions: [
-          IconButton(
-            onPressed: _openMyCardsPage,
-            icon: const Icon(Icons.credit_card),
-          ),
-        ],
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text('My Cards'),
+        trailing: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: _openMyCardsPage,
+          child: const Icon(CupertinoIcons.creditcard),
+        ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              hasCards ? '已設定 ${userCards.length} 張卡片' : '尚未設定卡片',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            if (hasCards)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Debug: 目前卡片狀態',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const SizedBox(height: 4),
-                  ...userCards.map(
-                    (c) => Text(
-                      '- ${c.walletCard.cardName} (${c.walletCard.cardId})',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: Colors.grey),
-                    ),
-                  ),
-                ],
+      child: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                hasCards ? '已設定 ${userCards.length} 張卡片' : '尚未設定卡片',
+                style: CupertinoTheme.of(context).textTheme.navTitleTextStyle,
               ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _openMyCardsPage,
-              child: const Text('設定我的卡片'),
-            ),
-            const SizedBox(height: 24),
-            TextField(
-              controller: _merchantController,
-              focusNode: _searchFocusNode,
-              decoration: const InputDecoration(
-                labelText: '輸入商家名稱',
-                hintText: '例如：全家、Uber Eats、UNIQLO',
+              if (hasCards) ...[
+                const SizedBox(height: 12),
+                _buildCardStrip(userCards),
+              ],
+              const SizedBox(height: 16),
+              if (!hasCards)
+                CupertinoButton.filled(
+                  onPressed: _openMyCardsPage,
+                  child: const Text('設定我的卡片'),
+                )
+              else
+                CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: _openMyCardsPage,
+                  child: const Text('管理我的卡片'),
+                ),
+              const SizedBox(height: 24),
+              CupertinoTextField(
+                controller: _merchantController,
+                focusNode: _searchFocusNode,
+                placeholder: '輸入商家名稱，例如：全家、Uber Eats、UNIQLO',
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                prefix: const Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: Icon(
+                    CupertinoIcons.search,
+                    size: 18,
+                    color: CupertinoColors.secondaryLabel,
+                  ),
+                ),
+                onSubmitted: _handleSearch,
               ),
-              onSubmitted: _handleSearch,
-            ),
-            if (_showSuggestions) _buildSuggestionsPanel(context),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: hasCards ? () => _handleSearch(_merchantController.text) : null,
-              child: const Text('開始推薦'),
-            ),
-          ],
+              if (_showSuggestions) _buildSuggestionsPanel(context),
+              const SizedBox(height: 16),
+              if (hasCards)
+                CupertinoButton.filled(
+                  onPressed: () => _handleSearch(_merchantController.text),
+                  child: const Text('開始推薦'),
+                ),
+            ],
+          ),
         ),
       ),
     );
