@@ -12,6 +12,19 @@ import 'package:my_first_app/services/reward_rules_repository.dart';
 import 'package:my_first_app/state/search_history_store.dart';
 import 'package:my_first_app/state/user_cards_store.dart';
 
+/// tester.tap() sends pointer down+up back-to-back with no pump() between
+/// them, which does NOT reproduce the real "tap on a suggestion unfocuses
+/// the field and hides the panel out from under the tap" bug — on a real
+/// device there's always at least one frame between down and up, giving
+/// EditableText's onTapOutside-triggered unfocus a chance to remove the
+/// widget before the up event arrives. This helper simulates that timing.
+Future<void> _realisticTap(WidgetTester tester, Finder finder) async {
+  final gesture = await tester.startGesture(tester.getCenter(finder));
+  await tester.pump();
+  await gesture.up();
+  await tester.pumpAndSettle();
+}
+
 Future<void> _pumpHomePageWithOneCard(WidgetTester tester) async {
   await tester.runAsync(() => RewardRulesRepository.instance.load());
 
@@ -60,8 +73,7 @@ void main() {
     await tester.tap(find.byType(TextField));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text(PopularMerchants.suggestions.first));
-    await tester.pumpAndSettle();
+    await _realisticTap(tester, find.text(PopularMerchants.suggestions.first));
 
     expect(find.byType(ResultPage), findsOneWidget);
   });
@@ -71,8 +83,7 @@ void main() {
 
     await tester.tap(find.byType(TextField));
     await tester.pumpAndSettle();
-    await tester.tap(find.text(PopularMerchants.suggestions.first));
-    await tester.pumpAndSettle();
+    await _realisticTap(tester, find.text(PopularMerchants.suggestions.first));
 
     // back to HomePage
     await tester.pageBack();

@@ -112,24 +112,43 @@ class _HomePageState extends State<HomePage> {
   Widget _buildSuggestionsPanel(BuildContext context) {
     final query = _merchantController.text.trim();
 
-    return Container(
-      margin: const EdgeInsets.only(top: 4),
-      height: 240,
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).dividerColor),
-        borderRadius: BorderRadius.circular(8),
+    // Without this, EditableText's default onTapOutside fires on
+    // PointerDownEvent (see Flutter SDK editable_text.dart
+    // _defaultOnTapOutside) and unfocuses the field — which hides this
+    // panel via _recomputeSuggestions() before the ListTile's own tap
+    // gesture finishes resolving, so taps on suggestions silently do
+    // nothing. RawAutocomplete's own options view wraps itself in the
+    // same widget for the same reason (see Flutter SDK autocomplete.dart).
+    //
+    // This is intentionally NOT its own scrollable (no ListView here) even
+    // though it used to be one — nesting a second vertical scrollable
+    // inside the page's SingleChildScrollView makes ListTile.onTap
+    // unreliable with a mouse: any few-pixel drift between pointer-down
+    // and pointer-up (routine with a mouse, never happens with a
+    // synthetic test tap) can make the inner scrollable's drag recognizer
+    // win the gesture arena instead of the tap, silently swallowing the
+    // click. Flattening to one scroll region (the page itself) removes
+    // the competing recognizer entirely.
+    return TextFieldTapRegion(
+      child: Container(
+        margin: const EdgeInsets.only(top: 4),
+        decoration: BoxDecoration(
+          border: Border.all(color: Theme.of(context).dividerColor),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: query.isEmpty
+            ? _buildGroupedSuggestions(context)
+            : _buildFlatSuggestions(),
       ),
-      child: query.isEmpty
-          ? _buildGroupedSuggestions(context)
-          : _buildFlatSuggestions(),
     );
   }
 
   Widget _buildGroupedSuggestions(BuildContext context) {
     final history = context.watch<SearchHistoryStore>().history;
 
-    return ListView(
-      padding: EdgeInsets.zero,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (history.isNotEmpty) ...[
           _sectionHeader(context, '歷史查詢'),
@@ -163,18 +182,17 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      itemCount: _currentSuggestions.length,
-      itemBuilder: (context, index) {
-        final option = _currentSuggestions[index];
-        return ListTile(
-          dense: true,
-          leading: const Icon(Icons.storefront, size: 18),
-          title: Text(option),
-          onTap: () => _selectSuggestion(option),
-        );
-      },
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        for (final option in _currentSuggestions)
+          ListTile(
+            dense: true,
+            leading: const Icon(Icons.storefront, size: 18),
+            title: Text(option),
+            onTap: () => _selectSuggestion(option),
+          ),
+      ],
     );
   }
 
