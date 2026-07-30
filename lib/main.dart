@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'pages/home_page.dart';
 import 'services/reward_rules_repository.dart';
+import 'state/search_history_store.dart';
 import 'state/user_cards_store.dart';
 
 Future<void> main() async {
@@ -16,8 +17,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => UserCardsStore(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserCardsStore()),
+        ChangeNotifierProvider(create: (_) => SearchHistoryStore()),
+      ],
       child: MaterialApp(
         title: 'Credit Card Recommender',
         theme: ThemeData(

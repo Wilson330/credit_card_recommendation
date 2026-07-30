@@ -37,4 +37,7 @@ class RewardRulesRepository {
 
   List<CardRewardRule> rulesFor(String cardId) =>
       List.unmodifiable(_rulesByCard[cardId] ?? const []);
+
+  List<CardRewardRule> allRules() =>
+      List.unmodifiable(_rulesByCard.values.expand((rules) => rules));
 }
