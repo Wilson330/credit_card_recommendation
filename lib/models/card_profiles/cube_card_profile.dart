@@ -1,4 +1,6 @@
-class CubeCardProfile {
+import 'card_profile.dart';
+
+class CubeCardProfile extends CardProfile {
   final String selectedLevel;
   final String selectedRights;
   final bool isNewCardHolder;

@@ -1,18 +1,25 @@
 import '../models/merchant_query_context.dart';
 import '../models/reward_evaluation_result.dart';
 import '../models/user_card_bundle.dart';
+import 'evaluators/card_reward_evaluator.dart';
 import 'evaluators/cube_reward_evaluator.dart';
 import 'evaluators/jiho_reward_evaluator.dart';
 
 class RecommendationOrchestrator {
-  final CubeRewardEvaluator _cubeRewardEvaluator;
-  final JihoRewardEvaluator _jihoRewardEvaluator;
+  RecommendationOrchestrator({List<CardRewardEvaluator>? evaluators})
+      : _evaluatorsByCardId = {
+          for (final evaluator in evaluators ?? _defaultEvaluators)
+            evaluator.cardId: evaluator,
+        };
 
-  RecommendationOrchestrator({
-    CubeRewardEvaluator? cubeRewardEvaluator,
-    JihoRewardEvaluator? jihoRewardEvaluator,
-  })  : _cubeRewardEvaluator = cubeRewardEvaluator ?? CubeRewardEvaluator(),
-        _jihoRewardEvaluator = jihoRewardEvaluator ?? JihoRewardEvaluator();
+  // The one place that needs to know about every supported card. Adding a
+  // new card means adding its evaluator here — nowhere else in this file.
+  static List<CardRewardEvaluator> get _defaultEvaluators => [
+        CubeRewardEvaluator(),
+        JihoRewardEvaluator(),
+      ];
+
+  final Map<String, CardRewardEvaluator> _evaluatorsByCardId;
 
   List<RewardEvaluationResult> evaluate({
     required MerchantQueryContext merchantContext,
@@ -21,25 +28,15 @@ class RecommendationOrchestrator {
     final results = <RewardEvaluationResult>[];
 
     for (final userCard in userCards) {
-      final cardId = userCard.walletCard.cardId;
+      final evaluator = _evaluatorsByCardId[userCard.walletCard.cardId];
+      if (evaluator == null) continue; // no evaluator registered for this card yet
 
-      if (cardId == 'cathay_cube' && userCard.cubeProfile != null) {
-        results.add(
-          _cubeRewardEvaluator.evaluate(
-            profile: userCard.cubeProfile!,
-            merchantContext: merchantContext,
-          ),
-        );
-      }
-
-      if (cardId == 'ubot_jiho' && userCard.jihoProfile != null) {
-        results.add(
-          _jihoRewardEvaluator.evaluate(
-            profile: userCard.jihoProfile!,
-            merchantContext: merchantContext,
-          ),
-        );
-      }
+      results.add(
+        evaluator.evaluate(
+          profile: userCard.profile,
+          merchantContext: merchantContext,
+        ),
+      );
     }
 
     results.sort((a, b) {

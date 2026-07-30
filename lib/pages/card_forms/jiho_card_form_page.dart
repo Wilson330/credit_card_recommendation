@@ -28,7 +28,7 @@ class _JihoCardFormPageState extends State<JihoCardFormPage> {
   void initState() {
     super.initState();
 
-    final existingProfile = widget.existingCard?.jihoProfile;
+    final existingProfile = widget.existingCard?.profile as JihoCardProfile?;
     final existingWalletCard = widget.existingCard?.walletCard;
 
     isNewCardHolder = existingProfile?.isNewCardHolder ?? false;
@@ -47,7 +47,7 @@ class _JihoCardFormPageState extends State<JihoCardFormPage> {
         cardName: '吉鶴卡',
         network: selectedNetwork,
       ),
-      jihoProfile: JihoCardProfile(
+      profile: JihoCardProfile(
         isNewCardHolder: isNewCardHolder,
       ),
     );

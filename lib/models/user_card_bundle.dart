@@ -1,15 +1,12 @@
-import 'card_profiles/cube_card_profile.dart';
-import 'card_profiles/jiho_card_profile.dart';
+import 'card_profiles/card_profile.dart';
 import 'wallet_card.dart';
 
 class UserCardBundle {
   final WalletCard walletCard;
-  final CubeCardProfile? cubeProfile;
-  final JihoCardProfile? jihoProfile;
+  final CardProfile profile;
 
   const UserCardBundle({
     required this.walletCard,
-    this.cubeProfile,
-    this.jihoProfile,
+    required this.profile,
   });
 }

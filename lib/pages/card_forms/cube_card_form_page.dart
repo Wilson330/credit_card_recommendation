@@ -30,7 +30,7 @@ class _CubeCardFormPageState extends State<CubeCardFormPage> {
   void initState() {
     super.initState();
 
-    final existingProfile = widget.existingCard?.cubeProfile;
+    final existingProfile = widget.existingCard?.profile as CubeCardProfile?;
     final existingWalletCard = widget.existingCard?.walletCard;
 
     isNewCardHolder = existingProfile?.isNewCardHolder ?? false;
@@ -51,7 +51,7 @@ class _CubeCardFormPageState extends State<CubeCardFormPage> {
         cardName: 'CUBE Card',
         network: selectedNetwork,
       ),
-      cubeProfile: CubeCardProfile(
+      profile: CubeCardProfile(
         selectedLevel: selectedLevel,
         selectedRights: selectedRights,
         isNewCardHolder: isNewCardHolder,
