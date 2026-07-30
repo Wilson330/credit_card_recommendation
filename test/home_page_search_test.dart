@@ -27,7 +27,6 @@ Future<void> _pumpHomePageWithOneCard(WidgetTester tester) async {
         ),
         profile: CubeCardProfile(
           selectedLevel: 'level_1',
-          selectedRights: 'daily_select',
           isNewCardHolder: false,
         ),
       ),

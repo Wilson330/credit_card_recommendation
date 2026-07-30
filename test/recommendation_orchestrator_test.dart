@@ -73,7 +73,6 @@ void main() {
           ),
           profile: const CubeCardProfile(
             selectedLevel: 'level_1',
-            selectedRights: 'daily_select',
             isNewCardHolder: false,
           ),
         ),

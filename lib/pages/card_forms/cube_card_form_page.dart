@@ -21,7 +21,6 @@ class CubeCardFormPage extends StatefulWidget {
 class _CubeCardFormPageState extends State<CubeCardFormPage> {
   late bool isNewCardHolder;
   late String selectedLevel;
-  late String selectedRights;
   late String selectedNetwork;
 
   bool get isEditMode => widget.existingCard != null;
@@ -35,7 +34,6 @@ class _CubeCardFormPageState extends State<CubeCardFormPage> {
 
     isNewCardHolder = existingProfile?.isNewCardHolder ?? false;
     selectedLevel = existingProfile?.selectedLevel ?? 'level_3';
-    selectedRights = existingProfile?.selectedRights ?? 'daily_select';
     selectedNetwork = existingWalletCard?.network ?? 'Visa';
   }
 
@@ -53,7 +51,6 @@ class _CubeCardFormPageState extends State<CubeCardFormPage> {
       ),
       profile: CubeCardProfile(
         selectedLevel: selectedLevel,
-        selectedRights: selectedRights,
         isNewCardHolder: isNewCardHolder,
       ),
     );
@@ -120,33 +117,6 @@ class _CubeCardFormPageState extends State<CubeCardFormPage> {
               if (value == null) return;
               setState(() {
                 selectedLevel = value;
-              });
-            },
-          ),
-          const SizedBox(height: 12),
-          DropdownButtonFormField<String>(
-            value: selectedRights,
-            decoration: const InputDecoration(
-              labelText: 'CUBE 權益方案',
-            ),
-            items: const [
-              DropdownMenuItem(
-                value: 'daily_select',
-                child: Text('天天精選'),
-              ),
-              DropdownMenuItem(
-                value: 'travel_select',
-                child: Text('旅遊方案'),
-              ),
-              DropdownMenuItem(
-                value: 'shopping_select',
-                child: Text('購物方案'),
-              ),
-            ],
-            onChanged: (value) {
-              if (value == null) return;
-              setState(() {
-                selectedRights = value;
               });
             },
           ),

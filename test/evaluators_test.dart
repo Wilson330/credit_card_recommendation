@@ -18,7 +18,6 @@ void main() {
       final result = CubeRewardEvaluator().evaluate(
         profile: const CubeCardProfile(
           selectedLevel: 'level_1',
-          selectedRights: 'daily_select',
           isNewCardHolder: false,
         ),
         merchantContext: const MerchantQueryContext(merchantName: '台塑石油加油站'),
@@ -34,7 +33,6 @@ void main() {
       final level1 = CubeRewardEvaluator().evaluate(
         profile: const CubeCardProfile(
           selectedLevel: 'level_1',
-          selectedRights: 'daily_select',
           isNewCardHolder: false,
         ),
         merchantContext: query,
@@ -42,7 +40,6 @@ void main() {
       final level3 = CubeRewardEvaluator().evaluate(
         profile: const CubeCardProfile(
           selectedLevel: 'level_3',
-          selectedRights: 'daily_select',
           isNewCardHolder: false,
         ),
         merchantContext: query,
@@ -57,7 +54,6 @@ void main() {
       final result = CubeRewardEvaluator().evaluate(
         profile: const CubeCardProfile(
           selectedLevel: 'level_1',
-          selectedRights: 'daily_select',
           isNewCardHolder: false,
         ),
         merchantContext: const MerchantQueryContext(merchantName: '完全沒聽過的店'),
@@ -71,7 +67,6 @@ void main() {
       final result = CubeRewardEvaluator().evaluate(
         profile: const CubeCardProfile(
           selectedLevel: 'level_1',
-          selectedRights: 'daily_select',
           isNewCardHolder: false,
         ),
         merchantContext: const MerchantQueryContext(merchantName: '誠品'),
@@ -89,7 +84,6 @@ void main() {
       final result = CubeRewardEvaluator().evaluate(
         profile: const CubeCardProfile(
           selectedLevel: 'level_1',
-          selectedRights: 'daily_select',
           isNewCardHolder: false,
         ),
         merchantContext: const MerchantQueryContext(merchantName: '全家'),
