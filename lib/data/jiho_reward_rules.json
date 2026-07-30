@@ -1,0 +1,1152 @@
+[
+  {
+    "rule_id": "jiho_國內一般消費_國內一般消費",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "國內一般消費",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "國內一般消費",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內一般消費_新戶自動扣繳加碼_國內一般消費",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "新戶自動扣繳加碼(國內一般消費)",
+    "applicable_level": null,
+    "reward_rate": 1.5,
+    "benefit_label": "國內一般消費",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國外一般消費_國外一般消費_非日幣",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "國外一般消費(非日幣)",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "國外一般消費",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本一般消費_日本日幣消費",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "日本日幣消費",
+    "applicable_level": null,
+    "reward_rate": 2.5,
+    "benefit_label": "日本一般消費",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本一般消費_日本行動支付_apple_pay_google_pay",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "日本行動支付(Apple Pay/Google Pay)",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "日本一般消費",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本一般消費_新戶日本實體消費",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "新戶日本實體消費",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "日本一般消費",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本一般消費_新戶日本實體消費_行動支付",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "新戶日本實體消費(行動支付)",
+    "applicable_level": null,
+    "reward_rate": 8,
+    "benefit_label": "日本一般消費",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本交通卡儲值_suica儲值",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "SUICA儲值",
+    "applicable_level": null,
+    "reward_rate": 1.5,
+    "benefit_label": "日本交通卡儲值",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本交通卡儲值_icoca儲值",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "ICOCA儲值",
+    "applicable_level": null,
+    "reward_rate": 1.5,
+    "benefit_label": "日本交通卡儲值",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本交通卡儲值_pasmo儲值",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "PASMO儲值",
+    "applicable_level": null,
+    "reward_rate": 1.5,
+    "benefit_label": "日本交通卡儲值",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    ],
+    "is_synthetic_condition": true,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_7_eleven_日本",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "7-ELEVEN(日本)",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_familymart_日本",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "FamilyMart(日本)",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_lawson_日本",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "LAWSON(日本)",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_東京迪士尼",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "東京迪士尼",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_大阪環球影城",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "大阪環球影城",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_永旺_日本",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "永旺(日本)",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_三越_日本",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "三越(日本)",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_高島屋_日本",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "高島屋(日本)",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_bic_camera",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "BIC CAMERA",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_yodobashi",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "Yodobashi",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_日本熱門商店_唐吉訶德",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "唐吉訶德",
+    "applicable_level": null,
+    "reward_rate": 11,
+    "benefit_label": "日本熱門商店",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_daiso大創百貨",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "DAISO大創百貨",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_standard_products",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "Standard Products",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_threeppy",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "THREEPPY",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_日藥本舖",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "日藥本舖",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_松本清",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "松本清",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_三友藥妝tomod_s",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "三友藥妝Tomod's",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_札幌藥妝",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "札幌藥妝",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_tsutaya_bookstore",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "TSUTAYA BOOKSTORE",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_uniqlo",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "UNIQLO",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_gu",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "GU",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_思夢樂",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "思夢樂",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_global_work",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "GLOBAL WORK",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_niko_and",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "niko and …",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_lowrys_farm",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "LOWRYS FARM",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_lakole",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "LAKOLE",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_studio_clip",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "studio CLIP",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_repipi_armario",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "repipi armario",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_hare",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "HARE",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_heather",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "Heather",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_pageboy",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "PAGEBOY",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_rageblue",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "RAGEBLUE",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_lepsim",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "LEPSIM",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系特店加碼_jeanasis",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "JEANASIS",
+    "applicable_level": null,
+    "reward_rate": 5.5,
+    "benefit_label": "國內日系特店加碼",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_涮乃葉",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "涮乃葉",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_壽司涮乃葉",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "壽司涮乃葉",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_涮之華",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "涮之華",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_燒肉smile",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "燒肉Smile",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_定食8",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "定食8",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_日本橋浜町食事处",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "日本橋浜町食事处",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_勝博殿",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "勝博殿",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_欣葉日本料理",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "欣葉日本料理",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_欣葉日本料理_彩膳楽亭",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "欣葉日本料理 彩膳楽亭",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_吉豚屋",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "吉豚屋",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_一風堂",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "一風堂",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_麵屋武藏",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "麵屋武藏",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_yayoi_彌生軒",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "YAYOI 彌生軒",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_壽司美登利",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "壽司美登利",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_屯京拉麵",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "屯京拉麵",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_千葉火鍋",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "千葉火鍋",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_享千葉火鍋",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "享千葉火鍋",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_新千葉火鍋",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "新千葉火鍋",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_極千葉火鍋",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "極千葉火鍋",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_凪ramen_nagi",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "ラーメン凪Ramen Nagi",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_mo_mo_paradise",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "Mo-Mo-Paradise",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_天吉屋",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "天吉屋",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_吉天麩羅",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "吉天麩羅",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_bellini_caff",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "BELLINI CAFFÈ",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_bellini_pasta_pasta",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "BELLINI Pasta Pasta",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_molino_手工義大利麵",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "MOLINO 手工義大利麵",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_嵐山熟成牛_專売",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "嵐山熟成牛かつ專売-",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_大河屋_燒肉丼_串燒",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "大河屋 燒肉丼 串燒",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_樂麵屋",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "樂麵屋",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_金子半之助",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "金子半之助",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_國內日系餐廳優惠_新宿內臟燒肉",
+    "card_id": "ubot_jiho",
+    "rule_type": "merchant",
+    "match_value": "新宿內臟燒肉",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "國內日系餐廳優惠",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "jiho_default",
+    "card_id": "ubot_jiho",
+    "rule_type": "default",
+    "match_value": "*",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "國內一般消費",
+    "required_action": null,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  }
+]
