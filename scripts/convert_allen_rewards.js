@@ -54,20 +54,25 @@ const CUBE_LEVEL_MAP = {
   'Level 3': 'level_3',
 };
 
-// Schemes confirmed by the user as switchable benefit programs (require an
-// explicit "switch to this program" action). Everything else in the raw
-// data is an assumption flagged in SCHEMA.md, not a confirmed fact.
-const CUBE_SWITCHABLE_SCHEMES = new Set(['樂饗購', '玩數位', '趣旅行', '集精選']);
-
 // Deferred per user decision 2026-07-30 (round 2): skip these schemes for v1.
 const CUBE_DEFERRED_SCHEMES = new Set(['慶生月', '童樂匯']);
+
+// Confirmed with Allen 2026-08-06: every remaining CUBE scheme (台塑家/
+// 全支付 included) requires switching to that benefit program — there is
+// no non-switchable scheme left, so required_action is unconditional now.
 
 function convertCube() {
   const raw = JSON.parse(
     fs.readFileSync(path.join(ALLEN_DIR, 'cube_ALL_LEVELS_rewards.json'), 'utf8')
   );
 
-  const rules = [];
+  // Pass 1: collect each (scheme, merchant)'s rate per level, since whether
+  // a rule needs one row (rate constant across levels) or three (rate
+  // varies) can only be known after seeing all three levels — deciding
+  // this from which scheme it is (as an earlier version of this script did)
+  // was wrong: 台塑家/全支付 are switchable but level-invariant, so tying
+  // the two together produced duplicate rows with no actual difference.
+  const byKey = new Map();
 
   for (const [rawLevel, schemes] of Object.entries(raw)) {
     const level = CUBE_LEVEL_MAP[rawLevel];
@@ -79,48 +84,63 @@ function convertCube() {
     for (const [scheme, merchants] of Object.entries(schemes)) {
       if (CUBE_DEFERRED_SCHEMES.has(scheme)) continue;
 
-      const isSwitchable = CUBE_SWITCHABLE_SCHEMES.has(scheme);
-      // level-invariant schemes (rate doesn't change 1/2/3) get applicable_level: null
-      // so one rule row covers all levels instead of duplicating 3x.
-      const isLevelVariant = isSwitchable; // matches what we observed in the raw data
-
       for (const [rawName, rate] of Object.entries(merchants)) {
         const { name, bracketNote } = normalizeMerchantName(rawName);
-        const constraints = [GENERIC_CONSTRAINT];
-        if (bracketNote) constraints.push(bracketNote);
-        if (!isSwitchable) {
-          constraints.push('此方案是否需另行申請/切換，待與官網條款確認');
+        const key = `${scheme}|||${name}`;
+        if (!byKey.has(key)) {
+          byKey.set(key, { scheme, name, bracketNote, ratesByLevel: {} });
         }
+        byKey.get(key).ratesByLevel[level] = rate;
+      }
+    }
+  }
 
+  // Pass 2: emit one row if the rate is constant across levels, three rows
+  // (one per level) if it actually varies.
+  const rules = [];
+
+  for (const { scheme, name, bracketNote, ratesByLevel } of byKey.values()) {
+    const constraints = [GENERIC_CONSTRAINT];
+    if (bracketNote) constraints.push(bracketNote);
+
+    const distinctRates = new Set(Object.values(ratesByLevel));
+    const isLevelVariant = distinctRates.size > 1;
+    const requiredAction = `需切換至${scheme}權益方案`;
+
+    if (isLevelVariant) {
+      for (const [level, rate] of Object.entries(ratesByLevel)) {
         rules.push({
-          rule_id: buildRuleId('cube', scheme, name, isLevelVariant ? level : null),
+          rule_id: buildRuleId('cube', scheme, name, level),
           card_id: 'cathay_cube',
           rule_type: 'merchant',
           match_value: name,
-          applicable_level: isLevelVariant ? level : null,
+          applicable_level: level,
           reward_rate: rate,
           benefit_label: scheme,
-          required_action: isSwitchable ? `需切換至${scheme}權益方案` : null,
+          required_action: requiredAction,
           constraints,
           is_synthetic_condition: false,
           active: true,
         });
       }
+    } else {
+      rules.push({
+        rule_id: buildRuleId('cube', scheme, name, null),
+        card_id: 'cathay_cube',
+        rule_type: 'merchant',
+        match_value: name,
+        applicable_level: null,
+        reward_rate: Object.values(ratesByLevel)[0],
+        benefit_label: scheme,
+        required_action: requiredAction,
+        constraints,
+        is_synthetic_condition: false,
+        active: true,
+      });
     }
   }
 
-  // de-dupe rows that are identical across levels for level-invariant schemes
-  // (raw data repeats them per level even though the rate doesn't change)
-  const seen = new Set();
-  const deduped = rules.filter((r) => {
-    if (r.applicable_level !== null) return true; // keep all level-variant rows
-    const key = `${r.card_id}|${r.benefit_label}|${r.match_value}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-
-  deduped.push({
+  rules.push({
     rule_id: 'cube_default',
     card_id: 'cathay_cube',
     rule_type: 'default',
@@ -130,13 +150,14 @@ function convertCube() {
     benefit_label: '一般消費',
     required_action: null,
     constraints: [
-      '此為沿用先前 mock 資料的預設回饋率，尚未在 Allen 提供的資料中找到官方一般消費基準，待確認',
+      GENERIC_CONSTRAINT,
+      '一般消費基礎回饋率 0.3%，已於 2026-08-06 與 Allen 確認',
     ],
     is_synthetic_condition: false,
     active: true,
   });
 
-  return deduped;
+  return rules;
 }
 
 // ---------- JIHO ----------
