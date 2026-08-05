@@ -2,13 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import 'pages/home_page.dart';
+import 'services/merchant_repository.dart';
 import 'services/reward_rules_repository.dart';
 import 'state/search_history_store.dart';
 import 'state/user_cards_store.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await RewardRulesRepository.instance.load();
+  await Future.wait([
+    RewardRulesRepository.instance.load(),
+    MerchantRepository.instance.load(),
+  ]);
   runApp(const MyApp());
 }
 

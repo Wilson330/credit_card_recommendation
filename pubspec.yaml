@@ -61,6 +61,7 @@ flutter:
   assets:
     - lib/data/cube_reward_rules.json
     - lib/data/jiho_reward_rules.json
+    - lib/data/merchants.json
     - assets/card_faces/
 
   # To add assets to your application, add an assets section, like this:

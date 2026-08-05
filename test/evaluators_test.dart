@@ -4,6 +4,8 @@ import 'package:my_first_app/models/card_profiles/jiho_card_profile.dart';
 import 'package:my_first_app/models/merchant_query_context.dart';
 import 'package:my_first_app/services/evaluators/cube_reward_evaluator.dart';
 import 'package:my_first_app/services/evaluators/jiho_reward_evaluator.dart';
+import 'package:my_first_app/services/merchant_repository.dart';
+import 'package:my_first_app/services/merchant_resolver.dart';
 import 'package:my_first_app/services/reward_rules_repository.dart';
 
 void main() {
@@ -11,6 +13,7 @@ void main() {
 
   setUpAll(() async {
     await RewardRulesRepository.instance.load();
+    await MerchantRepository.instance.load();
   });
 
   group('CubeRewardEvaluator against real cube_reward_rules.json', () {
@@ -91,6 +94,46 @@ void main() {
 
       expect(result.rewardRate, 2.0);
       expect(['台塑家', '集精選'], contains(result.matchedTags.first));
+    });
+
+    test(
+      '藏壽司 (never named by Allen) hits the 樂饗購 category rule once tags are resolved',
+      () {
+        // This is the actual end-to-end pipeline: HomePage resolves tags
+        // via MerchantResolver before building MerchantQueryContext — a
+        // raw MerchantQueryContext with no tags (as in every other test
+        // above) would still fall through to default for 藏壽司, since it
+        // has no merchant-type rule of its own.
+        final tags = MerchantResolver().tagsFor('藏壽司');
+        expect(tags, isNotEmpty); // sanity check the resolver actually found it
+
+        final result = CubeRewardEvaluator().evaluate(
+          profile: const CubeCardProfile(
+            selectedLevel: 'level_2',
+            isNewCardHolder: false,
+          ),
+          merchantContext: MerchantQueryContext(
+            merchantName: '藏壽司',
+            merchantTags: tags,
+          ),
+        );
+
+        expect(result.rewardRate, 3.0);
+        expect(result.matchedTags, contains('樂饗購'));
+        expect(result.requiredAction, '需切換至樂饗購權益方案');
+      },
+    );
+
+    test('without resolved tags, the same merchant falls back to default', () {
+      final result = CubeRewardEvaluator().evaluate(
+        profile: const CubeCardProfile(
+          selectedLevel: 'level_2',
+          isNewCardHolder: false,
+        ),
+        merchantContext: const MerchantQueryContext(merchantName: '藏壽司'),
+      );
+
+      expect(result.rewardRate, 0.3);
     });
   });
 

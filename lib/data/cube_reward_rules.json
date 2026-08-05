@@ -6162,6 +6162,102 @@
     "active": true
   },
   {
+    "rule_id": "cube_樂饗購_category_restaurant_level_1",
+    "card_id": "cathay_cube",
+    "rule_type": "category",
+    "match_value": "restaurant",
+    "applicable_level": "level_1",
+    "reward_rate": 2,
+    "benefit_label": "樂饗購",
+    "required_action": "需切換至樂饗購權益方案",
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_樂饗購_category_restaurant_level_2",
+    "card_id": "cathay_cube",
+    "rule_type": "category",
+    "match_value": "restaurant",
+    "applicable_level": "level_2",
+    "reward_rate": 3,
+    "benefit_label": "樂饗購",
+    "required_action": "需切換至樂饗購權益方案",
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_樂饗購_category_restaurant_level_3",
+    "card_id": "cathay_cube",
+    "rule_type": "category",
+    "match_value": "restaurant",
+    "applicable_level": "level_3",
+    "reward_rate": 3.3,
+    "benefit_label": "樂饗購",
+    "required_action": "需切換至樂饗購權益方案",
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_趣旅行_category_lodging_level_1",
+    "card_id": "cathay_cube",
+    "rule_type": "category",
+    "match_value": "lodging",
+    "applicable_level": "level_1",
+    "reward_rate": 2,
+    "benefit_label": "趣旅行",
+    "required_action": "需切換至趣旅行權益方案",
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_趣旅行_category_lodging_level_2",
+    "card_id": "cathay_cube",
+    "rule_type": "category",
+    "match_value": "lodging",
+    "applicable_level": "level_2",
+    "reward_rate": 3,
+    "benefit_label": "趣旅行",
+    "required_action": "需切換至趣旅行權益方案",
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_趣旅行_category_lodging_level_3",
+    "card_id": "cathay_cube",
+    "rule_type": "category",
+    "match_value": "lodging",
+    "applicable_level": "level_3",
+    "reward_rate": 3.3,
+    "benefit_label": "趣旅行",
+    "required_action": "需切換至趣旅行權益方案",
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
     "rule_id": "cube_default",
     "card_id": "cathay_cube",
     "rule_type": "default",

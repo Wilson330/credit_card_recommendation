@@ -140,6 +140,45 @@ function convertCube() {
     }
   }
 
+  // Not derived from Allen's crawl — these two category-type rules encode
+  // a broad clause Allen confirmed 2026-08-06 by hand: 樂饗購 also covers
+  // any domestic restaurant (not just the ~44 named merchants above), and
+  // 趣旅行 also covers any domestic hotel (not just the named hotel
+  // brands). The rate at each level is inferred, not separately
+  // confirmed — but every named merchant under a given (scheme, level)
+  // in the raw data shares exactly one rate (verified: Level 1 = 2.0,
+  // Level 2 = 3.0, Level 3 = 3.3 for both schemes, no variation), so
+  // assuming the broad clause pays the same as the named list is a safe
+  // inference, not a guess pulled from nowhere.
+  // match_value must be an actual tag string from merchants.json's
+  // tags[] (see scripts/build_merchants.js's DINING()/HOTEL() helpers),
+  // not a primary_category value — RuleMatcher checks tags.contains(),
+  // not primary_category equality.
+  const CATEGORY_RULES = [
+    { scheme: '樂饗購', tag: 'restaurant', rates: { level_1: 2.0, level_2: 3.0, level_3: 3.3 } },
+    { scheme: '趣旅行', tag: 'lodging', rates: { level_1: 2.0, level_2: 3.0, level_3: 3.3 } },
+  ];
+  for (const { scheme, tag, rates } of CATEGORY_RULES) {
+    for (const [level, rate] of Object.entries(rates)) {
+      rules.push({
+        rule_id: buildRuleId('cube', scheme, `category_${tag}`, level),
+        card_id: 'cathay_cube',
+        rule_type: 'category',
+        match_value: tag,
+        applicable_level: level,
+        reward_rate: rate,
+        benefit_label: scheme,
+        required_action: `需切換至${scheme}權益方案`,
+        constraints: [
+          GENERIC_CONSTRAINT,
+          '廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）',
+        ],
+        is_synthetic_condition: false,
+        active: true,
+      });
+    }
+  }
+
   rules.push({
     rule_id: 'cube_default',
     card_id: 'cathay_cube',

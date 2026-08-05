@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../constants/popular_merchants.dart';
 import '../models/merchant_query_context.dart';
 import '../models/user_card_bundle.dart';
+import '../services/merchant_resolver.dart';
 import '../services/merchant_suggestion_index.dart';
 import '../services/recommendation_orchestrator.dart';
 import '../state/search_history_store.dart';
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   final _searchFocusNode = FocusNode();
   final _orchestrator = RecommendationOrchestrator();
   final _suggestionIndex = MerchantSuggestionIndex();
+  final _merchantResolver = MerchantResolver();
 
   bool _showSuggestions = false;
   List<String> _currentSuggestions = const [];
@@ -88,6 +90,7 @@ class _HomePageState extends State<HomePage> {
 
     final merchantContext = MerchantQueryContext(
       merchantName: merchantName,
+      merchantTags: _merchantResolver.tagsFor(merchantName),
     );
 
     final results = _orchestrator.evaluate(

@@ -20,20 +20,22 @@ status：草稿定案版，還沒經過完整實作驗證，等 evaluator 改寫
 | `country` | string | 例如 `TW` |
 | `active` | bool | |
 
-範例（已存在於 `merchants_mock.json`，維持不變）：
+範例（`lib/data/merchants.json`，由 `scripts/build_merchants.js` 產生）：
 ```json
 {
-  "merchant_id": "m_kura",
+  "merchant_id": "m_藏壽司",
   "canonical_name": "藏壽司",
   "display_name": "藏壽司",
   "primary_category": "dining",
-  "subcategory": "sushi_chain",
+  "subcategory": null,
   "tags": ["restaurant", "chain_store", "japanese_food"],
   "channel": "offline",
   "country": "TW",
   "active": true
 }
 ```
+
+**category 規則的 `match_value` 必須是 `tags[]` 裡真的會出現的字串**（例如 `restaurant`、`lodging`），不是 `primary_category` 的值（例如 `dining`、`hotel`）——這兩者不一樣，曾經因為搞混這兩個而讓 category 規則完全比對不到，已修正。
 
 ## 2. merchant_aliases
 
@@ -68,10 +70,12 @@ status：草稿定案版，還沒經過完整實作驗證，等 evaluator 改寫
 **category 規則的比對邏輯**：檢查候選商家的 `merchants.tags` 是否包含 `match_value`。如果同一張卡的多條 category 規則同時命中同一個商家（例如「餐廳」跟「百貨」都命中），evaluator 取 `reward_rate` 較高的那一條，不需要额外的 priority 欄位。
 
 **已知簡化 / 待辦事項（不是最終設計，只是這次為了先讓資料跑起來的暫時決定）：**
-- `merchant` 型別的 `match_value` 目前直接放**正規化後的原始商家名稱字串**，還沒有真的對應到 `merchants.merchant_id`。完整版需要先把 Allen 爬到的原始商家名稱一一比對出 `merchant_id`（近 900 筆，屬於之後要做的別名比對工作）。**2026-08-06 與 Allen 確認：這層比對由我們自己做，爬蟲不會直接吐 `merchant_id`**——這是目前正在進行的下一步工作。
+- `merchant` 型別的 `match_value` 目前直接放**正規化後的原始商家名稱字串**，還沒有真的對應到 `merchants.merchant_id`（`RuleMatcher` 是直接字串比對，不是先查表拿 ID 再比對）。
 - 「慶生月」「童樂匯」兩個方案，依照之前的決定先不轉換進來，等未來要擴充新方案時再依同樣模式加入。
-- category 規則（例如「樂饗購也涵蓋國內餐廳」「趣旅行也涵蓋國內飯店」）**2026-08-06 已與 Allen 確認這類廣義條款真實存在**，但要能生效，前提是上面第一點的商家比對層要先做好（category 規則是比對 canonical 商家的 `tags`，不是比對原始字串），所以這兩條規則還沒加進 `cube_reward_rules.json`，等商家比對層完成後一併補上。
+- `merchants.json` 裡標記 `needsReview: true`（透過 `node scripts/build_merchants.js` 印出）的項目是 AI 第一輪分類，還沒有人工逐一確認過，尤其是新增的知名連鎖品牌清單（非 Allen 爬蟲資料，是額外整理來擴充「使用者搜尋到資料庫沒有的店」這個情境覆蓋率的）。
+- `merchants.json` 目前只涵蓋 Allen 爬蟲資料裡出現過的 273 家商家 + 一批額外整理的知名連鎖品牌，遠不是台灣商家的完整清單。使用者搜尋到完全沒收錄的店，還是會落到 `default` 規則。長期怎麼處理「資料庫沒有的店」是目前最大的未解問題，決定是：優先持續擴充 `merchants.json`（離線、人工審核），而不是在查詢當下即時呼叫 AI 判斷分類——後者的不確定性、延遲、成本目前評估不划算。
 
 **已確認、不再是假設的部分（2026-08-06 與 Allen 對齊）：**
 - CUBE 卡「一般消費」的預設回饋率確認為 0.3%。
 - CUBE 卡「台塑家」「全支付」兩個方案確認也需要切換權益方案，`required_action` 已補上。
+- 「樂饗購也涵蓋國內餐廳」「趣旅行也涵蓋國內飯店」這兩條廣義分類條款確認存在，已加進 `cube_reward_rules.json`（`rule_type: category`，`match_value` 分別是 `restaurant` / `lodging`）。適用費率是推論值（比照同方案具名商家費率），沒有另外向 Allen 確認過這個費率本身。
