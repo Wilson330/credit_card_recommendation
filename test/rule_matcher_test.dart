@@ -25,6 +25,25 @@ CardRewardRule _rule({
 }
 
 void main() {
+  test('a second candidate query (e.g. a resolved canonical name) can find an exact match the first candidate alone cannot', () {
+    final rules = [
+      _rule(ruleId: 'kfc', ruleType: 'merchant', matchValue: '肯德基', rewardRate: 5.0),
+      _rule(ruleId: 'default', ruleType: 'default', matchValue: '*', rewardRate: 0.3),
+    ];
+
+    // "KFC" (an alias) doesn't equal or substring-match "肯德基" (the raw
+    // match_value) — only passing the resolved canonical name as a second
+    // candidate lets this find the real rule instead of default.
+    final result = RuleMatcher.selectBestRule(
+      rules: rules,
+      normalizedQueries: ['kfc', '肯德基'],
+      merchantTags: const [],
+    );
+
+    expect(result.ruleId, 'kfc');
+    expect(result.rewardRate, 5.0);
+  });
+
   test('exact match is never displaced by a higher-rate substring match', () {
     final rules = [
       _rule(ruleId: 'exact', ruleType: 'merchant', matchValue: '全家', rewardRate: 1.0),
@@ -38,7 +57,7 @@ void main() {
 
     final result = RuleMatcher.selectBestRule(
       rules: rules,
-      normalizedQuery: '全家',
+      normalizedQueries: ['全家'],
       merchantTags: const [],
     );
 
@@ -53,7 +72,7 @@ void main() {
 
     final result = RuleMatcher.selectBestRule(
       rules: rules,
-      normalizedQuery: '全家',
+      normalizedQueries: ['全家'],
       merchantTags: const [],
     );
 
@@ -71,7 +90,7 @@ void main() {
     // would swallow almost every query containing that letter.
     final result = RuleMatcher.selectBestRule(
       rules: rules,
-      normalizedQuery: 'ab',
+      normalizedQueries: ['ab'],
       merchantTags: const [],
     );
 
@@ -86,7 +105,7 @@ void main() {
 
     final result = RuleMatcher.selectBestRule(
       rules: rules,
-      normalizedQuery: '某個沒人聽過的餐廳',
+      normalizedQueries: ['某個沒人聽過的餐廳'],
       merchantTags: const ['dining'],
     );
 
@@ -107,7 +126,7 @@ void main() {
 
     final result = RuleMatcher.selectBestRule(
       rules: rules,
-      normalizedQuery: '誠品生活',
+      normalizedQueries: ['誠品生活'],
       merchantTags: const [],
       currentLevel: 'level_1',
     );

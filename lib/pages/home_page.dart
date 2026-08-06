@@ -88,9 +88,11 @@ class _HomePageState extends State<HomePage> {
 
     context.read<SearchHistoryStore>().recordSearch(merchantName);
 
+    final resolvedMerchant = _merchantResolver.resolve(merchantName);
     final merchantContext = MerchantQueryContext(
       merchantName: merchantName,
-      merchantTags: _merchantResolver.tagsFor(merchantName),
+      merchantTags: resolvedMerchant?.tags ?? const [],
+      resolvedCanonicalName: resolvedMerchant?.canonicalName,
     );
 
     final results = _orchestrator.evaluate(

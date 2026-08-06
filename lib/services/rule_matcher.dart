@@ -10,11 +10,14 @@ import 'merchant_matcher.dart';
 ///      unrelated merchant can't outrank a real exact match just because
 ///      its reward_rate happens to be higher.
 ///   2. conservative substring match (either side contains the other, both
-///      at least [_minSafeMatchLength] chars) — this is what lets a user
-///      typing "全家" find a rule whose match_value is the full raw crawled
-///      name "全家便利商店 實體門市". This is still just a stand-in for real
-///      alias-table matching (see SCHEMA.md); it only helps when the typed
-///      text is a substring of the raw name or vice versa.
+///      at least [_minSafeMatchLength] chars).
+/// [normalizedQueries] can carry more than one string — typically the
+/// user's raw typed text plus the resolved canonical merchant name (see
+/// MerchantResolver) — because a rule's match_value is Allen's raw
+/// crawled name, which an alias like "小七" or "KFC" won't ever equal or
+/// substring-match on its own; only the canonical name will. Each tier
+/// checks every candidate query and keeps the best result found across
+/// all of them.
 /// category rules are always tier 1 alongside an exact merchant hit — see
 /// SCHEMA.md's "category 規則的比對邏輯" for the multi-tag design.
 /// If multiple rules match within whichever tier fires, the highest
@@ -24,7 +27,7 @@ class RuleMatcher {
 
   static CardRewardRule selectBestRule({
     required List<CardRewardRule> rules,
-    required String normalizedQuery,
+    required List<String> normalizedQueries,
     required List<String> merchantTags,
     String? currentLevel,
   }) {
@@ -36,11 +39,11 @@ class RuleMatcher {
         )
         .toList();
 
-    final exactMerchantMatches = applicable.where(
-      (r) =>
-          r.ruleType == 'merchant' &&
-          MerchantMatcher.normalize(r.matchValue) == normalizedQuery,
-    );
+    final exactMerchantMatches = applicable.where((r) {
+      if (r.ruleType != 'merchant') return false;
+      final normalizedMatchValue = MerchantMatcher.normalize(r.matchValue);
+      return normalizedQueries.contains(normalizedMatchValue);
+    });
     final categoryMatches = applicable.where(
       (r) => r.ruleType == 'category' && merchantTags.contains(r.matchValue),
     );
@@ -54,13 +57,12 @@ class RuleMatcher {
       if (r.ruleType != 'merchant') return false;
 
       final normalizedMatchValue = MerchantMatcher.normalize(r.matchValue);
-      if (normalizedQuery.length < _minSafeMatchLength ||
-          normalizedMatchValue.length < _minSafeMatchLength) {
-        return false;
-      }
+      if (normalizedMatchValue.length < _minSafeMatchLength) return false;
 
-      return normalizedMatchValue.contains(normalizedQuery) ||
-          normalizedQuery.contains(normalizedMatchValue);
+      return normalizedQueries.any((query) {
+        if (query.length < _minSafeMatchLength) return false;
+        return normalizedMatchValue.contains(query) || query.contains(normalizedMatchValue);
+      });
     });
 
     if (substringMatches.isNotEmpty) {

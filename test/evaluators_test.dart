@@ -97,6 +97,35 @@ void main() {
     });
 
     test(
+      'an alias ("小七") finds the real merchant-type rule via the resolved canonical name, not just default',
+      () {
+        // Regression guard: RuleMatcher only ever compared the raw typed
+        // text against rule.match_value, so an alias like "小七" (which
+        // never equals/substring-matches "7-ELEVEN (7-11) 實體門市")
+        // used to silently fall through to default (0.3%) instead of the
+        // real 2.0% 台塑家/集精選 rate — even though MerchantResolver
+        // could already resolve "小七" to the right merchant for tags.
+        final resolved = MerchantResolver().resolve('小七');
+        expect(resolved, isNotNull);
+
+        final result = CubeRewardEvaluator().evaluate(
+          profile: const CubeCardProfile(
+            selectedLevel: 'level_1',
+            isNewCardHolder: false,
+          ),
+          merchantContext: MerchantQueryContext(
+            merchantName: '小七',
+            merchantTags: resolved!.tags,
+            resolvedCanonicalName: resolved.canonicalName,
+          ),
+        );
+
+        expect(result.rewardRate, 2.0);
+        expect(['台塑家', '集精選'], contains(result.matchedTags.first));
+      },
+    );
+
+    test(
       '藏壽司 (never named by Allen) hits the 樂饗購 category rule once tags are resolved',
       () {
         // This is the actual end-to-end pipeline: HomePage resolves tags

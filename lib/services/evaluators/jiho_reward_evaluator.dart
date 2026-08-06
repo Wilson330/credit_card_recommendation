@@ -28,11 +28,12 @@ class JihoRewardEvaluator implements CardRewardEvaluator {
       );
     }
 
-    final normalizedQuery = MerchantMatcher.normalize(merchantContext.merchantName);
-
     final rule = RuleMatcher.selectBestRule(
       rules: _rules,
-      normalizedQuery: normalizedQuery,
+      normalizedQueries: MerchantMatcher.normalizedCandidates(
+        merchantContext.merchantName,
+        merchantContext.resolvedCanonicalName,
+      ),
       merchantTags: merchantContext.merchantTags,
       currentLevel: null,
     );
