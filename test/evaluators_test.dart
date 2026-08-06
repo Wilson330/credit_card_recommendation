@@ -126,6 +126,33 @@ void main() {
     );
 
     test(
+      'the official corporate name alias ("統一超商") also finds the real rule, not just default',
+      () {
+        // User-reported: typed "統一超商" (7-11 Taiwan's operating
+        // company name) expecting the same result as "7-11"/"小七", got
+        // default instead — the alias was simply missing from the list,
+        // not another instance of the matching-pipeline bug above.
+        final resolved = MerchantResolver().resolve('統一超商');
+        expect(resolved, isNotNull);
+
+        final result = CubeRewardEvaluator().evaluate(
+          profile: const CubeCardProfile(
+            selectedLevel: 'level_1',
+            isNewCardHolder: false,
+          ),
+          merchantContext: MerchantQueryContext(
+            merchantName: '統一超商',
+            merchantTags: resolved!.tags,
+            resolvedCanonicalName: resolved.canonicalName,
+          ),
+        );
+
+        expect(result.rewardRate, 2.0);
+        expect(['台塑家', '集精選'], contains(result.matchedTags.first));
+      },
+    );
+
+    test(
       '藏壽司 (never named by Allen) hits the 樂饗購 category rule once tags are resolved',
       () {
         // This is the actual end-to-end pipeline: HomePage resolves tags

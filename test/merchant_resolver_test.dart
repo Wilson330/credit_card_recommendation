@@ -43,6 +43,19 @@ void main() {
     expect(tags, contains('chain_store'));
   });
 
+  test('resolves the official corporate name alias (統一超商 -> 7-ELEVEN 實體門市)', () {
+    // User-reported gap: typed "統一超商" (7-11 Taiwan's operating
+    // company name) expecting the same result as "7-11", got default
+    // instead — the alias itself was just missing from the list.
+    final resolver = MerchantResolver();
+
+    final viaAlias = resolver.resolve('統一超商');
+    final viaShortForm = resolver.resolve('7-11');
+
+    expect(viaAlias, isNotNull);
+    expect(viaAlias!.merchantId, viaShortForm!.merchantId);
+  });
+
   test('returns no tags for a merchant not in the directory', () {
     final resolver = MerchantResolver();
     final tags = resolver.tagsFor('完全沒聽過的店家名稱');

@@ -95,7 +95,7 @@ const THEME_PARK = (tags = []) => ({ primary_category: 'theme_park', tags: ['att
 // set. First pass covering the most likely to actually get typed; not
 // exhaustive, flagged for review same as everything else.
 const ALIASES = {
-  '7-ELEVEN (7-11) 實體門市': ['7-11', '7-ELEVEN', '小七'],
+  '7-ELEVEN (7-11) 實體門市': ['7-11', '7-ELEVEN', '小七', '統一超商'],
   '全家便利商店 實體門市': ['全家', 'FamilyMart'],
   '萊爾富實體門市': ['萊爾富', 'Hi-Life'],
   '全聯福利中心': ['全聯', 'PX Mart'],
