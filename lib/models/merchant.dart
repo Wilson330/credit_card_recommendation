@@ -5,6 +5,7 @@ class Merchant {
   final String primaryCategory;
   final String? subcategory;
   final List<String> tags;
+  final List<String> aliases;
   final String channel;
   final String country;
   final bool active;
@@ -16,6 +17,7 @@ class Merchant {
     required this.primaryCategory,
     required this.subcategory,
     required this.tags,
+    required this.aliases,
     required this.channel,
     required this.country,
     required this.active,
@@ -29,6 +31,9 @@ class Merchant {
       primaryCategory: json['primary_category'] as String,
       subcategory: json['subcategory'] as String?,
       tags: (json['tags'] as List<dynamic>? ?? const [])
+          .map((e) => e as String)
+          .toList(),
+      aliases: (json['aliases'] as List<dynamic>? ?? const [])
           .map((e) => e as String)
           .toList(),
       channel: json['channel'] as String,

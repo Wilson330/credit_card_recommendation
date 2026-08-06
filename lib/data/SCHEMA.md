@@ -39,7 +39,9 @@ status：草稿定案版，還沒經過完整實作驗證，等 evaluator 改寫
 
 ## 2. merchant_aliases
 
-一筆別名一列，正式 schema。目前 mock 階段允許簡化成 merchant 上的 `aliases: string[]`。
+正式 schema 是一筆別名一列（欄位如下），但**目前實作用的是簡化版**：`merchants.json` 每筆商家直接帶一個 `aliases: string[]`（2026-08-06 已實作，`MerchantResolver` 完全比對／子字串比對都會一併檢查 `canonical_name` 和 `aliases`）。目前只針對明顯需要別名的商家補了（國際品牌的英文名、常見中文簡稱，例如「肯德基」→`["KFC"]`），不是每一家都有，覆蓋率還很低，一樣標記 `needsReview`。
+
+正式（尚未實作）schema：
 
 | 欄位 | 型別 | 說明 |
 |---|---|---|

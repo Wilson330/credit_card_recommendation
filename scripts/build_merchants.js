@@ -89,6 +89,37 @@ const HOTEL = (tags = []) => ({ primary_category: 'hotel', tags: ['lodging', ...
 const RETAIL = (tags = []) => ({ primary_category: 'retail', tags: [...tags] });
 const THEME_PARK = (tags = []) => ({ primary_category: 'theme_park', tags: ['attraction', ...tags] });
 
+// Common alternate names — English brand names, abbreviations, common
+// Chinese short forms. Applied uniformly to any merchant regardless of
+// whether it came from Allen's crawl, the seed list, or the legacy demo
+// set. First pass covering the most likely to actually get typed; not
+// exhaustive, flagged for review same as everything else.
+const ALIASES = {
+  '7-ELEVEN (7-11) 實體門市': ['7-11', '7-ELEVEN', '小七'],
+  '全家便利商店 實體門市': ['全家', 'FamilyMart'],
+  '萊爾富實體門市': ['萊爾富', 'Hi-Life'],
+  '全聯福利中心': ['全聯', 'PX Mart'],
+  '麥當勞': ["McDonald's"],
+  '屈臣氏': ['Watsons'],
+  '康是美': ['Cosmed'],
+  'IKEA宜家家居': ['IKEA', '宜家'],
+  'UNIQLO': ['優衣庫'],
+  'DAISO大創百貨': ['DAISO', '大創'],
+  '誠品生活': ['誠品', 'Eslite'],
+  'Google Play': ['Play Store'],
+  '摩斯漢堡': ['MOS Burger', 'MOS'],
+  '肯德基': ['KFC'],
+  '漢堡王': ['Burger King'],
+  '星巴克': ['Starbucks'],
+  'cama café': ['cama'],
+  '達美樂': ["Domino's", "Domino's Pizza"],
+  '必勝客': ['Pizza Hut'],
+  '寶雅': ['POYA'],
+  '藏壽司': ['Kura Sushi'],
+  '路易莎咖啡': ['路易莎', 'Louisa Coffee'],
+  '晶英酒店': ['Silks Place'],
+};
+
 // Explicit per-merchant overrides where the merchant's own identity
 // differs from what its scheme would suggest by default (the reason a
 // per-scheme-only approach would have been wrong).
@@ -399,6 +430,7 @@ for (const [name, schemes] of [...universe.entries()].sort((a, b) => a[0].locale
     primary_category,
     subcategory: null,
     tags,
+    aliases: ALIASES[name] || [],
     channel: 'offline',
     country: [...schemes].some((s) => s.includes('日本')) ? 'JP' : 'TW',
     active: true,
@@ -424,6 +456,7 @@ for (const { name, primary_category, tags, needsReview } of [...SEED_MERCHANTS, 
     primary_category,
     subcategory: null,
     tags,
+    aliases: ALIASES[name] || [],
     channel: 'offline',
     country: 'TW',
     active: true,

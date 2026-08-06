@@ -16,11 +16,31 @@ void main() {
     expect(tags, contains('restaurant'));
   });
 
-  test('resolves via conservative substring match', () {
+  test('resolves via conservative substring match on canonical_name', () {
     final resolver = MerchantResolver();
-    final tags = resolver.tagsFor('路易莎');
+    // "小北" is a substring of the canonical name "小北百貨", and isn't
+    // registered as an alias, so this exercises tier 2, not tier 1.
+    final tags = resolver.tagsFor('小北');
 
-    expect(tags, contains('coffee'));
+    expect(tags, contains('general_retail'));
+  });
+
+  test('resolves an English alias to the same merchant as its Chinese canonical name', () {
+    final resolver = MerchantResolver();
+
+    final viaAlias = resolver.resolve('KFC');
+    final viaCanonical = resolver.resolve('肯德基');
+
+    expect(viaAlias, isNotNull);
+    expect(viaAlias!.merchantId, viaCanonical!.merchantId);
+    expect(viaAlias.tags, contains('fast_food'));
+  });
+
+  test('resolves a common Chinese short form alias (7-11 -> 7-ELEVEN 實體門市)', () {
+    final resolver = MerchantResolver();
+    final tags = resolver.tagsFor('7-11');
+
+    expect(tags, contains('chain_store'));
   });
 
   test('returns no tags for a merchant not in the directory', () {
