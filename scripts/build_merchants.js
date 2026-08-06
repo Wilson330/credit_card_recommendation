@@ -313,6 +313,43 @@ const SEED_MERCHANTS = [
   seed('食其家', 'dining', ['restaurant', 'japanese_food']),
   seed('吉野家', 'dining', ['restaurant', 'japanese_food']),
   seed('丸龜製麵', 'dining', ['restaurant', 'japanese_food']),
+  seed('爭鮮', 'dining', ['restaurant', 'japanese_food', 'kaiten_sushi']),
+  seed('品田牧場', 'dining', ['restaurant', 'japanese_food']),
+  // 王品集團 brands (steakhouse / teppanyaki / yakiniku / Korean BBQ) —
+  // user flagged that dining coverage felt thin, expanded 2026-08-06
+  seed('王品台塑牛排', 'dining', ['restaurant', 'steakhouse']),
+  seed('陶板屋', 'dining', ['restaurant', 'steakhouse', 'teppanyaki']),
+  seed('西堤牛排', 'dining', ['restaurant', 'steakhouse']),
+  seed('原燒', 'dining', ['restaurant', 'yakiniku']),
+  seed('藝奇', 'dining', ['restaurant']),
+  seed('舒果', 'dining', ['restaurant', 'vegetarian']),
+  seed('就饗鐵板燒', 'dining', ['restaurant', 'teppanyaki']),
+  seed('金咕韓式原塊烤肉', 'dining', ['restaurant', 'korean_bbq']),
+  // 瓦城泰統集團 brands (Thai / Hunan)
+  seed('瓦城', 'dining', ['restaurant', 'thai_food']),
+  seed('非常泰', 'dining', ['restaurant', 'thai_food']),
+  seed('大心', 'dining', ['restaurant', 'thai_food']),
+  seed('1010湘', 'dining', ['restaurant']),
+  seed('十食湘', 'dining', ['restaurant']),
+  // Buffet
+  seed('饗食天堂', 'dining', ['restaurant', 'buffet']),
+  seed('漢來海港', 'dining', ['restaurant', 'buffet']),
+  // Korean BBQ / hot pot
+  seed('涓豆腐', 'dining', ['restaurant', 'korean_bbq', 'hot_pot']),
+  seed('老四川', 'dining', ['restaurant', 'hot_pot']),
+  seed('大戶屋', 'dining', ['restaurant', 'japanese_food']),
+  // Pizza
+  seed('達美樂', 'dining', ['restaurant', 'pizza', 'delivery']),
+  seed('必勝客', 'dining', ['restaurant', 'pizza', 'delivery']),
+  // Taiwanese local chains
+  seed('鬍鬚張魯肉飯', 'dining', ['restaurant']),
+  seed('欣葉台菜', 'dining', ['restaurant']),
+  seed('悟饕池上便當', 'dining', ['restaurant', 'bento']),
+  seed('我家牛排', 'dining', ['restaurant', 'steakhouse']),
+  // Dim sum
+  seed('添好運', 'dining', ['restaurant', 'dim_sum']),
+  // Beverage
+  seed('樺達奶茶', 'dining', ['restaurant', 'beverage']),
   // Convenience / supermarket not already in the Allen-derived list
   seed('OK超商', 'convenience_store', ['chain_store']),
   seed('美廉社', 'convenience_store', ['chain_store']),

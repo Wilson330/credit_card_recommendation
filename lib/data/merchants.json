@@ -3459,6 +3459,398 @@
     "active": true
   },
   {
+    "merchant_id": "m_爭鮮",
+    "canonical_name": "爭鮮",
+    "display_name": "爭鮮",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "japanese_food",
+      "kaiten_sushi"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_品田牧場",
+    "canonical_name": "品田牧場",
+    "display_name": "品田牧場",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "japanese_food"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_王品台塑牛排",
+    "canonical_name": "王品台塑牛排",
+    "display_name": "王品台塑牛排",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "steakhouse"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_陶板屋",
+    "canonical_name": "陶板屋",
+    "display_name": "陶板屋",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "steakhouse",
+      "teppanyaki"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_西堤牛排",
+    "canonical_name": "西堤牛排",
+    "display_name": "西堤牛排",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "steakhouse"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_原燒",
+    "canonical_name": "原燒",
+    "display_name": "原燒",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "yakiniku"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_藝奇",
+    "canonical_name": "藝奇",
+    "display_name": "藝奇",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_舒果",
+    "canonical_name": "舒果",
+    "display_name": "舒果",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "vegetarian"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_就饗鐵板燒",
+    "canonical_name": "就饗鐵板燒",
+    "display_name": "就饗鐵板燒",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "teppanyaki"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_金咕韓式原塊烤肉",
+    "canonical_name": "金咕韓式原塊烤肉",
+    "display_name": "金咕韓式原塊烤肉",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "korean_bbq"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_瓦城",
+    "canonical_name": "瓦城",
+    "display_name": "瓦城",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "thai_food"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_非常泰",
+    "canonical_name": "非常泰",
+    "display_name": "非常泰",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "thai_food"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_大心",
+    "canonical_name": "大心",
+    "display_name": "大心",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "thai_food"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_1010湘",
+    "canonical_name": "1010湘",
+    "display_name": "1010湘",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_十食湘",
+    "canonical_name": "十食湘",
+    "display_name": "十食湘",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_饗食天堂",
+    "canonical_name": "饗食天堂",
+    "display_name": "饗食天堂",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "buffet"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_漢來海港",
+    "canonical_name": "漢來海港",
+    "display_name": "漢來海港",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "buffet"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_涓豆腐",
+    "canonical_name": "涓豆腐",
+    "display_name": "涓豆腐",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "korean_bbq",
+      "hot_pot"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_老四川",
+    "canonical_name": "老四川",
+    "display_name": "老四川",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "hot_pot"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_大戶屋",
+    "canonical_name": "大戶屋",
+    "display_name": "大戶屋",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "japanese_food"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_達美樂",
+    "canonical_name": "達美樂",
+    "display_name": "達美樂",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "pizza",
+      "delivery"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_必勝客",
+    "canonical_name": "必勝客",
+    "display_name": "必勝客",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "pizza",
+      "delivery"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_鬍鬚張魯肉飯",
+    "canonical_name": "鬍鬚張魯肉飯",
+    "display_name": "鬍鬚張魯肉飯",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_欣葉台菜",
+    "canonical_name": "欣葉台菜",
+    "display_name": "欣葉台菜",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_悟饕池上便當",
+    "canonical_name": "悟饕池上便當",
+    "display_name": "悟饕池上便當",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "bento"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_我家牛排",
+    "canonical_name": "我家牛排",
+    "display_name": "我家牛排",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "steakhouse"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_添好運",
+    "canonical_name": "添好運",
+    "display_name": "添好運",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "dim_sum"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_樺達奶茶",
+    "canonical_name": "樺達奶茶",
+    "display_name": "樺達奶茶",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant",
+      "beverage"
+    ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_ok超商",
     "canonical_name": "OK超商",
     "display_name": "OK超商",
