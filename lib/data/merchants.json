@@ -72,7 +72,9 @@
       "restaurant",
       "japanese_food"
     ],
-    "aliases": [],
+    "aliases": [
+      "Ippudo"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -102,7 +104,9 @@
       "health_beauty",
       "japanese_brand"
     ],
-    "aliases": [],
+    "aliases": [
+      "Tomod's"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -131,7 +135,9 @@
       "mall",
       "japan"
     ],
-    "aliases": [],
+    "aliases": [
+      "Mitsukoshi"
+    ],
     "channel": "offline",
     "country": "JP",
     "active": true
@@ -160,7 +166,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Turkish Airlines"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -203,7 +211,10 @@
       "attraction",
       "japan"
     ],
-    "aliases": [],
+    "aliases": [
+      "USJ",
+      "環球影城"
+    ],
     "channel": "offline",
     "country": "JP",
     "active": true
@@ -217,7 +228,10 @@
     "tags": [
       "attraction"
     ],
-    "aliases": [],
+    "aliases": [
+      "USJ",
+      "環球影城"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -246,7 +260,10 @@
     "tags": [
       "mall"
     ],
-    "aliases": [],
+    "aliases": [
+      "高島屋",
+      "Takashimaya"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -260,7 +277,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Korean Air"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -316,7 +335,10 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "China Airlines",
+      "華航"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -403,7 +425,10 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "JAL",
+      "Japan Airlines"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -447,7 +472,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Qatar Airways"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -603,7 +630,10 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Tigerair Taiwan",
+      "虎航"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -661,7 +691,10 @@
       "mall",
       "japan"
     ],
-    "aliases": [],
+    "aliases": [
+      "AEON",
+      "Aeon"
+    ],
     "channel": "offline",
     "country": "JP",
     "active": true
@@ -837,7 +870,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "AirAsia"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -941,7 +976,10 @@
       "attraction",
       "japan"
     ],
-    "aliases": [],
+    "aliases": [
+      "Tokyo Disneyland",
+      "迪士尼"
+    ],
     "channel": "offline",
     "country": "JP",
     "active": true
@@ -955,7 +993,10 @@
     "tags": [
       "attraction"
     ],
-    "aliases": [],
+    "aliases": [
+      "Tokyo Disneyland",
+      "迪士尼"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -969,7 +1010,10 @@
     "tags": [
       "attraction"
     ],
-    "aliases": [],
+    "aliases": [
+      "哈利波特影城",
+      "Harry Potter Studio Tour"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -997,7 +1041,9 @@
     "tags": [
       "lodging"
     ],
-    "aliases": [],
+    "aliases": [
+      "Toyoko Inn"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1012,7 +1058,9 @@
       "health_beauty",
       "japanese_brand"
     ],
-    "aliases": [],
+    "aliases": [
+      "Matsumoto Kiyoshi"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1056,7 +1104,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Air France"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1114,7 +1164,10 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "EVA Air",
+      "長榮"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1128,7 +1181,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Emirates"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1171,7 +1226,10 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "STARLUX",
+      "星宇"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1185,7 +1243,9 @@
     "tags": [
       "lodging"
     ],
-    "aliases": [],
+    "aliases": [
+      "Hoshino Resorts"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1286,7 +1346,9 @@
       "mall",
       "japan"
     ],
-    "aliases": [],
+    "aliases": [
+      "Takashimaya"
+    ],
     "channel": "offline",
     "country": "JP",
     "active": true
@@ -1300,7 +1362,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Cathay Pacific"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1330,7 +1394,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Jetstar"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1374,7 +1440,12 @@
     "tags": [
       "ecommerce"
     ],
-    "aliases": [],
+    "aliases": [
+      "淘寶",
+      "天貓",
+      "Taobao",
+      "Tmall"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1523,7 +1594,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "VietJet"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1566,7 +1639,10 @@
     "tags": [
       "mall"
     ],
-    "aliases": [],
+    "aliases": [
+      "微風",
+      "Breeze Center"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1609,7 +1685,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Singapore Airlines"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1623,7 +1701,10 @@
     "tags": [
       "mall"
     ],
-    "aliases": [],
+    "aliases": [
+      "新光",
+      "Shin Kong Mitsukoshi"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1685,7 +1766,10 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Delta",
+      "Delta Air Lines"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1785,7 +1869,9 @@
     "tags": [
       "mall"
     ],
-    "aliases": [],
+    "aliases": [
+      "遠百"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1827,7 +1913,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Scoot"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1869,7 +1957,10 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "Peach Aviation",
+      "樂桃"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1898,7 +1989,10 @@
     "tags": [
       "ecommerce"
     ],
-    "aliases": [],
+    "aliases": [
+      "蝦皮",
+      "Shopee"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1941,7 +2035,9 @@
     "tags": [
       "mall"
     ],
-    "aliases": [],
+    "aliases": [
+      "Global Mall"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1955,7 +2051,9 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "United Airlines"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2014,7 +2112,10 @@
     "tags": [
       "airline"
     ],
-    "aliases": [],
+    "aliases": [
+      "ANA",
+      "All Nippon Airways"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2158,7 +2259,10 @@
     "tags": [
       "mall"
     ],
-    "aliases": [],
+    "aliases": [
+      "巨城",
+      "Big City"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2246,7 +2350,10 @@
     "tags": [
       "ecommerce"
     ],
-    "aliases": [],
+    "aliases": [
+      "Coupang",
+      "酷澎"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2705,7 +2812,10 @@
     "tags": [
       "mall"
     ],
-    "aliases": [],
+    "aliases": [
+      "三井OUTLET",
+      "MITSUI OUTLET PARK"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2719,7 +2829,10 @@
     "tags": [
       "mall"
     ],
-    "aliases": [],
+    "aliases": [
+      "LaLaport",
+      "三井LaLaport"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2763,7 +2876,9 @@
     "tags": [
       "ecommerce"
     ],
-    "aliases": [],
+    "aliases": [
+      "momo"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2851,7 +2966,9 @@
     "tags": [
       "ecommerce"
     ],
-    "aliases": [],
+    "aliases": [
+      "PChome"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -3707,7 +3824,9 @@
       "restaurant",
       "japanese_food"
     ],
-    "aliases": [],
+    "aliases": [
+      "Sushiro"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -3722,7 +3841,9 @@
       "restaurant",
       "japanese_food"
     ],
-    "aliases": [],
+    "aliases": [
+      "Sukiya"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -3737,7 +3858,9 @@
       "restaurant",
       "japanese_food"
     ],
-    "aliases": [],
+    "aliases": [
+      "Yoshinoya"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -3752,7 +3875,9 @@
       "restaurant",
       "japanese_food"
     ],
-    "aliases": [],
+    "aliases": [
+      "Marugame Seimen"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -4377,7 +4502,10 @@
     "tags": [
       "lodging"
     ],
-    "aliases": [],
+    "aliases": [
+      "Marriott",
+      "萬怡"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true

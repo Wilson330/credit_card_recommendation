@@ -118,6 +118,71 @@ const ALIASES = {
   '藏壽司': ['Kura Sushi'],
   '路易莎咖啡': ['路易莎', 'Louisa Coffee'],
   '晶英酒店': ['Silks Place'],
+
+  // Second pass, 2026-08-06: filling out the rest of the directory rather
+  // than stopping at the first 23 — airlines, malls, Japan brand English
+  // names, ecommerce short forms, hotels, theme parks, a few Japanese
+  // restaurant chain romanizations. Same review status as everything
+  // else: not verified against official sources beyond general knowledge.
+  // Airlines — English/short names are how these are commonly typed
+  '土耳其航空': ['Turkish Airlines'],
+  '大韓航空': ['Korean Air'],
+  '中華航空': ['China Airlines', '華航'],
+  '日本航空': ['JAL', 'Japan Airlines'],
+  '卡達航空': ['Qatar Airways'],
+  '台灣虎航': ['Tigerair Taiwan', '虎航'],
+  '法國航空': ['Air France'],
+  '長榮航空': ['EVA Air', '長榮'],
+  '阿聯酋航空': ['Emirates'],
+  '星宇航空': ['STARLUX', '星宇'],
+  '國泰航空': ['Cathay Pacific'],
+  '捷星航空': ['Jetstar'],
+  '越捷航空': ['VietJet'],
+  '新加坡航空': ['Singapore Airlines'],
+  '達美航空': ['Delta', 'Delta Air Lines'],
+  '酷航': ['Scoot'],
+  '樂桃航空': ['Peach Aviation', '樂桃'],
+  '聯合航空': ['United Airlines'],
+  'ANA全日空': ['ANA', 'All Nippon Airways'],
+  '亞洲航空': ['AirAsia'],
+  // Department stores / malls — commonly shortened
+  '新光三越': ['新光', 'Shin Kong Mitsukoshi'],
+  '微風廣場': ['微風', 'Breeze Center'],
+  '大葉高島屋': ['高島屋', 'Takashimaya'],
+  '遠東百貨': ['遠百'],
+  '環球購物中心': ['Global Mall'],
+  'Big City遠東巨城購物中心': ['巨城', 'Big City'],
+  'MITSUI OUTLET PARK(林口、台中港、台南)': ['三井OUTLET', 'MITSUI OUTLET PARK'],
+  'Mitsui Shopping Park LaLaport(南港、台中)': ['LaLaport', '三井LaLaport'],
+  // Japan department stores — English/romanized names
+  '三越(日本)': ['Mitsukoshi'],
+  '永旺(日本)': ['AEON', 'Aeon'],
+  '高島屋(日本)': ['Takashimaya'],
+  // Drugstores
+  "三友藥妝Tomod's": ["Tomod's"],
+  '松本清': ['Matsumoto Kiyoshi'],
+  // Ecommerce — short forms
+  '蝦皮購物': ['蝦皮', 'Shopee'],
+  'momo購物網': ['momo'],
+  'PChome 24h購物': ['PChome'],
+  'Coupang 酷澎(台灣)': ['Coupang', '酷澎'],
+  '淘寶/天貓': ['淘寶', '天貓', 'Taobao', 'Tmall'],
+  // Hotels
+  '東橫INN': ['Toyoko Inn'],
+  '星野集團': ['Hoshino Resorts'],
+  '六福萬怡酒店': ['Marriott', '萬怡'],
+  // Theme parks
+  '東京迪士尼樂園': ['Tokyo Disneyland', '迪士尼'],
+  '東京迪士尼': ['Tokyo Disneyland', '迪士尼'],
+  '大阪環球影城(USJ)': ['USJ', '環球影城'],
+  '大阪環球影城': ['USJ', '環球影城'],
+  '東京華納兄弟哈利波特影城': ['哈利波特影城', 'Harry Potter Studio Tour'],
+  // Japanese restaurant chains — romanized names
+  '一風堂': ['Ippudo'],
+  '丸龜製麵': ['Marugame Seimen'],
+  '吉野家': ['Yoshinoya'],
+  '食其家': ['Sukiya'],
+  '壽司郎': ['Sushiro'],
 };
 
 // Explicit per-merchant overrides where the merchant's own identity
