@@ -54,12 +54,25 @@ const CUBE_LEVEL_MAP = {
   'Level 3': 'level_3',
 };
 
-// Deferred per user decision 2026-07-30 (round 2): skip these schemes for v1.
-const CUBE_DEFERRED_SCHEMES = new Set(['慶生月', '童樂匯']);
+// 慶生月 stays deferred — its real gate is "is it currently the cardholder's
+// birthday month," a time-based condition our required_conditions design
+// (a static Set<String> of flags on a card's profile) can't express, unlike
+// 童樂匯 below. 童樂匯 un-deferred 2026-08-06 once required_conditions
+// existed to model its real gate (see CUBE_CONDITION_SCHEMES).
+const CUBE_DEFERRED_SCHEMES = new Set(['慶生月']);
 
-// Confirmed with Allen 2026-08-06: every remaining CUBE scheme (台塑家/
-// 全支付 included) requires switching to that benefit program — there is
-// no non-switchable scheme left, so required_action is unconditional now.
+// Schemes gated behind a boolean flag on the card's profile, checked via
+// required_conditions rather than being always eligible. 童樂匯 requires
+// the "童樂匯" add-on to be active on the card — modeled as a new
+// CubeCardProfile.hasKidsClub flag (see lib/models/card_profiles/cube_card_profile.dart).
+const CUBE_CONDITION_SCHEMES = {
+  童樂匯: ['kids_club'],
+};
+
+// Confirmed with Allen 2026-08-06: every remaining CUBE scheme except
+// 童樂匯 (台塑家/全支付 included) requires switching to that benefit
+// program. 童樂匯's required_action is an unconfirmed assumption, same
+// pattern as 台塑家/全支付 were before they got confirmed.
 
 function convertCube() {
   const raw = JSON.parse(
@@ -103,6 +116,13 @@ function convertCube() {
     const constraints = [GENERIC_CONSTRAINT];
     if (bracketNote) constraints.push(bracketNote);
 
+    const requiredConditions = CUBE_CONDITION_SCHEMES[scheme] || [];
+    if (requiredConditions.length > 0) {
+      constraints.push(
+        `此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認`
+      );
+    }
+
     const distinctRates = new Set(Object.values(ratesByLevel));
     const isLevelVariant = distinctRates.size > 1;
     const requiredAction = `需切換至${scheme}權益方案`;
@@ -118,6 +138,7 @@ function convertCube() {
           reward_rate: rate,
           benefit_label: scheme,
           required_action: requiredAction,
+          required_conditions: requiredConditions,
           constraints,
           is_synthetic_condition: false,
           active: true,
@@ -133,6 +154,7 @@ function convertCube() {
         reward_rate: Object.values(ratesByLevel)[0],
         benefit_label: scheme,
         required_action: requiredAction,
+        required_conditions: requiredConditions,
         constraints,
         is_synthetic_condition: false,
         active: true,
@@ -169,6 +191,7 @@ function convertCube() {
         reward_rate: rate,
         benefit_label: scheme,
         required_action: `需切換至${scheme}權益方案`,
+        required_conditions: [],
         constraints: [
           GENERIC_CONSTRAINT,
           '廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）',
@@ -184,6 +207,7 @@ function convertCube() {
     card_id: 'cathay_cube',
     rule_type: 'default',
     match_value: '*',
+    required_conditions: [],
     applicable_level: null,
     reward_rate: 0.3,
     benefit_label: '一般消費',
@@ -208,12 +232,29 @@ const JIHO_MERCHANT_SCHEMES = new Set(['國內日系特店加碼', '國內日系
 // payment method / currency), not a real merchant. Per user decision
 // 2026-07-30 (round 2): "先跑通就好" — keep as pseudo-merchant rows for v1,
 // flagged with is_synthetic_condition so this compromise stays visible.
+//
+// 2026-08-06: one row escapes that fate — "新戶自動扣繳加碼(國內一般消費)"
+// is a pure customer-eligibility bump (JihoCardProfile.isNewCardHolder
+// already exists), so it's modeled properly below as a conditioned
+// default rule instead of a pseudo-merchant. The rest of these rows stay
+// is_synthetic_condition because they also depend on payment method or
+// being physically in Japan — inputs no search bar (ours or Allen's UI)
+// currently collects, so they'd stay unreachable even with
+// required_conditions modeling. Not solved today, just now precisely
+// scoped to what's actually still missing (an input, not a rule format).
 const JIHO_CONDITION_SCHEMES = new Set([
   '國內一般消費',
   '國外一般消費',
   '日本一般消費',
   '日本交通卡儲值',
 ]);
+
+// raw crawled name -> required_conditions, handled as a conditioned
+// default rule (rule_type: 'default', match_value: '*') rather than a
+// pseudo-merchant row.
+const JIHO_CONDITION_TO_REQUIRED_CONDITIONS = {
+  '新戶自動扣繳加碼(國內一般消費)': ['new_customer'],
+};
 
 function convertJiho() {
   const raw = JSON.parse(fs.readFileSync(path.join(ALLEN_DIR, 'jiho_rewards.json'), 'utf8'));
@@ -229,11 +270,31 @@ function convertJiho() {
       }
 
       for (const [rawName, rate] of Object.entries(merchants)) {
+        const requiredConditions = JIHO_CONDITION_TO_REQUIRED_CONDITIONS[rawName];
+
+        if (requiredConditions) {
+          rules.push({
+            rule_id: buildRuleId('jiho', scheme, rawName, null),
+            card_id: 'ubot_jiho',
+            rule_type: 'default',
+            match_value: '*',
+            applicable_level: null,
+            reward_rate: rate,
+            benefit_label: scheme,
+            required_action: null,
+            required_conditions: requiredConditions,
+            constraints: [GENERIC_CONSTRAINT],
+            is_synthetic_condition: false,
+            active: true,
+          });
+          continue;
+        }
+
         const { name, bracketNote } = normalizeMerchantName(rawName);
         const constraints = [GENERIC_CONSTRAINT];
         if (bracketNote) constraints.push(bracketNote);
         if (isCondition) {
-          constraints.push('此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則');
+          constraints.push('此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷');
         }
 
         rules.push({
@@ -245,6 +306,7 @@ function convertJiho() {
           reward_rate: rate,
           benefit_label: scheme,
           required_action: null,
+          required_conditions: [],
           constraints,
           is_synthetic_condition: isCondition,
           active: true,
@@ -262,6 +324,7 @@ function convertJiho() {
     reward_rate: 1.0,
     benefit_label: '國內一般消費',
     required_action: null,
+    required_conditions: [],
     constraints: [GENERIC_CONSTRAINT],
     is_synthetic_condition: false,
     active: true,

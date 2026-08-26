@@ -8,6 +8,7 @@ CardRewardRule _rule({
   required String matchValue,
   required double rewardRate,
   String? applicableLevel,
+  List<String> requiredConditions = const [],
 }) {
   return CardRewardRule(
     ruleId: ruleId,
@@ -18,6 +19,7 @@ CardRewardRule _rule({
     rewardRate: rewardRate,
     benefitLabel: ruleId,
     requiredAction: null,
+    requiredConditions: requiredConditions,
     constraints: const [],
     isSyntheticCondition: false,
     active: true,
@@ -110,6 +112,64 @@ void main() {
     );
 
     expect(result.ruleId, 'dining_category');
+  });
+
+  test('required_conditions excludes a rule when the condition is not active', () {
+    final rules = [
+      _rule(
+        ruleId: 'kids_club_only',
+        ruleType: 'merchant',
+        matchValue: '麗寶樂園',
+        rewardRate: 10.0,
+        requiredConditions: const ['kids_club'],
+      ),
+      _rule(ruleId: 'default', ruleType: 'default', matchValue: '*', rewardRate: 0.3),
+    ];
+
+    final withoutCondition = RuleMatcher.selectBestRule(
+      rules: rules,
+      normalizedQueries: ['麗寶樂園'],
+      merchantTags: const [],
+    );
+    final withCondition = RuleMatcher.selectBestRule(
+      rules: rules,
+      normalizedQueries: ['麗寶樂園'],
+      merchantTags: const [],
+      activeConditions: const {'kids_club'},
+    );
+
+    expect(withoutCondition.ruleId, 'default');
+    expect(withCondition.ruleId, 'kids_club_only');
+    expect(withCondition.rewardRate, 10.0);
+  });
+
+  test('multiple default rules: the highest-rate one whose condition is satisfied wins', () {
+    final rules = [
+      _rule(ruleId: 'plain_default', ruleType: 'default', matchValue: '*', rewardRate: 1.0),
+      _rule(
+        ruleId: 'new_customer_default',
+        ruleType: 'default',
+        matchValue: '*',
+        rewardRate: 1.5,
+        requiredConditions: const ['new_customer'],
+      ),
+    ];
+
+    final asExistingCustomer = RuleMatcher.selectBestRule(
+      rules: rules,
+      normalizedQueries: ['某個完全沒聽過的店'],
+      merchantTags: const [],
+    );
+    final asNewCustomer = RuleMatcher.selectBestRule(
+      rules: rules,
+      normalizedQueries: ['某個完全沒聽過的店'],
+      merchantTags: const [],
+      activeConditions: const {'new_customer'},
+    );
+
+    expect(asExistingCustomer.ruleId, 'plain_default');
+    expect(asNewCustomer.ruleId, 'new_customer_default');
+    expect(asNewCustomer.rewardRate, 1.5);
   });
 
   test('applicable_level filters out rules for a different level', () {

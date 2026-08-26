@@ -21,7 +21,15 @@ import 'merchant_matcher.dart';
 /// category rules are always tier 1 alongside an exact merchant hit — see
 /// SCHEMA.md's "category 規則的比對邏輯" for the multi-tag design.
 /// If multiple rules match within whichever tier fires, the highest
-/// reward_rate wins.
+/// reward_rate wins — this also applies to 'default'-type rules now that
+/// a card can have more than one (e.g. jiho's unconditional 1.0% plus a
+/// new_customer-conditioned 1.5%): whichever qualifying default has the
+/// highest rate is used, not just the first one found.
+///
+/// [activeConditions] is the set of eligibility flags the current card
+/// profile satisfies (e.g. {'new_customer'}, {'kids_club'}). A rule whose
+/// requiredConditions isn't fully contained in activeConditions is
+/// excluded from the candidate pool entirely, same as applicableLevel.
 class RuleMatcher {
   static const _minSafeMatchLength = 2;
 
@@ -30,12 +38,14 @@ class RuleMatcher {
     required List<String> normalizedQueries,
     required List<String> merchantTags,
     String? currentLevel,
+    Set<String> activeConditions = const {},
   }) {
     final applicable = rules
         .where(
           (r) =>
               r.active &&
-              (r.applicableLevel == null || r.applicableLevel == currentLevel),
+              (r.applicableLevel == null || r.applicableLevel == currentLevel) &&
+              r.requiredConditions.every(activeConditions.contains),
         )
         .toList();
 
@@ -69,7 +79,8 @@ class RuleMatcher {
       return _highestRate(substringMatches);
     }
 
-    return applicable.firstWhere((r) => r.ruleType == 'default');
+    final defaults = applicable.where((r) => r.ruleType == 'default');
+    return _highestRate(defaults);
   }
 
   static CardRewardRule _highestRate(Iterable<CardRewardRule> candidates) {

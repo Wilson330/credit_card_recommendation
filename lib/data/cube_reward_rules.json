@@ -8,6 +8,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -23,6 +24,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -38,6 +40,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -53,6 +56,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -68,6 +72,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -83,6 +88,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -98,6 +104,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -113,6 +120,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -128,6 +136,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -143,6 +152,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -158,6 +168,7 @@
     "reward_rate": 2,
     "benefit_label": "台塑家",
     "required_action": "需切換至台塑家權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -173,6 +184,7 @@
     "reward_rate": 2,
     "benefit_label": "全支付",
     "required_action": "需切換至全支付權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -188,6 +200,7 @@
     "reward_rate": 2,
     "benefit_label": "全支付",
     "required_action": "需切換至全支付權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -203,6 +216,7 @@
     "reward_rate": 2,
     "benefit_label": "全支付",
     "required_action": "需切換至全支付權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -218,6 +232,7 @@
     "reward_rate": 2,
     "benefit_label": "全支付",
     "required_action": "需切換至全支付權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -233,6 +248,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -248,6 +264,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -263,6 +280,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -278,6 +296,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -293,6 +312,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -308,6 +328,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -323,6 +344,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -338,6 +360,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -353,6 +376,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -368,6 +392,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -383,6 +408,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -398,6 +424,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -413,6 +440,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -428,6 +456,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -443,6 +472,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -458,6 +488,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -473,6 +504,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -488,6 +520,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -503,6 +536,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -518,6 +552,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -533,6 +568,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -548,6 +584,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -563,6 +600,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -578,6 +616,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -593,6 +632,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -608,6 +648,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -623,6 +664,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -638,6 +680,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -653,6 +696,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -668,6 +712,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -683,6 +728,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -698,6 +744,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -713,6 +760,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -728,6 +776,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -743,6 +792,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -758,6 +808,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -773,6 +824,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -788,6 +840,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -803,6 +856,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -818,6 +872,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -833,6 +888,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -848,6 +904,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -863,6 +920,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -878,6 +936,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -893,6 +952,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -908,6 +968,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -923,6 +984,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -938,6 +1000,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -953,6 +1016,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -968,6 +1032,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -983,6 +1048,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -998,6 +1064,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1013,6 +1080,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1028,6 +1096,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1043,6 +1112,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1058,6 +1128,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1073,6 +1144,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1088,6 +1160,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含儲值及電子票券"
@@ -1104,6 +1177,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含儲值及電子票券"
@@ -1120,6 +1194,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含儲值及電子票券"
@@ -1136,6 +1211,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含電子票券"
@@ -1152,6 +1228,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含電子票券"
@@ -1168,6 +1245,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含電子票券"
@@ -1184,6 +1262,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1199,6 +1278,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1214,6 +1294,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1229,6 +1310,7 @@
     "reward_rate": 2,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1244,6 +1326,7 @@
     "reward_rate": 3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1259,6 +1342,7 @@
     "reward_rate": 3.3,
     "benefit_label": "玩數位",
     "required_action": "需切換至玩數位權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1274,6 +1358,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1289,6 +1374,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1304,6 +1390,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1319,6 +1406,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1334,6 +1422,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1349,6 +1438,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1364,6 +1454,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1379,6 +1470,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1394,6 +1486,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1409,6 +1502,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1424,6 +1518,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1439,6 +1534,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1454,6 +1550,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1469,6 +1566,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1484,6 +1582,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1499,6 +1598,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1514,6 +1614,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1529,6 +1630,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1544,6 +1646,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1559,6 +1662,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1574,6 +1678,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1589,6 +1694,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含DREAM PLAZA"
@@ -1605,6 +1711,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含DREAM PLAZA"
@@ -1621,6 +1728,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含DREAM PLAZA"
@@ -1637,6 +1745,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1652,6 +1761,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1667,6 +1777,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1682,6 +1793,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1697,6 +1809,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1712,6 +1825,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1727,6 +1841,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1742,6 +1857,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1757,6 +1873,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1772,6 +1889,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1787,6 +1905,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1802,6 +1921,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1817,6 +1937,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1832,6 +1953,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1847,6 +1969,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1862,6 +1985,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1877,6 +2001,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1892,6 +2017,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1907,6 +2033,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1922,6 +2049,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1937,6 +2065,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1952,6 +2081,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1967,6 +2097,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1982,6 +2113,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1997,6 +2129,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2012,6 +2145,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2027,6 +2161,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2042,6 +2177,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2057,6 +2193,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2072,6 +2209,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2087,6 +2225,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2102,6 +2241,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2117,6 +2257,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2132,6 +2273,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2147,6 +2289,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2162,6 +2305,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2177,6 +2321,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2192,6 +2337,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2207,6 +2353,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2222,6 +2369,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2237,6 +2385,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2252,6 +2401,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2267,6 +2417,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2282,6 +2433,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2297,6 +2449,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2312,6 +2465,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2327,6 +2481,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2342,6 +2497,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2357,6 +2513,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2372,6 +2529,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2387,6 +2545,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2402,6 +2561,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2417,6 +2577,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2432,6 +2593,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2447,6 +2609,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2462,6 +2625,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2477,6 +2641,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2492,6 +2657,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2507,6 +2673,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2522,6 +2689,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2537,6 +2705,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2552,6 +2721,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2567,6 +2737,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2582,6 +2753,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2597,6 +2769,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2612,6 +2785,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2627,6 +2801,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2642,6 +2817,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2657,6 +2833,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2672,6 +2849,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2687,6 +2865,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2702,6 +2881,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2717,6 +2897,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2732,6 +2913,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2747,6 +2929,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2762,6 +2945,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2777,6 +2961,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2792,6 +2977,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2807,6 +2993,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2822,6 +3009,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2837,6 +3025,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2852,6 +3041,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2867,6 +3057,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2882,6 +3073,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2897,6 +3089,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2912,6 +3105,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2927,6 +3121,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2942,6 +3137,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2957,6 +3153,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2972,6 +3169,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -2987,6 +3185,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3002,6 +3201,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3017,6 +3217,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3032,6 +3233,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3047,6 +3249,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3062,6 +3265,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3077,6 +3281,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3092,6 +3297,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3107,6 +3313,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3122,6 +3329,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3137,6 +3345,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3152,6 +3361,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3167,6 +3377,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3182,6 +3393,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3197,6 +3409,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3212,6 +3425,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3227,6 +3441,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3242,6 +3457,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3257,6 +3473,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3272,6 +3489,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3287,6 +3505,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3302,6 +3521,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3317,6 +3537,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3332,6 +3553,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3347,6 +3569,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3362,6 +3585,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3377,6 +3601,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3392,6 +3617,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3407,6 +3633,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3422,6 +3649,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3437,6 +3665,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3452,6 +3681,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3467,6 +3697,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3482,6 +3713,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3497,6 +3729,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3512,6 +3745,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3527,6 +3761,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3542,6 +3777,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3557,6 +3793,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3572,6 +3809,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3587,6 +3825,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3602,6 +3841,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3617,6 +3857,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3632,6 +3873,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3647,6 +3889,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3662,6 +3905,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3677,6 +3921,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3692,6 +3937,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3707,6 +3953,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3722,6 +3969,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3737,6 +3985,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3752,6 +4001,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3767,6 +4017,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3782,6 +4033,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3797,6 +4049,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3812,6 +4065,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3827,6 +4081,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3842,6 +4097,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3857,6 +4113,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3872,6 +4129,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3887,6 +4145,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3902,6 +4161,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3917,6 +4177,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3932,6 +4193,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3947,6 +4209,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3962,6 +4225,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3977,6 +4241,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -3992,6 +4257,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4007,6 +4273,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4022,6 +4289,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4037,6 +4305,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4052,6 +4321,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4067,6 +4337,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4082,6 +4353,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4097,6 +4369,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4112,6 +4385,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4127,6 +4401,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4142,6 +4417,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4157,6 +4433,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4172,6 +4449,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4187,6 +4465,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4202,6 +4481,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4217,6 +4497,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4232,6 +4513,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4247,6 +4529,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4262,6 +4545,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4277,6 +4561,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4292,6 +4577,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4307,6 +4593,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4322,6 +4609,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4337,6 +4625,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4352,6 +4641,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4367,6 +4657,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4382,6 +4673,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4397,6 +4689,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4412,6 +4705,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4427,6 +4721,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4442,6 +4737,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4457,6 +4753,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4472,6 +4769,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4487,6 +4785,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4502,6 +4801,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4517,6 +4817,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4532,6 +4833,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4547,6 +4849,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4562,6 +4865,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4577,6 +4881,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4592,6 +4897,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4607,6 +4913,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4622,6 +4929,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4637,6 +4945,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4652,6 +4961,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4667,6 +4977,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4682,6 +4993,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4697,6 +5009,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4712,6 +5025,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4727,6 +5041,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4742,6 +5057,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4757,6 +5073,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4772,6 +5089,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4787,6 +5105,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4802,6 +5121,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4817,6 +5137,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4832,6 +5153,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4847,6 +5169,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4862,6 +5185,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4877,6 +5201,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4892,6 +5217,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4907,6 +5233,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4922,6 +5249,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4937,6 +5265,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4952,6 +5281,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4967,6 +5297,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4982,6 +5313,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -4997,6 +5329,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5012,6 +5345,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5027,6 +5361,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5042,6 +5377,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5057,6 +5393,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5072,6 +5409,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5087,6 +5425,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5102,6 +5441,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5117,6 +5457,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5132,6 +5473,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5147,6 +5489,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5162,6 +5505,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5177,6 +5521,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5192,6 +5537,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5207,6 +5553,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5222,6 +5569,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5237,6 +5585,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5252,6 +5601,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5267,6 +5617,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5282,6 +5633,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5297,6 +5649,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5312,6 +5665,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5327,6 +5681,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5342,6 +5697,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5357,6 +5713,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5372,6 +5729,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5387,6 +5745,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5402,6 +5761,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5417,6 +5777,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5432,6 +5793,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5447,6 +5809,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5462,6 +5825,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5477,6 +5841,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5492,6 +5857,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5507,6 +5873,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5522,6 +5889,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5537,6 +5905,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5552,6 +5921,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5567,6 +5937,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5582,6 +5953,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5597,6 +5969,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5612,6 +5985,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5627,6 +6001,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5642,6 +6017,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5657,6 +6033,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5672,6 +6049,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5687,6 +6065,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5702,6 +6081,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5717,6 +6097,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5732,6 +6113,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5747,6 +6129,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5762,6 +6145,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5777,6 +6161,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5792,6 +6177,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5807,6 +6193,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5822,6 +6209,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5837,6 +6225,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5852,6 +6241,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5867,6 +6257,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5882,6 +6273,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5897,6 +6289,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5912,6 +6305,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5927,6 +6321,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5942,6 +6337,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5957,6 +6353,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5972,6 +6369,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -5987,6 +6385,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -6002,6 +6401,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -6017,6 +6417,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -6032,6 +6433,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含加油、充電"
@@ -6048,6 +6450,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含月租停車"
@@ -6064,6 +6467,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -6079,6 +6483,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -6094,6 +6499,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "不含大全聯"
@@ -6110,6 +6516,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -6125,6 +6532,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -6140,6 +6548,7 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -6155,8 +6564,1398 @@
     "reward_rate": 2,
     "benefit_label": "集精選",
     "required_action": "需切換至集精選權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_國內各大壽險公司保費",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "國內各大壽險公司保費",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_國內各大產險公司保費",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "國內各大產險公司保費",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_台北美國學校",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "台北美國學校",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_台北歐洲學校",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "台北歐洲學校",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_台北市私立道明外僑學校",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "台北市私立道明外僑學校",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_馬禮遜學校",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "馬禮遜學校",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_康乃薾美國學校",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "康乃薾美國學校",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_台北私立立人國際國小",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "台北私立立人國際國小",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_康橋國際學校",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "康橋國際學校",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_華盛頓小學",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "華盛頓小學",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_復興實驗高中",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "復興實驗高中",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_維多利亞雙語中小學",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "維多利亞雙語中小學",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_高雄美國學校",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "高雄美國學校",
+    "applicable_level": null,
+    "reward_rate": 1,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_台灣壽司郎",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "台灣壽司郎",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_雞湯大叔",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "雞湯大叔",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_陶板屋",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "陶板屋",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "限使用王品瘋Pay結帳",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_yayoi彌生軒",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "YAYOI彌生軒",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "限街邊店",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_大戶屋",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "大戶屋",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_甲蟲秘境",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "甲蟲秘境",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_大樹先生的家",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "大樹先生的家",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_money_jump",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Money Jump",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_媽妳講親子餐廳",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "媽妳講親子餐廳",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_小島3_5度親子餐廳",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "小島3.5度親子餐廳",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_klook",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Klook",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_東京迪士尼樂園",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "東京迪士尼樂園",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_大阪環球影城_usj",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "大阪環球影城(USJ)",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_麗寶樂園",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "麗寶樂園",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_六福村主題樂園",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "六福村主題樂園",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_九族文化村",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "九族文化村",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_劍湖山世界主題樂園",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "劍湖山世界主題樂園",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_義大遊樂世界",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "義大遊樂世界",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_小叮噹科學園區主題樂園",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "小叮噹科學園區主題樂園",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_xpark",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Xpark",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_巧虎夢想樂園",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "巧虎夢想樂園",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_台北喜來登大飯店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "台北喜來登大飯店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_蘭城晶英酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "蘭城晶英酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_台南晶英酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "台南晶英酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_礁溪寒沐酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "礁溪寒沐酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_大溪笠復威斯汀度假酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "大溪笠復威斯汀度假酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_煙波大飯店新竹湖濱館",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "煙波大飯店新竹湖濱館",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_麗寶福容大飯店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "麗寶福容大飯店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_雲品溫泉酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "雲品溫泉酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_和逸飯店_台南西門館_桃園館",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "和逸飯店(台南西門館、桃園館)",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_義大皇家酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "義大皇家酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_高雄萬豪酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "高雄萬豪酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_墾丁凱撒大飯店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "墾丁凱撒大飯店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_花蓮遠雄悅來大飯店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "花蓮遠雄悅來大飯店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_瑞穗天合國際觀光酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "瑞穗天合國際觀光酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_六福莊",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "六福莊",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_宜蘭礁溪鳳凰酒店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "宜蘭礁溪鳳凰酒店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_桃園名人堂花園大飯店",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "桃園名人堂花園大飯店",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_卡多摩嬰童館",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "卡多摩嬰童館",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_媽咪愛",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "媽咪愛",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_樂兒屋",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "樂兒屋",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_寶齡婦幼館_步步樂bubuluv",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "寶齡婦幼館/ 步步樂BuBuLuv",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_安琪兒婦嬰百貨",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "安琪兒婦嬰百貨",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_宜兒樂",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "宜兒樂",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_麗兒采家",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "麗兒采家",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_taobaby濤寶日記",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Taobaby濤寶日記",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_俏媽咪",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "俏媽咪",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_媽媽好",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "媽媽好",
+    "applicable_level": null,
+    "reward_rate": 5,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_朱宗慶打擊樂教學系統",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "朱宗慶打擊樂教學系統",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_雲門舞集舞蹈教室",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "雲門舞集舞蹈教室",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_yamaha音樂教室",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Yamaha音樂教室",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_tutorabc_junior",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "TutorABC Junior",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_etalking_kids",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Etalking Kids",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_iski滑雪俱樂部",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "iSKI滑雪俱樂部",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_汐游寶寶_風城游汐谷",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "汐游寶寶/風城游汐谷",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_10mois台灣官網",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "10mois台灣官網",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_mamas_papas台灣官網",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Mamas&Papas台灣官網",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_古北町台灣官網",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "古北町台灣官網",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_little_wonders台灣官網",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Little Wonders台灣官網",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
+    ],
+    "is_synthetic_condition": false,
+    "active": true
+  },
+  {
+    "rule_id": "cube_童樂匯_seahorse_originals台灣官網",
+    "card_id": "cathay_cube",
+    "rule_type": "merchant",
+    "match_value": "Seahorse Originals台灣官網",
+    "applicable_level": null,
+    "reward_rate": 10,
+    "benefit_label": "童樂匯",
+    "required_action": "需切換至童樂匯權益方案",
+    "required_conditions": [
+      "kids_club"
+    ],
+    "constraints": [
+      "實際回饋依當期公告為準",
+      "此方案是否需另行申請/切換，required_action 為假設值，尚未與官網條款或 Allen 確認"
     ],
     "is_synthetic_condition": false,
     "active": true
@@ -6170,6 +7969,7 @@
     "reward_rate": 2,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
@@ -6186,6 +7986,7 @@
     "reward_rate": 3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
@@ -6202,6 +8003,7 @@
     "reward_rate": 3.3,
     "benefit_label": "樂饗購",
     "required_action": "需切換至樂饗購權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
@@ -6218,6 +8020,7 @@
     "reward_rate": 2,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
@@ -6234,6 +8037,7 @@
     "reward_rate": 3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
@@ -6250,6 +8054,7 @@
     "reward_rate": 3.3,
     "benefit_label": "趣旅行",
     "required_action": "需切換至趣旅行權益方案",
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
       "廣義分類條款，已於 2026-08-06 與 Allen 確認存在，適用費率為推論值（比照同方案具名商家費率）"
@@ -6262,6 +8067,7 @@
     "card_id": "cathay_cube",
     "rule_type": "default",
     "match_value": "*",
+    "required_conditions": [],
     "applicable_level": null,
     "reward_rate": 0.3,
     "benefit_label": "一般消費",

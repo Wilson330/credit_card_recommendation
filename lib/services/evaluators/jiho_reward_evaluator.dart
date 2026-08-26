@@ -28,6 +28,10 @@ class JihoRewardEvaluator implements CardRewardEvaluator {
       );
     }
 
+    final activeConditions = <String>{
+      if (profile.isNewCardHolder) 'new_customer',
+    };
+
     final rule = RuleMatcher.selectBestRule(
       rules: _rules,
       normalizedQueries: MerchantMatcher.normalizedCandidates(
@@ -36,15 +40,18 @@ class JihoRewardEvaluator implements CardRewardEvaluator {
       ),
       merchantTags: merchantContext.merchantTags,
       currentLevel: null,
+      activeConditions: activeConditions,
     );
 
     final matchedTags = <String>[rule.benefitLabel];
     if (profile.isNewCardHolder) {
-      // Real new-customer bonus rows exist in jiho_reward_rules.json
-      // (is_synthetic_condition: true) but aren't reachable from a typed
-      // merchant name — see SCHEMA.md. Tag only, doesn't affect rewardRate
-      // yet; revisit once conditional rule matching is built.
-      matchedTags.add('新戶身份（尚未反映在回饋率，待條件式規則支援）');
+      // Only the 國內一般消費 new-customer bump (a plain default-rate
+      // condition) is actually reflected in rewardRate now. The Japan
+      // new-customer rows (新戶日本實體消費 etc.) also require knowing
+      // payment method / being physically in Japan — inputs no search
+      // bar collects yet — so those stay is_synthetic_condition and
+      // unreachable regardless of this flag. See SCHEMA.md.
+      matchedTags.add('新戶身份已套用（僅國內一般消費，日本相關新戶加碼待補輸入欄位）');
     }
 
     return RewardEvaluationResult(

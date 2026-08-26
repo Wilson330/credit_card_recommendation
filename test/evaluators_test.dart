@@ -191,6 +191,30 @@ void main() {
 
       expect(result.rewardRate, 0.3);
     });
+
+    test('童樂匯 merchant only matches when hasKidsClub is active, otherwise falls to default', () {
+      const query = MerchantQueryContext(merchantName: '麗寶樂園');
+
+      final withoutKidsClub = CubeRewardEvaluator().evaluate(
+        profile: const CubeCardProfile(
+          selectedLevel: 'level_1',
+          isNewCardHolder: false,
+        ),
+        merchantContext: query,
+      );
+      final withKidsClub = CubeRewardEvaluator().evaluate(
+        profile: const CubeCardProfile(
+          selectedLevel: 'level_1',
+          isNewCardHolder: false,
+          hasKidsClub: true,
+        ),
+        merchantContext: query,
+      );
+
+      expect(withoutKidsClub.rewardRate, 0.3);
+      expect(withKidsClub.rewardRate, 5.0);
+      expect(withKidsClub.matchedTags, contains('童樂匯'));
+    });
   });
 
   group('JihoRewardEvaluator against real jiho_reward_rules.json', () {
@@ -211,6 +235,22 @@ void main() {
       );
 
       expect(result.rewardRate, 1.0);
+    });
+
+    test('new customer default rate (1.5%) applies instead of the plain default (1.0%)', () {
+      const query = MerchantQueryContext(merchantName: '完全沒聽過的店');
+
+      final existingCustomer = JihoRewardEvaluator().evaluate(
+        profile: const JihoCardProfile(isNewCardHolder: false),
+        merchantContext: query,
+      );
+      final newCustomer = JihoRewardEvaluator().evaluate(
+        profile: const JihoCardProfile(isNewCardHolder: true),
+        merchantContext: query,
+      );
+
+      expect(existingCustomer.rewardRate, 1.0);
+      expect(newCustomer.rewardRate, 1.5);
     });
   });
 }

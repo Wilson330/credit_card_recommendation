@@ -28,6 +28,10 @@ class CubeRewardEvaluator implements CardRewardEvaluator {
       );
     }
 
+    final activeConditions = <String>{
+      if (profile.hasKidsClub) 'kids_club',
+    };
+
     final rule = RuleMatcher.selectBestRule(
       rules: _rules,
       normalizedQueries: MerchantMatcher.normalizedCandidates(
@@ -36,6 +40,7 @@ class CubeRewardEvaluator implements CardRewardEvaluator {
       ),
       merchantTags: merchantContext.merchantTags,
       currentLevel: profile.selectedLevel,
+      activeConditions: activeConditions,
     );
 
     final matchedTags = <String>[rule.benefitLabel];

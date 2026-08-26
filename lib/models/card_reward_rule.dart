@@ -7,6 +7,7 @@ class CardRewardRule {
   final double rewardRate;
   final String benefitLabel;
   final String? requiredAction;
+  final List<String> requiredConditions;
   final List<String> constraints;
   final bool isSyntheticCondition;
   final bool active;
@@ -20,6 +21,7 @@ class CardRewardRule {
     required this.rewardRate,
     required this.benefitLabel,
     required this.requiredAction,
+    required this.requiredConditions,
     required this.constraints,
     required this.isSyntheticCondition,
     required this.active,
@@ -35,6 +37,9 @@ class CardRewardRule {
       rewardRate: (json['reward_rate'] as num).toDouble(),
       benefitLabel: json['benefit_label'] as String,
       requiredAction: json['required_action'] as String?,
+      requiredConditions: (json['required_conditions'] as List<dynamic>? ?? const [])
+          .map((e) => e as String)
+          .toList(),
       constraints: (json['constraints'] as List<dynamic>? ?? const [])
           .map((e) => e as String)
           .toList(),

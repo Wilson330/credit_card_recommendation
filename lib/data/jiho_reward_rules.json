@@ -8,9 +8,10 @@
     "reward_rate": 1,
     "benefit_label": "國內一般消費",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -18,17 +19,19 @@
   {
     "rule_id": "jiho_國內一般消費_新戶自動扣繳加碼_國內一般消費",
     "card_id": "ubot_jiho",
-    "rule_type": "merchant",
-    "match_value": "新戶自動扣繳加碼(國內一般消費)",
+    "rule_type": "default",
+    "match_value": "*",
     "applicable_level": null,
     "reward_rate": 1.5,
     "benefit_label": "國內一般消費",
     "required_action": null,
-    "constraints": [
-      "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+    "required_conditions": [
+      "new_customer"
     ],
-    "is_synthetic_condition": true,
+    "constraints": [
+      "實際回饋依當期公告為準"
+    ],
+    "is_synthetic_condition": false,
     "active": true
   },
   {
@@ -40,9 +43,10 @@
     "reward_rate": 1,
     "benefit_label": "國外一般消費",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -56,9 +60,10 @@
     "reward_rate": 2.5,
     "benefit_label": "日本一般消費",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -72,9 +77,10 @@
     "reward_rate": 5,
     "benefit_label": "日本一般消費",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -88,9 +94,10 @@
     "reward_rate": 5.5,
     "benefit_label": "日本一般消費",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -104,9 +111,10 @@
     "reward_rate": 8,
     "benefit_label": "日本一般消費",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -120,9 +128,10 @@
     "reward_rate": 1.5,
     "benefit_label": "日本交通卡儲值",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -136,9 +145,10 @@
     "reward_rate": 1.5,
     "benefit_label": "日本交通卡儲值",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -152,9 +162,10 @@
     "reward_rate": 1.5,
     "benefit_label": "日本交通卡儲值",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準",
-      "此列為使用情境代稱（非真實商家），為 v1 暫時性簡化，待重構為條件式規則"
+      "此列為使用情境代稱（非真實商家），待補上情境所需的輸入（例如支付方式、所在國家）才能真正判斷"
     ],
     "is_synthetic_condition": true,
     "active": true
@@ -168,6 +179,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -183,6 +195,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -198,6 +211,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -213,6 +227,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -228,6 +243,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -243,6 +259,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -258,6 +275,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -273,6 +291,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -288,6 +307,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -303,6 +323,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -318,6 +339,7 @@
     "reward_rate": 11,
     "benefit_label": "日本熱門商店",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -333,6 +355,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -348,6 +371,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -363,6 +387,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -378,6 +403,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -393,6 +419,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -408,6 +435,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -423,6 +451,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -438,6 +467,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -453,6 +483,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -468,6 +499,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -483,6 +515,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -498,6 +531,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -513,6 +547,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -528,6 +563,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -543,6 +579,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -558,6 +595,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -573,6 +611,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -588,6 +627,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -603,6 +643,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -618,6 +659,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -633,6 +675,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -648,6 +691,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -663,6 +707,7 @@
     "reward_rate": 5.5,
     "benefit_label": "國內日系特店加碼",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -678,6 +723,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -693,6 +739,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -708,6 +755,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -723,6 +771,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -738,6 +787,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -753,6 +803,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -768,6 +819,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -783,6 +835,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -798,6 +851,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -813,6 +867,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -828,6 +883,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -843,6 +899,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -858,6 +915,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -873,6 +931,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -888,6 +947,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -903,6 +963,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -918,6 +979,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -933,6 +995,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -948,6 +1011,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -963,6 +1027,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -978,6 +1043,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -993,6 +1059,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1008,6 +1075,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1023,6 +1091,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1038,6 +1107,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1053,6 +1123,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1068,6 +1139,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1083,6 +1155,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1098,6 +1171,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1113,6 +1187,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1128,6 +1203,7 @@
     "reward_rate": 10,
     "benefit_label": "國內日系餐廳優惠",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
@@ -1143,6 +1219,7 @@
     "reward_rate": 1,
     "benefit_label": "國內一般消費",
     "required_action": null,
+    "required_conditions": [],
     "constraints": [
       "實際回饋依當期公告為準"
     ],
