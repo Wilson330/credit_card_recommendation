@@ -41,19 +41,36 @@
      --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/schema.sql
    ```
 
-3. 灌入回饋資料：
+3. 灌入回饋資料與商家目錄：
 
    ```bash
-   "/c/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe" \
-     --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/seed_card_rewards.sql
+   MYSQL="/c/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe"
+   "$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/seed_card_rewards.sql
+   "$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/seed_merchants.sql
    ```
+
+## 資料表與重建鏈
+
+| 資料表 | 內容 | 重建鏈 |
+|---|---|---|
+| `card_rewards` | 各卡各方案回饋率 | 匯出檔 → `build_seed_sql.js` → `seed_card_rewards.sql` |
+| `merchants` / `merchant_aliases` / `merchant_tags` | 模糊搜尋商家目錄 | 匯出檔 → `build_merchants.js` → `merchants.json` → `build_merchants_sql.js` → `seed_merchants.sql` |
+| `users` | 帳號（擱置中，空表） | 無 |
+
+商家目錄多一層：`scripts/build_merchants.js`（專案根目錄的那支，非本資料夾）先從回饋資料
+產生 `lib/data/merchants.json`，本資料夾的 `build_merchants_sql.js` 再把它轉成 SQL。
+
+> 重要不變式：`merchants.canonical_name` 必須與 `card_rewards` 裡的 `merchant_name`
+> 對得上，回饋比對才接得起來。目前兩者來自不同版本的爬蟲（回饋規則仍是舊版、商家目錄
+> 已是 0908），已針對會斷掉的少數店名做對齊；等回饋規則也改用 0908 產生後即可移除那些橋接。
 
 ## Allen 出新版資料時
 
 1. 把新的匯出檔放進 `lib/data/allen/`
-2. 改 `build_seed_sql.js` 最上面的 `SOURCE_JSON` 指到新檔名
-3. `node scripts/mysql/build_seed_sql.js`
-4. 重跑上面第 3 步
+2. 改 `build_seed_sql.js` 與 `scripts/build_merchants.js` 最上面的來源檔名指到新檔
+3. `node scripts/mysql/build_seed_sql.js`（回饋）＋ `node scripts/build_merchants.js` 後
+   `node scripts/mysql/build_merchants_sql.js`（商家）
+4. 重跑上面第 3 步的兩個灌入指令
 
 `seed_card_rewards.sql` 開頭會 `TRUNCATE TABLE card_rewards`，所以是整批取代，
 不會殘留上一版已經被刪掉的資料。這張表的內容完全衍生自匯出檔，
