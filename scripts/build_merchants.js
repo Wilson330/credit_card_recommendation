@@ -17,58 +17,95 @@ const path = require('path');
 const DATA_DIR = path.join(__dirname, '..', 'lib', 'data');
 const ALLEN_DIR = path.join(DATA_DIR, 'allen');
 
+// Same physical merchant that Allen's crawl names more than one way because
+// it shows up under different schemes (e.g. 大阪環球影城 in 日本熱門商店 vs
+// 大阪環球影城(USJ) in 趣旅行). Without merging, each variant became its own
+// merchant entry — two rows for one place, both claiming the same aliases,
+// which made the resolver ambiguous. Map each variant to the single canonical
+// name we keep; the variant name itself is preserved as an alias (see
+// MERGE_ALIASES below) so any reward rule whose match_value is the variant
+// still resolves. NOT for genuinely different stores that merely share a
+// brand word — e.g. 大葉高島屋 (Taiwan) and 高島屋(日本) stay separate; their
+// shared 'Takashimaya' alias is disambiguated in the ALIASES table instead.
+const MERCHANT_MERGES = {
+  '大阪環球影城(USJ)': '大阪環球影城',
+  '東京迪士尼樂園': '東京迪士尼',
+  // same brand, inconsistent spacing across schemes in Allen's 0908 crawl
+  'YAYOI彌生軒': 'YAYOI 彌生軒',
+  // Name-alignment bridge: 0908 shortens Taiwan 7-11 to "7-ELEVEN 實體門市",
+  // but the reward rules (still generated from the older crawl) match on
+  // "7-ELEVEN (7-11) 實體門市". A merchant's canonical name MUST equal the
+  // reward rule's match_value or the resolved-name path can't find the real
+  // rate. Fold the 0908 short form into the rule's name (short form survives
+  // as an alias). Remove this once the reward rules are regenerated from 0908.
+  '7-ELEVEN 實體門市': '7-ELEVEN (7-11) 實體門市',
+};
+
+// canonical name -> [variant names folded into it], so the variants survive as
+// aliases. Built by inverting MERCHANT_MERGES.
+const MERGE_ALIASES = {};
+for (const [variant, canonical] of Object.entries(MERCHANT_MERGES)) {
+  (MERGE_ALIASES[canonical] = MERGE_ALIASES[canonical] || []).push(variant);
+}
+
 function normalizeMerchantName(raw) {
   const CONSTRAINT_BRACKET_KEYWORDS = [
     '限', '不含', '僅', '需', '限定', '週', '街邊店', '儲值', '電子票券', '結帳',
   ];
   const match = raw.trim().match(/^(.*?)\s*[\(（](.+?)[\)）]\s*$/);
+  let name = raw.trim();
   if (match) {
     const bracketContent = match[2].trim();
     const looksLikeConstraint = CONSTRAINT_BRACKET_KEYWORDS.some((kw) =>
       bracketContent.includes(kw)
     );
-    if (looksLikeConstraint) return match[1].trim();
+    if (looksLikeConstraint) name = match[1].trim();
   }
-  return raw.trim();
+  // Fold known duplicate name variants into one canonical merchant
+  return MERCHANT_MERGES[name] || name;
 }
 
 // ---- gather the unique (name -> schemes[]) universe from real data ----
 
-function collectMerchantUniverse() {
-  const cubeRaw = JSON.parse(
-    fs.readFileSync(path.join(ALLEN_DIR, 'cube_ALL_LEVELS_rewards.json'), 'utf8')
-  );
-  const jihoRaw = JSON.parse(
-    fs.readFileSync(path.join(ALLEN_DIR, 'jiho_rewards.json'), 'utf8')
-  );
+// Many reward rows aren't merchants at all — they're general-spend buckets,
+// payment methods, or overseas-country buckets. These must not become
+// directory entries (you don't "search for" 日本 or LINE Pay as a store).
+// Tested against both the raw name and the bracket-stripped name, since
+// normalizeMerchantName turns e.g. "一般消費(不含保費)" into "一般消費".
+const COUNTRY_NAMES = new Set([
+  '日本', '韓國', '美國', '中國', '香港', '新加坡', '馬來西亞', '泰國', '越南',
+  '菲律賓', '澳洲', '紐西蘭', '加拿大', '英國', '法國', '德國', '義大利', '西班牙', '澳門',
+]);
 
-  const CUBE_DEFERRED_SCHEMES = new Set(['慶生月', '童樂匯']);
-  const JIHO_CONDITION_SCHEMES = new Set([
-    '國內一般消費', '國外一般消費', '日本一般消費', '日本交通卡儲值',
-  ]);
+function isNonMerchant(rawName) {
+  const n = rawName.trim();
+  if (COUNTRY_NAMES.has(n)) return true;
+  // general-spend / default-rate buckets (these feed the default rule, not a merchant)
+  if (/(一般消費|海外實體消費|日幣消費|飯店住宿|行動支付|保費)/.test(n)) return true;
+  // payment instruments, not stores
+  if (/(支付|錢包|Wallet|iPASS|icash|悠遊付|Pay$|PAY$)/.test(n)) return true;
+  return false;
+}
+
+function collectMerchantUniverse() {
+  // 0908 export is the current single source of truth (Allen's latest crawl).
+  // Flat rows: { card_name, card_level, scheme_name, merchant_name, ... }.
+  // Unlike the earlier nested per-card files this also carries Unicard and a
+  // much larger merchant set; merchant classification is per-merchant, so we
+  // collapse across cards/levels into one (name -> schemes) universe.
+  const rows = JSON.parse(
+    fs.readFileSync(path.join(ALLEN_DIR, 'card_rewards_export_0908.json'), 'utf8')
+  );
 
   const byName = new Map();
 
-  for (const schemes of Object.values(cubeRaw)) {
-    for (const [scheme, merchants] of Object.entries(schemes)) {
-      if (CUBE_DEFERRED_SCHEMES.has(scheme)) continue;
-      for (const rawName of Object.keys(merchants)) {
-        const name = normalizeMerchantName(rawName);
-        if (!byName.has(name)) byName.set(name, new Set());
-        byName.get(name).add(scheme);
-      }
-    }
-  }
-
-  for (const schemes of Object.values(jihoRaw)) {
-    for (const [scheme, merchants] of Object.entries(schemes)) {
-      if (JIHO_CONDITION_SCHEMES.has(scheme)) continue;
-      for (const rawName of Object.keys(merchants)) {
-        const name = normalizeMerchantName(rawName);
-        if (!byName.has(name)) byName.set(name, new Set());
-        byName.get(name).add(scheme);
-      }
-    }
+  for (const row of rows) {
+    const rawName = row.merchant_name;
+    if (isNonMerchant(rawName)) continue;
+    const name = normalizeMerchantName(rawName);
+    if (isNonMerchant(name)) continue; // bracket-stripped form may now be a bucket
+    if (!byName.has(name)) byName.set(name, new Set());
+    byName.get(name).add(row.scheme_name);
   }
 
   return byName;
@@ -88,6 +125,8 @@ const TRAVEL = (tags = []) => ({ primary_category: 'travel', tags: [...tags] });
 const HOTEL = (tags = []) => ({ primary_category: 'hotel', tags: ['lodging', ...tags] });
 const RETAIL = (tags = []) => ({ primary_category: 'retail', tags: [...tags] });
 const THEME_PARK = (tags = []) => ({ primary_category: 'theme_park', tags: ['attraction', ...tags] });
+const ENTERTAINMENT = (tags = []) => ({ primary_category: 'entertainment', tags: [...tags] });
+const EDUCATION = (tags = []) => ({ primary_category: 'education', tags: ['school', ...tags] });
 
 // Common alternate names — English brand names, abbreviations, common
 // Chinese short forms. Applied uniformly to any merchant regardless of
@@ -96,7 +135,9 @@ const THEME_PARK = (tags = []) => ({ primary_category: 'theme_park', tags: ['att
 // exhaustive, flagged for review same as everything else.
 const ALIASES = {
   '7-ELEVEN (7-11) 實體門市': ['7-11', '7-ELEVEN', '小七', '統一超商'],
-  '全家便利商店 實體門市': ['全家', 'FamilyMart'],
+  // 'FamilyMart' is NOT an alias here: 0908 has a real bare "FamilyMart" entry
+  // (the Japan store), so aliasing it onto the Taiwan 全家 too would collide.
+  '全家便利商店 實體門市': ['全家'],
   '萊爾富實體門市': ['萊爾富', 'Hi-Life'],
   '全聯福利中心': ['全聯', 'PX Mart'],
   '麥當勞': ["McDonald's"],
@@ -148,7 +189,9 @@ const ALIASES = {
   // Department stores / malls — commonly shortened
   '新光三越': ['新光', 'Shin Kong Mitsukoshi'],
   '微風廣場': ['微風', 'Breeze Center'],
-  '大葉高島屋': ['高島屋', 'Takashimaya'],
+  // '高島屋' is NOT an alias here: 0908 has a real bare "高島屋" entry (the
+  // Japan store), so aliasing it onto 大葉高島屋 too would resolve ambiguously.
+  '大葉高島屋': ['Takashimaya'],
   '遠東百貨': ['遠百'],
   '環球購物中心': ['Global Mall'],
   'Big City遠東巨城購物中心': ['巨城', 'Big City'],
@@ -157,7 +200,10 @@ const ALIASES = {
   // Japan department stores — English/romanized names
   '三越(日本)': ['Mitsukoshi'],
   '永旺(日本)': ['AEON', 'Aeon'],
-  '高島屋(日本)': ['Takashimaya'],
+  // 'Takashimaya' is deliberately NOT listed here: 大葉高島屋 (the Taiwan store
+  // a TW cardholder actually visits) claims it above. Leaving it on both made
+  // the alias resolve ambiguously to two different merchants.
+  '高島屋(日本)': [],
   // Drugstores
   "三友藥妝Tomod's": ["Tomod's"],
   '松本清': ['Matsumoto Kiyoshi'],
@@ -321,19 +367,106 @@ for (const name of STREAMING) OVERRIDES[name] = DIGITAL(['streaming', 'subscript
 const ECOMMERCE = new Set(['蝦皮購物', 'momo購物網', 'PChome 24h購物', '小樹購', 'Coupang 酷澎(台灣)', '淘寶/天貓']);
 for (const name of ECOMMERCE) OVERRIDES[name] = DIGITAL(['ecommerce']);
 
+// --- 2026-09-10: merchants newly arriving from the 0908 export ---
+
+// Japan brands: the 0908 crawl names these WITHOUT the "(日本)" suffix the
+// older files used, so the suffixed OVERRIDES keys above no longer match.
+// Bare 三越/永旺/高島屋/7-ELEVEN/FamilyMart/LAWSON all come from the
+// 日本熱門商店 scheme, i.e. the Japanese entities.
+OVERRIDES['7-ELEVEN'] = CONVENIENCE(['japan']);
+OVERRIDES['FamilyMart'] = CONVENIENCE(['japan']);
+OVERRIDES['LAWSON'] = CONVENIENCE(['japan']);
+OVERRIDES['三越'] = DEPT_STORE(['japan']);
+OVERRIDES['永旺'] = DEPT_STORE(['japan']);
+OVERRIDES['高島屋'] = DEPT_STORE(['japan']);
+// Taiwan 7-11: canonical kept as the reward-rule name via MERCHANT_MERGES
+// above; the 台塑家/集精選 schemes give it no default, so classify here.
+OVERRIDES['7-ELEVEN (7-11) 實體門市'] = CONVENIENCE();
+
+// 日本交通卡儲值 — transport IC cards
+for (const name of ['SUICA', 'ICOCA', 'PASMO']) OVERRIDES[name] = TRAVEL(['transport', 'ic_card', 'japan']);
+
+// 百大特店 (Unicard) recognizable brands
+const CINEMAS = new Set(['威秀影城', '國賓影城', '新光影城']);
+for (const name of CINEMAS) OVERRIDES[name] = ENTERTAINMENT(['cinema']);
+const KTVS = new Set(['錢櫃KTV', '好樂迪KTV', '星聚點KTV', '享溫馨KTV']);
+for (const name of KTVS) OVERRIDES[name] = ENTERTAINMENT(['ktv']);
+const ELECTRONICS = new Set(['全國電子', '燦坤', '小米台灣', 'Apple直營店']);
+for (const name of ELECTRONICS) OVERRIDES[name] = RETAIL(['electronics']);
+OVERRIDES['特力屋'] = RETAIL(['home_goods']);
+OVERRIDES['HOLA'] = RETAIL(['home_goods']);
+OVERRIDES['NET'] = RETAIL(['apparel']);
+OVERRIDES['hoi好好生活'] = RETAIL(['home_goods']);
+OVERRIDES['杏一藥局'] = DRUGSTORE();
+OVERRIDES['特斯拉'] = { primary_category: 'mobility', tags: ['automobile', 'ev'], needsReview: true };
+OVERRIDES['55688'] = TRAVEL(['transport', 'taxi']); // 台灣大車隊 app brand
+OVERRIDES['台鐵'] = TRAVEL(['transport', 'rail']);
+OVERRIDES['高鐵'] = TRAVEL(['transport', 'rail']);
+OVERRIDES['台灣中油'] = GAS();
+OVERRIDES['拓元售票'] = { primary_category: 'digital', tags: ['ticketing'], needsReview: true };
+for (const name of ['Expedia', 'Hotels.com', 'Coupang酷澎']) OVERRIDES[name] = DIGITAL(['ecommerce', 'ota']);
+for (const name of ['加利利旅行社', '找到了旅行社', '喜鴻假期', '鳳凰旅遊']) OVERRIDES[name] = TRAVEL(['travel_agency']);
+// Baby/kids retail common in 童樂匯
+const BABY_KIDS = new Set([
+  '卡多摩', '卡多摩嬰童館', '安琪兒婦嬰百貨', '寶齡婦幼館', '10mois台灣官網', '大樹先生的家',
+  '古北町台灣官網', '宜兒樂', '俏媽咪', '媽咪愛', '媽媽好', '樂兒屋', '麗兒采家',
+  'Little Wonders台灣官網', 'Mamas&Papas台灣官網', 'Seahorse Originals台灣官網', 'Taobaby濤寶日記',
+]);
+for (const name of BABY_KIDS) OVERRIDES[name] = RETAIL(['baby_kids']);
+
+// Education / kids classes (童樂匯)
+const EDUCATION_BRANDS = new Set([
+  '朱宗慶打擊樂教學系統', '汐游寶寶', '雲門舞集舞蹈教室', 'Yamaha音樂教室',
+  'TutorABC Junior', 'Etalking Kids', 'iSKI滑雪俱樂部',
+]);
+for (const name of EDUCATION_BRANDS) OVERRIDES[name] = EDUCATION();
+
+// Known dining chains that arrive via 童樂匯 (so the scheme default doesn't
+// reach them) — classify explicitly rather than leave uncategorized.
+for (const name of ['大戶屋', '陶板屋', '台灣壽司郎', '雞湯大叔', 'Money Jump 媽妳講親子餐廳']) {
+  OVERRIDES[name] = DINING();
+}
+
+// Remaining 0908 singletons
+OVERRIDES['家樂福'] = SUPERMARKET(['hypermarket']);
+OVERRIDES['統一速邁樂加油站'] = GAS();
+OVERRIDES['Xpark'] = THEME_PARK(['aquarium']);
+OVERRIDES['六福莊'] = HOTEL(['resort']); // 關西六福莊生態度假旅館
+for (const name of ['天貓', '淘寶']) OVERRIDES[name] = DIGITAL(['ecommerce']);
+
 // Scheme-level defaults for schemes that ARE genuinely homogeneous.
 const SCHEME_DEFAULT = {
   '國內日系餐廳優惠': DINING(['japanese_food']),
+  '國內人氣餐廳': DINING(),          // 0908: whole scheme is restaurants
+  '慶生月': DINING(),                // 0908: birthday-month dining list
 };
+
+// Structural name patterns — catch the long tail of individually-named
+// merchants (hotels, theme parks, schools, cinemas...) that no brand list
+// would ever enumerate. Applied after exact OVERRIDES, before scheme
+// defaults, so a scheme-wide DINING default doesn't swallow e.g. a KTV.
+const NAME_PATTERNS = [
+  [/(主題樂園|遊樂世界|文化村|科學園區|夢想樂園|動物園|水族|樂園$)/, THEME_PARK()],
+  [/(大飯店|飯店|酒店|度假|渡假|觀光|溫泉|旅館|Hotel|喜來登|萬豪|威斯汀|凱撒|寒沐|晶英)/, HOTEL()],
+  [/(國際學校|雙語|美國學校|歐洲學校|外僑學校|實驗高中|小學|國小|中學|高中|學校$)/, EDUCATION()],
+  [/KTV/, ENTERTAINMENT(['ktv'])],
+  [/(影城|電影院)/, ENTERTAINMENT(['cinema'])],
+  [/(旅行社|旅遊$|假期)/, TRAVEL(['travel_agency'])],
+  [/(婦嬰|婦幼|嬰童|親子餐廳)/, RETAIL(['baby_kids'])],
+  [/加油站/, GAS()],
+];
 
 function classify(name, schemes) {
   if (OVERRIDES[name]) return OVERRIDES[name];
+  for (const [re, result] of NAME_PATTERNS) {
+    if (re.test(name)) return result;
+  }
   for (const scheme of schemes) {
     if (SCHEME_DEFAULT[scheme]) return SCHEME_DEFAULT[scheme];
   }
-  // fallback for department-store-shaped 樂饗購 entries and anything else
-  // not explicitly classified above (mostly the ~30 malls/outlets).
-  if (schemes.has('樂饗購')) return DEPT_STORE();
+  // fallback for department-store-shaped 樂饗購/百大特店 entries and anything
+  // else not explicitly classified above (mostly malls/outlets).
+  if (schemes.has('樂饗購') || schemes.has('百大特店')) return DEPT_STORE();
   return { primary_category: 'uncategorized', tags: [], needsReview: true };
 }
 
@@ -495,7 +628,8 @@ for (const [name, schemes] of [...universe.entries()].sort((a, b) => a[0].locale
     primary_category,
     subcategory: null,
     tags,
-    aliases: ALIASES[name] || [],
+    // dedup variants of this merchant (folded via MERCHANT_MERGES) survive as aliases
+    aliases: [...(ALIASES[name] || []), ...(MERGE_ALIASES[name] || [])],
     channel: 'offline',
     country: [...schemes].some((s) => s.includes('日本')) ? 'JP' : 'TW',
     active: true,

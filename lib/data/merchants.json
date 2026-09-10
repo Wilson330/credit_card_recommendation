@@ -1,13 +1,12 @@
 [
   {
-    "merchant_id": "m_arabica咖啡",
-    "canonical_name": "% Arabica咖啡",
-    "display_name": "% Arabica咖啡",
-    "primary_category": "dining",
+    "merchant_id": "m_10mois台灣官網",
+    "canonical_name": "10mois台灣官網",
+    "display_name": "10mois台灣官網",
+    "primary_category": "retail",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "coffee"
+      "baby_kids"
     ],
     "aliases": [],
     "channel": "offline",
@@ -15,18 +14,33 @@
     "active": true
   },
   {
-    "merchant_id": "m_50嵐",
-    "canonical_name": "50嵐",
-    "display_name": "50嵐",
-    "primary_category": "dining",
+    "merchant_id": "m_55688",
+    "canonical_name": "55688",
+    "display_name": "55688",
+    "primary_category": "travel",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "beverage"
+      "transport",
+      "taxi"
     ],
     "aliases": [],
     "channel": "offline",
     "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_7_eleven",
+    "canonical_name": "7-ELEVEN",
+    "display_name": "7-ELEVEN",
+    "primary_category": "convenience_store",
+    "subcategory": null,
+    "tags": [
+      "chain_store",
+      "japan"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "JP",
     "active": true
   },
   {
@@ -42,25 +56,11 @@
       "7-11",
       "7-ELEVEN",
       "小七",
-      "統一超商"
+      "統一超商",
+      "7-ELEVEN 實體門市"
     ],
     "channel": "offline",
     "country": "TW",
-    "active": true
-  },
-  {
-    "merchant_id": "m_7_eleven_日本",
-    "canonical_name": "7-ELEVEN(日本)",
-    "display_name": "7-ELEVEN(日本)",
-    "primary_category": "convenience_store",
-    "subcategory": null,
-    "tags": [
-      "chain_store",
-      "japan"
-    ],
-    "aliases": [],
-    "channel": "offline",
-    "country": "JP",
     "active": true
   },
   {
@@ -70,8 +70,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [
       "Ippudo"
@@ -81,14 +80,41 @@
     "active": true
   },
   {
-    "merchant_id": "m_八方雲集",
-    "canonical_name": "八方雲集",
-    "display_name": "八方雲集",
+    "merchant_id": "m_九族文化村",
+    "canonical_name": "九族文化村",
+    "display_name": "九族文化村",
+    "primary_category": "theme_park",
+    "subcategory": null,
+    "tags": [
+      "attraction"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_二本松涮涮屋",
+    "canonical_name": "二本松涮涮屋",
+    "display_name": "二本松涮涮屋",
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "fast_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_三井outlet",
+    "canonical_name": "三井OUTLET",
+    "display_name": "三井OUTLET",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
     ],
     "aliases": [],
     "channel": "offline",
@@ -127,20 +153,46 @@
     "active": true
   },
   {
-    "merchant_id": "m_三越_日本",
-    "canonical_name": "三越(日本)",
-    "display_name": "三越(日本)",
+    "merchant_id": "m_三越",
+    "canonical_name": "三越",
+    "display_name": "三越",
     "primary_category": "department_store",
     "subcategory": null,
     "tags": [
       "mall",
       "japan"
     ],
-    "aliases": [
-      "Mitsukoshi"
-    ],
+    "aliases": [],
     "channel": "offline",
     "country": "JP",
+    "active": true
+  },
+  {
+    "merchant_id": "m_三點三",
+    "canonical_name": "三點三",
+    "display_name": "三點三",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_久碳吉炭火燒肉",
+    "canonical_name": "久碳吉炭火燒肉",
+    "display_name": "久碳吉炭火燒肉",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
     "active": true
   },
   {
@@ -150,8 +202,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -170,6 +221,20 @@
     "aliases": [
       "Turkish Airlines"
     ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_大戶屋",
+    "canonical_name": "大戶屋",
+    "display_name": "大戶屋",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -214,27 +279,11 @@
     ],
     "aliases": [
       "USJ",
-      "環球影城"
+      "環球影城",
+      "大阪環球影城(USJ)"
     ],
     "channel": "offline",
     "country": "JP",
-    "active": true
-  },
-  {
-    "merchant_id": "m_大阪環球影城_usj",
-    "canonical_name": "大阪環球影城(USJ)",
-    "display_name": "大阪環球影城(USJ)",
-    "primary_category": "theme_park",
-    "subcategory": null,
-    "tags": [
-      "attraction"
-    ],
-    "aliases": [
-      "USJ",
-      "環球影城"
-    ],
-    "channel": "offline",
-    "country": "TW",
     "active": true
   },
   {
@@ -244,8 +293,21 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_大溪笠復威斯汀度假酒店",
+    "canonical_name": "大溪笠復威斯汀度假酒店",
+    "display_name": "大溪笠復威斯汀度假酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
     ],
     "aliases": [],
     "channel": "offline",
@@ -262,9 +324,22 @@
       "mall"
     ],
     "aliases": [
-      "高島屋",
       "Takashimaya"
     ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_大樹先生的家",
+    "canonical_name": "大樹先生的家",
+    "display_name": "大樹先生的家",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -281,6 +356,62 @@
     "aliases": [
       "Korean Air"
     ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_小方舟串燒酒場",
+    "canonical_name": "小方舟串燒酒場",
+    "display_name": "小方舟串燒酒場",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_小叮噹科學園區主題樂園",
+    "canonical_name": "小叮噹科學園區主題樂園",
+    "display_name": "小叮噹科學園區主題樂園",
+    "primary_category": "theme_park",
+    "subcategory": null,
+    "tags": [
+      "attraction"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_小米台灣",
+    "canonical_name": "小米台灣",
+    "display_name": "小米台灣",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "electronics"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_小島3_5度親子餐廳",
+    "canonical_name": "小島3.5度親子餐廳",
+    "display_name": "小島3.5度親子餐廳",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -359,14 +490,28 @@
     "active": true
   },
   {
-    "merchant_id": "m_六扇門時尚湯鍋",
-    "canonical_name": "六扇門時尚湯鍋",
-    "display_name": "六扇門時尚湯鍋",
-    "primary_category": "dining",
+    "merchant_id": "m_六福村主題樂園",
+    "canonical_name": "六福村主題樂園",
+    "display_name": "六福村主題樂園",
+    "primary_category": "theme_park",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "hot_pot"
+      "attraction"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_六福莊",
+    "canonical_name": "六福莊",
+    "display_name": "六福莊",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging",
+      "resort"
     ],
     "aliases": [],
     "channel": "offline",
@@ -380,8 +525,21 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_天貓",
+    "canonical_name": "天貓",
+    "display_name": "天貓",
+    "primary_category": "digital",
+    "subcategory": null,
+    "tags": [
+      "ecommerce"
     ],
     "aliases": [],
     "channel": "offline",
@@ -409,8 +567,21 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_巴哈姆特動畫瘋",
+    "canonical_name": "巴哈姆特動畫瘋",
+    "display_name": "巴哈姆特動畫瘋",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -441,8 +612,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -458,6 +628,118 @@
     "tags": [
       "health_beauty",
       "japanese_brand"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_毛丼丼飯專門店",
+    "canonical_name": "毛丼丼飯專門店",
+    "display_name": "毛丼丼飯專門店",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_毛房蔥柚鍋_冷藏肉專門",
+    "canonical_name": "毛房蔥柚鍋．冷藏肉專門",
+    "display_name": "毛房蔥柚鍋．冷藏肉專門",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_毛蔬亞洲蔬食",
+    "canonical_name": "毛蔬亞洲蔬食",
+    "display_name": "毛蔬亞洲蔬食",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_水鳥和洋創作料理",
+    "canonical_name": "水鳥和洋創作料理",
+    "display_name": "水鳥和洋創作料理",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_火火燒肉販賣所",
+    "canonical_name": "火火燒肉販賣所",
+    "display_name": "火火燒肉販賣所",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_加利利旅行社",
+    "canonical_name": "加利利旅行社",
+    "display_name": "加利利旅行社",
+    "primary_category": "travel",
+    "subcategory": null,
+    "tags": [
+      "travel_agency"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_卡多摩",
+    "canonical_name": "卡多摩",
+    "display_name": "卡多摩",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_卡多摩嬰童館",
+    "canonical_name": "卡多摩嬰童館",
+    "display_name": "卡多摩嬰童館",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
     ],
     "aliases": [],
     "channel": "offline",
@@ -481,6 +763,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_古北町台灣官網",
+    "canonical_name": "古北町台灣官網",
+    "display_name": "古北町台灣官網",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_可樂旅遊",
     "canonical_name": "可樂旅遊",
     "display_name": "可樂旅遊",
@@ -488,6 +784,20 @@
     "subcategory": null,
     "tags": [
       "travel_agency"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_台中漢神洲際購物廣場",
+    "canonical_name": "台中漢神洲際購物廣場",
+    "display_name": "台中漢神洲際購物廣場",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
     ],
     "aliases": [],
     "channel": "offline",
@@ -509,6 +819,76 @@
     "active": true
   },
   {
+    "merchant_id": "m_台北市私立道明外僑學校",
+    "canonical_name": "台北市私立道明外僑學校",
+    "display_name": "台北市私立道明外僑學校",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_台北私立立人國際國小",
+    "canonical_name": "台北私立立人國際國小",
+    "display_name": "台北私立立人國際國小",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_台北美國學校",
+    "canonical_name": "台北美國學校",
+    "display_name": "台北美國學校",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_台北喜來登大飯店",
+    "canonical_name": "台北喜來登大飯店",
+    "display_name": "台北喜來登大飯店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_台北歐洲學校",
+    "canonical_name": "台北歐洲學校",
+    "display_name": "台北歐洲學校",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_台亞加油站",
     "canonical_name": "台亞加油站",
     "display_name": "台亞加油站",
@@ -516,6 +896,20 @@
     "subcategory": null,
     "tags": [
       "fuel"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_台南晶英酒店",
+    "canonical_name": "台南晶英酒店",
+    "display_name": "台南晶英酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
     ],
     "aliases": [],
     "channel": "offline",
@@ -595,6 +989,21 @@
     "active": true
   },
   {
+    "merchant_id": "m_台鐵",
+    "canonical_name": "台鐵",
+    "display_name": "台鐵",
+    "primary_category": "travel",
+    "subcategory": null,
+    "tags": [
+      "transport",
+      "rail"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_台灣大車隊",
     "canonical_name": "台灣大車隊",
     "display_name": "台灣大車隊",
@@ -602,6 +1011,20 @@
     "subcategory": null,
     "tags": [
       "transport"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_台灣中油",
+    "canonical_name": "台灣中油",
+    "display_name": "台灣中油",
+    "primary_category": "gas_station",
+    "subcategory": null,
+    "tags": [
+      "fuel"
     ],
     "aliases": [],
     "channel": "offline",
@@ -654,6 +1077,34 @@
     "active": true
   },
   {
+    "merchant_id": "m_台灣壽司郎",
+    "canonical_name": "台灣壽司郎",
+    "display_name": "台灣壽司郎",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_巧虎夢想樂園",
+    "canonical_name": "巧虎夢想樂園",
+    "display_name": "巧虎夢想樂園",
+    "primary_category": "theme_park",
+    "subcategory": null,
+    "tags": [
+      "attraction"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_札幌藥妝",
     "canonical_name": "札幌藥妝",
     "display_name": "札幌藥妝",
@@ -683,45 +1134,28 @@
     "active": true
   },
   {
-    "merchant_id": "m_永旺_日本",
-    "canonical_name": "永旺(日本)",
-    "display_name": "永旺(日本)",
+    "merchant_id": "m_永旺",
+    "canonical_name": "永旺",
+    "display_name": "永旺",
     "primary_category": "department_store",
     "subcategory": null,
     "tags": [
       "mall",
       "japan"
     ],
-    "aliases": [
-      "AEON",
-      "Aeon"
-    ],
+    "aliases": [],
     "channel": "offline",
     "country": "JP",
     "active": true
   },
   {
-    "merchant_id": "m_全支付國內合作通路",
-    "canonical_name": "全支付國內合作通路",
-    "display_name": "全支付國內合作通路",
-    "primary_category": "shopping",
+    "merchant_id": "m_立秋_li_chiu",
+    "canonical_name": "立秋 Li Chiu",
+    "display_name": "立秋 Li Chiu",
+    "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "payment_channel"
-    ],
-    "aliases": [],
-    "channel": "offline",
-    "country": "TW",
-    "active": true
-  },
-  {
-    "merchant_id": "m_全支付國內通路",
-    "canonical_name": "全支付國內通路",
-    "display_name": "全支付國內通路",
-    "primary_category": "shopping",
-    "subcategory": null,
-    "tags": [
-      "payment_channel"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -738,9 +1172,22 @@
       "chain_store"
     ],
     "aliases": [
-      "全家",
-      "FamilyMart"
+      "全家"
     ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_全國電子",
+    "canonical_name": "全國電子",
+    "display_name": "全國電子",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "electronics"
+    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -797,8 +1244,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -812,8 +1258,119 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_好樂迪ktv",
+    "canonical_name": "好樂迪KTV",
+    "display_name": "好樂迪KTV",
+    "primary_category": "entertainment",
+    "subcategory": null,
+    "tags": [
+      "ktv"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_好嶼_hosu",
+    "canonical_name": "好嶼 HOSU",
+    "display_name": "好嶼 HOSU",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_安琪兒婦嬰百貨",
+    "canonical_name": "安琪兒婦嬰百貨",
+    "display_name": "安琪兒婦嬰百貨",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_有你真好湘菜沙龍",
+    "canonical_name": "有你真好湘菜沙龍",
+    "display_name": "有你真好湘菜沙龍",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_朱宗慶打擊樂教學系統",
+    "canonical_name": "朱宗慶打擊樂教學系統",
+    "display_name": "朱宗慶打擊樂教學系統",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_汐游寶寶",
+    "canonical_name": "汐游寶寶",
+    "display_name": "汐游寶寶",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_肉料理福",
+    "canonical_name": "肉料理福",
+    "display_name": "肉料理福",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_你家樓下",
+    "canonical_name": "你家樓下",
+    "display_name": "你家樓下",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -828,6 +1385,34 @@
     "subcategory": null,
     "tags": [
       "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_找到了旅行社",
+    "canonical_name": "找到了旅行社",
+    "display_name": "找到了旅行社",
+    "primary_category": "travel",
+    "subcategory": null,
+    "tags": [
+      "travel_agency"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_杏一藥局",
+    "canonical_name": "杏一藥局",
+    "display_name": "杏一藥局",
+    "primary_category": "drugstore",
+    "subcategory": null,
+    "tags": [
+      "health_beauty"
     ],
     "aliases": [],
     "channel": "offline",
@@ -885,8 +1470,49 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_享溫馨ktv",
+    "canonical_name": "享溫馨KTV",
+    "display_name": "享溫馨KTV",
+    "primary_category": "entertainment",
+    "subcategory": null,
+    "tags": [
+      "ktv"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_京丘炭火燒鳥專門店",
+    "canonical_name": "京丘炭火燒鳥專門店",
+    "display_name": "京丘炭火燒鳥專門店",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_京丘燒鳥酒処",
+    "canonical_name": "京丘燒鳥酒処",
+    "display_name": "京丘燒鳥酒処",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -901,6 +1527,20 @@
     "subcategory": null,
     "tags": [
       "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_和逸飯店",
+    "canonical_name": "和逸飯店",
+    "display_name": "和逸飯店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
     ],
     "aliases": [],
     "channel": "offline",
@@ -928,8 +1568,35 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_宜兒樂",
+    "canonical_name": "宜兒樂",
+    "display_name": "宜兒樂",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_宜蘭礁溪鳳凰酒店",
+    "canonical_name": "宜蘭礁溪鳳凰酒店",
+    "display_name": "宜蘭礁溪鳳凰酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
     ],
     "aliases": [],
     "channel": "offline",
@@ -953,14 +1620,41 @@
     "active": true
   },
   {
-    "merchant_id": "m_拉亞漢堡",
-    "canonical_name": "拉亞漢堡",
-    "display_name": "拉亞漢堡",
+    "merchant_id": "m_所_suo",
+    "canonical_name": "所 SUO",
+    "display_name": "所 SUO",
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "fast_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_拓元售票",
+    "canonical_name": "拓元售票",
+    "display_name": "拓元售票",
+    "primary_category": "digital",
+    "subcategory": null,
+    "tags": [
+      "ticketing"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_昇恆昌",
+    "canonical_name": "昇恆昌",
+    "display_name": "昇恆昌",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
     ],
     "aliases": [],
     "channel": "offline",
@@ -979,27 +1673,11 @@
     ],
     "aliases": [
       "Tokyo Disneyland",
-      "迪士尼"
+      "迪士尼",
+      "東京迪士尼樂園"
     ],
     "channel": "offline",
     "country": "JP",
-    "active": true
-  },
-  {
-    "merchant_id": "m_東京迪士尼樂園",
-    "canonical_name": "東京迪士尼樂園",
-    "display_name": "東京迪士尼樂園",
-    "primary_category": "theme_park",
-    "subcategory": null,
-    "tags": [
-      "attraction"
-    ],
-    "aliases": [
-      "Tokyo Disneyland",
-      "迪士尼"
-    ],
-    "channel": "offline",
-    "country": "TW",
     "active": true
   },
   {
@@ -1073,8 +1751,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1088,8 +1765,21 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_法國的秘密甜點",
+    "canonical_name": "法國的秘密甜點",
+    "display_name": "法國的秘密甜點",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1113,14 +1803,41 @@
     "active": true
   },
   {
+    "merchant_id": "m_芮秋_rachel",
+    "canonical_name": "芮秋 Rachel",
+    "display_name": "芮秋 Rachel",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_花蓮遠雄悅來大飯店",
+    "canonical_name": "花蓮遠雄悅來大飯店",
+    "display_name": "花蓮遠雄悅來大飯店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_金子半之助",
     "canonical_name": "金子半之助",
     "display_name": "金子半之助",
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1190,6 +1907,34 @@
     "active": true
   },
   {
+    "merchant_id": "m_青沐",
+    "canonical_name": "青沐",
+    "display_name": "青沐",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_俏媽咪",
+    "canonical_name": "俏媽咪",
+    "display_name": "俏媽咪",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_南紡購物中心",
     "canonical_name": "南紡購物中心",
     "display_name": "南紡購物中心",
@@ -1197,6 +1942,20 @@
     "subcategory": null,
     "tags": [
       "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_威秀影城",
+    "canonical_name": "威秀影城",
+    "display_name": "威秀影城",
+    "primary_category": "entertainment",
+    "subcategory": null,
+    "tags": [
+      "cinema"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1252,6 +2011,48 @@
     "active": true
   },
   {
+    "merchant_id": "m_星聚點ktv",
+    "canonical_name": "星聚點KTV",
+    "display_name": "星聚點KTV",
+    "primary_category": "entertainment",
+    "subcategory": null,
+    "tags": [
+      "ktv"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_春囍打邊爐",
+    "canonical_name": "春囍打邊爐",
+    "display_name": "春囍打邊爐",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_祇園_禪院壽喜燒",
+    "canonical_name": "祇園.禪院壽喜燒",
+    "display_name": "祇園.禪院壽喜燒",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_美麗華",
     "canonical_name": "美麗華",
     "display_name": "美麗華",
@@ -1295,9 +2096,9 @@
     "active": true
   },
   {
-    "merchant_id": "m_家樂福_萬家福_樂家康",
-    "canonical_name": "家樂福(萬家福、樂家康)",
-    "display_name": "家樂福(萬家福、樂家康)",
+    "merchant_id": "m_家樂福",
+    "canonical_name": "家樂福",
+    "display_name": "家樂福",
     "primary_category": "supermarket",
     "subcategory": null,
     "tags": [
@@ -1324,13 +2125,13 @@
     "active": true
   },
   {
-    "merchant_id": "m_海外實體消費_含國外餐飲_飯店到店付款等",
-    "canonical_name": "海外實體消費(含國外餐飲、飯店到店付款等)",
-    "display_name": "海外實體消費(含國外餐飲、飯店到店付款等)",
-    "primary_category": "travel",
+    "merchant_id": "m_桃園名人堂花園大飯店",
+    "canonical_name": "桃園名人堂花園大飯店",
+    "display_name": "桃園名人堂花園大飯店",
+    "primary_category": "hotel",
     "subcategory": null,
     "tags": [
-      "overseas_general"
+      "lodging"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1338,20 +2139,132 @@
     "active": true
   },
   {
-    "merchant_id": "m_高島屋_日本",
-    "canonical_name": "高島屋(日本)",
-    "display_name": "高島屋(日本)",
+    "merchant_id": "m_特力屋",
+    "canonical_name": "特力屋",
+    "display_name": "特力屋",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "home_goods"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_特斯拉",
+    "canonical_name": "特斯拉",
+    "display_name": "特斯拉",
+    "primary_category": "mobility",
+    "subcategory": null,
+    "tags": [
+      "automobile",
+      "ev"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_馬禮遜學校",
+    "canonical_name": "馬禮遜學校",
+    "display_name": "馬禮遜學校",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_高島屋",
+    "canonical_name": "高島屋",
+    "display_name": "高島屋",
     "primary_category": "department_store",
     "subcategory": null,
     "tags": [
       "mall",
       "japan"
     ],
-    "aliases": [
-      "Takashimaya"
-    ],
+    "aliases": [],
     "channel": "offline",
     "country": "JP",
+    "active": true
+  },
+  {
+    "merchant_id": "m_高雄美國學校",
+    "canonical_name": "高雄美國學校",
+    "display_name": "高雄美國學校",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_高雄萬豪酒店",
+    "canonical_name": "高雄萬豪酒店",
+    "display_name": "高雄萬豪酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_高鐵",
+    "canonical_name": "高鐵",
+    "display_name": "高鐵",
+    "primary_category": "travel",
+    "subcategory": null,
+    "tags": [
+      "transport",
+      "rail"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_做茶菜",
+    "canonical_name": "做茶菜",
+    "display_name": "做茶菜",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_國內餐飲",
+    "canonical_name": "國內餐飲",
+    "display_name": "國內餐飲",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
     "active": true
   },
   {
@@ -1371,6 +2284,34 @@
     "active": true
   },
   {
+    "merchant_id": "m_國賓影城",
+    "canonical_name": "國賓影城",
+    "display_name": "國賓影城",
+    "primary_category": "entertainment",
+    "subcategory": null,
+    "tags": [
+      "cinema"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_康乃薾美國學校",
+    "canonical_name": "康乃薾美國學校",
+    "display_name": "康乃薾美國學校",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_康是美",
     "canonical_name": "康是美",
     "display_name": "康是美",
@@ -1382,6 +2323,20 @@
     "aliases": [
       "Cosmed"
     ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_康橋國際學校",
+    "canonical_name": "康橋國際學校",
+    "display_name": "康橋國際學校",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1409,8 +2364,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1424,8 +2378,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1433,20 +2386,29 @@
     "active": true
   },
   {
-    "merchant_id": "m_淘寶_天貓",
-    "canonical_name": "淘寶/天貓",
-    "display_name": "淘寶/天貓",
+    "merchant_id": "m_淘寶",
+    "canonical_name": "淘寶",
+    "display_name": "淘寶",
     "primary_category": "digital",
     "subcategory": null,
     "tags": [
       "ecommerce"
     ],
-    "aliases": [
-      "淘寶",
-      "天貓",
-      "Taobao",
-      "Tmall"
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_淘寶網",
+    "canonical_name": "淘寶網",
+    "display_name": "淘寶網",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
     ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1459,6 +2421,62 @@
     "subcategory": null,
     "tags": [
       "travel_agency"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_陳阿姨火鍋灶咖",
+    "canonical_name": "陳阿姨火鍋灶咖",
+    "display_name": "陳阿姨火鍋灶咖",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_陶板屋",
+    "canonical_name": "陶板屋",
+    "display_name": "陶板屋",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_髙_gao_taipei",
+    "canonical_name": "髙 GAO Taipei",
+    "display_name": "髙 GAO Taipei",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_鳥苑_torien_yakitori",
+    "canonical_name": "鳥苑 Torien Yakitori",
+    "display_name": "鳥苑 Torien Yakitori",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1483,14 +2501,13 @@
     "active": true
   },
   {
-    "merchant_id": "m_麻古茶坊",
-    "canonical_name": "麻古茶坊",
-    "display_name": "麻古茶坊",
+    "merchant_id": "m_勝博殿",
+    "canonical_name": "勝博殿",
+    "display_name": "勝博殿",
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "beverage"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1498,14 +2515,13 @@
     "active": true
   },
   {
-    "merchant_id": "m_勝博殿",
-    "canonical_name": "勝博殿",
-    "display_name": "勝博殿",
-    "primary_category": "dining",
+    "merchant_id": "m_喜鴻假期",
+    "canonical_name": "喜鴻假期",
+    "display_name": "喜鴻假期",
+    "primary_category": "travel",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "travel_agency"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1519,8 +2535,49 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_復興實驗高中",
+    "canonical_name": "復興實驗高中",
+    "display_name": "復興實驗高中",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_竣師父牛肉麵",
+    "canonical_name": "竣師父牛肉麵",
+    "display_name": "竣師父牛肉麵",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_粥起粥底火鍋熱炒",
+    "canonical_name": "粥起粥底火鍋熱炒",
+    "display_name": "粥起粥底火鍋熱炒",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1542,9 +2599,23 @@
     "active": true
   },
   {
-    "merchant_id": "m_統一速邁樂_限本島_加油站",
-    "canonical_name": "統一速邁樂(限本島)加油站",
-    "display_name": "統一速邁樂(限本島)加油站",
+    "merchant_id": "m_統一時代百貨",
+    "canonical_name": "統一時代百貨",
+    "display_name": "統一時代百貨",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_統一速邁樂加油站",
+    "canonical_name": "統一速邁樂加油站",
+    "display_name": "統一速邁樂加油站",
     "primary_category": "gas_station",
     "subcategory": null,
     "tags": [
@@ -1563,6 +2634,20 @@
     "subcategory": null,
     "tags": [
       "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_華盛頓小學",
+    "canonical_name": "華盛頓小學",
+    "display_name": "華盛頓小學",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1617,14 +2702,83 @@
     "active": true
   },
   {
-    "merchant_id": "m_黑沃咖啡",
-    "canonical_name": "黑沃咖啡",
-    "display_name": "黑沃咖啡",
+    "merchant_id": "m_雲門舞集舞蹈教室",
+    "canonical_name": "雲門舞集舞蹈教室",
+    "display_name": "雲門舞集舞蹈教室",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_雲品溫泉酒店",
+    "canonical_name": "雲品溫泉酒店",
+    "display_name": "雲品溫泉酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_媽咪愛",
+    "canonical_name": "媽咪愛",
+    "display_name": "媽咪愛",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_媽媽好",
+    "canonical_name": "媽媽好",
+    "display_name": "媽媽好",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_嵩_sung",
+    "canonical_name": "嵩 sung",
+    "display_name": "嵩 sung",
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "coffee"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_微風百貨",
+    "canonical_name": "微風百貨",
+    "display_name": "微風百貨",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1655,8 +2809,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1697,15 +2850,43 @@
     "merchant_id": "m_新光三越",
     "canonical_name": "新光三越",
     "display_name": "新光三越",
-    "primary_category": "department_store",
+    "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "mall"
+      "restaurant"
     ],
     "aliases": [
       "新光",
       "Shin Kong Mitsukoshi"
     ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_新光三越百貨",
+    "canonical_name": "新光三越百貨",
+    "display_name": "新光三越百貨",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_新光影城",
+    "canonical_name": "新光影城",
+    "display_name": "新光影城",
+    "primary_category": "entertainment",
+    "subcategory": null,
+    "tags": [
+      "cinema"
+    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -1717,8 +2898,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1732,8 +2912,91 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_煙波大飯店新竹湖濱館",
+    "canonical_name": "煙波大飯店新竹湖濱館",
+    "display_name": "煙波大飯店新竹湖濱館",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_瑞穗天合國際觀光酒店",
+    "canonical_name": "瑞穗天合國際觀光酒店",
+    "display_name": "瑞穗天合國際觀光酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_萬家福_樂家康",
+    "canonical_name": "萬家福/樂家康",
+    "display_name": "萬家福/樂家康",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_義大皇家酒店",
+    "canonical_name": "義大皇家酒店",
+    "display_name": "義大皇家酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_義大遊樂世界",
+    "canonical_name": "義大遊樂世界",
+    "display_name": "義大遊樂世界",
+    "primary_category": "theme_park",
+    "subcategory": null,
+    "tags": [
+      "attraction"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_蜀叔麻辣鍋",
+    "canonical_name": "蜀叔麻辣鍋",
+    "display_name": "蜀叔麻辣鍋",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1782,8 +3045,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1797,8 +3059,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1862,6 +3123,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_維多利亞雙語中小學",
+    "canonical_name": "維多利亞雙語中小學",
+    "display_name": "維多利亞雙語中小學",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_遠東百貨",
     "canonical_name": "遠東百貨",
     "display_name": "遠東百貨",
@@ -1881,6 +3156,20 @@
     "merchant_id": "m_遠東garden_city",
     "canonical_name": "遠東Garden City",
     "display_name": "遠東Garden City",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_遠東sogo",
+    "canonical_name": "遠東SOGO",
+    "display_name": "遠東SOGO",
     "primary_category": "department_store",
     "subcategory": null,
     "tags": [
@@ -1922,6 +3211,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_銀杏中餐廳",
+    "canonical_name": "銀杏中餐廳",
+    "display_name": "銀杏中餐廳",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_鳳凰旅行社",
     "canonical_name": "鳳凰旅行社",
     "display_name": "鳳凰旅行社",
@@ -1936,6 +3239,34 @@
     "active": true
   },
   {
+    "merchant_id": "m_鳳凰旅遊",
+    "canonical_name": "鳳凰旅遊",
+    "display_name": "鳳凰旅遊",
+    "primary_category": "travel",
+    "subcategory": null,
+    "tags": [
+      "travel_agency"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_劍湖山世界主題樂園",
+    "canonical_name": "劍湖山世界主題樂園",
+    "display_name": "劍湖山世界主題樂園",
+    "primary_category": "theme_park",
+    "subcategory": null,
+    "tags": [
+      "attraction"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_廣三sogo",
     "canonical_name": "廣三SOGO",
     "display_name": "廣三SOGO",
@@ -1943,6 +3274,20 @@
     "subcategory": null,
     "tags": [
       "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_樂兒屋",
+    "canonical_name": "樂兒屋",
+    "display_name": "樂兒屋",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1973,8 +3318,35 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_澄居烤物燒肉",
+    "canonical_name": "澄居烤物燒肉",
+    "display_name": "澄居烤物燒肉",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_稻鎮經典台灣菜",
+    "canonical_name": "稻鎮經典台灣菜",
+    "display_name": "稻鎮經典台灣菜",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -1999,14 +3371,111 @@
     "active": true
   },
   {
+    "merchant_id": "m_輝室",
+    "canonical_name": "輝室",
+    "display_name": "輝室",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_墾丁凱撒大飯店",
+    "canonical_name": "墾丁凱撒大飯店",
+    "display_name": "墾丁凱撒大飯店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_橋山壽喜燒",
+    "canonical_name": "橋山壽喜燒",
+    "display_name": "橋山壽喜燒",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_燒肉smile",
     "canonical_name": "燒肉Smile",
     "display_name": "燒肉Smile",
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_燒鳩",
+    "canonical_name": "燒鳩",
+    "display_name": "燒鳩",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_錢櫃ktv",
+    "canonical_name": "錢櫃KTV",
+    "display_name": "錢櫃KTV",
+    "primary_category": "entertainment",
+    "subcategory": null,
+    "tags": [
+      "ktv"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_澀_sur",
+    "canonical_name": "澀 Sur-",
+    "display_name": "澀 Sur-",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_燦坤",
+    "canonical_name": "燦坤",
+    "display_name": "燦坤",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "electronics"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2044,6 +3513,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_礁溪寒沐酒店",
+    "canonical_name": "礁溪寒沐酒店",
+    "display_name": "礁溪寒沐酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_聯合航空",
     "canonical_name": "聯合航空",
     "display_name": "聯合航空",
@@ -2060,14 +3543,139 @@
     "active": true
   },
   {
+    "merchant_id": "m_豐生茶館梅川東店",
+    "canonical_name": "豐生茶館梅川東店",
+    "display_name": "豐生茶館梅川東店",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_雞湯大叔",
+    "canonical_name": "雞湯大叔",
+    "display_name": "雞湯大叔",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_鯡魚工作室",
+    "canonical_name": "鯡魚工作室",
+    "display_name": "鯡魚工作室",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_麗兒采家",
+    "canonical_name": "麗兒采家",
+    "display_name": "麗兒采家",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_麗寶福容大飯店",
+    "canonical_name": "麗寶福容大飯店",
+    "display_name": "麗寶福容大飯店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_麗寶樂園",
+    "canonical_name": "麗寶樂園",
+    "display_name": "麗寶樂園",
+    "primary_category": "theme_park",
+    "subcategory": null,
+    "tags": [
+      "attraction"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_寶齡婦幼館",
+    "canonical_name": "寶齡婦幼館",
+    "display_name": "寶齡婦幼館",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_朧板前燒肉",
+    "canonical_name": "朧板前燒肉",
+    "display_name": "朧板前燒肉",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_麵屋武藏",
     "canonical_name": "麵屋武藏",
     "display_name": "麵屋武藏",
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_蘭城晶英酒店",
+    "canonical_name": "蘭城晶英酒店",
+    "display_name": "蘭城晶英酒店",
+    "primary_category": "hotel",
+    "subcategory": null,
+    "tags": [
+      "lodging"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2122,6 +3730,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_another_eatery",
+    "canonical_name": "Another Eatery",
+    "display_name": "Another Eatery",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_apple_媒體服務",
     "canonical_name": "Apple 媒體服務",
     "display_name": "Apple 媒體服務",
@@ -2137,13 +3759,13 @@
     "active": true
   },
   {
-    "merchant_id": "m_apple錢包指定交通卡_icoca",
-    "canonical_name": "Apple錢包指定交通卡 (ICOCA)",
-    "display_name": "Apple錢包指定交通卡 (ICOCA)",
-    "primary_category": "travel",
+    "merchant_id": "m_apple直營店",
+    "canonical_name": "Apple直營店",
+    "display_name": "Apple直營店",
+    "primary_category": "retail",
     "subcategory": null,
     "tags": [
-      "transport"
+      "electronics"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2151,27 +3773,13 @@
     "active": true
   },
   {
-    "merchant_id": "m_apple錢包指定交通卡_pasmo",
-    "canonical_name": "Apple錢包指定交通卡 (PASMO)",
-    "display_name": "Apple錢包指定交通卡 (PASMO)",
-    "primary_category": "travel",
+    "merchant_id": "m_ashin_阿鑫",
+    "canonical_name": "Ashin 阿鑫",
+    "display_name": "Ashin 阿鑫",
+    "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "transport"
-    ],
-    "aliases": [],
-    "channel": "offline",
-    "country": "TW",
-    "active": true
-  },
-  {
-    "merchant_id": "m_apple錢包指定交通卡_suica",
-    "canonical_name": "Apple錢包指定交通卡 (SUICA)",
-    "display_name": "Apple錢包指定交通卡 (SUICA)",
-    "primary_category": "travel",
-    "subcategory": null,
-    "tags": [
-      "transport"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2186,6 +3794,20 @@
     "subcategory": null,
     "tags": [
       "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_aufglet",
+    "canonical_name": "AUFGLET",
+    "display_name": "AUFGLET",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2213,8 +3835,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2228,8 +3849,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2360,6 +3980,35 @@
     "active": true
   },
   {
+    "merchant_id": "m_coupang酷澎",
+    "canonical_name": "Coupang酷澎",
+    "display_name": "Coupang酷澎",
+    "primary_category": "digital",
+    "subcategory": null,
+    "tags": [
+      "ecommerce",
+      "ota"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_creammm_t",
+    "canonical_name": "creammm.t",
+    "display_name": "creammm.t",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_cursor",
     "canonical_name": "Cursor",
     "display_name": "Cursor",
@@ -2423,6 +4072,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_etalking_kids",
+    "canonical_name": "Etalking Kids",
+    "display_name": "Etalking Kids",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_evalue",
     "canonical_name": "EVALUE",
     "display_name": "EVALUE",
@@ -2441,6 +4104,21 @@
     "primary_category": "ev_charging",
     "subcategory": null,
     "tags": [],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_expedia",
+    "canonical_name": "Expedia",
+    "display_name": "Expedia",
+    "primary_category": "digital",
+    "subcategory": null,
+    "tags": [
+      "ecommerce",
+      "ota"
+    ],
     "aliases": [],
     "channel": "offline",
     "country": "TW",
@@ -2476,9 +4154,23 @@
     "active": true
   },
   {
-    "merchant_id": "m_familymart_日本",
-    "canonical_name": "FamilyMart(日本)",
-    "display_name": "FamilyMart(日本)",
+    "merchant_id": "m_fake_sober",
+    "canonical_name": "Fake Sober",
+    "display_name": "Fake Sober",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_familymart",
+    "canonical_name": "FamilyMart",
+    "display_name": "FamilyMart",
     "primary_category": "convenience_store",
     "subcategory": null,
     "tags": [
@@ -2500,6 +4192,20 @@
       "restaurant",
       "delivery",
       "app"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_funnow",
+    "canonical_name": "FunNow",
+    "display_name": "FunNow",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2530,6 +4236,20 @@
     "tags": [
       "ai_tool",
       "productivity"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_global_mall環球購物中心",
+    "canonical_name": "Global Mall環球購物中心",
+    "display_name": "Global Mall環球購物中心",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2628,6 +4348,49 @@
     "active": true
   },
   {
+    "merchant_id": "m_hoi好好生活",
+    "canonical_name": "hoi好好生活",
+    "display_name": "hoi好好生活",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "home_goods"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_hola",
+    "canonical_name": "HOLA",
+    "display_name": "HOLA",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "home_goods"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_hotels_com",
+    "canonical_name": "Hotels.com",
+    "display_name": "Hotels.com",
+    "primary_category": "digital",
+    "subcategory": null,
+    "tags": [
+      "ecommerce",
+      "ota"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_icharging",
     "canonical_name": "iCharging",
     "display_name": "iCharging",
@@ -2637,6 +4400,22 @@
     "aliases": [],
     "channel": "offline",
     "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_icoca",
+    "canonical_name": "ICOCA",
+    "display_name": "ICOCA",
+    "primary_category": "travel",
+    "subcategory": null,
+    "tags": [
+      "transport",
+      "ic_card",
+      "japan"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "JP",
     "active": true
   },
   {
@@ -2664,6 +4443,34 @@
     "subcategory": null,
     "tags": [
       "transport"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_iski滑雪俱樂部",
+    "canonical_name": "iSKI滑雪俱樂部",
+    "display_name": "iSKI滑雪俱樂部",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_jai_宅",
+    "canonical_name": "JAI 宅",
+    "display_name": "JAI 宅",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2716,6 +4523,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_komboi",
+    "canonical_name": "KOMBOI",
+    "display_name": "KOMBOI",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_lakole",
     "canonical_name": "LAKOLE",
     "display_name": "LAKOLE",
@@ -2731,9 +4552,23 @@
     "active": true
   },
   {
-    "merchant_id": "m_lawson_日本",
-    "canonical_name": "LAWSON(日本)",
-    "display_name": "LAWSON(日本)",
+    "merchant_id": "m_lalaport",
+    "canonical_name": "LaLaport",
+    "display_name": "LaLaport",
+    "primary_category": "department_store",
+    "subcategory": null,
+    "tags": [
+      "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_lawson",
+    "canonical_name": "LAWSON",
+    "display_name": "LAWSON",
     "primary_category": "convenience_store",
     "subcategory": null,
     "tags": [
@@ -2754,6 +4589,20 @@
     "tags": [
       "apparel",
       "japanese_brand"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_little_wonders台灣官網",
+    "canonical_name": "Little Wonders台灣官網",
+    "display_name": "Little Wonders台灣官網",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2790,6 +4639,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_mamas_papas台灣官網",
+    "canonical_name": "Mamas&Papas台灣官網",
+    "display_name": "Mamas&Papas台灣官網",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_max",
     "canonical_name": "Max",
     "display_name": "Max",
@@ -2805,35 +4668,29 @@
     "active": true
   },
   {
-    "merchant_id": "m_mitsui_outlet_park_林口_台中港_台南",
-    "canonical_name": "MITSUI OUTLET PARK(林口、台中港、台南)",
-    "display_name": "MITSUI OUTLET PARK(林口、台中港、台南)",
+    "merchant_id": "m_mitsui_outlet_park",
+    "canonical_name": "MITSUI OUTLET PARK",
+    "display_name": "MITSUI OUTLET PARK",
     "primary_category": "department_store",
     "subcategory": null,
     "tags": [
       "mall"
     ],
-    "aliases": [
-      "三井OUTLET",
-      "MITSUI OUTLET PARK"
-    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
   },
   {
-    "merchant_id": "m_mitsui_shopping_park_lalaport_南港_台中",
-    "canonical_name": "Mitsui Shopping Park LaLaport(南港、台中)",
-    "display_name": "Mitsui Shopping Park LaLaport(南港、台中)",
+    "merchant_id": "m_mitsui_shopping_park_lalaport",
+    "canonical_name": "Mitsui Shopping Park LaLaport",
+    "display_name": "Mitsui Shopping Park LaLaport",
     "primary_category": "department_store",
     "subcategory": null,
     "tags": [
       "mall"
     ],
-    "aliases": [
-      "LaLaport",
-      "三井LaLaport"
-    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2845,8 +4702,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2860,8 +4716,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2880,6 +4735,34 @@
     "aliases": [
       "momo"
     ],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_money_jump_媽妳講親子餐廳",
+    "canonical_name": "Money Jump 媽妳講親子餐廳",
+    "display_name": "Money Jump 媽妳講親子餐廳",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_net",
+    "canonical_name": "NET",
+    "display_name": "NET",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "apparel"
+    ],
+    "aliases": [],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -2908,6 +4791,20 @@
     "tags": [
       "apparel",
       "japanese_brand"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_nintendo",
+    "canonical_name": "Nintendo",
+    "display_name": "Nintendo",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -2959,6 +4856,50 @@
     "active": true
   },
   {
+    "merchant_id": "m_pasmo",
+    "canonical_name": "PASMO",
+    "display_name": "PASMO",
+    "primary_category": "travel",
+    "subcategory": null,
+    "tags": [
+      "transport",
+      "ic_card",
+      "japan"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "JP",
+    "active": true
+  },
+  {
+    "merchant_id": "m_pastaio",
+    "canonical_name": "Pastaio",
+    "display_name": "Pastaio",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_pastaio_noodle_cafe",
+    "canonical_name": "Pastaio noodle cafe",
+    "display_name": "Pastaio noodle cafe",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_pchome_24h購物",
     "canonical_name": "PChome 24h購物",
     "display_name": "PChome 24h購物",
@@ -2983,6 +4924,20 @@
     "tags": [
       "ai_tool",
       "productivity"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_playstation",
+    "canonical_name": "PlayStation",
+    "display_name": "PlayStation",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -3020,6 +4975,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_seahorse_originals台灣官網",
+    "canonical_name": "Seahorse Originals台灣官網",
+    "display_name": "Seahorse Originals台灣官網",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_skm_park",
     "canonical_name": "SKM Park",
     "display_name": "SKM Park",
@@ -3027,6 +4996,48 @@
     "subcategory": null,
     "tags": [
       "mall"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_sober_burger",
+    "canonical_name": "Sober & Burger",
+    "display_name": "Sober & Burger",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_sober_bakery",
+    "canonical_name": "Sober Bakery",
+    "display_name": "Sober Bakery",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_sozai",
+    "canonical_name": "Sozai",
+    "display_name": "Sozai",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -3094,18 +5105,19 @@
     "active": true
   },
   {
-    "merchant_id": "m_subway",
-    "canonical_name": "SUBWAY",
-    "display_name": "SUBWAY",
-    "primary_category": "dining",
+    "merchant_id": "m_suica",
+    "canonical_name": "SUICA",
+    "display_name": "SUICA",
+    "primary_category": "travel",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "fast_food"
+      "transport",
+      "ic_card",
+      "japan"
     ],
     "aliases": [],
     "channel": "offline",
-    "country": "TW",
+    "country": "JP",
     "active": true
   },
   {
@@ -3115,6 +5127,34 @@
     "primary_category": "ev_charging",
     "subcategory": null,
     "tags": [],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_taobaby濤寶日記",
+    "canonical_name": "Taobaby濤寶日記",
+    "display_name": "Taobaby濤寶日記",
+    "primary_category": "retail",
+    "subcategory": null,
+    "tags": [
+      "baby_kids"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_the_other_eatery中山小酒館",
+    "canonical_name": "The other Eatery中山小酒館",
+    "display_name": "The other Eatery中山小酒館",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
     "aliases": [],
     "channel": "offline",
     "country": "TW",
@@ -3166,6 +5206,20 @@
     "active": true
   },
   {
+    "merchant_id": "m_tutorabc_junior",
+    "canonical_name": "TutorABC Junior",
+    "display_name": "TutorABC Junior",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_u_power",
     "canonical_name": "U-POWER",
     "display_name": "U-POWER",
@@ -3208,6 +5262,34 @@
     "active": true
   },
   {
+    "merchant_id": "m_uncle_ray串燒_牛飲_咖喱",
+    "canonical_name": "UNCLE RAY串燒·牛飲·咖喱",
+    "display_name": "UNCLE RAY串燒·牛飲·咖喱",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_uncle_shawn_燒肉餐酒館",
+    "canonical_name": "UNCLE SHAWN 燒肉餐酒館",
+    "display_name": "UNCLE SHAWN 燒肉餐酒館",
+    "primary_category": "dining",
+    "subcategory": null,
+    "tags": [
+      "restaurant"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_uniqlo",
     "canonical_name": "UNIQLO",
     "display_name": "UNIQLO",
@@ -3239,16 +5321,46 @@
     "active": true
   },
   {
+    "merchant_id": "m_xpark",
+    "canonical_name": "Xpark",
+    "display_name": "Xpark",
+    "primary_category": "theme_park",
+    "subcategory": null,
+    "tags": [
+      "attraction",
+      "aquarium"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
+    "merchant_id": "m_yamaha音樂教室",
+    "canonical_name": "Yamaha音樂教室",
+    "display_name": "Yamaha音樂教室",
+    "primary_category": "education",
+    "subcategory": null,
+    "tags": [
+      "school"
+    ],
+    "aliases": [],
+    "channel": "offline",
+    "country": "TW",
+    "active": true
+  },
+  {
     "merchant_id": "m_yayoi_彌生軒",
     "canonical_name": "YAYOI 彌生軒",
     "display_name": "YAYOI 彌生軒",
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
-    "aliases": [],
+    "aliases": [
+      "YAYOI彌生軒"
+    ],
     "channel": "offline",
     "country": "TW",
     "active": true
@@ -3304,8 +5416,7 @@
     "primary_category": "dining",
     "subcategory": null,
     "tags": [
-      "restaurant",
-      "japanese_food"
+      "restaurant"
     ],
     "aliases": [],
     "channel": "offline",
@@ -3930,22 +6041,6 @@
     "active": true
   },
   {
-    "merchant_id": "m_陶板屋",
-    "canonical_name": "陶板屋",
-    "display_name": "陶板屋",
-    "primary_category": "dining",
-    "subcategory": null,
-    "tags": [
-      "restaurant",
-      "steakhouse",
-      "teppanyaki"
-    ],
-    "aliases": [],
-    "channel": "offline",
-    "country": "TW",
-    "active": true
-  },
-  {
     "merchant_id": "m_西堤牛排",
     "canonical_name": "西堤牛排",
     "display_name": "西堤牛排",
@@ -4162,21 +6257,6 @@
     "tags": [
       "restaurant",
       "hot_pot"
-    ],
-    "aliases": [],
-    "channel": "offline",
-    "country": "TW",
-    "active": true
-  },
-  {
-    "merchant_id": "m_大戶屋",
-    "canonical_name": "大戶屋",
-    "display_name": "大戶屋",
-    "primary_category": "dining",
-    "subcategory": null,
-    "tags": [
-      "restaurant",
-      "japanese_food"
     ],
     "aliases": [],
     "channel": "offline",
@@ -4428,20 +6508,6 @@
     "merchant_id": "m_君品酒店",
     "canonical_name": "君品酒店",
     "display_name": "君品酒店",
-    "primary_category": "hotel",
-    "subcategory": null,
-    "tags": [
-      "lodging"
-    ],
-    "aliases": [],
-    "channel": "offline",
-    "country": "TW",
-    "active": true
-  },
-  {
-    "merchant_id": "m_雲品溫泉酒店",
-    "canonical_name": "雲品溫泉酒店",
-    "display_name": "雲品溫泉酒店",
     "primary_category": "hotel",
     "subcategory": null,
     "tags": [
