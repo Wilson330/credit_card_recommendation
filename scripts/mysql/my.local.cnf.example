@@ -1,0 +1,14 @@
+# 本機 MySQL 連線設定範本。
+#
+# 用法：複製成同目錄的 my.local.cnf，把 password 換成你自己的 MySQL root 密碼。
+#   cp scripts/mysql/my.local.cnf.example scripts/mysql/my.local.cnf
+#
+# my.local.cnf 已經寫在 .gitignore 裡，不會被 commit。
+# 這樣做的目的是讓密碼只留在你本機的檔案裡，不會出現在指令歷史、終端機畫面或版控中
+#（在命令列直接打 mysql -p你的密碼 會被記進 shell history，其他人 ps 也看得到）。
+
+[client]
+host=127.0.0.1
+user=root
+password=在這裡填入你的_MySQL_root_密碼
+default-character-set=utf8mb4
