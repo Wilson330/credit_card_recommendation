@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
+import '../api/api_client.dart';
+import '../api/models.dart';
 import '../constants/popular_merchants.dart';
-import '../models/merchant_query_context.dart';
-import '../models/user_card_bundle.dart';
-import '../services/merchant_resolver.dart';
-import '../services/merchant_suggestion_index.dart';
-import '../services/recommendation_orchestrator.dart';
 import '../state/search_history_store.dart';
+import '../state/session_store.dart';
 import '../state/user_cards_store.dart';
 import 'my_cards_page.dart';
 import 'result_page.dart';
 import 'widgets/card_thumbnail.dart';
+import 'widgets/dialogs.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,106 +22,136 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _merchantController = TextEditingController();
   final _searchFocusNode = FocusNode();
-  final _orchestrator = RecommendationOrchestrator();
-  final _suggestionIndex = MerchantSuggestionIndex();
-  final _merchantResolver = MerchantResolver();
 
   bool _showSuggestions = false;
-  List<String> _currentSuggestions = const [];
+  List<MerchantSuggestion> _suggestions = const [];
+  bool _searching = false;
+
+  // 自動補全:同時只允許一個請求在途中;結果回來時文字變了,就用最新的文字再送一次
+  // (docs/DB_DESIGN.md 7.1)
+  bool _suggestInFlight = false;
+  String? _lastSuggestedQuery;
 
   @override
   void initState() {
     super.initState();
-    // Driven by our own listeners (not RawAutocomplete's built-in lazy
-    // optionsBuilder, which only recomputes on a text VALUE change and
-    // does nothing on bare focus — see git history for why).
-    _merchantController.addListener(_recomputeSuggestions);
-    _searchFocusNode.addListener(_recomputeSuggestions);
+    // 用自己的 listener 驅動,而不是 RawAutocomplete 的 optionsBuilder:
+    // 後者只在文字改變時重算,單純取得焦點時不會顯示建議(見 git 紀錄)
+    _merchantController.addListener(_onSearchChanged);
+    _searchFocusNode.addListener(_onSearchChanged);
   }
 
-  void _recomputeSuggestions() {
+  ApiClient get _api => context.read<ApiClient>();
+
+  void _onSearchChanged() {
     if (!_searchFocusNode.hasFocus) {
-      if (_showSuggestions) {
-        setState(() => _showSuggestions = false);
-      }
+      if (_showSuggestions) setState(() => _showSuggestions = false);
       return;
     }
+    if (!_showSuggestions) setState(() => _showSuggestions = true);
+
+    // 輸入法還在組字(例如注音 ㄉㄧㄥˇ 尚未選字)時不送查詢
+    final composing = _merchantController.value.composing;
+    if (composing.isValid && !composing.isCollapsed) return;
 
     final query = _merchantController.text.trim();
-    final suggestions = query.isEmpty
-        ? _historyAndPopular()
-        : _suggestionIndex.suggestionsFor(query);
-
-    setState(() {
-      _showSuggestions = true;
-      _currentSuggestions = suggestions;
-    });
+    if (query.isEmpty) {
+      if (_suggestions.isNotEmpty) setState(() => _suggestions = const []);
+      _lastSuggestedQuery = null;
+      return;
+    }
+    _requestSuggestions();
   }
 
-  List<String> _historyAndPopular() {
-    final history = context.read<SearchHistoryStore>().history;
-    final seen = <String>{};
-    return [...history, ...PopularMerchants.suggestions]
-        .where((item) => seen.add(item))
-        .toList();
-  }
+  Future<void> _requestSuggestions() async {
+    if (_suggestInFlight) return;      // 回來後會檢查文字是否變了
+    final query = _merchantController.text.trim();
+    if (query.isEmpty || query == _lastSuggestedQuery) return;
 
-  void _selectSuggestion(String value) {
-    _merchantController.text = value;
-    _handleSearch(value);
+    _suggestInFlight = true;
+    _lastSuggestedQuery = query;
+    try {
+      final result = await _api.suggest(query);
+      if (mounted) setState(() => _suggestions = result);
+    } on ApiException {
+      // 自動補全失敗不打擾使用者,按搜尋時才顯示錯誤
+    } finally {
+      _suggestInFlight = false;
+    }
+    if (mounted && _searchFocusNode.hasFocus && _merchantController.text.trim() != query) {
+      _requestSuggestions();
+    }
   }
 
   void _openMyCardsPage() {
-    Navigator.of(context).push(
-      CupertinoPageRoute(builder: (_) => const MyCardsPage()),
-    );
+    Navigator.of(context).push(CupertinoPageRoute(builder: (_) => const MyCardsPage()));
   }
 
-  void _handleSearch(String rawMerchantName) {
-    final merchantName = rawMerchantName.trim();
-    if (merchantName.isEmpty) return;
-
+  Future<void> _search({required String label, required Future<Recommendation> Function() request}) async {
     final store = context.read<UserCardsStore>();
-    final userCards = store.userCards;
-    if (userCards.isEmpty) return;
+    if (!store.hasCards || _searching) return;
 
-    context.read<SearchHistoryStore>().recordSearch(merchantName);
-
-    final resolvedMerchant = _merchantResolver.resolve(merchantName);
-    final merchantContext = MerchantQueryContext(
-      merchantName: merchantName,
-      merchantTags: resolvedMerchant?.tags ?? const [],
-      resolvedCanonicalName: resolvedMerchant?.canonicalName,
-    );
-
-    final results = _orchestrator.evaluate(
-      merchantContext: merchantContext,
-      userCards: userCards,
-    );
-
+    context.read<SearchHistoryStore>().recordSearch(label);
     _merchantController.clear();
     _searchFocusNode.unfocus();
-    setState(() => _showSuggestions = false);
+    setState(() {
+      _showSuggestions = false;
+      _searching = true;
+    });
 
-    Navigator.of(context).push(
-      CupertinoPageRoute(
-        builder: (_) => ResultPage(
-          merchantName: merchantName,
-          results: results,
-        ),
-      ),
-    );
+    final Recommendation recommendation;
+    try {
+      recommendation = await request();
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      setState(() => _searching = false);    // 先停掉按鈕上的轉圈,再顯示訊息
+      if (!e.isUnauthorized) await showMessageDialog(context, e.message, title: '查詢失敗');
+      return;
+    }
+    if (!mounted) return;
+    setState(() => _searching = false);
+    Navigator.of(context).push(CupertinoPageRoute(
+      builder: (_) => ResultPage(query: label, recommendation: recommendation),
+    ));
   }
 
-  Widget _buildCardStrip(List<UserCardBundle> userCards) {
+  void _searchByText(String raw) {
+    final query = raw.trim();
+    if (query.isEmpty) return;
+    _search(label: query, request: () => _api.recommendByQuery(query));
+  }
+
+  void _searchBySuggestion(MerchantSuggestion s) {
+    _search(label: s.name, request: () => _api.recommendByMerchantId(s.merchantId));
+  }
+
+  Future<void> _confirmLogout() async {
+    final ok = await showCupertinoDialog<bool>(
+      context: context,
+      builder: (dialogContext) => CupertinoAlertDialog(
+        title: const Text('登出'),
+        content: const Text('確定要登出嗎?'),
+        actions: [
+          CupertinoDialogAction(onPressed: () => Navigator.of(dialogContext).pop(false), child: const Text('取消')),
+          CupertinoDialogAction(
+            isDestructiveAction: true,
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text('登出'),
+          ),
+        ],
+      ),
+    );
+    if (ok == true && mounted) await context.read<SessionStore>().logout();
+  }
+
+  Widget _buildCardStrip(List<UserCard> userCards) {
     return SizedBox(
       height: 44,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: userCards.length,
         separatorBuilder: (context, index) => const SizedBox(width: 8),
-        itemBuilder: (context, index) =>
-            CardThumbnail(cardId: userCards[index].walletCard.cardId, width: 70),
+        itemBuilder: (context, index) => CardThumbnail(cardId: userCards[index].cardId, width: 70),
       ),
     );
   }
@@ -130,8 +159,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buildSuggestionsPanel(BuildContext context) {
     final query = _merchantController.text.trim();
 
-    // TextFieldTapRegion + a single non-nested scroll region: see git
-    // history on this file for why both matter for tap reliability.
+    // TextFieldTapRegion + 單一捲動區:兩者都是點選建議能正確觸發的必要條件(見 git 紀錄)
     return TextFieldTapRegion(
       child: Container(
         margin: const EdgeInsets.only(top: 8),
@@ -140,9 +168,7 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(10),
         ),
         clipBehavior: Clip.antiAlias,
-        child: query.isEmpty
-            ? _buildGroupedSuggestions(context)
-            : _buildFlatSuggestions(context),
+        child: query.isEmpty ? _buildGroupedSuggestions(context) : _buildFlatSuggestions(context),
       ),
     );
   }
@@ -155,32 +181,30 @@ class _HomePageState extends State<HomePage> {
       children: [
         if (history.isNotEmpty) ...[
           _sectionHeader(context, '歷史查詢'),
-          ...history.map(
-            (item) => CupertinoListTile(
+          for (final item in history)
+            CupertinoListTile(
               leading: const Icon(CupertinoIcons.clock, size: 20),
               title: Text(item),
-              onTap: () => _selectSuggestion(item),
+              onTap: () => _searchByText(item),
             ),
-          ),
         ],
         _sectionHeader(context, '熱門商家'),
-        ...PopularMerchants.suggestions.map(
-          (item) => CupertinoListTile(
+        for (final item in PopularMerchants.suggestions)
+          CupertinoListTile(
             leading: const Icon(CupertinoIcons.flame, size: 20),
             title: Text(item),
-            onTap: () => _selectSuggestion(item),
+            onTap: () => _searchByText(item),
           ),
-        ),
       ],
     );
   }
 
   Widget _buildFlatSuggestions(BuildContext context) {
-    if (_currentSuggestions.isEmpty) {
+    if (_suggestions.isEmpty) {
       return Padding(
         padding: const EdgeInsets.all(16),
         child: Text(
-          '找不到符合的商家，仍可直接按 Enter 搜尋',
+          '找不到符合的商家,仍可直接按 Enter 搜尋',
           style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
         ),
       );
@@ -189,11 +213,11 @@ class _HomePageState extends State<HomePage> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        for (final option in _currentSuggestions)
+        for (final s in _suggestions)
           CupertinoListTile(
             leading: const Icon(CupertinoIcons.bag, size: 20),
-            title: Text(option),
-            onTap: () => _selectSuggestion(option),
+            title: Text(s.name),
+            onTap: () => _searchBySuggestion(s),
           ),
       ],
     );
@@ -202,20 +226,33 @@ class _HomePageState extends State<HomePage> {
   Widget _sectionHeader(BuildContext context, String label) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 13,
-          color: CupertinoColors.secondaryLabel.resolveFrom(context),
-        ),
+      child: Text(label, style: TextStyle(fontSize: 13, color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+    );
+  }
+
+  Widget _buildSyncError(BuildContext context, UserCardsStore store) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: CupertinoColors.systemOrange.resolveFrom(context).withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          Icon(CupertinoIcons.exclamationmark_triangle, color: CupertinoColors.systemOrange.resolveFrom(context)),
+          const SizedBox(width: 8),
+          Expanded(child: Text('無法同步卡片:${store.error}')),
+          CupertinoButton(padding: EdgeInsets.zero, onPressed: store.refresh, child: const Text('重試')),
+        ],
       ),
     );
   }
 
   @override
   void dispose() {
-    _merchantController.removeListener(_recomputeSuggestions);
-    _searchFocusNode.removeListener(_recomputeSuggestions);
+    _merchantController.removeListener(_onSearchChanged);
+    _searchFocusNode.removeListener(_onSearchChanged);
     _merchantController.dispose();
     _searchFocusNode.dispose();
     super.dispose();
@@ -224,12 +261,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final store = context.watch<UserCardsStore>();
+    final user = context.watch<SessionStore>().user;
     final userCards = store.userCards;
     final hasCards = store.hasCards;
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: const Text('My Cards'),
+        leading: CupertinoButton(padding: EdgeInsets.zero, onPressed: _confirmLogout, child: const Text('登出')),
+        middle: Text(user == null ? '刷哪張卡' : '嗨,${user.fullName}'),
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
           onPressed: _openMyCardsPage,
@@ -242,8 +281,9 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (store.error != null) _buildSyncError(context, store),
               Text(
-                hasCards ? '已設定 ${userCards.length} 張卡片' : '尚未設定卡片',
+                hasCards ? '已設定 ${userCards.length} 張卡片' : (store.isLoading ? '正在載入卡片…' : '尚未設定卡片'),
                 style: CupertinoTheme.of(context).textTheme.navTitleTextStyle,
               ),
               if (hasCards) ...[
@@ -252,38 +292,29 @@ class _HomePageState extends State<HomePage> {
               ],
               const SizedBox(height: 16),
               if (!hasCards)
-                CupertinoButton.filled(
-                  onPressed: _openMyCardsPage,
-                  child: const Text('設定我的卡片'),
-                )
+                CupertinoButton.filled(onPressed: _openMyCardsPage, child: const Text('設定我的卡片'))
               else
-                CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: _openMyCardsPage,
-                  child: const Text('管理我的卡片'),
-                ),
+                CupertinoButton(padding: EdgeInsets.zero, onPressed: _openMyCardsPage, child: const Text('管理我的卡片')),
               const SizedBox(height: 24),
               CupertinoTextField(
                 controller: _merchantController,
                 focusNode: _searchFocusNode,
-                placeholder: '輸入商家名稱，例如：全家、Uber Eats、UNIQLO',
+                placeholder: '輸入商家名稱,例如:全家、Uber Eats、UNIQLO',
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 prefix: Padding(
                   padding: const EdgeInsets.only(left: 8),
-                  child: Icon(
-                    CupertinoIcons.search,
-                    size: 18,
-                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
-                  ),
+                  child: Icon(CupertinoIcons.search, size: 18, color: CupertinoColors.secondaryLabel.resolveFrom(context)),
                 ),
-                onSubmitted: _handleSearch,
+                onSubmitted: _searchByText,
               ),
               if (_showSuggestions) _buildSuggestionsPanel(context),
               const SizedBox(height: 16),
               if (hasCards)
                 CupertinoButton.filled(
-                  onPressed: () => _handleSearch(_merchantController.text),
-                  child: const Text('開始推薦'),
+                  onPressed: _searching ? null : () => _searchByText(_merchantController.text),
+                  child: _searching
+                      ? const CupertinoActivityIndicator(color: CupertinoColors.white)
+                      : const Text('開始推薦'),
                 ),
             ],
           ),

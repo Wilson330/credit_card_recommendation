@@ -35,6 +35,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  http: ^1.6.0
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:
@@ -58,10 +60,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # 回饋資料改由後端提供(backend/),App 不再打包 lib/data 的 JSON
   assets:
-    - lib/data/cube_reward_rules.json
-    - lib/data/jiho_reward_rules.json
-    - lib/data/merchants.json
     - assets/card_faces/
 
   # To add assets to your application, add an assets section, like this:
