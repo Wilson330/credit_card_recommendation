@@ -61,6 +61,26 @@ EXTRA_ALIASES = {
     'LaLaport': ['三井LaLaport', 'Mitsui Shopping Park LaLaport'],
     '三井OUTLET': ['MITSUI OUTLET PARK'],
     '家樂福': ['萬家福', '樂家康', 'Carrefour'],
+    # 台灣的店優先:搜尋英文名時應該先找到台灣門市,而不是「日本 FamilyMart」
+    '全家便利商店 實體門市': ['FamilyMart'],
+    '7-ELEVEN (7-11) 實體門市': ['711'],
+}
+# 顯示名稱修正:日本的店在名稱前加上「日本」,避免跟台灣同名或相近的店搞混
+# (例如 7-ELEVEN、FamilyMart、三越)。對照表與方案名單仍用原名,只改顯示名稱;
+# 搜尋原名時,子字串比對仍找得到
+DISPLAY_NAME_FIXES = {
+    '7-ELEVEN': '日本 7-ELEVEN',
+    'BIC CAMERA': '日本 BIC CAMERA',
+    'FamilyMart': '日本 FamilyMart',
+    'ICOCA': '日本 ICOCA',
+    'LAWSON': '日本 LAWSON',
+    'PASMO': '日本 PASMO',
+    'SUICA': '日本 SUICA',
+    'Yodobashi': '日本 Yodobashi',
+    '三越': '日本三越',
+    '唐吉訶德': '日本唐吉訶德',
+    '永旺': '日本永旺',
+    '高島屋': '日本高島屋',
 }
 # 國別修正:在很多國家都有據點的店填 global
 COUNTRY_FIXES = {'全球迪士尼飯店': 'global', '東橫INN': 'global'}
@@ -134,13 +154,14 @@ def load_merchants(cur):
             continue
         cur.execute(
             'INSERT INTO merchants (name, primary_category, country, active) VALUES (%s, %s, %s, %s)',
-            (name, CATEGORY_FIXES.get(name, m['primary_category']), COUNTRY_FIXES.get(name, m['country']),
+            (DISPLAY_NAME_FIXES.get(name, name),
+             CATEGORY_FIXES.get(name, m['primary_category']), COUNTRY_FIXES.get(name, m['country']),
              1 if m['active'] else 0))
         ids[name] = cur.lastrowid
     print(f'  店家:{len(ids)} 家(合併掉 {len(merged_away)} 家:{"、".join(sorted(merged_away)) or "無"})')
 
     # 別名:merchants.json 的別名去掉爬蟲原名的寫法,加上額外別名,再擋掉會撞名的
-    by_norm_name = {normalize(n): n for n in ids}
+    by_norm_name = {normalize(DISPLAY_NAME_FIXES.get(n, n)): n for n in ids}
     candidates = []
     for m in merchants:
         name = MERCHANT_MERGES.get(m['canonical_name'], m['canonical_name'])

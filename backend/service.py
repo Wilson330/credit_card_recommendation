@@ -23,8 +23,8 @@ LEFT JOIN merchant_aliases a ON a.merchant_id = m.merchant_id
 WHERE m.active = 1
   AND (m.normalized_name LIKE CONCAT('%%', %(q_like)s, '%%')
        OR a.normalized_alias LIKE CONCAT('%%', %(q_like)s, '%%'))
-GROUP BY m.merchant_id, m.name
-ORDER BY match_rank, CHAR_LENGTH(m.name)
+GROUP BY m.merchant_id, m.name, m.country
+ORDER BY match_rank, (m.country <> 'TW'), CHAR_LENGTH(m.name)
 LIMIT %(limit)s
 """
 
@@ -36,6 +36,7 @@ FROM merchants m
 LEFT JOIN merchant_aliases a ON a.merchant_id = m.merchant_id
 WHERE m.active = 1
   AND (m.normalized_name = %(q)s OR a.normalized_alias = %(q)s)
+ORDER BY (m.country <> 'TW')
 LIMIT 1
 """
 
@@ -56,6 +57,7 @@ ORDER BY
   CASE WHEN k.key_text LIKE CONCAT(%(q_like)s, '%%') OR %(q)s LIKE CONCAT(k.key_text, '%%')
        THEN 1 ELSE 2 END,
   ABS(CHAR_LENGTH(k.key_text) - CHAR_LENGTH(%(q)s)),
+  (m.country <> 'TW'),
   CHAR_LENGTH(m.name)
 LIMIT 1
 """

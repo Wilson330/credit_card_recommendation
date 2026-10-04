@@ -454,12 +454,14 @@ FROM merchants m
 LEFT JOIN merchant_aliases a ON a.merchant_id = m.merchant_id
 WHERE m.active = 1
   AND (m.normalized_name LIKE CONCAT('%', :q, '%') OR a.normalized_alias LIKE CONCAT('%', :q, '%'))
-GROUP BY m.merchant_id, m.name
-ORDER BY match_rank, CHAR_LENGTH(m.name)
+GROUP BY m.merchant_id, m.name, m.country
+ORDER BY match_rank, (m.country <> 'TW'), CHAR_LENGTH(m.name)   -- 同一級時台灣的店優先
 LIMIT 10;
 ```
 
 `:q` 中的 `%`、`_` 要先跳脫。透過別名找到的店,清單上顯示的是店家的 `name`(打 `55688` 出現的是「台灣大車隊」)。
+
+日本的店名稱前加「日本」(`日本 7-ELEVEN`、`日本三越`),避免和台灣的店搞混;使用者多半在台灣消費,所以命中程度相同時台灣的店排前面(打 `7-ELEVEN` 先出現台灣門市、打 `三越` 先出現新光三越)。
 
 ### 7.2 確定店家
 
@@ -474,6 +476,7 @@ FROM merchants m
 LEFT JOIN merchant_aliases a ON a.merchant_id = m.merchant_id
 WHERE m.active = 1
   AND (m.normalized_name = :q OR a.normalized_alias = :q)
+ORDER BY (m.country <> 'TW')
 LIMIT 1;
 
 -- 第二層:第一層沒結果、且輸入至少 2 個字時才查。任一方包含另一方即算命中
@@ -493,12 +496,13 @@ ORDER BY
   CASE WHEN k.key_text LIKE CONCAT(:q, '%') OR :q LIKE CONCAT(k.key_text, '%')
        THEN 1 ELSE 2 END,                        -- ① 開頭相同優先
   ABS(CHAR_LENGTH(k.key_text) - CHAR_LENGTH(:q)), -- ② 長度越接近輸入,命中程度越高
-  CHAR_LENGTH(m.name)                            -- ③ 都一樣時取名稱最短
+  (m.country <> 'TW'),                           -- ③ 台灣的店優先
+  CHAR_LENGTH(m.name)                            -- ④ 都一樣時取名稱最短
 LIMIT 1;
 ```
 
 - 「輸入包含店名」這個方向讓 `鼎泰豐信義店` 能對到 `鼎泰豐`
-- 多家命中時依**命中程度**排序:開頭相同的優先;再來是長度最接近輸入的(長度差越少,代表輸入和店名重疊的部分越完整);都一樣才取名稱最短
+- 多家命中時依**命中程度**排序:開頭相同的優先;再來是長度最接近輸入的(長度差越少,代表輸入和店名重疊的部分越完整);再來台灣的店優先;都一樣才取名稱最短
 - 兩層都沒有結果 → 找不到店家
 
 ### 7.3 計算推薦
@@ -752,7 +756,7 @@ import --ignore "悠遊卡"                                     # 加入略過�
 - `users` 表 `id` 為 `INT UNSIGNED`、定序 `utf8mb4_unicode_ci`
 - 匯入腳本與後端用 Python;規則寫在 `cards.yaml` 並由後端啟動時讀取;使用者卡片設定存 JSON
 - 店家國別可填 `global`,不是 `TW` 就算國外
-- 模糊比對多家命中時:開頭相同優先,再來是長度最接近輸入的,最後取名稱最短
+- 模糊比對多家命中時:開頭相同優先,再來是長度最接近輸入的,再來台灣的店優先,最後取名稱最短;日本的店名稱前加「日本」
 - 資料庫人工修改寫成 SQL 腳本放 `db/changes/` 並 commit
 - App 直接改呼叫 API,不另外匯出 JSON 過渡
 - 待確認店名用 `--map` / `--new` / `--ignore` 指令處理

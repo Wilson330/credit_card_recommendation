@@ -107,6 +107,20 @@ def test_suggest(client, make_user):
     assert names('%') == []          # % 不會被當成萬用字元
 
 
+def test_taiwan_store_before_japan_store(client, make_user):
+    """同名或相近的日本店名稱前有「日本」,而且台灣的店排前面。"""
+    h = make_user()
+    def names(q):
+        return [m['name'] for m in client.get('/api/merchants/suggest', query_string={'q': q}, headers=h).get_json()]
+    assert names('7-ELEVEN')[:2] == ['7-ELEVEN (7-11) 實體門市', '日本 7-ELEVEN']
+    assert names('FamilyMart')[:2] == ['全家便利商店 實體門市', '日本 FamilyMart']
+    assert names('三越')[:2] == ['新光三越', '日本三越']
+    put_card(client, h, 'cathay_cube', {'level': 'Level 2'})
+    assert recommend(client, h, query='7-ELEVEN')['merchant']['name'] == '7-ELEVEN (7-11) 實體門市'
+    assert recommend(client, h, query='711')['merchant']['name'] == '7-ELEVEN (7-11) 實體門市'
+    assert recommend(client, h, query='三越')['merchant']['name'] == '新光三越'
+
+
 def test_resolve_by_query(client, make_user):
     h = make_user()
     put_card(client, h, 'cathay_cube', {'level': 'Level 2'})
@@ -166,12 +180,12 @@ def test_unicard_任意選_picked_and_not_picked(client, user, lookup):
 
 
 def test_overseas(client, user, make_user):
-    d = recommend(client, user, query='三越')
+    d = recommend(client, user, query='日本三越')
     assert (rate_of(d, 'cathay_cube'), d['by_card']['cathay_cube']['scheme_name']) == (3.0, '趣旅行')
     assert rate_of(d, 'ubot_jiho') == 8.0
     h = make_user()
     put_card(client, h, 'cathay_cube', {'level': 'Level 1'})
-    cube = recommend(client, h, query='三越')['by_card']['cathay_cube']
+    cube = recommend(client, h, query='日本三越')['by_card']['cathay_cube']
     assert (cube['reward_rate'], cube['scheme_name'], cube['required_action']) == (2.5, '海外消費', None)
 
 
