@@ -59,42 +59,7 @@ CREATE TABLE IF NOT EXISTS users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------------
--- 商家目錄（模糊搜尋用）——對應 lib/data/merchants.json / lib/models/merchant.dart。
--- 正規化成三張表：主表放純量欄位，tags / aliases 各自拆出來，方便下索引反查。
--- 同樣是衍生資料，由 build_merchants_sql.js 從 merchants.json 重新產生。
+-- 商家目錄、回饋方案、使用者卡片等新版資料表在 schema_v2.sql(docs/DB_DESIGN.md)。
+-- 舊版的 merchants / merchant_aliases / merchant_tags 已移出本檔:它們與新版
+-- 同名但結構不同,留在這裡會讓新機器先建出舊表,schema_v2.sql 就建不起來。
 -- ---------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS merchants (
-  merchant_id      VARCHAR(64)  NOT NULL,
-  canonical_name   VARCHAR(255) NOT NULL,   -- 正式名稱，必須與回饋規則的 match_value 對得上
-  display_name     VARCHAR(255) NOT NULL,
-  primary_category VARCHAR(50)  NOT NULL,   -- dining / department_store / theme_park…
-  subcategory      VARCHAR(50)  NULL,       -- 目前全 null，保留欄位
-  channel          VARCHAR(20)  NOT NULL DEFAULT 'offline',
-  country          CHAR(2)      NOT NULL,   -- TW / JP
-  active           TINYINT(1)   NOT NULL DEFAULT 1,
-  updated_at       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
-                                ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (merchant_id),
-  UNIQUE KEY uq_merchant_canonical (canonical_name),
-  KEY idx_merchant_category (primary_category)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS merchant_aliases (
-  merchant_id      VARCHAR(64)  NOT NULL,
-  alias            VARCHAR(64)  NOT NULL,   -- 原始別名，如 "7-ELEVEN"
-  normalized_alias VARCHAR(64)  NOT NULL,   -- 轉小寫去空白後的比對鍵，如 "7-eleven"
-  PRIMARY KEY (merchant_id, alias),
-  -- 反查用：使用者輸入正規化後比對這欄。不設 UNIQUE，因為少數品牌別名會跨商家共用
-  KEY idx_normalized_alias (normalized_alias),
-  CONSTRAINT fk_alias_merchant FOREIGN KEY (merchant_id)
-    REFERENCES merchants (merchant_id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS merchant_tags (
-  merchant_id      VARCHAR(64)  NOT NULL,
-  tag              VARCHAR(32)  NOT NULL,   -- restaurant / coffee / mall…（分類比對用）
-  PRIMARY KEY (merchant_id, tag),
-  KEY idx_tag (tag),
-  CONSTRAINT fk_tag_merchant FOREIGN KEY (merchant_id)
-    REFERENCES merchants (merchant_id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

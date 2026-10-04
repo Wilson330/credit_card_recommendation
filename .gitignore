@@ -51,4 +51,12 @@ app.*.map.json
 scripts/mysql/my.local.cnf
 # Allen 的後端與 iOS UI 原始檔（app.py 內含明碼 DB 密碼）
 /app.py
+/app_old.py
 /ContentView.swift
+
+# Python
+__pycache__/
+*.pyc
+
+# 後端 token 簽名密鑰(本機自動產生)
+backend/.secret_key

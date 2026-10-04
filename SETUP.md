@@ -60,9 +60,19 @@ cp scripts/mysql/my.local.cnf.example scripts/mysql/my.local.cnf
 # 2. 建資料庫與資料表,再灌入資料(路徑依你的 MySQL 安裝位置調整)
 MYSQL="/c/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe"
 "$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/schema.sql
+"$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/schema_v2.sql
 "$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/seed_card_rewards.sql
-"$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/seed_merchants.sql
 ```
+
+新版資料表(`schema_v2.sql`,設計見 [docs/DB_DESIGN.md](docs/DB_DESIGN.md))的資料用 Python 灌入
+(在 activate 過的 conda / Python 環境中執行):
+
+```bash
+pip install -r scripts/db/requirements.txt
+python scripts/db/migrate_v2.py
+```
+
+`seed_merchants.sql` 已停用,不要執行。
 
 > Windows PowerShell 的呼叫語法不同:變數用 `$MYSQL = "C:\..."`、執行含空白路徑的程式要在前面加 `&`。
 > 忘記 root 密碼時,可用 `scripts/mysql/reset-root-password.ps1`(需系統管理員 PowerShell)。
@@ -71,9 +81,11 @@ MYSQL="/c/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe"
 
 | 資料表 | 內容 |
 |---|---|
-| `card_rewards` | 各卡各方案回饋率 |
-| `merchants` / `merchant_aliases` / `merchant_tags` | 模糊搜尋商家目錄 |
+| `card_rewards` | Allen 的扁平回饋表(`app.py` 使用中,v2 遷移後移除) |
 | `users` | 帳號(擱置中,空表) |
+| `cards`、`card_schemes`、`scheme_*` | v2:卡片與回饋方案 |
+| `merchants`、`merchant_aliases`、`merchant_source_names` | v2:店家目錄 |
+| `user_cards`、`user_card_conditions` | v2:使用者卡片(空表,登入擱置中) |
 
 ---
 

@@ -1,0 +1,134 @@
+# 卡片規則(docs/DB_DESIGN.md 第 6 節)
+#
+# 後端啟動時讀取一次;匯入腳本也用它對照爬蟲中的卡片與方案。
+# 店家名單與各方案的回饋率來自爬蟲、存在資料庫,不寫在這裡。這裡只放人定的規則。
+#
+# 改了這個檔案要重啟後端才會生效。
+#
+# 欄位說明:
+#   crawl_name             爬蟲資料中的卡名
+#   rate_by                哪個設定決定回饋率:level(等級)、plan(方案),沒有就填 null
+#   settings.level/plan    等級或方案的選項,也是 config 中 level/plan 的合法值
+#   settings.toggles       開關:key 是存在 config 的名稱,value 是畫面上顯示的文字
+#   settings.max_chosen_merchants   需要挑店時最多可挑幾家
+#   schemes.<方案>         方案名稱必須與爬蟲一致
+#     action               要做的動作(顯示給使用者)
+#     requires             需要的條件,全部滿足才適用(開關名稱,或系統判斷的 birthday_month)
+#     covers               涵蓋範圍,符合任何一組就適用:category / country / overseas
+#     stacks_with_general  回饋率是否加上一般消費
+#     pick_merchants_when_plan  這些方案下,只算使用者在 config.chosen_merchants 挑的店
+#     notes                限制說明
+#   general                一般消費,可多層,取符合條件與地點中最高的
+#     where                省略 = 不分國內外;domestic / overseas / 國別代碼(例:JP)
+#     crawl_name           爬蟲中對應的列,匯入時用來比對數字是否一致
+#   bonuses                卡片層級加碼,加在 applies_to 列出的方案或一般消費層上
+#   skip_crawl_schemes     爬蟲中整個略過的方案與原因
+
+cards:
+  cathay_cube:
+    name: CUBE卡
+    bank: 國泰世華
+    crawl_name: CUBE卡
+    rate_by: level
+    settings:
+      level: [Level 1, Level 2, Level 3]
+      toggles:
+        kids_club: 童樂匯
+    notes: [實際回饋依當期公告為準]
+    schemes:
+      全支付:
+        action: 需切換至全支付權益方案
+      台塑家:
+        action: 需切換至台塑家權益方案
+      樂饗購:
+        action: 需切換至樂饗購權益方案
+        covers:
+          - { category: dining, country: TW }        # 國內所有餐廳
+      玩數位:
+        action: 需切換至玩數位權益方案
+      趣旅行:
+        action: 需切換至趣旅行權益方案
+        covers:                                       # 國內旅行相關 + 所有國外消費
+          - { category: hotel }
+          - { category: travel }
+          - { overseas: true }
+      集精選:
+        action: 需切換至集精選權益方案
+      童樂匯:
+        action: 需切換至童樂匯權益方案
+        requires: [kids_club]
+        notes: [是否需另行切換方案尚未與官網條款或 Allen 確認]
+      慶生月:
+        action: 需切換至慶生月權益方案
+        requires: [birthday_month]
+    general:
+      - name: 一般消費
+        rate: 0.3
+        notes: [不含保費]
+        crawl_name: 一般消費(不含保費)
+      - name: 海外消費
+        rate: 2.5
+        where: overseas
+        notes: [含國外餐飲、飯店到店付款等]
+        crawl_name: 海外實體消費(含國外餐飲、飯店到店付款等)
+    skip_crawl_schemes:
+      固定回饋: 一般消費與海外消費改由 general 設定
+
+  esun_unicard:
+    name: Unicard
+    bank: 玉山銀行
+    crawl_name: Unicard
+    rate_by: plan
+    settings:
+      plan: [簡單選, 任意選, UP選]
+      toggles:
+        e_bill: 電子帳單
+        auto_debit: 自動扣繳
+      max_chosen_merchants: 8
+    notes: [實際回饋依當期公告為準]
+    schemes:
+      百大特店:
+        stacks_with_general: true            # 爬蟲數字不含基本回饋,要加上一般消費
+        pick_merchants_when_plan: [任意選]    # 任意選只算使用者挑的店
+    general:                                  # 國內外相同(請 Allen 確認)
+      - { name: 一般消費, rate: 0 }
+      - { name: 一般消費, rate: 0.3, requires: [e_bill] }
+      - { name: 一般消費, rate: 1.0, requires: [e_bill, auto_debit] }
+
+  ubot_jiho:
+    name: 吉鶴卡
+    bank: 聯邦銀行
+    crawl_name: 吉鶴卡
+    rate_by: null
+    settings:
+      toggles:
+        new_customer: 新戶自動扣繳           # 新戶與自動扣繳在吉鶴卡綁在一起
+    notes: [實際回饋依當期公告為準]
+    schemes:                                  # 爬蟲數字已包含基本回饋,不疊加一般消費
+      國內人氣餐廳:
+        notes: [需於週一至週五並滿足指定額度,結帳時出示吉鶴卡實體卡並全額支付消費才可享有完整回饋]
+      國內日系特店: {}
+      日本熱門商店: {}
+      日本交通卡儲值: {}
+    general:
+      - name: 國內一般消費
+        rate: 1.0
+        where: domestic
+        crawl_name: 國內一般消費
+      - name: 國外一般消費
+        rate: 1.0
+        where: overseas
+        crawl_name: 國外一般消費(非日幣)
+      - name: 日本消費
+        rate: 2.5
+        where: JP
+        notes: [日幣消費]
+        crawl_name: 日本日幣消費
+    bonuses:
+      - requires: [new_customer]
+        add: 0.5                              # 目前查到 0.5%(請 Allen 確認)
+        applies_to: [國內一般消費, 國內日系特店] # 國內人氣餐廳、國外消費都沒有
+    skip_crawl_schemes:
+      國內一般消費: 改由 general 設定
+      國外一般消費: 改由 general 設定
+      日本消費: 改由 general 設定;日本行動支付 5% 需要付款方式資訊,不納入
