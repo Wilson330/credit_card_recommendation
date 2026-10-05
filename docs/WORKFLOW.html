@@ -1,0 +1,1116 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>回饋推薦 App 工作流程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<style>
+/* Layout: one reading column (~52rem) for prose; diagrams and tables may widen to 60rem inside their own scroll boxes. */
+:root {
+  --paper: #f3f4f1;
+  --surface: #ffffff;
+  --ink: #1b2027;
+  --muted: #5a636d;
+  --rule: #d5dad3;
+  --rule-strong: #98a198;
+  --accent: #2b4c9e;
+  --accent-soft: #e5eaf6;
+  --open: #a3501b;
+  --open-soft: #f7e9de;
+  --cube: #17756a;
+  --jiho: #b03a3a;
+  --unicard: #946512;
+
+  --font-display: "Noto Serif TC", "Songti TC", serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2.125rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #12161b;
+    --surface: #1a2027;
+    --ink: #e4e7eb;
+    --muted: #9aa3ad;
+    --rule: #2c343d;
+    --rule-strong: #56616c;
+    --accent: #93abeb;
+    --accent-soft: #1f2a46;
+    --open: #e59c66;
+    --open-soft: #3a2618;
+    --cube: #55c2b2;
+    --jiho: #e47e7e;
+    --unicard: #d9aa52;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #12161b;
+  --surface: #1a2027;
+  --ink: #e4e7eb;
+  --muted: #9aa3ad;
+  --rule: #2c343d;
+  --rule-strong: #56616c;
+  --accent: #93abeb;
+  --accent-soft: #1f2a46;
+  --open: #e59c66;
+  --open-soft: #3a2618;
+  --cube: #55c2b2;
+  --jiho: #e47e7e;
+  --unicard: #d9aa52;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.75;
+  padding-inline: 20px;
+  padding-block: 0 64px;
+}
+.wrap { max-width: 60rem; margin-inline: auto; }
+.prose { max-width: 46rem; }
+
+header.top {
+  padding-block: 48px 28px;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 14px;
+}
+.eyebrow {
+  font-size: var(--step--1);
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: 1.25;
+  margin: 0;
+  text-wrap: balance;
+}
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.35;
+  margin: 0;
+  text-wrap: balance;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+h2 .num {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--accent);
+  font-weight: 500;
+}
+h3 {
+  font-size: var(--step-1);
+  margin: 0;
+  text-wrap: balance;
+}
+p { margin: 0; }
+code, .mono { font-family: var(--font-mono); font-size: 0.88em; }
+code { background: var(--accent-soft); padding: 0.05em 0.35em; border-radius: 4px; }
+
+.lede { color: var(--muted); max-width: 46rem; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: var(--step--1); color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.chip {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  vertical-align: 0.15em;
+}
+.chip.done { background: var(--accent-soft); color: var(--accent); }
+.chip.open { background: var(--open-soft); color: var(--open); }
+.chip.new  { border: 1px dashed var(--accent); color: var(--accent); padding: 3px 7px; }
+
+nav.toc {
+  padding-block: 20px;
+  border-bottom: 1px solid var(--rule);
+}
+nav.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 4px 24px;
+  font-size: var(--step--1);
+}
+nav.toc a { color: var(--ink); text-decoration: none; display: flex; gap: 8px; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+nav.toc .n { font-family: var(--font-mono); color: var(--accent); }
+
+section {
+  padding-block: 44px;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 18px;
+}
+section:last-of-type { border-bottom: 0; }
+
+/* Diagrams */
+figure { margin: 0; display: grid; gap: 10px; }
+.diagram {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  overflow-x: auto;
+}
+.diagram svg { display: block; width: 100%; min-width: 640px; height: auto; color: var(--ink); }
+figcaption { font-size: var(--step--1); color: var(--muted); max-width: 46rem; }
+
+svg text { font-family: var(--font-body); }
+svg .bx     { fill: var(--surface); stroke: var(--rule-strong); stroke-width: 1.2; }
+svg .bx-acc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+svg .bx-open{ fill: var(--open-soft); stroke: var(--open); stroke-width: 1.2; }
+svg .bx-new { fill: var(--surface); stroke: var(--accent); stroke-width: 1.3; stroke-dasharray: 5 4; }
+svg .grp    { fill: none; stroke: var(--rule-strong); stroke-width: 1; stroke-dasharray: 3 4; }
+svg .ln     { stroke: var(--muted); stroke-width: 1.4; fill: none; }
+svg .ln-d   { stroke: var(--muted); stroke-width: 1.3; fill: none; stroke-dasharray: 4 4; }
+svg .ah     { fill: var(--muted); }
+svg .tt     { fill: var(--ink); font-size: 14px; font-weight: 700; }
+svg .tx     { fill: var(--ink); font-size: 12.5px; }
+svg .tm     { fill: var(--muted); font-size: 11.5px; }
+svg .tl     { fill: var(--muted); font-size: 11.5px; }
+svg .ta     { fill: var(--accent); font-size: 12.5px; font-weight: 700; }
+svg .to     { fill: var(--open); font-size: 12.5px; font-weight: 700; }
+svg .mn     { font-family: var(--font-mono); }
+
+/* User journey */
+.journey {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  counter-reset: j;
+}
+.journey li {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  counter-increment: j;
+  position: relative;
+}
+.journey li::before {
+  content: counter(j);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--accent);
+}
+.journey h3 { font-size: var(--step-0); }
+.journey p { font-size: var(--step--1); color: var(--muted); line-height: 1.65; }
+@media (max-width: 760px) { .journey { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 440px) { .journey { grid-template-columns: 1fr; } }
+
+/* Calculation pipeline: rule on the left, the running example on the right */
+.pipeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  counter-reset: s;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.pipeline li {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-top: 1px solid var(--rule);
+  counter-increment: s;
+}
+.pipeline li:first-child { border-top: 0; }
+.pipeline li::before {
+  content: counter(s);
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-weight: 500;
+  font-size: var(--step-1);
+  line-height: 1.4;
+}
+.pipeline .rule h3 { font-size: var(--step-0); margin-bottom: 4px; }
+.pipeline .rule p { font-size: 0.9375rem; }
+.pipeline .eg {
+  font-size: 0.9375rem;
+  border-left: 2px solid var(--rule);
+  padding-left: 14px;
+  color: var(--ink);
+  display: grid;
+  gap: 4px;
+  align-content: start;
+}
+.pipeline .eg .k { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
+.pipeline .hdr { background: var(--accent-soft); }
+.pipeline .hdr::before { content: ""; }
+.pipeline .hdr .eg { border-left-color: var(--accent); }
+.x { color: var(--muted); text-decoration: line-through; }
+.hit { color: var(--accent); font-weight: 700; }
+@media (max-width: 640px) {
+  .pipeline li { grid-template-columns: 1.75rem 1fr; }
+  .pipeline .eg { grid-column: 2; }
+}
+
+/* Tables */
+.tbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; }
+th, td { text-align: left; padding: 10px 14px; border-top: 1px solid var(--rule); vertical-align: top; }
+thead th { border-top: 0; font-size: var(--step--1); color: var(--muted); font-weight: 500; letter-spacing: 0.04em; background: var(--paper); }
+tbody th { font-weight: 500; white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); white-space: nowrap; }
+.card-cube { color: var(--cube); }
+.card-jiho { color: var(--jiho); }
+.card-unicard { color: var(--unicard); }
+tr.em td { background: var(--accent-soft); }
+
+.examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.example {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.example h3 { font-size: var(--step-0); }
+.example .who { font-size: var(--step--1); color: var(--muted); }
+.example .result { font-family: var(--font-mono); font-size: var(--step-2); color: var(--accent); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.example p { font-size: 0.9375rem; }
+@media (max-width: 760px) { .examples { grid-template-columns: 1fr; } }
+
+/* Options */
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.option {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  background: var(--surface);
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.option.pick { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.option h3 { font-size: var(--step-0); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.option ul { margin: 0; padding-left: 1.1em; font-size: 0.9375rem; display: grid; gap: 4px; }
+.option .lbl { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
+@media (max-width: 640px) { .options { grid-template-columns: 1fr; } }
+
+pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  overflow-x: auto;
+}
+pre .c { color: var(--muted); }
+
+.callout {
+  border-left: 3px solid var(--open);
+  background: var(--open-soft);
+  padding: 14px 16px;
+  border-radius: 0 8px 8px 0;
+  max-width: 46rem;
+  display: grid;
+  gap: 6px;
+}
+.callout.info { border-left-color: var(--accent); background: var(--accent-soft); }
+
+.qlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+.qlist li { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; padding: 14px 16px; border-top: 1px solid var(--rule); align-items: baseline; }
+.qlist li:first-child { border-top: 0; }
+.qlist .who { font-size: var(--step--1); color: var(--muted); white-space: nowrap; }
+@media (max-width: 520px) { .qlist li { grid-template-columns: 1fr; gap: 4px; } }
+
+footer { padding-block: 28px 0; font-size: var(--step--1); color: var(--muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">CUBE卡 · 吉鶴卡 · Unicard ／ 整理於 2026-10-04,2026-10-05 更新為實作完成後的版本</div>
+  <h1>回饋推薦 App 工作流程</h1>
+  <p class="lede">從使用者輸入店名,到 App 告訴他刷哪張卡、回饋幾 %、要先做什麼。資料庫存爬蟲資料與使用者資料,卡片規則寫在 <code>cards.yaml</code>,後端用 Python 依規則算出推薦。對應設計文件 <code>docs/DB_DESIGN.md</code> v0.4。</p>
+  <div class="legend">
+    <span><span class="chip done">已確定</span> 已討論定案</span>
+    <span><span class="chip open">待確認</span> 先照目前設定實作,請 Allen 確認</span>
+    <span><span class="chip new">新規則</span> v0.4 新增的規則(已實作)</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <ol>
+    <li><a href="#arch"><span class="n">1</span>系統架構</a></li>
+    <li><a href="#journey"><span class="n">2</span>使用者流程</a></li>
+    <li><a href="#search"><span class="n">3</span>搜尋店家</a></li>
+    <li><a href="#calc"><span class="n">4</span>回饋怎麼算</a></li>
+    <li><a href="#cards"><span class="n">5</span>三張卡的規則</a></li>
+    <li><a href="#import"><span class="n">6</span>爬蟲資料匯入</a></li>
+    <li><a href="#tables"><span class="n">7</span>資料表</a></li>
+    <li><a href="#config"><span class="n">8</span>規則與設定怎麼存</a></li>
+    <li><a href="#todo"><span class="n">9</span>給 Allen 的事</a></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<section id="arch">
+  <h2><span class="num">1</span>系統架構 <span class="chip done">已確定</span></h2>
+  <p class="prose">資料分成兩種:爬蟲資料與使用者資料存在 MySQL;卡片規則(條件、疊加、挑店、一般消費)寫在 <code>cards.yaml</code>,後端啟動時讀進來。App 不直接碰資料庫,只送出「查哪家店」,拿回推薦結果。</p>
+  <figure>
+    <div class="diagram">
+      <svg viewBox="0 0 760 380" role="img" aria-label="App 向後端送查詢並取回結果;後端讀寫 MySQL,並在啟動時讀取 cards.yaml;爬蟲匯出檔經匯入腳本寫入 MySQL,匯入腳本也用 cards.yaml 對照">
+        <defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+        <rect class="bx" x="20" y="50" width="180" height="120" rx="8"/>
+        <text class="tt" x="110" y="88" text-anchor="middle">App</text>
+        <text class="tx" x="110" y="112" text-anchor="middle">Allen 的 iOS UI</text>
+        <text class="tm" x="110" y="134" text-anchor="middle">手機存一份卡片副本</text>
+
+        <rect class="bx-acc" x="290" y="40" width="190" height="140" rx="8"/>
+        <text class="tt" x="385" y="72" text-anchor="middle">後端 API</text>
+        <text class="tm" x="385" y="94" text-anchor="middle">Python · Flask</text>
+        <text class="tx" x="385" y="124" text-anchor="middle">自動補全 · 確定店家</text>
+        <text class="tx" x="385" y="146" text-anchor="middle">計算推薦 · 卡片設定</text>
+
+        <rect class="bx" x="570" y="50" width="170" height="120" rx="8"/>
+        <text class="tt" x="655" y="88" text-anchor="middle">MySQL</text>
+        <text class="tx" x="655" y="112" text-anchor="middle">爬蟲資料 · 使用者資料</text>
+        <text class="tm mn" x="655" y="134" text-anchor="middle">credit_card_app</text>
+
+        <line class="ln" x1="200" y1="88" x2="287" y2="88" marker-end="url(#ah1)"/>
+        <text class="tl" x="244" y="80" text-anchor="middle">店名 · 設定</text>
+        <line class="ln" x1="290" y1="136" x2="203" y2="136" marker-end="url(#ah1)"/>
+        <text class="tl" x="244" y="154" text-anchor="middle">建議 · 推薦</text>
+
+        <line class="ln" x1="480" y1="88" x2="567" y2="88" marker-end="url(#ah1)"/>
+        <text class="tl" x="524" y="80" text-anchor="middle">SQL</text>
+        <line class="ln" x1="570" y1="136" x2="483" y2="136" marker-end="url(#ah1)"/>
+        <text class="tl" x="524" y="154" text-anchor="middle">結果</text>
+
+        <rect class="bx-acc" x="290" y="222" width="190" height="56" rx="8"/>
+        <text class="tx mn" x="385" y="246" text-anchor="middle" font-weight="700">cards.yaml</text>
+        <text class="tm" x="385" y="266" text-anchor="middle">卡片規則,只有一份</text>
+        <line class="ln" x1="385" y1="222" x2="385" y2="183" marker-end="url(#ah1)"/>
+        <text class="tl" x="394" y="207">啟動時讀取</text>
+
+        <rect class="bx" x="570" y="222" width="170" height="56" rx="8"/>
+        <text class="tx" x="655" y="246" text-anchor="middle" font-weight="700">匯入腳本</text>
+        <text class="tm" x="655" y="266" text-anchor="middle">新店名人工確認</text>
+        <line class="ln" x1="480" y1="250" x2="567" y2="250" marker-end="url(#ah1)"/>
+        <text class="tl" x="524" y="242" text-anchor="middle">對照</text>
+        <line class="ln" x1="655" y1="222" x2="655" y2="173" marker-end="url(#ah1)"/>
+        <text class="tl" x="664" y="202">寫入</text>
+
+        <rect class="bx" x="570" y="310" width="170" height="56" rx="8"/>
+        <text class="tx" x="655" y="334" text-anchor="middle" font-weight="700">爬蟲匯出檔</text>
+        <text class="tm" x="655" y="354" text-anchor="middle">Allen 定期提供</text>
+        <line class="ln" x1="655" y1="310" x2="655" y2="281" marker-end="url(#ah1)"/>
+        <text class="tl" x="664" y="300">讀取</text>
+      </svg>
+    </div>
+    <figcaption>SQL 負責搜尋與撈資料,Python 依 <code>cards.yaml</code> 判斷規則。新增一張卡只要在 <code>cards.yaml</code> 加一段、匯入爬蟲資料,不用改資料表也不用改 App。</figcaption>
+  </figure>
+</section>
+
+<!-- 2 -->
+<section id="journey">
+  <h2><span class="num">2</span>使用者流程</h2>
+  <ol class="journey">
+    <li>
+      <h3>註冊 / 登入</h3>
+      <p>註冊填 email、密碼、姓名、生日;生日用來判斷慶生月。登入成功後,後端發一個 token,App 之後每次查詢都帶著它,後端靠它認出是誰。</p><p>登入失敗一律顯示「帳號或密碼錯誤」,旁邊放「前往註冊」。</p>
+      <span class="chip done">已確定</span>
+    </li>
+    <li>
+      <h3>設定我的卡片</h3>
+      <p>選卡 → CUBE 選等級、Unicard 選方案 → 打開需要的開關(童樂匯、新戶、電子帳單、自動扣繳)→ Unicard 任意選要挑店。每張卡有哪些選項,由後端告訴 App。</p>
+      <p>設定存成這張卡的 config。先寫進資料庫,成功了才更新手機上的副本。</p>
+    </li>
+    <li>
+      <h3>搜尋店家</h3>
+      <p>打第一個字就出現建議,支援別名(打「小七」會出現 7-11)。可以點建議,也可以直接按搜尋。</p>
+    </li>
+    <li>
+      <h3>看推薦結果</h3>
+      <p>每張卡的最佳回饋,依 % 由高到低列出,附上要做的動作(例如「需切換至樂饗購權益方案」)與限制。查無此店時提示「以一般消費計算」。</p>
+    </li>
+  </ol>
+</section>
+
+<!-- 3 -->
+<section id="search">
+  <h2><span class="num">3</span>搜尋店家 <span class="chip done">已確定</span></h2>
+  <p class="prose">自動補全和「確定是哪一家店」是兩件事:前者回多筆候選讓使用者挑,後者只回一家或找不到。使用者點了建議就直接拿到店家編號,不用再解析;沒點、直接按搜尋時,才拿輸入文字去比對。</p>
+  <figure>
+    <div class="diagram">
+      <svg viewBox="0 0 760 660" role="img" aria-label="打字後若不在組字中就送出建議查詢;使用者點選建議直接得到店家,按搜尋則依序比對完全相同、子字串,都沒有就以一般消費計算,最後進入推薦計算">
+        <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+
+        <rect class="bx" x="290" y="10" width="180" height="40" rx="8"/>
+        <text class="tx" x="380" y="35" text-anchor="middle" font-weight="700">使用者打字</text>
+        <line class="ln" x1="380" y1="50" x2="380" y2="69" marker-end="url(#ah2)"/>
+
+        <polygon class="bx" points="380,72 470,99 380,126 290,99"/>
+        <text class="tx" x="380" y="104" text-anchor="middle">輸入法組字中?</text>
+        <line class="ln" x1="470" y1="99" x2="557" y2="99" marker-end="url(#ah2)"/>
+        <text class="tl" x="512" y="91" text-anchor="middle">是</text>
+        <rect class="bx" x="560" y="79" width="150" height="40" rx="8"/>
+        <text class="tx" x="635" y="104" text-anchor="middle">等選字完成再送</text>
+        <line class="ln" x1="380" y1="126" x2="380" y2="147" marker-end="url(#ah2)"/>
+        <text class="tl" x="390" y="141">否</text>
+
+        <rect class="bx-acc" x="290" y="150" width="180" height="44" rx="8"/>
+        <text class="tx" x="380" y="177" text-anchor="middle" font-weight="700">送出建議查詢</text>
+        <text class="tm" x="486" y="166">同時只送一個請求</text>
+        <text class="tm" x="486" y="184">回來時文字變了,就送最新的文字</text>
+        <line class="ln" x1="380" y1="194" x2="380" y2="221" marker-end="url(#ah2)"/>
+
+        <rect class="bx" x="290" y="224" width="180" height="50" rx="8"/>
+        <text class="tx" x="380" y="245" text-anchor="middle" font-weight="700">建議清單</text>
+        <text class="tm" x="380" y="263" text-anchor="middle">比對名稱與別名,最多 10 家</text>
+
+        <line class="ln" x1="380" y1="274" x2="380" y2="292"/>
+        <line class="ln" x1="170" y1="292" x2="590" y2="292"/>
+        <line class="ln" x1="170" y1="292" x2="170" y2="309" marker-end="url(#ah2)"/>
+        <line class="ln" x1="590" y1="292" x2="590" y2="309" marker-end="url(#ah2)"/>
+
+        <rect class="bx" x="60" y="312" width="220" height="52" rx="8"/>
+        <text class="tx" x="170" y="334" text-anchor="middle" font-weight="700">點選某個建議</text>
+        <text class="tm" x="170" y="353" text-anchor="middle">直接拿到店家編號</text>
+
+        <rect class="bx" x="480" y="312" width="220" height="52" rx="8"/>
+        <text class="tx" x="590" y="334" text-anchor="middle" font-weight="700">直接按搜尋</text>
+        <text class="tm" x="590" y="353" text-anchor="middle">用輸入文字解析</text>
+        <line class="ln" x1="590" y1="364" x2="590" y2="387" marker-end="url(#ah2)"/>
+
+        <rect class="bx" x="480" y="390" width="220" height="40" rx="8"/>
+        <text class="tx" x="590" y="415" text-anchor="middle">① 名稱或別名完全相同</text>
+        <line class="ln" x1="590" y1="430" x2="590" y2="453" marker-end="url(#ah2)"/>
+        <text class="tl" x="600" y="447">沒有</text>
+
+        <rect class="bx" x="480" y="456" width="220" height="40" rx="8"/>
+        <text class="tx" x="590" y="481" text-anchor="middle">② 子字串比對(至少 2 字)</text>
+        <line class="ln" x1="590" y1="496" x2="590" y2="519" marker-end="url(#ah2)"/>
+        <text class="tl" x="600" y="513">沒有</text>
+
+        <rect class="bx-open" x="480" y="522" width="220" height="40" rx="8"/>
+        <text class="tx" x="590" y="547" text-anchor="middle">③ 找不到這家店</text>
+
+        <line class="ln" x1="280" y1="338" x2="380" y2="338"/>
+        <line class="ln" x1="480" y1="410" x2="380" y2="410"/>
+        <text class="tl" x="430" y="402" text-anchor="middle">有</text>
+        <line class="ln" x1="480" y1="476" x2="380" y2="476"/>
+        <text class="tl" x="430" y="468" text-anchor="middle">有</text>
+        <line class="ln" x1="480" y1="542" x2="380" y2="542"/>
+        <text class="tl" x="430" y="534" text-anchor="middle">一般消費</text>
+        <line class="ln" x1="380" y1="338" x2="380" y2="597" marker-end="url(#ah2)"/>
+
+        <rect class="bx-acc" x="290" y="600" width="180" height="44" rx="8"/>
+        <text class="tx" x="380" y="627" text-anchor="middle" font-weight="700">計算各卡推薦</text>
+      </svg>
+    </div>
+    <figcaption>「找不到」時不回空白:畫面提示「此店家不在回饋名單中,以一般消費計算」,照常列出各卡的一般消費比較。子字串比對讓「鼎泰豐信義店」也能對到「鼎泰豐」。多家命中時依命中程度挑:開頭相同的優先,再來是長度最接近輸入的,再來台灣的店優先,都一樣才取名稱最短。日本的店名稱前加「日本」(例如「日本 7-ELEVEN」),打「7-ELEVEN」會先出現台灣門市。</figcaption>
+  </figure>
+</section>
+
+<!-- 4 -->
+<section id="calc">
+  <h2><span class="num">4</span>回饋怎麼算 <span class="chip done">已確定</span></h2>
+  <p class="prose">計算分兩段。SQL 只負責撈資料,規則判斷全部交給後端 Python,因為疊加、挑店、多條件這些規則寫在 SQL 裡會很難讀、很難測,而撈出來的資料最多幾十筆,用 Python 判斷非常快。</p>
+  <div class="options">
+    <div class="option">
+      <h3>SQL 撈資料</h3>
+      <ul>
+        <li>使用者的卡片與 config、生日</li>
+        <li>這些卡的所有方案、各等級/方案的回饋率</li>
+        <li>這家店有沒有被方案點名、例外回饋率</li>
+      </ul>
+    </div>
+    <div class="option">
+      <h3>Python 依 <code>cards.yaml</code> 判斷</h3>
+      <ul>
+        <li>條件滿不滿足(含生日月)</li>
+        <li>分類涵蓋、任意選有沒有挑這家</li>
+        <li>疊加、每張卡取最高、卡片排序</li>
+      </ul>
+    </div>
+  </div>
+  <p class="prose">每張卡各自走完下面七步,得出這張卡在這家店的最佳回饋。右欄用同一個例子一路走下去。</p>
+
+  <ol class="pipeline">
+    <li class="hdr">
+      <div class="rule"><h3>例子</h3><p>使用者持有 CUBE 和 Unicard,搜尋「台北101」。這個月不是他的生日月。</p></div>
+      <div class="eg">
+        <span class="k">卡片狀態</span>
+        <span><b class="card-cube">CUBE</b>:Level 2,沒有勾任何條件</span>
+        <span><b class="card-unicard">Unicard</b>:任意選,有電子帳單和自動扣繳,挑的店裡有台北101</span>
+      </div>
+    </li>
+    <li>
+      <div class="rule">
+        <h3>拿出卡片狀態與地點</h3>
+        <p>從這張卡的 config 讀出等級或方案、打開的開關,再加上系統自動算出的條件:<b>本月是否為生日月</b>(用 <code>users.birthday</code> 比對)。</p>
+        <p>另外看店家在<b>國內還是國外</b>(店家的國別);找不到店家時當作國內。</p>
+        <p><span class="chip new">新規則</span> 生日月條件、國內外</p>
+      </div>
+      <div class="eg">
+        <span class="k">這個例子</span>
+        <span>CUBE:Level 2;條件 — 無;生日月 — 否</span>
+        <span>Unicard:任意選;條件 — 電子帳單、自動扣繳</span>
+        <span>台北101 在國內</span>
+      </div>
+    </li>
+    <li>
+      <div class="rule">
+        <h3>依條件篩掉方案</h3>
+        <p>方案要求的條件<b>全部</b>滿足才保留。一個方案可以要求不只一個條件(Unicard 的 1% 要電子帳單和自動扣繳同時成立)。</p>
+        <p><span class="chip new">新規則</span> 一個方案可要求多個條件</p>
+      </div>
+      <div class="eg">
+        <span class="k">這個例子</span>
+        <span><span class="x">CUBE 童樂匯</span>(沒加入童樂匯)</span>
+        <span><span class="x">CUBE 慶生月</span>(不是生日月)</span>
+        <span>Unicard 一般消費 0%、0.3%、1% 三層都保留(條件都滿足)</span>
+      </div>
+    </li>
+    <li>
+      <div class="rule">
+        <h3>判斷方案適不適用這家店</h3>
+        <p>兩種情況之一就適用:<b>店被方案點名</b>,或<b>店在方案涵蓋的範圍內</b>。樂饗購涵蓋國內所有餐廳;趣旅行涵蓋飯店、旅行類(高鐵、旅行社、叫車)與所有國外的店。</p>
+        <p>Unicard 任意選另外要求:百大特店只適用<b>使用者挑過的店</b>(最多 8 家)。</p>
+        <p><span class="chip new">新規則</span> 涵蓋範圍可限國內或涵蓋國外、任意選挑店</p>
+      </div>
+      <div class="eg">
+        <span class="k">這個例子</span>
+        <span>CUBE 樂饗購:台北101 被點名 ✓</span>
+        <span>Unicard 百大特店:被點名,而且使用者挑過 ✓</span>
+      </div>
+    </li>
+    <li>
+      <div class="rule">
+        <h3>取回饋率</h3>
+        <p>方案在使用者等級或方案下的回饋率;少數店有例外回饋率(例如童樂匯有些店 10%),有例外就用例外。</p>
+        <p>一般消費依條件和國內外分層,取符合的最高一層。例如 CUBE 國內 0.3%、國外的店 2.5%。</p>
+        <p><span class="chip new">新規則</span> 一般消費分國內外</p>
+      </div>
+      <div class="eg">
+        <span class="k">這個例子</span>
+        <span>CUBE 樂饗購 Level 2:3%</span>
+        <span>CUBE 一般消費:0.3%(國內,海外 2.5% 不適用)</span>
+        <span>Unicard 百大特店 任意選:2.5%</span>
+        <span>Unicard 一般消費:0% / 0.3% / 1%,取最高 1%</span>
+      </div>
+    </li>
+    <li>
+      <div class="rule">
+        <h3>疊加與加碼</h3>
+        <p><b>疊加</b>:Unicard 百大特店的回饋率要加上一般消費(爬蟲數字不含基本回饋)。</p>
+        <p><b>加碼</b>:吉鶴卡的新戶自動扣繳 +0.5%,只加在國內一般消費和國內日系特店。吉鶴卡爬蟲數字本身已含基本 1%,不再疊加。</p>
+        <p><span class="chip new">新規則</span> 疊加、卡片加碼</p>
+      </div>
+      <div class="eg">
+        <span class="k">這個例子</span>
+        <span>Unicard 百大特店:2.5% + 1% = <b>3.5%</b></span>
+        <span>CUBE 樂饗購不疊加,維持 3%</span>
+      </div>
+    </li>
+    <li>
+      <div class="rule">
+        <h3>每張卡取最好的一筆</h3>
+        <p>一般消費和所有適用的方案<b>一起比</b>,取最高。同分時優先不用做任何動作的(一般消費),其次是點名這家店的方案。</p>
+        <p>一起比是因為一般消費有時比較高:CUBE Level 1 在國外的店,趣旅行 2%、海外消費 2.5%,應該推薦不用切換的 2.5%。</p>
+      </div>
+      <div class="eg">
+        <span class="k">這個例子</span>
+        <span>CUBE:3% 對 0.3% → <span class="hit">3%</span>,樂饗購(需切換至樂饗購權益方案)</span>
+        <span>Unicard:3.5% 對 1% → <span class="hit">3.5%</span>,百大特店</span>
+      </div>
+    </li>
+    <li>
+      <div class="rule">
+        <h3>卡片排序</h3>
+        <p>依回饋率由高到低,同分依卡名排。使用者持有的每張卡都會列出。</p>
+      </div>
+      <div class="eg">
+        <span class="k">這個例子</span>
+        <span>1. Unicard 3.5% 　2. CUBE 3%</span>
+      </div>
+    </li>
+  </ol>
+
+  <h3>再看六個情況</h3>
+  <div class="examples">
+    <div class="example">
+      <h3>鼎泰豐</h3>
+      <div class="who">CUBE Level 2</div>
+      <div class="result">3%</div>
+      <p>鼎泰豐沒有被任何方案點名,但它是國內餐廳,樂饗購涵蓋國內所有餐廳。要先切換到樂饗購權益方案。</p>
+    </div>
+    <div class="example">
+      <h3>台北101,但沒挑這家</h3>
+      <div class="who">Unicard 任意選,有電子帳單和自動扣繳</div>
+      <div class="result">1%</div>
+      <p>台北101 在百大特店名單上,但使用者沒挑它,所以百大特店不適用,只剩一般消費 1%。</p>
+    </div>
+    <div class="example">
+      <h3>慶生月名單上的餐廳</h3>
+      <div class="who">CUBE,這個月是生日月</div>
+      <div class="result">10%</div>
+      <p>多數店 10%,少數 3.5%,需切換至慶生月權益方案。過了生日月,這家店就回到其他方案或一般消費。</p>
+    </div>
+    <div class="example">
+      <h3>日本的三越</h3>
+      <div class="who">CUBE Level 1</div>
+      <div class="result">2.5%</div>
+      <p>趣旅行涵蓋國外的店,但 Level 1 只有 2%;海外消費 2.5% 比較高,而且不用切換方案。Level 2 則是趣旅行 3% 勝出。</p>
+    </div>
+    <div class="example">
+      <h3>UNIQLO</h3>
+      <div class="who">吉鶴卡,新戶自動扣繳</div>
+      <div class="result">5.5%</div>
+      <p>國內日系特店 5%(已含基本 1%),新戶自動扣繳再加 0.5%。不是新戶就是 5%。</p>
+    </div>
+    <div class="example">
+      <h3>國內人氣餐廳</h3>
+      <div class="who">吉鶴卡,新戶自動扣繳</div>
+      <div class="result">10%</div>
+      <p>新戶加碼不適用這個方案。須於週一至週五、滿足指定額度,結帳時出示實體卡並全額支付,才享有完整回饋。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="cards">
+  <h2><span class="num">5</span>三張卡的規則</h2>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th scope="col"></th><th scope="col" class="card-cube">CUBE卡</th><th scope="col" class="card-jiho">吉鶴卡</th><th scope="col" class="card-unicard">Unicard</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">決定回饋率的設定</th><td>等級:Level 1 / 2 / 3</td><td>無</td><td>方案:簡單選 / 任意選 / UP選</td></tr>
+        <tr><th scope="row">使用者的開關</th><td>童樂匯</td><td>新戶自動扣繳</td><td>電子帳單、自動扣繳</td></tr>
+        <tr><th scope="row">系統自動判斷</th><td>生日月(慶生月)、店在國內或國外</td><td>店在國內、日本或其他國外</td><td>—</td></tr>
+        <tr><th scope="row">要做的動作</th><td>切換到該權益方案(含慶生月)</td><td>—</td><td>—</td></tr>
+        <tr><th scope="row">一般消費</th><td>國內 0.3%;國外的店 2.5%,不用切換</td><td>國內 1%;日本 2.5%;其他國外 1%</td><td>0%;有電子帳單 0.3%;電子帳單 + 自動扣繳 1%;國內外相同</td></tr>
+        <tr><th scope="row">疊加與加碼</th><td>不疊加</td><td>爬蟲數字已含基本 1%,不疊加;新戶自動扣繳 +0.5%,只加在國內一般消費和國內日系特店</td><td>百大特店 + 一般消費</td></tr>
+        <tr><th scope="row">涵蓋範圍</th><td>樂饗購:國內所有餐廳<br>趣旅行:飯店、旅行類、所有國外的店</td><td>—</td><td>—</td></tr>
+        <tr><th scope="row">要挑店</th><td>—</td><td>—</td><td>任意選:最多 8 家,百大特店只算挑過的店</td></tr>
+        <tr><th scope="row">簡化處理</th><td>—</td><td>新戶加碼先用 0.5%,請 Allen 確認</td><td>實際每月最多切換 30 次、以當月最後一個方案計算;App 不限切換,以使用者<b>目前的設定</b>為準</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Unicard 回饋率速查</h3>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">電子帳單 / 自動扣繳</th>
+          <th scope="col" class="num">不在百大特店</th>
+          <th scope="col" class="num">百大 · 簡單選</th>
+          <th scope="col" class="num">百大 · 任意選(有挑)</th>
+          <th scope="col" class="num">百大 · UP選</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">都沒有</th><td class="num">0%</td><td class="num">2%</td><td class="num">2.5%</td><td class="num">3.5%</td></tr>
+        <tr><th scope="row">只有自動扣繳</th><td class="num">0%</td><td class="num">2%</td><td class="num">2.5%</td><td class="num">3.5%</td></tr>
+        <tr><th scope="row">只有電子帳單</th><td class="num">0.3%</td><td class="num">2.3%</td><td class="num">2.8%</td><td class="num">3.8%</td></tr>
+        <tr class="em"><th scope="row">兩個都有</th><td class="num">1%</td><td class="num">3%</td><td class="num">3.5%</td><td class="num">4.5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose" style="font-size: var(--step--1); color: var(--muted);">任意選但沒挑那家店,算「不在百大特店」那欄。百大特店的 2 / 2.5 / 3.5% 來自 0908 爬蟲。</p>
+
+  <h3>吉鶴卡回饋率速查</h3>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th scope="col">消費</th><th scope="col" class="num">一般持卡人</th><th scope="col" class="num">新戶自動扣繳</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">國內一般消費</th><td class="num">1%</td><td class="num">1.5%</td></tr>
+        <tr class="em"><th scope="row">國內日系特店</th><td class="num">5%</td><td class="num">5.5%</td></tr>
+        <tr><th scope="row">國內人氣餐廳</th><td class="num">10%</td><td class="num">10%</td></tr>
+        <tr><th scope="row">日本熱門商店</th><td class="num">8%</td><td class="num">8%</td></tr>
+        <tr><th scope="row">日本其他店(日幣消費)</th><td class="num">2.5%</td><td class="num">2.5%</td></tr>
+        <tr><th scope="row">其他國外</th><td class="num">1%</td><td class="num">1%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose" style="font-size: var(--step--1); color: var(--muted);">各方案的數字來自 0908 爬蟲,已含基本 1%(例如日系特店 5% = 基本 1% + 加碼 4%)。國內人氣餐廳須於週一至週五、滿足指定額度,結帳時出示實體卡並全額支付。日本行動支付 5% 需要付款方式資訊,不納入。</p>
+
+  <h3>條件一覽</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">條件</th><th scope="col">意義</th><th scope="col">卡片</th><th scope="col">存在哪裡</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>kids_club</code></th><td>已加入童樂匯</td><td class="card-cube">CUBE</td><td>config 開關,顯示「童樂匯」</td></tr>
+        <tr><th scope="row"><code>birthday_month</code></th><td>本月是生日月 <span class="chip new">新規則</span></td><td class="card-cube">CUBE</td><td>不存;系統依生日自動判斷</td></tr>
+        <tr><th scope="row"><code>new_customer</code></th><td>新戶並設定自動扣繳</td><td class="card-jiho">吉鶴卡</td><td>config 開關,顯示「新戶自動扣繳」</td></tr>
+        <tr><th scope="row"><code>e_bill</code></th><td>已設定電子帳單 <span class="chip new">新規則</span></td><td class="card-unicard">Unicard</td><td>config 開關,顯示「電子帳單」</td></tr>
+        <tr><th scope="row"><code>auto_debit</code></th><td>已設定自動扣繳</td><td class="card-unicard">Unicard</td><td>config 開關,顯示「自動扣繳」</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="import">
+  <h2><span class="num">6</span>爬蟲資料匯入 <span class="chip done">已確定</span></h2>
+  <p class="prose">Allen 出新版爬蟲資料時跑匯入腳本。匯入腳本讀 <code>cards.yaml</code> 來對照卡片與方案。大部分店名會自動對上;只有新出現或改了名字的店需要人看,腳本會先提出配對建議。腳本不會自動新增店家,因為它分不出「新店」和「舊店改名」。</p>
+  <figure>
+    <div class="diagram">
+      <svg viewBox="0 0 760 500" role="img" aria-label="匯入依序對照卡片、處理特殊列、對照方案、對照店名、計算方案費率、寫入;對不到的卡片或方案先人工建立,對不到的店名列入報告由人確認後下次自動對上">
+        <defs><marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+
+        <rect class="bx" x="90" y="10" width="260" height="40" rx="8"/>
+        <text class="tx" x="220" y="35" text-anchor="middle" font-weight="700">爬蟲匯出檔</text>
+        <line class="ln" x1="220" y1="50" x2="220" y2="77" marker-end="url(#ah3)"/>
+
+        <rect class="bx" x="90" y="80" width="260" height="40" rx="8"/>
+        <text class="tx" x="220" y="105" text-anchor="middle">① 對照卡片</text>
+        <line class="ln" x1="350" y1="100" x2="427" y2="100" marker-end="url(#ah3)"/>
+        <text class="tl" x="388" y="92" text-anchor="middle">對不到</text>
+        <rect class="bx-open" x="430" y="80" width="290" height="40" rx="8"/>
+        <text class="tx" x="575" y="105" text-anchor="middle">中止,先在 cards.yaml 加入新卡</text>
+        <line class="ln" x1="220" y1="120" x2="220" y2="147" marker-end="url(#ah3)"/>
+
+        <rect class="bx" x="90" y="150" width="260" height="40" rx="8"/>
+        <text class="tx" x="220" y="175" text-anchor="middle">② 特殊列:比對一般消費或略過</text>
+        <line class="ln" x1="220" y1="190" x2="220" y2="217" marker-end="url(#ah3)"/>
+
+        <rect class="bx" x="90" y="220" width="260" height="40" rx="8"/>
+        <text class="tx" x="220" y="245" text-anchor="middle">③ 對照方案</text>
+        <line class="ln" x1="350" y1="240" x2="427" y2="240" marker-end="url(#ah3)"/>
+        <text class="tl" x="388" y="232" text-anchor="middle">對不到</text>
+        <rect class="bx-open" x="430" y="220" width="290" height="40" rx="8"/>
+        <text class="tx" x="575" y="245" text-anchor="middle">本次略過,先在 cards.yaml 加入</text>
+        <line class="ln" x1="220" y1="260" x2="220" y2="287" marker-end="url(#ah3)"/>
+
+        <rect class="bx" x="90" y="290" width="260" height="40" rx="8"/>
+        <text class="tx" x="220" y="315" text-anchor="middle">④ 對照店名</text>
+        <line class="ln" x1="350" y1="304" x2="427" y2="304" marker-end="url(#ah3)"/>
+        <text class="tl" x="388" y="296" text-anchor="middle">對不到</text>
+        <rect class="bx-open" x="430" y="290" width="290" height="40" rx="8"/>
+        <text class="tx" x="575" y="315" text-anchor="middle">列入報告,附「可能是既有店家」建議</text>
+        <line class="ln" x1="575" y1="330" x2="575" y2="357" marker-end="url(#ah3)"/>
+        <rect class="bx" x="430" y="360" width="290" height="40" rx="8"/>
+        <text class="tx" x="575" y="385" text-anchor="middle">人確認:對到既有店 / 建新店 / 略過</text>
+        <polyline class="ln-d" points="430,380 392,380 392,322 353,322" marker-end="url(#ah3)"/>
+        <text class="tm" x="575" y="420" text-anchor="middle">確認後寫入對照表,下次自動對上</text>
+        <line class="ln" x1="220" y1="330" x2="220" y2="357" marker-end="url(#ah3)"/>
+
+        <rect class="bx" x="90" y="360" width="260" height="40" rx="8"/>
+        <text class="tx" x="220" y="385" text-anchor="middle">⑤ 算方案費率與例外店</text>
+        <line class="ln" x1="220" y1="400" x2="220" y2="437" marker-end="url(#ah3)"/>
+
+        <rect class="bx-acc" x="90" y="440" width="260" height="44" rx="8"/>
+        <text class="tx" x="220" y="467" text-anchor="middle" font-weight="700">⑥ 寫入:只替換本次出現的方案</text>
+      </svg>
+    </div>
+    <figcaption>步驟 ②:爬蟲裡的一般消費不寫進資料庫,只拿來跟 <code>cards.yaml</code> 比對,數字不同時提醒(爬蟲寫 CUBE 1.2%,實際是 0.3%)。步驟 ⑤:每個方案在每個等級,取多數店家的回饋率當方案費率,少數不同的記成例外店(童樂匯就是方案 5%,另有 1% 與 10% 的例外店)。建議先用 <code>--dry-run</code> 跑一次只看報告。</figcaption>
+  </figure>
+</section>
+
+<!-- 7 -->
+<section id="tables">
+  <h2><span class="num">7</span>資料表 <span class="chip done">已確定</span></h2>
+  <p class="prose">資料庫只存兩種東西:爬蟲來的資料,以及使用者的資料,共 8 張表。規則不在資料庫裡,在 <code>cards.yaml</code>。</p>
+  <figure>
+    <div class="diagram">
+      <svg viewBox="0 0 760 380" role="img" aria-label="店家、爬蟲回饋資料、使用者三群共 8 張資料表;card_schemes 與 user_cards 依 cards.yaml 對應,user_cards 的 config 記錄挑選的店家編號">
+        <defs><marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+        <text class="tm" x="20" y="28">爬蟲回饋資料</text>
+        <text class="tm" x="280" y="180">店家</text>
+        <text class="tm" x="530" y="28">使用者</text>
+
+        <rect class="bx-acc" x="280" y="40" width="200" height="60" rx="8"/>
+        <text class="tx mn" x="380" y="65" text-anchor="middle" font-weight="700">cards.yaml</text>
+        <text class="tm" x="380" y="86" text-anchor="middle">卡片規則,後端啟動時讀取</text>
+
+        <rect class="bx" x="20" y="40" width="210" height="46" rx="6"/>
+        <text class="tx mn" x="125" y="60" text-anchor="middle">card_schemes</text>
+        <text class="tm" x="125" y="77" text-anchor="middle">方案名稱(規則在 cards.yaml)</text>
+        <line class="ln-d" x1="280" y1="63" x2="233" y2="63" marker-end="url(#ah4)"/>
+        <text class="tl" x="256" y="56" text-anchor="middle">對應</text>
+
+        <polyline class="ln" points="20,63 10,63 10,213"/>
+        <line class="ln" x1="10" y1="143" x2="20" y2="143"/>
+        <line class="ln" x1="10" y1="213" x2="20" y2="213"/>
+
+        <rect class="bx" x="20" y="120" width="210" height="46" rx="6"/>
+        <text class="tx mn" x="125" y="140" text-anchor="middle">scheme_rates</text>
+        <text class="tm" x="125" y="157" text-anchor="middle">方案 × 等級/方案 → 回饋率</text>
+
+        <rect class="bx" x="20" y="190" width="210" height="46" rx="6"/>
+        <text class="tx mn" x="125" y="210" text-anchor="middle">scheme_merchants</text>
+        <text class="tm" x="125" y="227" text-anchor="middle">點名的店、例外回饋率</text>
+        <line class="ln" x1="230" y1="213" x2="277" y2="213" marker-end="url(#ah4)"/>
+
+        <rect class="bx" x="280" y="190" width="200" height="46" rx="6"/>
+        <text class="tx mn" x="380" y="210" text-anchor="middle">merchants</text>
+        <text class="tm" x="380" y="227" text-anchor="middle">店家、分類、國別</text>
+
+        <polyline class="ln" points="480,225 494,225 494,343"/>
+        <line class="ln" x1="494" y1="283" x2="482" y2="283"/>
+        <line class="ln" x1="494" y1="343" x2="482" y2="343"/>
+
+        <rect class="bx" x="280" y="260" width="200" height="46" rx="6"/>
+        <text class="tx mn" x="380" y="280" text-anchor="middle">merchant_aliases</text>
+        <text class="tm" x="380" y="297" text-anchor="middle">別名(搜尋用)</text>
+
+        <rect class="bx" x="280" y="320" width="200" height="46" rx="6"/>
+        <text class="tx mn" x="380" y="340" text-anchor="middle">merchant_source_names</text>
+        <text class="tm" x="380" y="357" text-anchor="middle">爬蟲原名(匯入用)</text>
+
+        <rect class="bx" x="530" y="40" width="210" height="46" rx="6"/>
+        <text class="tx mn" x="635" y="60" text-anchor="middle">users</text>
+        <text class="tm" x="635" y="77" text-anchor="middle">帳號、生日</text>
+        <line class="ln" x1="635" y1="86" x2="635" y2="120"/>
+
+        <rect class="bx" x="530" y="120" width="210" height="46" rx="6"/>
+        <text class="tx mn" x="635" y="140" text-anchor="middle">user_cards</text>
+        <text class="tm" x="635" y="157" text-anchor="middle">持有的卡 + config(JSON)</text>
+
+        <polyline class="ln-d" points="480,90 510,90 510,143 527,143" marker-end="url(#ah4)"/>
+        <text class="tl" x="516" y="111">config 格式</text>
+
+        <polyline class="ln-d" points="530,160 516,160 516,200 483,200" marker-end="url(#ah4)"/>
+        <text class="tl" x="522" y="186">挑的店</text>
+      </svg>
+    </div>
+    <figcaption>實線是外鍵。虛線不是外鍵:<code>card_schemes</code> 與 <code>user_cards</code> 的卡片和方案名稱對應 <code>cards.yaml</code>,由匯入腳本與後端寫入前檢查;config 裡挑的店記店家編號,店家只停用不刪除,所以編號永遠有效。</figcaption>
+  </figure>
+
+  <h3>跟上一版比,拿掉了什麼</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">原本</th><th scope="col">現在</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>cards</code> 表</th><td>卡片定義寫在 <code>cards.yaml</code></td></tr>
+        <tr><th scope="row"><code>scheme_categories</code> 表</th><td>分類涵蓋寫在 <code>cards.yaml</code> 的方案規則</td></tr>
+        <tr><th scope="row"><code>user_card_conditions</code> 表</th><td>開關併入 <code>user_cards.config</code></td></tr>
+        <tr><th scope="row"><code>card_schemes</code> 的規則欄位</th><td>要做的動作、條件、限制說明、是否為一般消費,都搬進 <code>cards.yaml</code>;一般消費的回饋率也是</td></tr>
+        <tr><th scope="row"><code>user_cards.card_level</code></th><td>CUBE 的等級、Unicard 的方案都放進 config;吉鶴卡不再有 <code>Standard</code></td></tr>
+        <tr><th scope="row"><code>scheme_rates.card_level</code></th><td>改名 <code>variant</code>,代表「決定回饋率的那個設定值」;吉鶴卡存空字串</td></tr>
+        <tr><th scope="row">原本要新增的 <code>scheme_conditions</code>、<code>user_card_merchants</code></th><td>不需要了:多條件寫在 <code>cards.yaml</code>,挑的店放在 config</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="config">
+  <h2><span class="num">8</span>規則與設定怎麼存 <span class="chip done">已確定</span></h2>
+  <p class="prose">「規則」和「設定」是兩種東西,分開存:</p>
+  <div class="options">
+    <div class="option pick">
+      <h3>卡片規則 → <code>cards.yaml</code></h3>
+      <span class="lbl">每個使用者都一樣,只有一份</span>
+      <ul>
+        <li>CUBE 有哪些等級、Unicard 有哪些方案、各卡有哪些開關</li>
+        <li>童樂匯要加入才算、慶生月要生日月</li>
+        <li>樂饗購涵蓋所有餐廳</li>
+        <li>百大特店會疊加一般消費,任意選要挑店</li>
+        <li>各卡的一般消費</li>
+      </ul>
+      <p style="font-size: 0.9375rem;">放在 repo,有 git 紀錄。改規則 = 改檔案、重啟後端。</p>
+    </div>
+    <div class="option pick">
+      <h3>使用者設定 → <code>user_cards.config</code></h3>
+      <span class="lbl">每個人不同,存在資料庫</span>
+      <ul>
+        <li>我的 CUBE 是 Level 幾</li>
+        <li>我的 Unicard 選哪個方案、挑了哪幾家店</li>
+        <li>我有沒有加入童樂匯、是不是新戶、有沒有電子帳單和自動扣繳</li>
+      </ul>
+      <p style="font-size: 0.9375rem;">MySQL 的 JSON 欄位。不同卡的設定欄位不同,不用為每張卡加欄位或加表。</p>
+    </div>
+  </div>
+
+  <figure>
+    <div class="diagram">
+      <svg viewBox="0 0 760 290" role="img" aria-label="後端啟動時讀取 cards.yaml,提供卡片選項給手機;使用者的設定由後端寫入資料庫,登入時用資料庫覆蓋手機上的副本">
+        <defs><marker id="ah5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+
+        <rect class="bx-acc" x="20" y="40" width="200" height="90" rx="8"/>
+        <text class="tx mn" x="120" y="72" text-anchor="middle" font-weight="700">cards.yaml</text>
+        <text class="tx" x="120" y="96" text-anchor="middle">卡片規則</text>
+        <text class="tm" x="120" y="116" text-anchor="middle">只有一份,放在後端</text>
+
+        <rect class="bx" x="290" y="40" width="200" height="90" rx="8"/>
+        <text class="tt" x="390" y="72" text-anchor="middle">後端 Python</text>
+        <text class="tx" x="390" y="96" text-anchor="middle">計算推薦</text>
+        <text class="tm" x="390" y="116" text-anchor="middle">檢查設定是否合法</text>
+
+        <rect class="bx" x="290" y="180" width="200" height="90" rx="8"/>
+        <text class="tt" x="390" y="212" text-anchor="middle">MySQL</text>
+        <text class="tx mn" x="390" y="236" text-anchor="middle">user_cards.config</text>
+        <text class="tm" x="390" y="256" text-anchor="middle">每個使用者的設定(正本)</text>
+
+        <rect class="bx" x="560" y="40" width="180" height="230" rx="8"/>
+        <text class="tt" x="650" y="72" text-anchor="middle">手機</text>
+        <text class="tx" x="650" y="112" text-anchor="middle">卡片選項</text>
+        <text class="tm" x="650" y="132" text-anchor="middle">快取,向後端拿</text>
+        <text class="tx" x="650" y="176" text-anchor="middle">我的卡片設定</text>
+        <text class="tm" x="650" y="196" text-anchor="middle">副本,只用來顯示</text>
+        <text class="tm" x="650" y="240" text-anchor="middle">推薦結果向後端要</text>
+
+        <line class="ln" x1="220" y1="85" x2="287" y2="85" marker-end="url(#ah5)"/>
+        <text class="tl" x="254" y="77" text-anchor="middle">啟動時讀取</text>
+        <line class="ln" x1="490" y1="70" x2="557" y2="70" marker-end="url(#ah5)"/>
+        <text class="tl" x="524" y="62" text-anchor="middle">卡片選項</text>
+        <line class="ln" x1="560" y1="110" x2="493" y2="110" marker-end="url(#ah5)"/>
+        <text class="tl" x="524" y="128" text-anchor="middle">查詢、存設定</text>
+        <line class="ln" x1="370" y1="130" x2="370" y2="177" marker-end="url(#ah5)"/>
+        <text class="tl" x="378" y="158">寫入 / 讀取</text>
+        <line class="ln" x1="490" y1="225" x2="557" y2="225" marker-end="url(#ah5)"/>
+        <text class="tl" x="524" y="217" text-anchor="middle">登入時覆蓋</text>
+      </svg>
+    </div>
+    <figcaption>手機不打包 <code>cards.yaml</code>。若規則打包進 App,銀行改規則就要重新發版,舊版 App 的選項也會跟後端的計算對不上。手機只需要知道「設定畫面要顯示哪些選項」,向後端要就好。</figcaption>
+  </figure>
+
+  <h3>config 長這樣</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">卡片</th><th scope="col">config</th></tr></thead>
+      <tbody>
+        <tr><th scope="row" class="card-cube">CUBE</th><td><code>{"level": "Level 2", "kids_club": false}</code></td></tr>
+        <tr><th scope="row" class="card-jiho">吉鶴卡</th><td><code>{"new_customer": true}</code></td></tr>
+        <tr><th scope="row" class="card-unicard">Unicard</th><td><code>{"plan": "任意選", "e_bill": true, "auto_debit": true, "chosen_merchants": [12, 87]}</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose">資料庫只檢查「是不是合法的 JSON」,內容由後端依 <code>cards.yaml</code> 檢查,不合法就拒絕儲存:等級或方案必須在選項內(擋掉 <code>level_1</code> 這種拼錯的值)、只能有定義過的開關、<code>chosen_merchants</code> 只有任意選才能有、最多 8 家,而且每家店都必須在百大特店名單上。</p>
+
+  <h3><code>cards.yaml</code> 大概長這樣</h3>
+<pre><span class="c"># 示意,欄位名稱以實作為準。完整範例見 docs/DB_DESIGN.md 6.2</span>
+cards:
+  cathay_cube:
+    name: CUBE卡
+    rate_by: level                          <span class="c"># 回饋率由「等級」決定</span>
+    settings:
+      level: [Level 1, Level 2, Level 3]
+      toggles: { kids_club: 童樂匯 }         <span class="c"># 開關與畫面上的名稱</span>
+    schemes:
+      樂饗購:
+        action: 需切換至樂饗購權益方案
+        covers: [{ category: dining, country: TW }]     <span class="c"># 國內所有餐廳</span>
+      趣旅行:
+        action: 需切換至趣旅行權益方案
+        covers: [{ category: hotel }, { category: travel }, { overseas: true }]
+      童樂匯: { action: 需切換至童樂匯權益方案, requires: [kids_club] }
+      慶生月: { action: 需切換至慶生月權益方案, requires: [birthday_month] }
+    general:
+      - { name: 一般消費, rate: 0.3 }
+      - { name: 海外消費, rate: 2.5, where: overseas }   <span class="c"># 國外的店,不用切換</span>
+
+  esun_unicard:
+    name: Unicard
+    rate_by: plan                           <span class="c"># 回饋率由「方案」決定</span>
+    settings:
+      plan: [簡單選, 任意選, UP選]
+      toggles: { e_bill: 電子帳單, auto_debit: 自動扣繳 }
+      max_chosen_merchants: 8
+    schemes:
+      百大特店:
+        stacks_with_general: true           <span class="c"># 加上一般消費</span>
+        pick_merchants_when_plan: [任意選]   <span class="c"># 任意選只算挑過的店</span>
+    general:                                <span class="c"># 取符合條件中最高的</span>
+      - { name: 一般消費, requires: [],                   rate: 0 }
+      - { name: 一般消費, requires: [e_bill],             rate: 0.3 }
+      - { name: 一般消費, requires: [e_bill, auto_debit], rate: 1.0 }
+
+  ubot_jiho:
+    name: 吉鶴卡
+    rate_by: null
+    settings:
+      toggles: { new_customer: 新戶自動扣繳 }
+    schemes:                                <span class="c"># 爬蟲數字已含基本回饋,不疊加</span>
+      國內人氣餐廳: { notes: [需於週一至週五並滿足指定額度…] }
+      國內日系特店: {}
+      日本熱門商店: {}
+    general:
+      - { name: 國內一般消費, rate: 1.0, where: domestic }
+      - { name: 國外一般消費, rate: 1.0, where: overseas }
+      - { name: 日本消費,     rate: 2.5, where: JP }
+    bonuses:
+      - { requires: [new_customer], add: 0.5, applies_to: [國內一般消費, 國內日系特店] }</pre>
+  <p class="prose" style="font-size: var(--step--1); color: var(--muted);">店家名單和各方案的回饋率來自爬蟲,存在資料庫,不寫在這裡。<code>cards.yaml</code> 只管規則。</p>
+</section>
+
+<!-- 9 -->
+<section id="todo">
+  <h2><span class="num">9</span>給 Allen 的事 <span class="chip done">已確定</span></h2>
+  <p class="prose">設計上已經沒有未定案的項目。下面是先照目前設定實作、但要請 Allen 確認的數字,以及要通知他的改動。</p>
+  <h3>請 Allen 確認</h3>
+  <ul class="qlist">
+    <li><span class="chip open">待確認</span><span>吉鶴卡新戶自動扣繳加碼為 0.5%</span><span class="who">Allen</span></li>
+    <li><span class="chip open">待確認</span><span>Unicard 在國外的一般消費與國內相同(0% / 0.3% / 1%)</span><span class="who">Allen</span></li>
+  </ul>
+  <h3>要通知 Allen 的事</h3>
+  <ul class="qlist">
+    <li><span class="chip done">已確定</span><span>後端換成 <code>backend/</code>,取代原本的 <code>app.py</code>;<code>users</code> 表用 <code>db/schema.sql</code> 的定義(<code>id</code> 用 <code>INT UNSIGNED</code>、定序 <code>utf8mb4_unicode_ci</code>)</span><span class="who">Allen</span></li>
+    <li><span class="chip done">已確定</span><span>登入改為發 token(有效 30 天),之後的 API 都要帶 token</span><span class="who">Allen</span></li>
+    <li><span class="chip open">待處理</span><span>舊 <code>app.py</code> 裡寫死了資料庫密碼,確認沒有 commit 到任何 repo。新後端從 <code>db/my.local.cnf</code> 或環境變數讀密碼,用 <code>--host 0.0.0.0</code> 啟動時會自動關掉除錯模式</span><span class="who">Allen</span></li>
+  </ul>
+  <h3>這輪一併定案的細節</h3>
+  <ul class="qlist">
+    <li><span class="chip done">已確定</span><span><code>全球迪士尼飯店</code>、<code>東橫INN</code> 國別改為 <code>global</code>;不是 TW 就算國外</span><span class="who">Wilson</span></li>
+    <li><span class="chip done">已確定</span><span>資料庫的人工修改寫成 SQL 腳本,放 <code>db/changes/</code> 並 commit</span><span class="who">Wilson</span></li>
+    <li><span class="chip done">已確定</span><span>App 直接改呼叫 API,不另外匯出 JSON 過渡</span><span class="who">Wilson</span></li>
+  </ul>
+  <div class="callout info">
+    <b>實作狀態</b>
+    <p>以上全部已實作(2026-10-05):資料表與資料在 <code>db/</code>,後端與 <code>cards.yaml</code> 在 <code>backend/</code>,後端測試 83 個全部通過,Wilson 的 Flutter App 已改接這套 API。iOS 要怎麼改接,見 <code>docs/HANDOFF_ALLEN.md</code>。</p>
+  </div>
+</section>
+
+<footer>
+  整理自 2026-10-04 的討論與 <code>docs/DB_DESIGN.md</code> v0.4,2026-10-05 依實作結果更新。回饋率取自 0908 爬蟲資料,實際以銀行公告為準。
+</footer>
+
+</div>
+
+</body></html>
