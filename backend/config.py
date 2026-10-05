@@ -1,6 +1,6 @@
 """後端設定。
 
-優先讀環境變數;本機開發時若沒設,資料庫連線改讀 scripts/mysql/my.local.cnf,
+優先讀環境變數;本機開發時若沒設,資料庫連線改讀 db/my.local.cnf,
 token 簽名密鑰則自動產生並存在 backend/.secret_key(兩者都在 .gitignore 內)。
 
 環境變數:
@@ -17,7 +17,7 @@ from pathlib import Path
 
 BACKEND_DIR = Path(__file__).resolve().parent
 REPO_ROOT = BACKEND_DIR.parent
-LOCAL_CNF = REPO_ROOT / 'scripts' / 'mysql' / 'my.local.cnf'
+LOCAL_CNF = REPO_ROOT / 'db' / 'my.local.cnf'
 SECRET_KEY_FILE = BACKEND_DIR / '.secret_key'
 
 TOKEN_DAYS = 30

@@ -16,7 +16,15 @@
 
 ### 實作狀態
 
-本機資料庫目前是 **v0.2 的結構**(`scripts/mysql/schema_v2.sql`,由 `scripts/db/migrate_v2.py` 灌入資料)。v0.3 起的改動尚未實作,實作步驟見第 10 節。
+v0.4 已全部實作(2026-10-05):
+
+| 部分 | 位置 |
+|---|---|
+| 建表檔、店家與方案資料、人工修改紀錄 | `db/schema.sql`、`db/seed.sql`、`db/changes/`(見 `db/README.md`) |
+| 卡片規則 | `backend/cards.yaml` |
+| 後端(API、推薦計算、匯入) | `backend/`(見 `backend/README.md`) |
+| Flutter App | `lib/`,改為呼叫後端 API |
+| 交給 Allen 的說明 | `docs/HANDOFF_ALLEN.md` |
 
 ---
 
@@ -72,7 +80,7 @@ merchants                    card_schemes                       users
  └─ merchant_source_names     └─ scheme_merchants ──► merchants
 ```
 
-共 8 張表。實際建表檔為 `scripts/mysql/schema_v3.sql`(待建立)。
+共 8 張表。實際建表檔為 `db/schema.sql`。
 
 所有表皆為 `ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`(不分大小寫比對),唯一例外是 `merchant_source_names.source_name` 用 `utf8mb4_bin`(見 4.4)。本文件的 DDL 為了易讀省略這些設定。
 
@@ -671,7 +679,7 @@ import --ignore "悠遊卡"                                     # 加入略過�
 
 ## 9. 驗證案例
 
-實作後要能通過的案例。現行 `scripts/db/verify_v2.py` 依 v0.2 實作,v0.4 改為測試 Python 的計算函式。
+實作後要能通過的案例,已寫成 `backend/tests/` 中的 Python 測試。
 
 | 案例 | 預期 |
 |---|---|
@@ -703,8 +711,10 @@ import --ignore "悠遊卡"                                     # 加入略過�
 
 ## 10. 實作步驟
 
+以下步驟已全部完成(2026-10-05),保留作為紀錄。
+
 1. 建立 `cards.yaml`(內容見 6.2;由 `scripts/db/migrate_v2.py` 開頭的設定區改寫)
-2. 建立 `scripts/mysql/schema_v3.sql`,並調整本機資料庫:
+2. 建立 v3 建表檔(現在的 `db/schema.sql`),並調整本機資料庫:
    - 移除 `cards`、`scheme_categories`、`user_card_conditions`
    - `card_schemes` 移除規則欄位;移除一般消費方案的資料
    - `scheme_rates.card_level` 改名 `variant`,吉鶴卡的 `Standard` 改為 `''`
@@ -713,20 +723,22 @@ import --ignore "悠遊卡"                                     # 加入略過�
 4. 匯入腳本改讀 `cards.yaml`,補上慶生月的匯入
 5. 後端:載入 `cards.yaml` 與一致性檢查(6.5)、計算函式(7.3)、config 檢查(6.3)、註冊 / 登入 / token(第 5 節)、API(7.6)
 6. 驗證案例(第 9 節)改寫成 Python 測試
-7. 更新 `scripts/mysql/README.md`、`SETUP.md` 與範例 SQL
-8. **打包給 Allen**:設計文件、`cards.yaml`、建表檔、匯入腳本、後端程式、交接說明(取代已過時的 `swift_port/HANDOFF_PROMPT.md`)
+7. 整理文件:`db/README.md`、`SETUP.md`、`README.md`
+8. **交給 Allen**:交接說明在 `docs/HANDOFF_ALLEN.md`(取代已過時的 `swift_port/HANDOFF_PROMPT.md`)
 
 ---
 
 ## 11. 現行程式的去留
 
-| 現行 | v0.4 中 |
+已完成(2026-10-05),舊檔案留在 git 歷史中。
+
+| 舊的 | 現在 |
 |---|---|
-| `scripts/convert_allen_rewards.js` | 由新的匯入腳本取代 |
-| `scripts/build_merchants.js` | 不再產生 `merchants.json`;分類邏輯保留,用來產生匯入時的建議分類 |
-| `scripts/mysql/build_*_sql.js`、`seed_*.sql` | 移除 |
-| `lib/data/*.json`、Flutter App 內的比對邏輯、`swift_port/` | App 改呼叫 API 後移除。不另外從資料庫匯出 JSON 給 App 過渡,因為登入與 token 本來就需要後端 |
-| `scripts/db/migrate_v2.py` 開頭的設定區 | 改寫為 `cards.yaml` |
+| `scripts/convert_allen_rewards.js` | 由 `backend/importer.py` 取代 |
+| `scripts/build_merchants.js`、`lib/data/merchants.json` | 只用於一次性遷移;分類規則已移到 `backend/importer.py` 的建議分類 |
+| `scripts/mysql/build_*_sql.js`、`seed_*.sql`、`schema.sql`、`schema_v2.sql` | 移除;建表與資料改為 `db/schema.sql`、`db/seed.sql` |
+| `scripts/db/migrate_v2.py`、`backend/migrate_v3.py` | 一次性遷移,已執行完畢後移除 |
+| `lib/data/*.json`、Flutter App 內的比對邏輯、`swift_port/` | App 改呼叫 API 後移除 |
 | `app.py` 的 `/api/search_rewards`、`/api/autocomplete`、`/api/unicard_merchants` | 由 7.6 的 API 取代 |
 
 新增卡片不需要改資料表:在 `cards.yaml` 加一段、匯入爬蟲資料即可。只有當新卡出現現有規則表達不了的情況時,才需要擴充計算函式。

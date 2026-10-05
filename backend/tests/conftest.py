@@ -1,6 +1,6 @@
 """API 測試共用的設定。
 
-API 測試會連本機 MySQL(需要已執行 migrate_v3)。測試帳號的 email 都是
+API 測試會連本機 MySQL(需要已依 db/README.md 建好資料庫)。測試帳號的 email 都是
 pytest-*@test.local,測試開始前與結束後都會刪掉;資料庫連不上時這些測試會被略過。
 """
 

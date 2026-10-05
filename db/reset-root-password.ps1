@@ -17,7 +17,7 @@
 .EXAMPLE
     # 以「系統管理員」身分開啟 PowerShell，然後：
     cd C:\Documents\Projects\APP\my_first_app
-    powershell -ExecutionPolicy Bypass -File scripts\mysql\reset-root-password.ps1
+    powershell -ExecutionPolicy Bypass -File db\reset-root-password.ps1
 #>
 
 [CmdletBinding()]
@@ -25,7 +25,7 @@ param(
     [string]$ServiceName  = 'MySQL80',
     [string]$MysqlBin     = 'C:\Program Files\MySQL\MySQL Server 8.0\bin',
     [string]$DefaultsFile = 'C:\ProgramData\MySQL\MySQL Server 8.0\my.ini',
-    # 重設完是否順手把新密碼寫進 scripts/mysql/my.local.cnf
+    # 重設完是否順手把新密碼寫進 db/my.local.cnf
     [switch]$SkipUpdateLocalCnf
 )
 

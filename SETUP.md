@@ -1,30 +1,20 @@
 # 在新機器上重現這個專案
 
-這份文件說明怎麼把整個專案在另一台電腦(或重灌後)重新建起來。
+把整個專案在另一台電腦(或重灌後)重新建起來。要跑起來需要三個部分:MySQL 資料庫、Python 後端、Flutter App。
 
-> **重點:用 `git clone`,不要複製整個資料夾。**
-> 資料夾裡有大量 build 產物(`build/`、`.dart_tool/`、各平台的 generated 檔)不該搬,
-> 而且有幾個檔案是**故意不進 git 的**(見下方「clone 不會帶過去的檔案」)——複製資料夾
-> 會把本機密碼也一起搬走,clone 則乾淨。
-
----
+> **用 `git clone`,不要複製整個資料夾。** 資料夾裡有大量 build 產物,還有幾個故意不進 git 的檔案(含密碼,見最後一節),複製資料夾會把它們一起帶走。
 
 ## 需要安裝的工具
 
-| 工具 | 用途 | 備註 |
-|---|---|---|
-| Git | 取得程式碼 | |
-| [Flutter SDK](https://docs.flutter.dev/get-started/install) | 跑 App | 需含 Dart `^3.12.2`(裝最新穩定版即可) |
-| [Node.js](https://nodejs.org/) | 跑資料產生腳本 | **不需 `npm install`**,腳本只用內建模組 |
-| MySQL Server 8.0 | 後端資料庫 | **選用**——只有要測 Allen 後端整合時才需要 |
-| VS Code + Claude Code 擴充 | 開發環境 | |
+| 工具 | 用途 |
+|---|---|
+| Git | 取得程式碼 |
+| MySQL Server 8.0 | 資料庫 |
+| Python 3.9 以上(Wilson 用 Anaconda) | 後端 |
+| [Flutter SDK](https://docs.flutter.dev/get-started/install)(Dart `^3.12.2`,裝最新穩定版即可) | App |
+| Chrome | 在電腦上測 App |
 
-App 本體只依賴 `provider` 與 `cupertino_icons` 兩個套件(見 `pubspec.yaml`),`flutter pub get`
-會自動下載。
-
----
-
-## 步驟一:取得程式碼
+## 1. 取得程式碼
 
 ```bash
 git clone https://github.com/Wilson330/credit_card_recommendation.git
@@ -32,106 +22,66 @@ cd credit_card_recommendation
 git checkout feat/reward-data-schema
 ```
 
----
+以下指令都在專案根目錄執行。
 
-## 步驟二:跑起 Flutter App(必要)
+## 2. 資料庫
 
-```bash
+照 [db/README.md](db/README.md) 的「新機器建資料庫」:建立 `db/my.local.cnf`(填 MySQL root 密碼),執行 `db/schema.sql` 與 `db/seed.sql`。
+
+## 3. 後端
+
+```powershell
+pip install -r backend/requirements.txt
+python -m pytest backend/tests -q      # 應該全部通過,代表資料庫與後端都正常
+python -m backend.app                  # 跑在 http://127.0.0.1:5000,這個視窗保持開著
+```
+
+Windows 用 Anaconda 時,要在 Anaconda Prompt 或 activate 過的環境(提示字元前有 `(base)`)執行,不然連 MySQL 會出現 SSL 錯誤。更多說明見 [backend/README.md](backend/README.md)。
+
+## 4. Flutter App
+
+另開一個視窗:
+
+```powershell
 flutter pub get
-flutter doctor    # 檢查工具鏈缺什麼,照它的指示補(Android SDK、模擬器等)
-flutter test      # 應該全部通過 → 代表邏輯層 OK
-flutter run       # 在模擬器/實機上跑
+flutter test                 # 應該全部通過
+flutter run -d chrome        # 用 Chrome 開 App
 ```
 
-這一版 App 讀的是**打包在 App 內的 JSON**(`lib/data/*.json`),不連資料庫也能完整運作。
-所以只想繼續開發 App 的話,做到這裡就夠了。
+App 預設連 `http://127.0.0.1:5000`。後端在別台機器時:
 
----
-
-## 步驟三:MySQL(選用,後端整合才需要)
-
-資料庫內容是本機的,repo 只有「怎麼建」的腳本。完整說明在 [scripts/mysql/README.md](scripts/mysql/README.md),摘要:
-
-```bash
-# 1. 從範本建自己的連線設定,填入本機 MySQL root 密碼
-cp scripts/mysql/my.local.cnf.example scripts/mysql/my.local.cnf
-#    然後編輯 my.local.cnf 把 password= 換成真的密碼
-
-# 2. 建資料庫與資料表,再灌入資料(路徑依你的 MySQL 安裝位置調整)
-MYSQL="/c/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe"
-"$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/schema.sql
-"$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/schema_v2.sql
-"$MYSQL" --defaults-extra-file=scripts/mysql/my.local.cnf < scripts/mysql/seed_card_rewards.sql
+```powershell
+flutter run -d chrome --dart-define=API_BASE_URL=http://192.168.x.x:5000
 ```
 
-新版資料表(`schema_v2.sql`,設計見 [docs/DB_DESIGN.md](docs/DB_DESIGN.md))的資料用 Python 灌入
-(在 activate 過的 conda / Python 環境中執行):
+此時後端要用 `python -m backend.app --host 0.0.0.0` 啟動。Android 模擬器會自動改連 `10.0.2.2`(模擬器裡指向電腦本身的位址)。
 
-```bash
-pip install -r scripts/db/requirements.txt
-python scripts/db/migrate_v2.py
+第一次開 App 先註冊帳號,再到「設定我的卡片」加卡,就可以搜尋店家。
+
+**用真的後端測 App 的 API 呼叫**(後端要開著):
+
+```powershell
+$env:API_INTEGRATION=1; flutter test test/api_integration_test.dart
 ```
 
-`seed_merchants.sql` 已停用,不要執行。
-
-> Windows PowerShell 的呼叫語法不同:變數用 `$MYSQL = "C:\..."`、執行含空白路徑的程式要在前面加 `&`。
-> 忘記 root 密碼時,可用 `scripts/mysql/reset-root-password.ps1`(需系統管理員 PowerShell)。
-
-建立的資料表:
-
-| 資料表 | 內容 |
-|---|---|
-| `card_rewards` | Allen 的扁平回饋表(`app.py` 使用中,v2 遷移後移除) |
-| `users` | 帳號(擱置中,空表) |
-| `cards`、`card_schemes`、`scheme_*` | v2:卡片與回饋方案 |
-| `merchants`、`merchant_aliases`、`merchant_source_names` | v2:店家目錄 |
-| `user_cards`、`user_card_conditions` | v2:使用者卡片(空表,登入擱置中) |
-
----
-
-## clone 不會帶過去的檔案(要另外處理)
-
-這些都在 `.gitignore` 內,clone 後不會出現:
+## clone 不會帶過去的檔案
 
 | 檔案 | 怎麼補 |
 |---|---|
-| `scripts/mysql/my.local.cnf` | 從 `.example` 複製並填密碼(見步驟三)。密碼只留本機是刻意設計。 |
-| `app.py` / `ContentView.swift` | Allen 的後端與 iOS UI 原始檔,**不在本 repo**。要跑後端/Swift 才需要,跟 Allen 拿。純跑 Flutter App 不需要。 |
-| `swift_port.zip` | 當初打包給 Allen 的壓縮檔。需要的話從 `swift_port/` 重新壓即可。 |
-| `build/`、`.dart_tool/`、各平台 generated 檔 | 不用管,`flutter pub get` / `flutter run` 會自動重建。 |
+| `db/my.local.cnf` | 從 `db/my.local.cnf.example` 複製並填密碼 |
+| `backend/.secret_key` | 後端第一次啟動時自動產生。換了這個檔案,之前發出的登入 token 都會失效,重新登入即可 |
+| `app.py`、`ContentView.swift` | Allen 原本的後端與 iOS 畫面,不在本 repo,這個專案用不到 |
+| `build/`、`.dart_tool/` | `flutter pub get`、`flutter run` 會自動產生 |
 
----
-
-## 資料重建流程(改資料時才需要)
-
-`lib/data/*.json` 與 `scripts/mysql/seed_*.sql` 都是**產生出來的**,來源是 `lib/data/allen/` 裡
-Allen 的爬蟲匯出檔。Allen 出新版資料時的重建鏈:
+## 專案結構
 
 ```
-Allen 匯出檔 (lib/data/allen/*.json)
-  │
-  ├─ node scripts/convert_allen_rewards.js   → lib/data/{cube,jiho}_reward_rules.json  (回饋規則)
-  │
-  ├─ node scripts/build_merchants.js         → lib/data/merchants.json                 (商家目錄)
-  │
-  ├─ node scripts/mysql/build_seed_sql.js    → scripts/mysql/seed_card_rewards.sql
-  └─ node scripts/mysql/build_merchants_sql.js → scripts/mysql/seed_merchants.sql
-```
-
-產完 SQL 後,重跑步驟三的灌入指令即可更新資料庫。詳細規格見 `lib/data/SCHEMA.md`。
-
----
-
-## 專案結構速覽
-
-```
-lib/
-  data/            打包進 App 的 JSON + SCHEMA.md（資料規格）+ allen/（原始爬蟲檔）
-  models/          資料模型(卡片、回饋規則、商家)
-  services/        核心邏輯:MerchantResolver / RuleMatcher / evaluators / orchestrator
-  pages/           Cupertino(iOS 風)UI
-scripts/           資料產生腳本(Node)
-  mysql/           MySQL schema、seed、連線與重設工具
-swift_port/        邏輯層的 Swift 移植(給 Allen 的 SwiftUI App 用)
-test/              Dart 測試
+backend/     Python 後端:API、推薦計算、爬蟲匯入、卡片規則 cards.yaml
+db/          資料庫:建表檔、資料、人工修改紀錄、爬蟲匯出檔
+docs/        設計文件 DB_DESIGN.md、給 Allen 的交接說明
+lib/         Flutter App
+  api/       呼叫後端 API
+  state/     登入狀態、我的卡片、搜尋紀錄
+  pages/     畫面(Cupertino / iOS 風格)
+test/        Flutter 測試(用假後端;api_integration_test 連真的後端)
 ```

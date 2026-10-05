@@ -8,7 +8,7 @@ FULLWIDTH_SPACE = '　'
 def normalize(text):
     """與資料庫產生欄位相同的正規化:去頭尾空白、轉小寫、移除半形與全形空白。
 
-    改這裡就要同步改 schema_v3.sql 中 normalized_name / normalized_alias 的定義,
+    改這裡就要同步改 db/schema.sql 中 normalized_name / normalized_alias 的定義,
     否則使用者輸入與資料庫比對的結果會不一致。
     """
     return text.strip().lower().replace(' ', '').replace(FULLWIDTH_SPACE, '')

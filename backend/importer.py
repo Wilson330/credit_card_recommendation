@@ -1,8 +1,8 @@
 """爬蟲資料匯入(docs/DB_DESIGN.md 第 8 節)。
 
 用法(在專案根目錄):
-  python -m backend.importer lib/data/allen/card_rewards_export_0908.json --dry-run   只看報告
-  python -m backend.importer lib/data/allen/card_rewards_export_0908.json             正式匯入
+  python -m backend.importer db/crawl/card_rewards_export_0908.json --dry-run   只看報告
+  python -m backend.importer db/crawl/card_rewards_export_0908.json             正式匯入
 
 處理報告中「對不到店家的爬蟲店名」:
   python -m backend.importer --map "7-ELEVEN 實體門市" 12                        對到既有店家 #12
@@ -213,7 +213,7 @@ def apply_import(conn, plan):
 # 對不到的店名:配對建議
 # ---------------------------------------------------------------------------
 
-# 依店名猜分類(沿用 scripts/build_merchants.js 的名稱樣式,只做建議)
+# 依店名猜分類(只做建議)
 _CATEGORY_PATTERNS = [
     (re.compile(r'(主題樂園|遊樂世界|文化村|科學園區|夢想樂園|動物園|水族|樂園$)'), 'theme_park'),
     (re.compile(r'(大飯店|飯店|酒店|度假|渡假|觀光|溫泉|旅館|Hotel|INN)', re.I), 'hotel'),

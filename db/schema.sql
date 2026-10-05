@@ -1,11 +1,9 @@
 -- credit_card_app 資料表 v3(對應 docs/DB_DESIGN.md v0.4 第 4 節)
 --
 -- 8 張表:店家(3)、爬蟲回饋資料(3)、使用者(2)。卡片規則不在資料庫,在 backend/cards.yaml。
--- card_rewards(Allen 的舊扁平表)不在這裡,仍由 schema.sql 建立,app.py 換到新後端後移除。
 --
--- 新機器:
---   mysql --defaults-extra-file=scripts/mysql/my.local.cnf -e "source scripts/mysql/schema_v3.sql"
--- 已有 v2 資料表的機器:用 python -m backend.migrate_v3,它會先移除 v2 的表再執行本檔。
+-- 新機器(見 db/README.md):先執行本檔建表,再執行 db/seed.sql 灌入店家與方案資料。
+-- 本檔用 CREATE TABLE,資料表已存在時會失敗,不會覆蓋既有資料。
 
 CREATE DATABASE IF NOT EXISTS credit_card_app
   CHARACTER SET utf8mb4

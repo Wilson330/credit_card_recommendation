@@ -12,15 +12,9 @@ pip install -r backend/requirements.txt
 
 ## 2. 資料庫
 
-Wilson 的開發機已經遷移成 v3 結構並灌好資料(438 家店、13 個方案)。要從頭重建時:
+建資料庫的步驟見 [db/README.md](../db/README.md)(建表 + 灌入店家與方案資料,438 家店、13 個方案)。
 
-```powershell
-python -m backend.migrate_v3 --yes
-```
-
-會移除並重建店家、方案、使用者卡片的資料表(`users` 保留,使用者的卡片設定會轉換後寫回)。**執行前先備份。**
-
-連線設定讀 `scripts/mysql/my.local.cnf`;也可以用環境變數 `DB_HOST`、`DB_USER`、`DB_PASSWORD`、`DB_NAME` 覆蓋。
+連線設定讀 `db/my.local.cnf`;也可以用環境變數 `DB_HOST`、`DB_PORT`、`DB_USER`、`DB_PASSWORD`、`DB_NAME` 覆蓋。
 
 ## 3. 啟動後端
 
@@ -76,8 +70,8 @@ python -m pytest backend/tests -q
 ## 6. 匯入新的爬蟲資料
 
 ```powershell
-python -m backend.importer lib/data/allen/新的匯出檔.json --dry-run   # 先看報告
-python -m backend.importer lib/data/allen/新的匯出檔.json             # 正式匯入
+python -m backend.importer db/crawl/新的匯出檔.json --dry-run   # 先看報告
+python -m backend.importer db/crawl/新的匯出檔.json             # 正式匯入
 ```
 
 報告中「對不到店家的爬蟲店名」會附上建議,用以下指令處理後再重跑:
@@ -125,6 +119,5 @@ config 範例:
 | `auth.py` | 註冊、登入、token |
 | `cardconfig.py` | 卡片設定的檢查 |
 | `importer.py` | 爬蟲匯入 |
-| `migrate_v3.py` | 一次性遷移(v2 → v3) |
 | `try_api.py` | 本機手動試用工具 |
 | `.secret_key` | token 簽名密鑰,第一次啟動自動產生,不進版控 |
