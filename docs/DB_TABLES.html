@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>credit_card_app 資料表</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<style>
+/* Layout: same system as WORKFLOW.html. One reading column; each table gets a spec block (purpose, columns, sample rows, reasons); wide tables scroll in their own box. */
+:root {
+  --paper: #f3f4f1;
+  --surface: #ffffff;
+  --ink: #1b2027;
+  --muted: #5a636d;
+  --rule: #d5dad3;
+  --rule-strong: #98a198;
+  --accent: #2b4c9e;
+  --accent-soft: #e5eaf6;
+  --open: #a3501b;
+  --open-soft: #f7e9de;
+  --merchant: #17756a;
+  --merchant-soft: #e1f1ee;
+  --scheme: #946512;
+  --scheme-soft: #f6eedd;
+  --user: #b03a3a;
+  --user-soft: #f8e6e6;
+
+  --font-display: "Noto Serif TC", "Songti TC", serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2.125rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #12161b;
+    --surface: #1a2027;
+    --ink: #e4e7eb;
+    --muted: #9aa3ad;
+    --rule: #2c343d;
+    --rule-strong: #56616c;
+    --accent: #93abeb;
+    --accent-soft: #1f2a46;
+    --open: #e59c66;
+    --open-soft: #3a2618;
+    --merchant: #55c2b2;
+    --merchant-soft: #16302d;
+    --scheme: #d9aa52;
+    --scheme-soft: #33290f;
+    --user: #e47e7e;
+    --user-soft: #3a1d1d;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #12161b;
+  --surface: #1a2027;
+  --ink: #e4e7eb;
+  --muted: #9aa3ad;
+  --rule: #2c343d;
+  --rule-strong: #56616c;
+  --accent: #93abeb;
+  --accent-soft: #1f2a46;
+  --open: #e59c66;
+  --open-soft: #3a2618;
+  --merchant: #55c2b2;
+  --merchant-soft: #16302d;
+  --scheme: #d9aa52;
+  --scheme-soft: #33290f;
+  --user: #e47e7e;
+  --user-soft: #3a1d1d;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.75;
+  padding-inline: 20px;
+  padding-block: 0 64px;
+}
+.wrap { max-width: 60rem; margin-inline: auto; }
+.prose { max-width: 46rem; }
+
+header.top {
+  padding-block: 48px 28px;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 14px;
+}
+.eyebrow { font-size: var(--step--1); color: var(--muted); letter-spacing: 0.08em; }
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: 1.25;
+  margin: 0;
+  text-wrap: balance;
+}
+h1 .mono { font-family: var(--font-mono); font-size: 0.85em; font-weight: 700; }
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.35;
+  margin: 0;
+  text-wrap: balance;
+}
+h3 { font-size: var(--step-1); margin: 0; text-wrap: balance; }
+h4 { font-size: var(--step-0); margin: 0; }
+p { margin: 0; }
+code, .mono { font-family: var(--font-mono); font-size: 0.88em; }
+code { background: var(--accent-soft); padding: 0.05em 0.35em; border-radius: 4px; overflow-wrap: anywhere; }
+.lede { color: var(--muted); max-width: 46rem; }
+
+/* Row counts strip */
+.counts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.counts a {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+  margin: -1px 0 0 -1px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.counts a:hover .t { color: var(--accent); }
+.counts a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.counts .t { font-family: var(--font-mono); font-size: var(--step--1); font-weight: 500; overflow-wrap: anywhere; }
+@media (max-width: 640px) { .counts { grid-template-columns: repeat(2, 1fr); } }
+.counts .n { font-family: var(--font-mono); font-size: var(--step-1); font-variant-numeric: tabular-nums; }
+.counts .g { font-size: 0.75rem; letter-spacing: 0.04em; }
+
+.g-merchant { color: var(--merchant); }
+.g-scheme { color: var(--scheme); }
+.g-user { color: var(--user); }
+
+section {
+  padding-block: 44px;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 18px;
+}
+section:last-of-type { border-bottom: 0; }
+section > * { min-width: 0; }
+
+/* Group divider: the three families of tables */
+.group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.group-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.group-tag.merchant { background: var(--merchant-soft); color: var(--merchant); }
+.group-tag.scheme { background: var(--scheme-soft); color: var(--scheme); }
+.group-tag.user { background: var(--user-soft); color: var(--user); }
+
+/* One table's spec */
+.spec { display: grid; gap: 16px; padding-top: 8px; }
+.spec + .spec { border-top: 1px dashed var(--rule); padding-top: 32px; }
+.spec-head { display: grid; gap: 6px; }
+.spec-head h3 { font-family: var(--font-mono); font-size: var(--step-1); font-weight: 700; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.spec-head .rows { font-family: var(--font-body); font-size: var(--step--1); font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+.spec-head p { max-width: 46rem; }
+.label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; }
+
+/* Tables */
+.tbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; }
+th, td { text-align: left; padding: 9px 14px; border-top: 1px solid var(--rule); vertical-align: top; }
+thead th { border-top: 0; font-size: var(--step--1); color: var(--muted); font-weight: 500; letter-spacing: 0.04em; background: var(--paper); white-space: nowrap; }
+td.col { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 500; white-space: nowrap; }
+td.type { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); white-space: nowrap; }
+table.cols td:last-child { min-width: 18rem; }
+table.rows td { font-family: var(--font-mono); font-size: 0.8125rem; white-space: nowrap; }
+table.rows td.txt { font-family: var(--font-body); font-size: 0.875rem; }
+.key {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: 0.1em;
+  border: 1px solid var(--rule-strong);
+  color: var(--muted);
+}
+.key.pk { border-color: var(--accent); color: var(--accent); }
+.key.fk { border-style: dashed; }
+.null { color: var(--muted); font-style: italic; }
+tr.hit td { background: var(--accent-soft); }
+
+.why { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 46rem; }
+.why li { display: grid; grid-template-columns: 1.1rem 1fr; gap: 8px; }
+.why li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 0.7em; justify-self: center; }
+
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 14px 16px;
+  border-radius: 0 8px 8px 0;
+  max-width: 46rem;
+  display: grid;
+  gap: 6px;
+}
+.callout.warn { border-left-color: var(--open); background: var(--open-soft); }
+
+/* Principles */
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.principle {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  min-width: 0;
+}
+.principle h3 { font-size: var(--step-0); }
+.principle p { font-size: 0.9375rem; }
+.principle .ex { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); overflow-wrap: anywhere; }
+@media (max-width: 760px) { .principles { grid-template-columns: 1fr; } }
+
+/* Diagram */
+figure { margin: 0; display: grid; gap: 10px; }
+.diagram { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 660px; height: auto; color: var(--ink); }
+figcaption { font-size: var(--step--1); color: var(--muted); max-width: 46rem; }
+svg text { font-family: var(--font-body); }
+svg .mn { font-family: var(--font-mono); }
+svg .bx-m { fill: var(--merchant-soft); stroke: var(--merchant); stroke-width: 1.3; }
+svg .bx-s { fill: var(--scheme-soft); stroke: var(--scheme); stroke-width: 1.3; }
+svg .bx-u { fill: var(--user-soft); stroke: var(--user); stroke-width: 1.3; }
+svg .bx-y { fill: var(--surface); stroke: var(--accent); stroke-width: 1.3; stroke-dasharray: 5 4; }
+svg .ln { stroke: var(--muted); stroke-width: 1.4; fill: none; }
+svg .ln-d { stroke: var(--accent); stroke-width: 1.3; fill: none; stroke-dasharray: 4 4; }
+svg .ah { fill: var(--muted); }
+svg .ah-d { fill: var(--accent); }
+svg .tt { fill: var(--ink); font-size: 13.5px; font-weight: 700; }
+svg .tf { fill: var(--muted); font-size: 11px; }
+svg .tg { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; }
+svg .tl { fill: var(--muted); font-size: 11px; }
+svg .tla { fill: var(--accent); font-size: 11px; }
+svg .gm { fill: var(--merchant); }
+svg .gs { fill: var(--scheme); }
+svg .gu { fill: var(--user); }
+
+pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  overflow-x: auto;
+}
+pre .c { color: var(--muted); }
+
+/* Query walkthrough */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; counter-reset: st; }
+.steps > li { display: grid; grid-template-columns: 2rem 1fr; gap: 12px; counter-increment: st; }
+.steps > li::before { content: counter(st); font-family: var(--font-mono); color: var(--accent); font-size: var(--step-1); line-height: 1.5; font-weight: 500; }
+.steps > li > div { display: grid; gap: 10px; min-width: 0; }
+.uses { display: flex; flex-wrap: wrap; gap: 6px; }
+.uses code { font-size: 0.8125rem; }
+
+nav.toc { padding-block: 20px; border-bottom: 1px solid var(--rule); }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 4px 24px; font-size: var(--step--1); }
+nav.toc a { color: var(--ink); text-decoration: none; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+footer { padding-block: 28px 0; font-size: var(--step--1); color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">MySQL 8.0 · utf8mb4_unicode_ci · 建表檔 db/schema.sql · 2026-10-08</div>
+  <h1><span class="mono">credit_card_app</span> 資料表</h1>
+  <p class="lede">8 張表各欄位的意義、為什麼這樣設計,以及一次搜尋和推薦會用到哪些表。表裡的範例資料取自目前的資料庫,使用者兩張表的範例是虛構的。完整設計見 <code>docs/DB_DESIGN.md</code> 第 4 節。</p>
+  <nav class="counts" aria-label="各表筆數">
+    <a href="#merchants"><span class="g g-merchant">店家</span><span class="t">merchants</span><span class="n">438</span></a>
+    <a href="#merchant_aliases"><span class="g g-merchant">店家</span><span class="t">merchant_aliases</span><span class="n">103</span></a>
+    <a href="#merchant_source_names"><span class="g g-merchant">店家</span><span class="t">merchant_source_names</span><span class="n">376</span></a>
+    <a href="#card_schemes"><span class="g g-scheme">回饋資料</span><span class="t">card_schemes</span><span class="n">13</span></a>
+    <a href="#scheme_rates"><span class="g g-scheme">回饋資料</span><span class="t">scheme_rates</span><span class="n">31</span></a>
+    <a href="#scheme_merchants"><span class="g g-scheme">回饋資料</span><span class="t">scheme_merchants</span><span class="n">418</span></a>
+    <a href="#users"><span class="g g-user">使用者</span><span class="t">users</span><span class="n">—</span></a>
+    <a href="#user_cards"><span class="g g-user">使用者</span><span class="t">user_cards</span><span class="n">—</span></a>
+  </nav>
+  <p style="font-size: var(--step--1); color: var(--muted);">筆數為 2026-10-08 的資料。前 6 張表的資料在 <code>db/seed.sql</code>;使用者的兩張表依註冊人數而定,不在 seed 裡。</p>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <ol>
+    <li><a href="#overview">全貌與關聯</a></li>
+    <li><a href="#principles">三個共通原則</a></li>
+    <li><a href="#g-merchant">店家:3 張表</a></li>
+    <li><a href="#g-scheme">爬蟲回饋資料:3 張表</a></li>
+    <li><a href="#g-user">使用者:2 張表</a></li>
+    <li><a href="#flow">一次查詢用到哪些表</a></li>
+    <li><a href="#import">匯入時寫哪些表</a></li>
+    <li><a href="#outside">不在資料庫裡的東西</a></li>
+  </ol>
+</nav>
+
+<!-- Overview -->
+<section id="overview">
+  <h2>全貌與關聯</h2>
+  <p class="prose">資料庫只存兩種東西:<b>爬蟲來的資料</b>(店家、方案、回饋率、點名店家)和<b>使用者的資料</b>(帳號、持有的卡)。卡片規則,例如誰要疊加、哪個方案涵蓋所有餐廳、一般消費幾 %,都不在資料庫,寫在 <code>backend/cards.yaml</code>。</p>
+  <figure>
+    <div class="diagram">
+      <svg viewBox="0 0 760 420" role="img" aria-label="店家三張表、爬蟲回饋資料三張表、使用者兩張表的關聯。merchant_aliases 與 merchant_source_names 指向 merchants;scheme_rates 與 scheme_merchants 指向 card_schemes,scheme_merchants 另指向 merchants;user_cards 指向 users。card_schemes 與 user_cards 的 card_id 對應 cards.yaml,沒有外鍵。">
+        <defs>
+          <marker id="fk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+          <marker id="yk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-d"/></marker>
+        </defs>
+
+        <text class="tg gm" x="30" y="26">店家</text>
+        <text class="tg gs" x="290" y="26">爬蟲回饋資料</text>
+        <text class="tg gu" x="550" y="26">使用者</text>
+
+        <!-- merchants group -->
+        <rect class="bx-m" x="30" y="40" width="200" height="96" rx="8"/>
+        <text class="tt mn" x="44" y="64">merchants</text>
+        <text class="tf mn" x="44" y="86">merchant_id  PK</text>
+        <text class="tf mn" x="44" y="104">name · normalized_name</text>
+        <text class="tf mn" x="44" y="122">primary_category · country</text>
+
+        <rect class="bx-m" x="30" y="190" width="200" height="72" rx="8"/>
+        <text class="tt mn" x="44" y="214">merchant_aliases</text>
+        <text class="tf mn" x="44" y="236">merchant_id  FK</text>
+        <text class="tf mn" x="44" y="252">alias · normalized_alias</text>
+
+        <rect class="bx-m" x="30" y="316" width="200" height="72" rx="8"/>
+        <text class="tt mn" x="44" y="340">merchant_source_names</text>
+        <text class="tf mn" x="44" y="362">source_name  PK</text>
+        <text class="tf mn" x="44" y="378">merchant_id  FK</text>
+
+        <line class="ln" x1="90" y1="190" x2="90" y2="139" marker-end="url(#fk)"/>
+        <polyline class="ln" points="44,316 44,290 18,290 18,120 27,120" marker-end="url(#fk)"/>
+
+        <!-- scheme group -->
+        <rect class="bx-s" x="290" y="40" width="200" height="96" rx="8"/>
+        <text class="tt mn" x="304" y="64">card_schemes</text>
+        <text class="tf mn" x="304" y="86">scheme_id  PK</text>
+        <text class="tf mn" x="304" y="104">card_id</text>
+        <text class="tf mn" x="304" y="122">scheme_name</text>
+
+        <rect class="bx-s" x="290" y="190" width="200" height="72" rx="8"/>
+        <text class="tt mn" x="304" y="214">scheme_rates</text>
+        <text class="tf mn" x="304" y="236">scheme_id FK · variant</text>
+        <text class="tf mn" x="304" y="252">reward_rate</text>
+
+        <rect class="bx-s" x="290" y="316" width="200" height="90" rx="8"/>
+        <text class="tt mn" x="304" y="340">scheme_merchants</text>
+        <text class="tf mn" x="304" y="362">scheme_id  FK</text>
+        <text class="tf mn" x="304" y="378">merchant_id  FK</text>
+        <text class="tf mn" x="304" y="394">rate_override · notes</text>
+
+        <line class="ln" x1="390" y1="190" x2="390" y2="139" marker-end="url(#fk)"/>
+        <polyline class="ln" points="470,316 470,290 500,290 500,110 493,110" marker-end="url(#fk)"/>
+        <polyline class="ln" points="290,352 260,352 260,88 233,88" marker-end="url(#fk)"/>
+        <text class="tl" x="248" y="214" text-anchor="middle" transform="rotate(-90 248 214)">點名的店</text>
+
+        <!-- user group -->
+        <rect class="bx-u" x="550" y="40" width="190" height="96" rx="8"/>
+        <text class="tt mn" x="564" y="64">users</text>
+        <text class="tf mn" x="564" y="86">id  PK</text>
+        <text class="tf mn" x="564" y="104">email · password_hash</text>
+        <text class="tf mn" x="564" y="122">full_name · birthday</text>
+
+        <rect class="bx-u" x="550" y="190" width="190" height="72" rx="8"/>
+        <text class="tt mn" x="564" y="214">user_cards</text>
+        <text class="tf mn" x="564" y="236">user_id FK · card_id</text>
+        <text class="tf mn" x="564" y="252">config (JSON)</text>
+
+        <line class="ln" x1="645" y1="190" x2="645" y2="139" marker-end="url(#fk)"/>
+
+        <!-- cards.yaml -->
+        <rect class="bx-y" x="550" y="316" width="190" height="72" rx="8"/>
+        <text class="tt mn" x="564" y="342">backend/cards.yaml</text>
+        <text class="tf" x="564" y="362">卡片規則,不是資料表</text>
+        <text class="tf" x="564" y="378">card_id 從這裡來</text>
+
+        <line class="ln-d" x1="645" y1="316" x2="645" y2="265" marker-end="url(#yk)"/>
+        <polyline class="ln-d" points="550,340 520,340 520,98 493,98" marker-end="url(#yk)"/>
+        <text class="tla" x="560" y="300">card_id</text>
+      </svg>
+    </div>
+    <figcaption>實線箭頭是外鍵,指向被參照的表。藍色虛線不是外鍵:<code>card_schemes.card_id</code> 和 <code>user_cards.card_id</code> 對應 <code>cards.yaml</code> 裡的卡片代號(<code>cathay_cube</code>、<code>esun_unicard</code>、<code>ubot_jiho</code>),寫入前由後端檢查。<code>user_cards.config</code> 裡挑選的店家也記 <code>merchant_id</code>,但存在 JSON 裡,同樣沒有外鍵。</figcaption>
+  </figure>
+</section>
+
+<!-- Principles -->
+<section id="principles">
+  <h2>三個共通原則</h2>
+  <div class="principles">
+    <div class="principle">
+      <h3>名稱比對一律先正規化</h3>
+      <p>去頭尾空白、轉小寫、移除半形和全形空白。資料庫用<b>產生欄位</b>自動算出 <code>normalized_name</code>、<code>normalized_alias</code>,後端對使用者輸入套用同一規則,兩邊才比得起來。</p>
+      <p class="ex">"7 - ELEVEN " → "7-eleven"</p>
+    </div>
+    <div class="principle">
+      <h3>定序統一 unicode_ci</h3>
+      <p>所有表都用 <code>utf8mb4_unicode_ci</code>(不分大小寫)。後端連線也要指定同一個定序,否則 MySQL 8 預設的 <code>0900_ai_ci</code> 會跟欄位衝突,出現 <code>Illegal mix of collations</code>。唯一例外是爬蟲原名,用逐字元比對的 <code>utf8mb4_bin</code>。</p>
+    </div>
+    <div class="principle">
+      <h3>編號不變,店家不刪</h3>
+      <p>資料庫是正本,不再清空重灌,所以 <code>merchant_id</code>、<code>scheme_id</code> 分配後就固定。方案和使用者挑的店都記編號,店名可以放心改。店家停業時把 <code>active</code> 設 0,不刪除,舊的編號永遠有效。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Merchants group -->
+<section id="g-merchant">
+  <div class="group-head"><span class="group-tag merchant">店家</span><h2>店家:3 張表</h2></div>
+  <p class="prose">一家店只有一筆 <code>merchants</code>。它可能有好幾種叫法,分兩張表存:<b>使用者會打的叫法</b>放 <code>merchant_aliases</code>,比對時寬鬆、要的是找得到;<b>爬蟲寫的原始店名</b>放 <code>merchant_source_names</code>,比對時一字不差、要的是不會對錯。</p>
+
+  <div class="spec" id="merchants">
+    <div class="spec-head">
+      <h3>merchants <span class="rows">438 家店</span></h3>
+      <p>店家目錄。搜尋的對象,也是方案點名和推薦計算的對象。</p>
+    </div>
+    <div class="tbl">
+      <table class="cols">
+        <thead><tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr></thead>
+        <tbody>
+          <tr><td class="col">merchant_id<span class="key pk">PK</span></td><td class="type">INT UNSIGNED 自動遞增</td><td>店家編號。其他表和 <code>user_cards.config</code> 都用它指向店家。</td></tr>
+          <tr><td class="col">name<span class="key">UNIQUE</span></td><td class="type">VARCHAR(255)</td><td>顯示名稱,也是搜尋比對的主名稱。可以隨時改,不影響回饋計算。不能重複,所以同品牌在不同國家要用名字區分,例如「日本 7-ELEVEN」。</td></tr>
+          <tr><td class="col">normalized_name<span class="key">INDEX</span></td><td class="type">產生欄位 STORED</td><td>由 <code>name</code> 自動算出,搜尋用。不能手動寫入,改 <code>name</code> 時自動更新。</td></tr>
+          <tr><td class="col">primary_category<span class="key">INDEX</span></td><td class="type">VARCHAR(50)</td><td>主分類,目前 15 種。<b>會影響回饋</b>:樂饗購涵蓋國內所有 <code>dining</code>,趣旅行涵蓋 <code>hotel</code>、<code>travel</code>。分錯就會拿到不該拿的回饋。</td></tr>
+          <tr><td class="col">country</td><td class="type">VARCHAR(10)</td><td><code>TW</code>、<code>JP</code>,或在很多國家都有據點的 <code>global</code>。<b>不是 TW 就算國外</b>,決定海外一般消費和趣旅行涵蓋。</td></tr>
+          <tr><td class="col">active</td><td class="type">TINYINT(1)</td><td>1 = 上架,0 = 停用。停用的店搜尋不到,但編號保留。</td></tr>
+          <tr><td class="col">created_at / updated_at</td><td class="type">TIMESTAMP</td><td>建立和最後修改時間,自動維護。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="label">範例資料</span>
+    <div class="tbl">
+      <table class="rows">
+        <thead><tr><th scope="col">merchant_id</th><th scope="col">name</th><th scope="col">normalized_name</th><th scope="col">primary_category</th><th scope="col">country</th></tr></thead>
+        <tbody>
+          <tr><td class="num">2</td><td class="txt">日本 7-ELEVEN</td><td>日本7-eleven</td><td>convenience_store</td><td>JP</td></tr>
+          <tr><td class="num">3</td><td class="txt">7-ELEVEN (7-11) 實體門市</td><td>7-eleven(7-11)實體門市</td><td>convenience_store</td><td>TW</td></tr>
+          <tr><td class="num">54</td><td class="txt">台北101</td><td>台北101</td><td>department_store</td><td>TW</td></tr>
+          <tr><td class="num">80</td><td class="txt">全球迪士尼飯店</td><td>全球迪士尼飯店</td><td>hotel</td><td>global</td></tr>
+          <tr><td class="num">389</td><td class="txt">鼎泰豐</td><td>鼎泰豐</td><td>dining</td><td>TW</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="why">
+      <li><span>分類分布:<code>dining</code> 158、<code>travel</code> 55、<code>retail</code> 54、<code>department_store</code> 40、<code>digital</code> 32、<code>hotel</code> 27,其餘 9 種共 72 家。國別:TW 422、JP 14、global 2。</span></li>
+      <li><span>日本的店名稱前加「日本」,而且搜尋時命中程度相同的話台灣的店排前面。打「7-ELEVEN」會先出現台灣門市。</span></li>
+    </ul>
+  </div>
+
+  <div class="spec" id="merchant_aliases">
+    <div class="spec-head">
+      <h3>merchant_aliases <span class="rows">103 個別名</span></h3>
+      <p>使用者會打、但不是正式店名的叫法。只用在搜尋。</p>
+    </div>
+    <div class="tbl">
+      <table class="cols">
+        <thead><tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr></thead>
+        <tbody>
+          <tr><td class="col">merchant_id<span class="key pk">PK</span><span class="key fk">FK</span></td><td class="type">INT UNSIGNED</td><td>這個別名屬於哪家店。</td></tr>
+          <tr><td class="col">alias<span class="key pk">PK</span></td><td class="type">VARCHAR(100)</td><td>別名原文,例如「小七」「KFC」「55688」。主鍵是(店家, 別名)。</td></tr>
+          <tr><td class="col">normalized_alias<span class="key">INDEX</span></td><td class="type">產生欄位 STORED</td><td>由 <code>alias</code> 自動算出,搜尋用。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="label">範例資料</span>
+    <div class="tbl">
+      <table class="rows">
+        <thead><tr><th scope="col">merchant_id</th><th scope="col">店家</th><th scope="col">alias</th><th scope="col">normalized_alias</th></tr></thead>
+        <tbody>
+          <tr><td class="num">3</td><td class="txt">7-ELEVEN (7-11) 實體門市</td><td class="txt">小七</td><td>小七</td></tr>
+          <tr><td class="num">3</td><td class="txt">7-ELEVEN (7-11) 實體門市</td><td class="txt">統一超商</td><td>統一超商</td></tr>
+          <tr><td class="num">78</td><td class="txt">全家便利商店 實體門市</td><td>FamilyMart</td><td>familymart</td></tr>
+          <tr><td class="num">68</td><td class="txt">台灣大車隊</td><td>55688</td><td>55688</td></tr>
+          <tr><td class="num">112</td><td class="txt">東京迪士尼</td><td>Tokyo Disneyland</td><td>tokyodisneyland</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="why">
+      <li><span>透過別名找到的店,建議清單顯示的仍是店家的 <code>name</code>:打「55688」出現的是「台灣大車隊」。</span></li>
+      <li><span>一個別名不能同時指向兩家店,也不能等於另一家店的 <code>name</code>,否則搜尋會對到錯的店。這是跨表規則,資料庫擋不了,由匯入與修改時檢查。</span></li>
+    </ul>
+  </div>
+
+  <div class="spec" id="merchant_source_names">
+    <div class="spec-head">
+      <h3>merchant_source_names <span class="rows">376 個爬蟲原名</span></h3>
+      <p>爬蟲匯出檔裡的店名 → 店家。只在匯入爬蟲資料時用,搜尋不會查這張表。</p>
+    </div>
+    <div class="tbl">
+      <table class="cols">
+        <thead><tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr></thead>
+        <tbody>
+          <tr><td class="col">source_name<span class="key pk">PK</span></td><td class="type">VARCHAR(255) utf8mb4_bin</td><td>爬蟲的原始字串,一字不改,括號也保留。用逐字元比對的定序,<code>Abc</code> 和 <code>ABC</code> 算不同的名字。</td></tr>
+          <tr><td class="col">merchant_id<span class="key fk">FK</span></td><td class="type">INT UNSIGNED</td><td>對到哪家店。同一家店可以有好幾個原名。</td></tr>
+          <tr><td class="col">created_at</td><td class="type">TIMESTAMP</td><td>第一次對上的時間。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="label">原名範例(有 16 家店各有兩個原名)</span>
+    <div class="tbl">
+      <table class="rows">
+        <thead><tr><th scope="col">merchant_id</th><th scope="col">店家</th><th scope="col">爬蟲原名</th></tr></thead>
+        <tbody>
+          <tr><td class="num">18</td><td class="txt">大阪環球影城</td><td class="txt">大阪環球影城、大阪環球影城(USJ)</td></tr>
+          <tr><td class="num">68</td><td class="txt">台灣大車隊</td><td class="txt">台灣大車隊、55688</td></tr>
+          <tr><td class="num">190</td><td class="txt">新光三越</td><td class="txt">新光三越、新光三越百貨</td></tr>
+          <tr><td class="num">123</td><td class="txt">金子半之助</td><td class="txt">金子半之助(限週一至週四)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="why">
+      <li><span>原名「金子半之助(限週一至週四)」對到店家「金子半之助」,括號裡的限制存進 <code>scheme_merchants.notes</code>,推薦結果會顯示這段說明。</span></li>
+      <li><span><b>為什麼不跟別名放在一起:</b>兩者要的東西相反。搜尋要寬鬆,打錯一點也要找得到;匯入要精確,爬蟲改了一個字就該停下來讓人確認,不能默默對到別家店。</span></li>
+      <li><span><b>待確認的店名不另外存表:</b>「這次爬蟲裡有、這張表還沒有的店名」就是待確認清單,每次匯入當場算出。人確認後寫進這張表,下次就自動對上。</span></li>
+      <li><span>已知限制:對照是全域的,不分卡片。如果將來兩張卡用同一個字串指不同的店,再改成依卡片對照。</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Scheme group -->
+<section id="g-scheme">
+  <div class="group-head"><span class="group-tag scheme">爬蟲回饋資料</span><h2>爬蟲回饋資料:3 張表</h2></div>
+  <p class="prose">一個<b>方案</b>是「某張卡在某類消費給的回饋」,例如 CUBE 的樂饗購、Unicard 的百大特店。資料庫只存爬蟲抓得到的事實:有哪些方案、各等級幾 %、點名了哪些店。方案的規則,例如要不要切換、涵蓋哪些分類、是否疊加一般消費,寫在 <code>cards.yaml</code>。</p>
+
+  <div class="spec" id="card_schemes">
+    <div class="spec-head">
+      <h3>card_schemes <span class="rows">13 個方案</span></h3>
+      <p>只記「這個方案存在」。</p>
+    </div>
+    <div class="tbl">
+      <table class="cols">
+        <thead><tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr></thead>
+        <tbody>
+          <tr><td class="col">scheme_id<span class="key pk">PK</span></td><td class="type">INT UNSIGNED 自動遞增</td><td>方案編號。</td></tr>
+          <tr><td class="col">card_id<span class="key">UNIQUE*</span></td><td class="type">VARCHAR(32)</td><td>卡片代號,對應 <code>cards.yaml</code>。<b>沒有外鍵</b>,因為卡片不在資料庫;只有匯入工具會寫入,寫入前用 <code>cards.yaml</code> 檢查。</td></tr>
+          <tr><td class="col">scheme_name<span class="key">UNIQUE*</span></td><td class="type">VARCHAR(50)</td><td>方案名稱,和爬蟲及 <code>cards.yaml</code> 一致。*(卡片, 方案名稱)不能重複。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="label">全部 13 個方案</span>
+    <div class="tbl">
+      <table class="rows">
+        <thead><tr><th scope="col">card_id</th><th scope="col">方案</th><th scope="col" class="num">點名店家數</th></tr></thead>
+        <tbody>
+          <tr><td>cathay_cube</td><td class="txt">全支付 · 台塑家 · 集精選</td><td class="num">2 · 11 · 14</td></tr>
+          <tr><td>cathay_cube</td><td class="txt">樂饗購 · 玩數位 · 趣旅行</td><td class="num">40 · 24 · 53</td></tr>
+          <tr><td>cathay_cube</td><td class="txt">童樂匯 · 慶生月</td><td class="num">69 · 68</td></tr>
+          <tr><td>esun_unicard</td><td class="txt">百大特店</td><td class="num">69</td></tr>
+          <tr><td>ubot_jiho</td><td class="txt">國內人氣餐廳 · 國內日系特店</td><td class="num">31 · 23</td></tr>
+          <tr><td>ubot_jiho</td><td class="txt">日本熱門商店 · 日本交通卡儲值</td><td class="num">11 · 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="why">
+      <li><span><b>一般消費不是方案,不在這張表。</b>一般消費的回饋率(CUBE 國內 0.3%、海外 2.5% 等)寫在 <code>cards.yaml</code>。爬蟲裡的一般消費列只拿來比對,數字不同時匯入工具會提醒。</span></li>
+    </ul>
+  </div>
+
+  <div class="spec" id="scheme_rates">
+    <div class="spec-head">
+      <h3>scheme_rates <span class="rows">31 筆</span></h3>
+      <p>方案在每個等級或方案下的回饋率。</p>
+    </div>
+    <div class="tbl">
+      <table class="cols">
+        <thead><tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr></thead>
+        <tbody>
+          <tr><td class="col">scheme_id<span class="key pk">PK</span><span class="key fk">FK</span></td><td class="type">INT UNSIGNED</td><td>哪個方案。</td></tr>
+          <tr><td class="col">variant<span class="key pk">PK</span></td><td class="type">VARCHAR(50)</td><td>決定回饋率的那個設定值,各卡意義不同(見下表)。</td></tr>
+          <tr><td class="col">reward_rate</td><td class="type">DECIMAL(5,2)</td><td>回饋率,單位是 %:<code>3.00</code> 代表 3%。用 DECIMAL 不用浮點數,避免 2.8 變成 2.7999…。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="label">variant 的意義,由 cards.yaml 的 rate_by 決定</span>
+    <div class="tbl">
+      <table class="rows">
+        <thead><tr><th scope="col">卡片</th><th scope="col">rate_by</th><th scope="col">variant 的值</th><th scope="col">範例</th></tr></thead>
+        <tbody>
+          <tr><td class="txt">CUBE</td><td>level</td><td class="txt">Level 1 / Level 2 / Level 3</td><td class="txt">樂饗購:2.00 / 3.00 / 3.30</td></tr>
+          <tr><td class="txt">Unicard</td><td>plan</td><td class="txt">簡單選 / 任意選 / UP選</td><td class="txt">百大特店:2.00 / 2.50 / 3.50</td></tr>
+          <tr><td class="txt">吉鶴卡</td><td>null</td><td class="txt"><code>''</code>(空字串)</td><td class="txt">國內日系特店:5.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="why">
+      <li><span><b>為什麼回饋率存在方案上,不是每家店各存一份:</b>0908 資料中 37 個「卡 + 方案 + 等級」組合,有 27 個是底下所有店回饋率相同。少數不同的店用 <code>scheme_merchants.rate_override</code> 記例外就好。</span></li>
+      <li><span>每個等級都明確存一筆,不用 NULL 代表「所有等級」,查詢時不必處理特例。吉鶴卡沒有等級,爬蟲寫的 <code>Standard</code> 在匯入時轉成空字串。</span></li>
+      <li><span>爬蟲數字的意義各卡不同:吉鶴卡的 5% 已含基本 1%,Unicard 百大特店的 2.5% 不含。是否疊加一般消費寫在 <code>cards.yaml</code>,這張表只存爬蟲的原數字。</span></li>
+    </ul>
+  </div>
+
+  <div class="spec" id="scheme_merchants">
+    <div class="spec-head">
+      <h3>scheme_merchants <span class="rows">418 筆</span></h3>
+      <p>方案點名的店家。</p>
+    </div>
+    <div class="tbl">
+      <table class="cols">
+        <thead><tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr></thead>
+        <tbody>
+          <tr><td class="col">scheme_id<span class="key pk">PK</span><span class="key fk">FK</span></td><td class="type">INT UNSIGNED</td><td>哪個方案。</td></tr>
+          <tr><td class="col">merchant_id<span class="key pk">PK</span><span class="key fk">FK</span></td><td class="type">INT UNSIGNED</td><td>點名哪家店。另有索引,用來查「這家店在哪些方案裡」。</td></tr>
+          <tr><td class="col">rate_override</td><td class="type">DECIMAL(5,2) NULL</td><td>NULL = 用方案的回饋率;有值 = 這家店的例外回饋率。目前 27 筆。</td></tr>
+          <tr><td class="col">notes</td><td class="type">JSON NULL</td><td>這家店在這個方案的限制,來自爬蟲店名的括號,例如 <code>["限週一至週四"]</code>。目前 3 筆。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="label">有例外回饋率的例子</span>
+    <div class="tbl">
+      <table class="rows">
+        <thead><tr><th scope="col">方案</th><th scope="col">店家</th><th scope="col" class="num">方案回饋率</th><th scope="col" class="num">rate_override</th></tr></thead>
+        <tbody>
+          <tr><td class="txt">童樂匯</td><td class="txt">10mois台灣官網</td><td class="num">5.00</td><td class="num">10.00</td></tr>
+          <tr><td class="txt">童樂匯</td><td class="txt">台北美國學校</td><td class="num">5.00</td><td class="num">1.00</td></tr>
+          <tr><td class="txt">慶生月</td><td class="txt">新光三越</td><td class="num">10.00</td><td class="num">3.50</td></tr>
+          <tr><td class="txt">樂饗購</td><td class="txt">台北101</td><td class="num">依等級</td><td class="num null">NULL</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="why">
+      <li><span><b>靠分類涵蓋的店不會出現在這裡。</b>鼎泰豐沒有被任何方案點名,但它是國內餐廳,樂饗購涵蓋所有國內餐廳。這種涵蓋規則寫在 <code>cards.yaml</code>,計算時看 <code>merchants.primary_category</code> 和 <code>country</code>。</span></li>
+      <li><span><code>rate_override</code> 不分等級。若將來出現「同一家店在不同等級有不同例外」,匯入工具會回報異常。</span></li>
+      <li><span>Unicard 任意選能挑的店,就是百大特店在這張表裡的 69 家。</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- User group -->
+<section id="g-user">
+  <div class="group-head"><span class="group-tag user">使用者</span><h2>使用者:2 張表</h2></div>
+  <p class="prose">註冊時只寫 <code>users</code>;登入後新增卡片時才寫 <code>user_cards</code>。下面的範例資料都是虛構的。</p>
+
+  <div class="spec" id="users">
+    <div class="spec-head">
+      <h3>users</h3>
+      <p>帳號。</p>
+    </div>
+    <div class="tbl">
+      <table class="cols">
+        <thead><tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr></thead>
+        <tbody>
+          <tr><td class="col">id<span class="key pk">PK</span></td><td class="type">INT UNSIGNED 自動遞增</td><td>使用者編號。App 不會直接送這個號碼,後端從登入 token 取出。</td></tr>
+          <tr><td class="col">email<span class="key">UNIQUE</span></td><td class="type">VARCHAR(255)</td><td>登入帳號,存成小寫。重複註冊回 409。</td></tr>
+          <tr><td class="col">password_hash</td><td class="type">VARCHAR(255)</td><td>werkzeug 產生的密碼雜湊(<code>pbkdf2:sha256:…</code>,約 100 字元),<b>不存明碼</b>。登入時用同一套演算法比對。</td></tr>
+          <tr><td class="col">full_name</td><td class="type">VARCHAR(100)</td><td>姓名,首頁顯示「嗨,○○」。</td></tr>
+          <tr><td class="col">birthday</td><td class="type">DATE</td><td>生日。後端用它判斷本月是不是生日月,決定 CUBE 慶生月方案能不能用。</td></tr>
+          <tr><td class="col">created_at</td><td class="type">TIMESTAMP</td><td>註冊時間。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="label">範例資料(虛構)</span>
+    <div class="tbl">
+      <table class="rows">
+        <thead><tr><th scope="col">id</th><th scope="col">email</th><th scope="col">password_hash</th><th scope="col">full_name</th><th scope="col">birthday</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>ming@example.com</td><td>pbkdf2:sha256:260000$…</td><td class="txt">王小明</td><td>1995-03-15</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="why">
+      <li><span><code>id</code> 用 <code>INT UNSIGNED</code>:<code>user_cards.user_id</code> 設了外鍵,兩邊型別必須完全相同。</span></li>
+      <li><span>登入失敗不管是帳號不存在還是密碼錯,一律回「帳號或密碼錯誤」,避免別人拿 email 試出誰註冊過。</span></li>
+    </ul>
+  </div>
+
+  <div class="spec" id="user_cards">
+    <div class="spec-head">
+      <h3>user_cards</h3>
+      <p>使用者持有的卡,以及每張卡的設定。</p>
+    </div>
+    <div class="tbl">
+      <table class="cols">
+        <thead><tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr></thead>
+        <tbody>
+          <tr><td class="col">user_id<span class="key pk">PK</span><span class="key fk">FK</span></td><td class="type">INT UNSIGNED</td><td>哪個使用者。</td></tr>
+          <tr><td class="col">card_id<span class="key pk">PK</span></td><td class="type">VARCHAR(32)</td><td>哪張卡,對應 <code>cards.yaml</code>,沒有外鍵。主鍵是(使用者, 卡片),所以同一張卡只會有一筆,再存一次就是更新。</td></tr>
+          <tr><td class="col">config</td><td class="type">JSON</td><td>這張卡的設定。欄位依卡片不同,由 <code>cards.yaml</code> 決定。</td></tr>
+          <tr><td class="col">created_at / updated_at</td><td class="type">TIMESTAMP</td><td>加入和最後修改時間。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="label">config 範例(虛構)</span>
+    <div class="tbl">
+      <table class="rows">
+        <thead><tr><th scope="col">user_id</th><th scope="col">card_id</th><th scope="col">config</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>cathay_cube</td><td>{"level": "Level 2", "kids_club": false}</td></tr>
+          <tr><td class="num">1</td><td>ubot_jiho</td><td>{"new_customer": true}</td></tr>
+          <tr><td class="num">1</td><td>esun_unicard</td><td>{"plan": "任意選", "e_bill": true, "auto_debit": true, "chosen_merchants": [54, 393]}</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="why">
+      <li><span><b>為什麼用 JSON,不開欄位或子表:</b>三張卡的設定完全不同(等級、方案、開關、挑的店),加新卡也會帶來新的設定。存 JSON 就不用每加一張卡就改資料表。</span></li>
+      <li><span><b>內容由後端檢查:</b>MySQL 只擋格式錯誤的 JSON。後端依 <code>cards.yaml</code> 檢查等級或方案在選項內、只能有定義過的開關、<code>chosen_merchants</code> 只有任意選能有、最多 8 家而且都在百大特店名單上。不合法就回 400,不會寫入。</span></li>
+      <li><span><b>資料庫是正本,手機是副本:</b>新增或修改時先寫資料庫,成功後才更新手機;登入時用資料庫覆蓋手機上的資料。計算推薦一律讀資料庫,App 只送「查哪家店」。</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Query flow -->
+<section id="flow">
+  <h2>一次查詢用到哪些表</h2>
+  <p class="prose">例子:使用者持有 CUBE(Level 2)和 Unicard(任意選、電子帳單、自動扣繳,挑了台北101),在 App 打「台北101」。</p>
+  <ol class="steps">
+    <li><div>
+      <h4>自動補全</h4>
+      <div class="uses"><code>merchants</code><code>merchant_aliases</code></div>
+      <p>用正規化後的輸入比對店名和別名,完全相同的排最前面,再來是開頭相同、包含;同一級時台灣的店優先、名字短的優先。最多回 10 家,這裡回傳 <code>#54 台北101</code>。</p>
+    </div></li>
+    <li><div>
+      <h4>讀使用者的卡</h4>
+      <div class="uses"><code>users</code><code>user_cards</code></div>
+      <p>從 token 取出使用者編號,讀出生日和兩張卡的 config。</p>
+    </div></li>
+    <li><div>
+      <h4>撈方案與回饋率</h4>
+      <div class="uses"><code>card_schemes</code><code>scheme_rates</code><code>scheme_merchants</code></div>
+      <p>一條 SQL 撈出這兩張卡所有方案的所有等級回饋率,並用 LEFT JOIN 標出台北101 有沒有被點名:</p>
+<pre>SELECT s.card_id, s.scheme_name, sr.variant, sr.reward_rate,
+       (sm.merchant_id IS NOT NULL) AS is_named, sm.rate_override, sm.notes
+FROM card_schemes s
+JOIN scheme_rates sr ON sr.scheme_id = s.scheme_id
+LEFT JOIN scheme_merchants sm
+       ON sm.scheme_id = s.scheme_id AND sm.merchant_id = 54   <span class="c">-- 台北101</span>
+WHERE s.card_id IN ('cathay_cube', 'esun_unicard');</pre>
+      <span class="label">結果(SQL 會回傳所有等級,這裡只列使用者的 Level 2 和任意選)</span>
+      <div class="tbl">
+        <table class="rows">
+          <thead><tr><th scope="col">card_id</th><th scope="col">scheme_name</th><th scope="col">variant</th><th scope="col" class="num">reward_rate</th><th scope="col" class="num">is_named</th></tr></thead>
+          <tbody>
+            <tr><td>cathay_cube</td><td class="txt">全支付</td><td>Level 2</td><td class="num">2.00</td><td class="num">0</td></tr>
+            <tr><td>cathay_cube</td><td class="txt">台塑家</td><td>Level 2</td><td class="num">2.00</td><td class="num">0</td></tr>
+            <tr><td>cathay_cube</td><td class="txt">慶生月</td><td>Level 2</td><td class="num">10.00</td><td class="num">0</td></tr>
+            <tr class="hit"><td>cathay_cube</td><td class="txt">樂饗購</td><td>Level 2</td><td class="num">3.00</td><td class="num">1</td></tr>
+            <tr><td>cathay_cube</td><td class="txt">玩數位</td><td>Level 2</td><td class="num">3.00</td><td class="num">0</td></tr>
+            <tr><td>cathay_cube</td><td class="txt">童樂匯</td><td>Level 2</td><td class="num">5.00</td><td class="num">0</td></tr>
+            <tr><td>cathay_cube</td><td class="txt">趣旅行</td><td>Level 2</td><td class="num">3.00</td><td class="num">0</td></tr>
+            <tr><td>cathay_cube</td><td class="txt">集精選</td><td>Level 2</td><td class="num">2.00</td><td class="num">0</td></tr>
+            <tr class="hit"><td>esun_unicard</td><td class="txt">百大特店</td><td>任意選</td><td class="num">2.50</td><td class="num">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div></li>
+    <li><div>
+      <h4>Python 依 cards.yaml 判斷</h4>
+      <div class="uses"><code>backend/cards.yaml</code></div>
+      <p>SQL 只撈資料,規則全部在後端判斷:沒被點名、也不在分類涵蓋範圍內的方案丟掉;Unicard 百大特店確認使用者挑過台北101,再疊加一般消費 1%;每張卡跟一般消費一起比,取最高。結果是 Unicard 3.5%(百大特店)、CUBE 3%(樂饗購,需切換至樂饗購權益方案)。</p>
+    </div></li>
+  </ol>
+</section>
+
+<!-- Import -->
+<section id="import">
+  <h2>匯入時寫哪些表</h2>
+  <p class="prose">Allen 出新的爬蟲匯出檔時,用 <code>python -m backend.importer</code> 匯入。</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">資料表</th><th scope="col">匯入時怎麼處理</th></tr></thead>
+      <tbody>
+        <tr><td class="col">merchant_source_names</td><td>用爬蟲店名逐字查。查不到的列入報告,附「可能是既有店家」的建議,由人用 <code>--map</code>、<code>--new</code>、<code>--ignore</code> 處理。</td></tr>
+        <tr><td class="col">merchants</td><td>只在人用 <code>--new</code> 確認是新店時新增。匯入工具不會自己新增店家,因為它分不出新店和舊店改名。</td></tr>
+        <tr><td class="col">card_schemes</td><td>方案名稱要先在 <code>cards.yaml</code> 裡有,才會建立;沒有的方案這次略過。</td></tr>
+        <tr><td class="col">scheme_rates</td><td>每個方案在每個等級,取多數店家的回饋率當方案回饋率。</td></tr>
+        <tr><td class="col">scheme_merchants</td><td>重寫這次出現的方案的點名店家;回饋率和方案不同的店記進 <code>rate_override</code>。沒出現在這次匯出檔的方案保留不動。</td></tr>
+        <tr><td class="col">users、user_cards</td><td>不動。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p>匯入或人工修改後,要重新匯出 <code>db/seed.sql</code> 並 commit,別的機器才拿得到同樣的資料。人工修改另外寫成 SQL 檔放在 <code>db/changes/</code>,留下修改紀錄。步驟見 <code>db/README.md</code>。</p>
+  </div>
+</section>
+
+<!-- Outside -->
+<section id="outside">
+  <h2>不在資料庫裡的東西</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">東西</th><th scope="col">放在哪</th><th scope="col">原因</th></tr></thead>
+      <tbody>
+        <tr><td>卡片定義、等級與方案選項、開關名稱</td><td><code>cards.yaml</code></td><td>規則每個使用者都一樣,放在 repo 有 git 紀錄,改了重啟後端就生效。</td></tr>
+        <tr><td>方案規則:要做的動作、條件、分類涵蓋、疊加、挑店</td><td><code>cards.yaml</code></td><td>這些規則寫在 SQL 裡很難讀、很難測。</td></tr>
+        <tr><td>一般消費回饋率、卡片加碼</td><td><code>cards.yaml</code></td><td>爬蟲沒有可靠的一般消費資料,由人維護。</td></tr>
+        <tr><td>登入 token</td><td>不存</td><td>token 自帶使用者編號和到期時間,由後端簽名,驗證簽名即可,不用查表。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose" style="font-size: var(--step--1); color: var(--muted);">上一版有、這一版移除的表:<code>cards</code>、<code>scheme_categories</code> 改寫進 <code>cards.yaml</code>;<code>user_card_conditions</code> 併入 <code>user_cards.config</code>。Allen 原本的扁平表 <code>card_rewards</code> 由這 8 張表取代。</p>
+</section>
+
+<footer>
+  依 <code>db/schema.sql</code> 與 <code>docs/DB_DESIGN.md</code> v0.4 整理,筆數與範例取自 2026-10-08 的資料庫。回饋率以銀行公告為準。
+</footer>
+
+</div>
+</body>
+</html>

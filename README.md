@@ -22,4 +22,6 @@ iOS App(Allen,SwiftUI)    ─┘           └ cards.yaml(卡片規則)
 | [backend/README.md](backend/README.md) | 後端:啟動、API、測試、匯入爬蟲資料 |
 | [db/README.md](db/README.md) | 資料庫:建立、資料表、修改資料 |
 | [docs/DB_DESIGN.md](docs/DB_DESIGN.md) | 資料表與推薦邏輯的完整設計 |
+| `docs/WORKFLOW.html` | 圖解:架構、搜尋、回饋怎麼算、三張卡的規則(用瀏覽器開) |
+| `docs/DB_TABLES.html` | 圖解:8 張資料表的欄位與設計理由、查詢用到哪些表(用瀏覽器開) |
 | [docs/HANDOFF_ALLEN.md](docs/HANDOFF_ALLEN.md) | 給 Allen:iOS App 改接新後端要做的事 |

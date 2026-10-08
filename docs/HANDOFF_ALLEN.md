@@ -10,7 +10,7 @@ Allen 你好,這份說明 iOS App 要怎麼改接新的後端。
 - **卡片規則寫在 `backend/cards.yaml`**,改了重啟後端就生效。卡片的設定選項(等級、方案、開關)也由後端提供,App 照著畫設定畫面,不用寫死。
 - **`swift_port/` 停用。** 那是把舊 Flutter 邏輯翻成 Swift 的版本,現在邏輯都在後端,不需要了。
 
-整體設計在 [DB_DESIGN.md](DB_DESIGN.md),後端說明在 [backend/README.md](../backend/README.md)。
+整體設計在 [DB_DESIGN.md](DB_DESIGN.md),後端說明在 [backend/README.md](../backend/README.md)。想先看圖的話,用瀏覽器打開 `WORKFLOW.html`(架構與回饋計算)和 `DB_TABLES.html`(每張資料表的欄位與設計理由)。
 
 ## 1. 在你的 Mac 上跑起後端
 

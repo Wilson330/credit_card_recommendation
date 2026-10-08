@@ -126,7 +126,7 @@ CREATE TABLE merchant_aliases (
 
 - `merchant_id`:DB 自動遞增。DB 是資料來源、不再清空重灌,號碼分配後不會變
 - `name`:可以自由改成好看的名字,不影響回饋計算(方案用 `merchant_id` 指向店家)
-- `name` 設 UNIQUE:同品牌不同店要用名字區分,例如 `7-ELEVEN` 與 `7-ELEVEN(日本)`
+- `name` 設 UNIQUE:同品牌不同店要用名字區分,例如 `7-ELEVEN (7-11) 實體門市` 與 `日本 7-ELEVEN`(日本的店名稱前加「日本」)
 - `primary_category` 與 `country` 會直接影響回饋:分類涵蓋看分類,海外回饋看國別(見 7.3)。新增店家時兩者都要填對
 - `country` 填國別代碼(`TW`、`JP`…);在很多國家都有據點、無法歸到單一國家的店填 `global`(例如 `全球迪士尼飯店`、`東橫INN`)。**只要不是 `TW` 就算國外**
 - 店家**不刪除**,停業或下架把 `active` 設 0。所以 `user_cards.config` 裡記的店家編號永遠有效
@@ -207,7 +207,7 @@ CREATE TABLE scheme_merchants (
 CREATE TABLE users (
   id            INT UNSIGNED  NOT NULL AUTO_INCREMENT,
   email         VARCHAR(255)  NOT NULL,
-  password_hash VARCHAR(255)  NOT NULL,   -- werkzeug 產生的雜湊,約 160 字元
+  password_hash VARCHAR(255)  NOT NULL,   -- werkzeug 產生的雜湊(pbkdf2:sha256),約 100 字元
   full_name     VARCHAR(100)  NOT NULL,
   birthday      DATE          NOT NULL,   -- 判斷生日月(慶生月)
   created_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
