@@ -9,7 +9,7 @@ from decimal import Decimal
 import pytest
 
 from backend.config import BACKEND_DIR
-from backend.recommend import Merchant, SchemeRow, recommend
+from backend.recommend import Merchant, SchemeRow, payment_suggestion, recommend
 from backend.rules import load_rules
 
 RULES = load_rules(BACKEND_DIR / 'cards.yaml')
@@ -225,3 +225,83 @@ def test_notes_include_card_scheme_and_merchant_notes():
     assert r.notes[0] == '實際回饋依當期公告為準'
     assert any('週一至週五' in n for n in r.notes)
     assert r.notes[-1] == '限週一至週四'
+
+
+# ---- 行動支付 ----
+
+def suggest(cards, merchant, birthday=NOT_BIRTHDAY):
+    return payment_suggestion(RULES, cards, rows_for(merchant), merchant, birthday, TODAY)
+
+
+def test_payment_suggestion_when_it_beats_direct():
+    s = suggest([('esun_unicard', dict(uni('UP選'), payment_methods=['LINE Pay']))], M['鼎泰豐'])
+    r = s.result
+    assert (rate(r), r.scheme_name, r.payment_methods) == (3.5, '百大特店', ('LINE Pay',))
+    assert r.required_action == '用 LINE Pay 綁定 Unicard 付款'
+    assert s.direct_reward_rate == Decimal('0')
+    assert not r.is_general
+
+
+def test_payment_suggestion_stacks_with_general_like_the_scheme():
+    s = suggest([('esun_unicard', dict(uni('UP選', e_bill=True, auto_debit=True), payment_methods=['LINE Pay']))],
+                M['鼎泰豐'])
+    assert (rate(s.result), float(s.direct_reward_rate)) == (4.5, 1.0)
+
+
+def test_main_list_never_contains_payment_methods():
+    r = run('esun_unicard', dict(uni('UP選'), payment_methods=['LINE Pay']), M['鼎泰豐'])
+    assert (rate(r), r.payment_methods) == (0.0, ())
+
+
+def test_all_tied_payment_methods_are_listed_in_cards_yaml_order():
+    s = suggest([('esun_unicard', dict(uni('UP選'), payment_methods=['悠遊付', 'LINE Pay', '街口支付']))], None)
+    assert s.result.payment_methods == ('LINE Pay', '街口支付', '悠遊付')
+    assert s.result.required_action == '用 LINE Pay、街口支付、悠遊付 其中一種綁定 Unicard 付款'
+
+
+def test_no_suggestion_without_bound_payment_methods():
+    assert suggest([('esun_unicard', uni('UP選'))], M['鼎泰豐']) is None
+
+
+def test_no_suggestion_when_named_merchant_is_as_good():
+    # 台北101 本身就是百大特店,直接刷卡已經是 3.5%
+    assert suggest([('esun_unicard', dict(uni('UP選'), payment_methods=['LINE Pay']))], M['台北101']) is None
+
+
+def test_no_suggestion_when_another_card_is_already_higher():
+    cards = [('cathay_cube', CUBE_L2), ('esun_unicard', dict(uni('簡單選'), payment_methods=['LINE Pay']))]
+    assert suggest(cards, M['鼎泰豐']) is None          # CUBE 樂饗購 3% > LINE Pay 2%
+    cards[1] = ('esun_unicard', dict(uni('UP選'), payment_methods=['LINE Pay']))
+    assert rate(suggest(cards, M['鼎泰豐']).result) == 3.5
+
+
+@pytest.mark.parametrize('bound, chosen, expected', [
+    (['LINE Pay'], ['LINE Pay'], ('LINE Pay',)),
+    (['LINE Pay'], [], None),                 # 有綁但沒挑進 8 家
+    ([], ['LINE Pay'], None),                 # 有挑但沒綁
+    (['LINE Pay', '街口支付'], ['街口支付'], ('街口支付',)),
+])
+def test_任意選_needs_both_bound_and_chosen(bound, chosen, expected):
+    config = dict(uni('任意選', chosen=[]), payment_methods=bound, chosen_payment_methods=chosen)
+    s = suggest([('esun_unicard', config)], M['鼎泰豐'])
+    assert (s.result.payment_methods if s else None) == expected
+
+
+def test_cube_全支付_needs_switching_and_paying():
+    s = suggest([('cathay_cube', dict(CUBE_L1, payment_methods=['全支付']))], None)
+    assert (rate(s.result), float(s.direct_reward_rate)) == (2.0, 0.3)
+    assert s.result.required_action == '需切換至全支付權益方案,並用 全支付 綁定 CUBE卡 付款'
+
+
+def test_best_card_wins_when_several_cards_have_payment_suggestions():
+    cards = [('cathay_cube', dict(CUBE_L1, payment_methods=['全支付'])),
+             ('esun_unicard', dict(uni('UP選'), payment_methods=['全支付']))]
+    s = suggest(cards, None)
+    assert (s.result.card_id, rate(s.result)) == ('esun_unicard', 3.5)
+
+
+@pytest.mark.parametrize('merchant', ['三越', '日本餐廳', '全球飯店'])
+def test_no_payment_suggestion_for_overseas_merchants(merchant):
+    cards = [('esun_unicard', dict(uni('UP選'), payment_methods=['LINE Pay'])),
+             ('cathay_cube', dict(CUBE_L1, payment_methods=['全支付']))]
+    assert suggest(cards, M[merchant]) is None

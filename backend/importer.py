@@ -95,6 +95,9 @@ def plan_import(conn, rules, crawl_rows, ignore_names=frozenset()):
                 f'{card.name}・{scheme_name}({len(rows)} 列),先在 cards.yaml 加入')
             continue
 
+        rule = card.schemes[scheme_name]
+        payment_crawl = {p.crawl_name for p in rule.payment_methods}
+        payment_rates = defaultdict(dict)   # 行動支付的爬蟲名稱 → {variant: rate},只用來比對
         rate = defaultdict(dict)        # merchant_id → {variant: rate}
         notes = defaultdict(set)
         variants = set()
@@ -107,7 +110,15 @@ def plan_import(conn, rules, crawl_rows, ignore_names=frozenset()):
             variants.add(variant)
             if raw.strip() in ignore_names:
                 continue
+            if raw.strip() in payment_crawl:
+                payment_rates[raw.strip()][variant] = Decimal(str(row['reward_rate']))
+                continue
             reason = non_merchant_reason(raw)
+            if reason == '付款工具' and rule.payment_methods:
+                msg = f'{card.name}・{scheme_name}:{raw}(要計算就加進 cards.yaml,不是就 --ignore)'
+                if msg not in plan.report['cards.yaml 沒有列出的行動支付(略過)']:
+                    plan.report['cards.yaml 沒有列出的行動支付(略過)'].append(msg)
+                continue
             if reason:
                 plan.report['方案內非店家的列(略過)'].append(f'{card.name}・{scheme_name}・{variant or "-"}:{raw}({reason})')
                 continue
@@ -131,6 +142,8 @@ def plan_import(conn, rules, crawl_rows, ignore_names=frozenset()):
 
         base = {v: mode_rate([r[v] for r in rate.values() if v in r]) for v in variants
                 if any(v in r for r in rate.values())}
+        _check_payment_methods(card, rule, payment_rates, base, plan)
+
         members = []
         for merchant_id, by_variant in sorted(rate.items()):
             if set(by_variant) != set(base):
@@ -150,6 +163,23 @@ def plan_import(conn, rules, crawl_rows, ignore_names=frozenset()):
 
     _compare_with_database(cur, rules, plan)
     return plan
+
+
+def _check_payment_methods(card, rule, payment_rates, base, plan):
+    """爬蟲中的行動支付與 cards.yaml 比對。行動支付不寫入資料庫,計算時用方案的回饋率,
+    所以回饋率跟方案不同時要提醒。"""
+    for p in rule.payment_methods:
+        found = payment_rates.get(p.crawl_name)
+        if not found:
+            plan.report['cards.yaml 有、爬蟲沒有的行動支付'].append(f'{card.name}・{rule.name}:{p.crawl_name}')
+            continue
+        plan.report['行動支付(依 cards.yaml 計算)'].append(f'{card.name}・{rule.name}:{p.name}')
+        diff = {v: r for v, r in found.items() if base.get(v) != r}
+        if diff:
+            plan.report['行動支付回饋率與方案不同(以方案為準)'].append(
+                f'{card.name}・{rule.name}:{p.crawl_name} 爬蟲 '
+                + '、'.join(f'{v or "-"} {r}%' for v, r in sorted(diff.items()))
+                + ',方案 ' + '、'.join(f'{v or "-"} {base.get(v)}%' for v in sorted(diff)))
 
 
 def _check_general(card, rows, plan):

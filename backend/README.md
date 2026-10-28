@@ -92,8 +92,8 @@ python -m backend.importer --ignore "店名"                             # 不�
 | `POST /api/register` | `{email, password, full_name, birthday}`(生日 `YYYY-MM-DD`,密碼至少 8 字元) | 201;email 重複 409 |
 | `POST /api/login` | `{email, password}` | `{token, user}`;失敗一律 401「帳號或密碼錯誤」 |
 | `GET /api/merchants/suggest?q=` | 輸入文字 | `[{merchant_id, name}]`,最多 10 筆 |
-| `POST /api/recommend` | `{merchant_id}` 或 `{query}` | `{merchant, merchant_found, message, results}` |
-| `GET /api/cards` | — | 各卡的設定選項(等級/方案、開關與顯示名稱、挑店上限) |
+| `POST /api/recommend` | `{merchant_id}` 或 `{query}` | `{merchant, merchant_found, message, results, payment_suggestion}`;`payment_suggestion` 只在用行動支付比 `results` 第一名高時才有 |
+| `GET /api/cards` | — | 各卡的設定選項(等級/方案、開關與顯示名稱、挑店上限、可綁定與可挑的行動支付) |
 | `GET /api/cards/{card_id}/pickable_merchants` | — | 可挑的店(Unicard 百大特店) |
 | `GET /api/user/cards` | — | 我的卡片與 config |
 | `PUT /api/user/cards/{card_id}` | `{"config": {...}}` | 儲存後的 config;不合法 400 |
@@ -102,9 +102,10 @@ python -m backend.importer --ignore "店名"                             # 不�
 config 範例:
 
 ```json
-{"config": {"level": "Level 2", "kids_club": false}}                                   // CUBE
+{"config": {"level": "Level 2", "kids_club": false, "payment_methods": ["全支付"]}}       // CUBE
 {"config": {"new_customer": true}}                                                    // 吉鶴卡
-{"config": {"plan": "任意選", "e_bill": true, "auto_debit": true, "chosen_merchants": [54]}}  // Unicard
+{"config": {"plan": "任意選", "e_bill": true, "auto_debit": true, "payment_methods": ["LINE Pay"],
+            "chosen_merchants": [54], "chosen_payment_methods": ["LINE Pay"]}}       // Unicard
 ```
 
 ## 檔案

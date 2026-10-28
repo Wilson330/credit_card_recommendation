@@ -93,6 +93,27 @@ void main() {
     expect(find.text('0.3%'), findsOneWidget);
     expect(find.text('一般消費(不需要切換方案)'), findsOneWidget);
     expect(find.text('不含保費'), findsOneWidget);
+    expect(find.text('付款方式:直接刷卡'), findsOneWidget);
+    expect(find.text('行動支付建議'), findsNothing);
+  });
+
+  testWidgets('有綁定行動支付且回饋較高時,主清單下方多一筆建議並附上直接刷卡的回饋', (tester) async {
+    final backend = FakeBackend()
+      ..cards['cathay_cube'] = {'level': 'Level 2', 'kids_club': false}
+      ..cards['esun_unicard'] = {'plan': 'UP選', 'e_bill': true, 'auto_debit': true,
+                                 'payment_methods': ['LINE Pay', '街口支付']};
+    await pumpApp(tester, loggedIn: true, backend: backend);
+    await tester.tap(_search);
+    await tester.enterText(_search, '鼎泰豐');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pumpAndSettle();
+
+    expect(find.text('#1 CUBE卡'), findsOneWidget);           // 主清單不變
+    expect(find.text('行動支付建議'), findsOneWidget);
+    expect(find.text('若店家接受以下任一種:'), findsOneWidget);
+    expect(find.text('LINE Pay / 街口支付'), findsOneWidget);
+    expect(find.text('用 Unicard 綁定付款可拿 3.5%(直接刷卡 1%)'), findsOneWidget);
+    expect(find.text('用 LINE Pay、街口支付 其中一種綁定 Unicard 付款'), findsOneWidget);
   });
 
   testWidgets('輸入法組字中不送查詢,選字完成才送', (tester) async {

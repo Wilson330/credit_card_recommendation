@@ -13,7 +13,15 @@ class CardOption {
 
   /// 選到這些方案時要挑店(Unicard 任意選)。
   final List<String> pickMerchantsWhen;
+
+  /// 挑店上限,店家與行動支付合計。
   final int? maxChosenMerchants;
+
+  /// 可以勾選「有綁定這張卡」的行動支付。
+  final List<String> paymentMethods;
+
+  /// 挑店時也可以挑的行動支付(Unicard 任意選)。
+  final List<String> pickablePaymentMethods;
 
   const CardOption({
     required this.cardId,
@@ -24,6 +32,8 @@ class CardOption {
     required this.toggles,
     required this.pickMerchantsWhen,
     required this.maxChosenMerchants,
+    this.paymentMethods = const [],
+    this.pickablePaymentMethods = const [],
   });
 
   factory CardOption.fromJson(Map<String, dynamic> json) => CardOption(
@@ -38,6 +48,9 @@ class CardOption {
         ],
         pickMerchantsWhen: List<String>.from(json['pick_merchants_when'] as List),
         maxChosenMerchants: json['max_chosen_merchants'] as int?,
+        // 舊版快取沒有這兩個欄位
+        paymentMethods: List<String>.from((json['payment_methods'] as List?) ?? const []),
+        pickablePaymentMethods: List<String>.from((json['pickable_payment_methods'] as List?) ?? const []),
       );
 
   /// 等級或方案選單的標題。
@@ -50,6 +63,7 @@ class CardOption {
   Map<String, dynamic> defaultConfig() => {
         ?rateBy: options.isEmpty ? null : options.first,
         for (final t in toggles) t.key: false,
+        if (paymentMethods.isNotEmpty) 'payment_methods': <String>[],
       };
 }
 
@@ -85,8 +99,11 @@ class UserCard {
     for (final t in option?.toggles ?? const <CardToggle>[]) {
       if (config[t.key] == true) parts.add(t.label);
     }
-    final picks = config['chosen_merchants'];
-    if (picks is List && picks.isNotEmpty) parts.add('挑選 ${picks.length} 家');
+    final bound = config['payment_methods'];
+    if (bound is List && bound.isNotEmpty) parts.add('綁定 ${bound.length} 種行動支付');
+    final picks = ((config['chosen_merchants'] as List?)?.length ?? 0) +
+        ((config['chosen_payment_methods'] as List?)?.length ?? 0);
+    if (picks > 0) parts.add('挑選 $picks 家');
     return parts.join(' · ');
   }
 }
@@ -110,11 +127,15 @@ class Recommendation {
   final String? message;
   final List<CardRecommendation> results;
 
+  /// 用行動支付付款比 [results] 第 1 名高時才有。不知道店家收不收,要讓使用者自己判斷。
+  final PaymentSuggestion? paymentSuggestion;
+
   const Recommendation({
     required this.merchantName,
     required this.merchantFound,
     required this.message,
     required this.results,
+    this.paymentSuggestion,
   });
 
   factory Recommendation.fromJson(Map<String, dynamic> json) => Recommendation(
@@ -124,8 +145,31 @@ class Recommendation {
         results: [
           for (final r in json['results'] as List) CardRecommendation.fromJson(r as Map<String, dynamic>),
         ],
+        paymentSuggestion: json['payment_suggestion'] == null
+            ? null
+            : PaymentSuggestion.fromJson(Map<String, dynamic>.from(json['payment_suggestion'] as Map)),
       );
 }
+
+/// 行動支付建議:[result] 的 paymentMethods 列出回饋率相同的行動支付,用其中任一種都可以。
+class PaymentSuggestion {
+  final CardRecommendation result;
+
+  /// 同一張卡直接刷卡的回饋率,對照用。
+  final double directRewardRate;
+
+  const PaymentSuggestion({required this.result, required this.directRewardRate});
+
+  factory PaymentSuggestion.fromJson(Map<String, dynamic> json) => PaymentSuggestion(
+        result: CardRecommendation.fromJson(json),
+        directRewardRate: (json['direct_reward_rate'] as num).toDouble(),
+      );
+
+  String get directRateText => formatRate(directRewardRate);
+}
+
+/// 回饋率顯示,例如 3、3.5、0.3(不顯示多餘的 0)。
+String formatRate(double rate) => rate.toStringAsFixed(2).replaceFirst(RegExp(r'\.?0+$'), '');
 
 class CardRecommendation {
   final String cardId;
@@ -139,6 +183,9 @@ class CardRecommendation {
   final String? requiredAction;
   final List<String> notes;
 
+  /// 空的 = 直接刷卡;有值 = 用其中任一種行動支付綁定這張卡付款。
+  final List<String> paymentMethods;
+
   const CardRecommendation({
     required this.cardId,
     required this.cardName,
@@ -148,6 +195,7 @@ class CardRecommendation {
     required this.isGeneral,
     required this.requiredAction,
     required this.notes,
+    this.paymentMethods = const [],
   });
 
   factory CardRecommendation.fromJson(Map<String, dynamic> json) => CardRecommendation(
@@ -159,13 +207,14 @@ class CardRecommendation {
         isGeneral: json['is_general'] as bool,
         requiredAction: json['required_action'] as String?,
         notes: List<String>.from(json['notes'] as List),
+        paymentMethods: List<String>.from((json['payment_methods'] as List?) ?? const []),
       );
 
   /// 回饋率顯示,例如 3、3.5、0.3(不顯示多餘的 0)。
-  String get rateText {
-    final text = rewardRate.toStringAsFixed(2);
-    return text.replaceFirst(RegExp(r'\.?0+$'), '');
-  }
+  String get rateText => formatRate(rewardRate);
+
+  /// 付款方式的顯示文字。
+  String get paymentText => paymentMethods.isEmpty ? '直接刷卡' : paymentMethods.join(' / ');
 }
 
 class LoggedInUser {

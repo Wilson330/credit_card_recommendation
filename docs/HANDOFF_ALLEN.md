@@ -2,6 +2,8 @@
 
 Allen 你好,這份說明 iOS App 要怎麼改接新的後端。
 
+> **2026-10-17 更新(v0.5 行動支付)**:API 多了行動支付相關欄位,本文第 2 節已更新。要做的事(更新程式碼、補資料庫的使用者資料、改 iOS 畫面)整理在 [HANDOFF_ALLEN_v0.5.md](HANDOFF_ALLEN_v0.5.md)。
+
 ## 這次改了什麼
 
 - **後端換成 `backend/`(Python + Flask)**,取代原本的 `app.py`。路由、資料表都不一樣,舊的 `/api/search_rewards`、`/api/autocomplete`、`/api/unicard_merchants` 不再使用。
@@ -27,7 +29,7 @@ Allen 你好,這份說明 iOS App 要怎麼改接新的後端。
 
    ```bash
    pip install -r backend/requirements.txt
-   python -m pytest backend/tests -q        # 應該 83 個全部通過
+   python -m pytest backend/tests -q        # 應該 117 個全部通過
    python -m backend.app --host 0.0.0.0     # 讓手機連得到
    ```
 
@@ -75,15 +77,19 @@ Allen 你好,這份說明 iOS App 要怎麼改接新的後端。
   {"card_id": "cathay_cube", "name": "CUBE卡", "bank": "國泰世華",
    "rate_by": "level", "options": ["Level 1", "Level 2", "Level 3"],
    "toggles": [{"key": "kids_club", "label": "童樂匯"}],
-   "pick_merchants_when": [], "max_chosen_merchants": null},
+   "pick_merchants_when": [], "max_chosen_merchants": null,
+   "payment_methods": ["全支付"], "pickable_payment_methods": []},
   {"card_id": "esun_unicard", "name": "Unicard", "bank": "玉山銀行",
    "rate_by": "plan", "options": ["簡單選", "任意選", "UP選"],
    "toggles": [{"key": "e_bill", "label": "電子帳單"}, {"key": "auto_debit", "label": "自動扣繳"}],
-   "pick_merchants_when": ["任意選"], "max_chosen_merchants": 8},
+   "pick_merchants_when": ["任意選"], "max_chosen_merchants": 8,
+   "payment_methods": ["LINE Pay", "街口支付", "全支付", "..."],
+   "pickable_payment_methods": ["LINE Pay", "街口支付", "全支付", "..."]},
   {"card_id": "ubot_jiho", "name": "吉鶴卡", "bank": "聯邦銀行",
    "rate_by": null, "options": [],
    "toggles": [{"key": "new_customer", "label": "新戶自動扣繳"}],
-   "pick_merchants_when": [], "max_chosen_merchants": null}
+   "pick_merchants_when": [], "max_chosen_merchants": null,
+   "payment_methods": [], "pickable_payment_methods": []}
 ]
 ```
 
@@ -91,14 +97,16 @@ Allen 你好,這份說明 iOS App 要怎麼改接新的後端。
 
 - `rate_by` 是 `level` 或 `plan` 時,顯示 `options` 讓使用者選一個,存成 `config.level` 或 `config.plan`。`null` 就不顯示。
 - 每個 `toggles` 顯示一個開關,標題用 `label`,存成 `config[key] = true/false`。
-- 選到的方案在 `pick_merchants_when` 裡時(Unicard 任意選),顯示「挑選店家」:清單來自 `pickable_merchants`,最多 `max_chosen_merchants` 家,把 `merchant_id` 存成 `config.chosen_merchants`。
+- `payment_methods` 不是空的時,顯示「有綁定這張卡的行動支付」,每個一個開關,勾選的存成 `config.payment_methods`(字串清單)。
+- 選到的方案在 `pick_merchants_when` 裡時(Unicard 任意選),顯示「挑選店家」:清單來自 `pickable_merchants`,把 `merchant_id` 存成 `config.chosen_merchants`。`pickable_payment_methods` 也列在挑店清單裡,挑的存成 `config.chosen_payment_methods`。**店家與行動支付合計**最多 `max_chosen_merchants` 家。行動支付要有綁定**而且**有挑才會計算,挑了但沒綁定的建議標示「尚未綁定,不會計算」。
 
 `PUT` 的 config 範例:
 
 ```json
-{"config": {"level": "Level 2", "kids_club": false}}
+{"config": {"level": "Level 2", "kids_club": false, "payment_methods": []}}
 {"config": {"new_customer": true}}
-{"config": {"plan": "任意選", "e_bill": true, "auto_debit": true, "chosen_merchants": [54]}}
+{"config": {"plan": "任意選", "e_bill": true, "auto_debit": true, "payment_methods": ["LINE Pay"],
+            "chosen_merchants": [54], "chosen_payment_methods": ["LINE Pay"]}}
 ```
 
 不合法的設定回 400,錯誤訊息可直接顯示,例如「CUBE卡 的 level 要是以下其中之一:Level 1、Level 2、Level 3」。
@@ -125,14 +133,28 @@ Allen 你好,這份說明 iOS App 要怎麼改接新的後端。
   "results": [
     {"card_id": "esun_unicard", "card_name": "Unicard", "bank_name": "玉山銀行",
      "reward_rate": 3.5, "scheme_name": "百大特店", "is_general": false,
-     "required_action": null, "notes": ["實際回饋依當期公告為準"]},
+     "required_action": null, "notes": ["實際回饋依當期公告為準"], "payment_methods": []},
     {"card_id": "cathay_cube", "card_name": "CUBE卡", "bank_name": "國泰世華",
      "reward_rate": 2.0, "scheme_name": "樂饗購", "is_general": false,
-     "required_action": "需切換至樂饗購權益方案", "notes": ["實際回饋依當期公告為準"]},
+     "required_action": "需切換至樂饗購權益方案", "notes": ["實際回饋依當期公告為準"], "payment_methods": []},
     {"card_id": "ubot_jiho", "card_name": "吉鶴卡", "bank_name": "聯邦銀行",
      "reward_rate": 1.5, "scheme_name": "國內一般消費", "is_general": true,
-     "required_action": null, "notes": ["實際回饋依當期公告為準"]}
-  ]
+     "required_action": null, "notes": ["實際回饋依當期公告為準"], "payment_methods": []}
+  ],
+  "payment_suggestion": null
+}
+```
+
+國內的店、有綁定行動支付,而且用行動支付比 `results` 第一名還高時,`payment_suggestion` 才有值(例如 Unicard UP選綁了 LINE Pay、街口支付,查鼎泰豐):
+
+```json
+"payment_suggestion": {
+  "card_id": "esun_unicard", "card_name": "Unicard", "bank_name": "玉山銀行",
+  "reward_rate": 3.5, "scheme_name": "百大特店", "is_general": false,
+  "required_action": "用 LINE Pay、街口支付 其中一種綁定 Unicard 付款",
+  "notes": ["實際回饋依當期公告為準"],
+  "payment_methods": ["LINE Pay", "街口支付"],
+  "direct_reward_rate": 0.0
 }
 ```
 
@@ -140,6 +162,8 @@ Allen 你好,這份說明 iOS App 要怎麼改接新的後端。
 - `reward_rate` 是百分比數字:`3.5` 代表 3.5%。
 - `required_action` 不是 null 時要顯示,提醒使用者刷卡前先切換方案。
 - 找不到店時 `merchant` 是 null、`merchant_found` 是 false,`message` 是「此店家不在回饋名單中,以一般消費計算」。`results` 照樣有資料,是各卡的一般消費回饋。
+- `results` 一律是直接刷卡的結果,`payment_methods` 都是空的,畫面上顯示「付款方式:直接刷卡」。
+- `payment_suggestion` 不是 null 時,在 `results` 下方多顯示一張建議卡。後端不知道店家收哪些行動支付,所以要寫成「若店家接受 LINE Pay / 街口支付,用 Unicard 綁定付款可拿 3.5%(直接刷卡 0%)」,讓使用者自己判斷。`payment_methods` 列出的都是同樣回饋率,用其中任一種都可以;`direct_reward_rate` 是同一張卡直接刷卡的回饋率,用來對照。
 
 ### 參考實作
 

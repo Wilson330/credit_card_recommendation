@@ -64,6 +64,10 @@ def test_card_options(client, make_user):
     assert cards['esun_unicard']['pick_merchants_when'] == ['任意選']
     assert cards['esun_unicard']['max_chosen_merchants'] == 8
     assert {'key': 'new_customer', 'label': '新戶自動扣繳'} in cards['ubot_jiho']['toggles']
+    assert cards['esun_unicard']['payment_methods'][0] == 'LINE Pay'
+    assert cards['esun_unicard']['pickable_payment_methods'] == cards['esun_unicard']['payment_methods']
+    assert cards['cathay_cube']['payment_methods'] == ['全支付']
+    assert cards['ubot_jiho']['payment_methods'] == []
 
 
 def test_pickable_merchants(client, make_user, lookup):
@@ -86,7 +90,7 @@ def test_invalid_card_configs_are_rejected(client, make_user, lookup):
 def test_save_list_and_delete_cards(client, make_user):
     h = make_user()
     saved = put_card(client, h, 'cathay_cube', {'level': 'Level 2'})
-    assert saved['config'] == {'level': 'Level 2', 'kids_club': False}
+    assert saved['config'] == {'level': 'Level 2', 'kids_club': False, 'payment_methods': []}
     assert [c['card_id'] for c in client.get('/api/user/cards', headers=h).get_json()] == ['cathay_cube']
     assert client.delete('/api/user/cards/cathay_cube', headers=h).status_code == 200
     assert client.delete('/api/user/cards/cathay_cube', headers=h).status_code == 404
@@ -232,3 +236,30 @@ def test_recommend_by_merchant_id(client, user, lookup):
     d = recommend(client, user, merchant_id=lookup.merchant_id('台北101'))
     assert d['merchant']['name'] == '台北101'
     assert [r['card_id'] for r in d['results']] == ['esun_unicard', 'cathay_cube', 'ubot_jiho']
+
+
+def test_payment_suggestion(client, make_user, lookup):
+    h = make_user()
+    put_card(client, h, 'cathay_cube', {'level': 'Level 2'})
+    put_card(client, h, 'esun_unicard', {'plan': 'UP選', 'payment_methods': ['街口支付', 'LINE Pay']})
+
+    d = recommend(client, h, query='完全不存在的店家xyz')
+    assert all(r['payment_methods'] == [] for r in d['results'])
+    s = d['payment_suggestion']
+    assert (s['card_id'], s['reward_rate'], s['direct_reward_rate']) == ('esun_unicard', 3.5, 0.0)
+    assert s['payment_methods'] == ['LINE Pay', '街口支付']
+
+    # 台北101 本身就是百大特店,直接刷卡一樣 3.5%,不用另外建議
+    assert recommend(client, h, query='台北101')['payment_suggestion'] is None
+    # 國外的店不建議行動支付
+    assert recommend(client, h, query='日本三越')['payment_suggestion'] is None
+
+
+def test_任意選_payment_methods_must_also_be_chosen(client, make_user, lookup):
+    h = make_user()
+    config = {'plan': '任意選', 'payment_methods': ['LINE Pay'], 'chosen_merchants': [lookup.merchant_id('台北101')]}
+    put_card(client, h, 'esun_unicard', config)
+    assert recommend(client, h, query='完全不存在的店家xyz')['payment_suggestion'] is None
+    put_card(client, h, 'esun_unicard', dict(config, chosen_payment_methods=['LINE Pay']))
+    s = recommend(client, h, query='完全不存在的店家xyz')['payment_suggestion']
+    assert (s['reward_rate'], s['payment_methods']) == (2.5, ['LINE Pay'])

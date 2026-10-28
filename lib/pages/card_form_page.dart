@@ -9,7 +9,7 @@ import 'widgets/card_thumbnail.dart';
 import 'widgets/dialogs.dart';
 
 /// 新增或編輯一張卡。畫面依後端給的選項(CardOption)產生,不針對個別卡片寫死:
-/// CUBE 的等級、Unicard 的方案與挑店、各卡的開關都從 /api/cards 來。
+/// CUBE 的等級、Unicard 的方案與挑店、各卡的開關、可綁定的行動支付都從 /api/cards 來。
 class CardFormPage extends StatefulWidget {
   final CardOption option;
   final UserCard? existing;
@@ -29,6 +29,9 @@ class _CardFormPageState extends State<CardFormPage> {
   String? get _selected => _option.rateBy == null ? null : _config[_option.rateBy] as String?;
   bool get _needsPicks => _option.needsMerchantPicks(_selected);
   List<int> get _picks => List<int>.from((_config['chosen_merchants'] as List?) ?? const []);
+  List<String> get _bound => List<String>.from((_config['payment_methods'] as List?) ?? const []);
+  List<String> get _pickedPayments => List<String>.from((_config['chosen_payment_methods'] as List?) ?? const []);
+  int get _pickCount => _picks.length + _pickedPayments.length;
 
   @override
   void initState() {
@@ -37,22 +40,40 @@ class _CardFormPageState extends State<CardFormPage> {
   }
 
   Future<void> _pickMerchants() async {
-    final result = await Navigator.of(context).push<List<int>>(CupertinoPageRoute(
+    final result = await Navigator.of(context).push<PickResult>(CupertinoPageRoute(
       builder: (_) => PickMerchantsPage(
         cardId: _option.cardId,
         maxCount: _option.maxChosenMerchants ?? 0,
         initial: _picks,
+        paymentMethods: _option.pickablePaymentMethods,
+        boundPaymentMethods: _bound,
+        initialPaymentMethods: _pickedPayments,
       ),
     ));
-    if (result != null) setState(() => _config['chosen_merchants'] = result);
+    if (result == null) return;
+    setState(() {
+      _config['chosen_merchants'] = result.merchants;
+      _config['chosen_payment_methods'] = result.paymentMethods;
+    });
+  }
+
+  void _setBound(String name, bool value) {
+    final bound = {..._bound};
+    value ? bound.add(name) : bound.remove(name);
+    // 依後端給的順序存
+    setState(() => _config['payment_methods'] = [for (final p in _option.paymentMethods) if (bound.contains(p)) p]);
   }
 
   Map<String, dynamic> _configToSave() {
     final config = <String, dynamic>{
       if (_option.rateBy != null) _option.rateBy!: _selected,
       for (final t in _option.toggles) t.key: _config[t.key] == true,
+      if (_option.paymentMethods.isNotEmpty) 'payment_methods': _bound,
     };
-    if (_needsPicks) config['chosen_merchants'] = _picks;
+    if (_needsPicks) {
+      config['chosen_merchants'] = _picks;
+      if (_option.pickablePaymentMethods.isNotEmpty) config['chosen_payment_methods'] = _pickedPayments;
+    }
     return config;
   }
 
@@ -130,15 +151,34 @@ class _CardFormPageState extends State<CardFormPage> {
               ),
             if (_needsPicks)
               CupertinoListSection.insetGrouped(
-                footer: Text('$_selected 只有挑選的店家享有加碼回饋,最多 $maxPicks 家',
+                footer: Text(
+                    _option.pickablePaymentMethods.isEmpty
+                        ? '$_selected 只有挑選的店家享有加碼回饋,最多 $maxPicks 家'
+                        : '$_selected 只有挑選的店家與行動支付享有加碼回饋,合計最多 $maxPicks 家',
                     style: TextStyle(color: secondary, fontSize: 13)),
                 children: [
                   CupertinoListTile(
                     title: const Text('挑選店家'),
-                    additionalInfo: Text('${_picks.length} / $maxPicks'),
+                    additionalInfo: Text('$_pickCount / $maxPicks'),
                     trailing: const CupertinoListTileChevron(),
                     onTap: _pickMerchants,
                   ),
+                ],
+              ),
+            if (_option.paymentMethods.isNotEmpty)
+              CupertinoFormSection.insetGrouped(
+                header: const Text('有綁定這張卡的行動支付'),
+                footer: Text('用這些行動支付付款回饋比較高時,推薦結果會另外提示',
+                    style: TextStyle(color: secondary, fontSize: 13)),
+                children: [
+                  for (final p in _option.paymentMethods)
+                    CupertinoFormRow(
+                      prefix: Text(p),
+                      child: CupertinoSwitch(
+                        value: _bound.contains(p),
+                        onChanged: (value) => _setBound(p, value),
+                      ),
+                    ),
                 ],
               ),
             const SizedBox(height: 24),

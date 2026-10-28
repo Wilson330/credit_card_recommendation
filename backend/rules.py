@@ -19,8 +19,12 @@ HOME_COUNTRY = 'TW'
 _CARD_KEYS = {'name', 'bank', 'crawl_name', 'rate_by', 'settings', 'notes', 'schemes',
               'general', 'bonuses', 'skip_crawl_schemes'}
 _SETTINGS_KEYS = {'level', 'plan', 'toggles', 'max_chosen_merchants'}
-_SCHEME_KEYS = {'action', 'requires', 'covers', 'stacks_with_general', 'pick_merchants_when_plan', 'notes'}
+_SCHEME_KEYS = {'action', 'requires', 'covers', 'stacks_with_general', 'pick_merchants_when_plan',
+                'payment_methods', 'notes'}
 _COVER_KEYS = {'category', 'country', 'overseas'}
+_PAYMENT_KEYS = {'name', 'crawl_name'}
+# config 中有特定用途、不能拿來當開關名稱的 key
+RESERVED_CONFIG_KEYS = frozenset({'chosen_merchants', 'payment_methods', 'chosen_payment_methods'})
 _GENERAL_KEYS = {'name', 'rate', 'requires', 'where', 'notes', 'crawl_name'}
 _BONUS_KEYS = {'requires', 'add', 'applies_to'}
 
@@ -46,6 +50,12 @@ class Cover:
 
 
 @dataclass(frozen=True)
+class PaymentMethod:
+    name: str                  # 顯示名稱,也是 config 中存的值
+    crawl_name: str            # 爬蟲中的名稱,匯入時比對用
+
+
+@dataclass(frozen=True)
 class SchemeRule:
     name: str
     action: str
@@ -53,7 +63,12 @@ class SchemeRule:
     covers: tuple
     stacks_with_general: bool
     pick_merchants_when_plan: frozenset
+    payment_methods: tuple     # PaymentMethod,用這些行動支付付款也算這個方案
     notes: tuple
+
+    @property
+    def payment_method_names(self):
+        return tuple(p.name for p in self.payment_methods)
 
 
 @dataclass(frozen=True)
@@ -101,6 +116,17 @@ class CardRule:
         for scheme in self.schemes.values():
             plans |= scheme.pick_merchants_when_plan
         return frozenset(plans)
+
+    @property
+    def payment_methods(self):
+        """這張卡支援的行動支付名稱,依 cards.yaml 中第一次出現的順序。"""
+        return _unique(n for s in self.schemes.values() for n in s.payment_method_names)
+
+    @property
+    def pickable_payment_methods(self):
+        """需要挑店的方案中,可以挑的行動支付(例如 Unicard 任意選可以挑 LINE Pay)。"""
+        return _unique(n for s in self.schemes.values() if s.pick_merchants_when_plan
+                       for n in s.payment_method_names)
 
     def variant_for(self, config):
         """config 中決定回饋率的設定值;沒有 rate_by 的卡固定為 ''。"""
@@ -169,7 +195,7 @@ def _parse_card(card_id, body):
     for key, label in toggles.items():
         if not isinstance(label, str) or not label.strip():
             raise RulesError(f'{where}.settings.toggles.{key} 要寫畫面上顯示的名稱')
-        if key in SYSTEM_CONDITIONS or key in RATE_BY_VALUES or key == 'chosen_merchants':
+        if key in SYSTEM_CONDITIONS or key in RATE_BY_VALUES or key in RESERVED_CONFIG_KEYS:
             raise RulesError(f'{where}.settings.toggles.{key} 是保留名稱,不能當開關')
     allowed_conditions = frozenset(toggles) | SYSTEM_CONDITIONS
 
@@ -208,8 +234,15 @@ def _parse_card(card_id, body):
             covers=tuple(covers),
             stacks_with_general=bool(sbody.get('stacks_with_general', False)),
             pick_merchants_when_plan=pick,
+            payment_methods=_payment_methods(sbody.get('payment_methods'), f'{at}.payment_methods'),
             notes=tuple(_str_list(sbody.get('notes'), f'{at}.notes')),
         )
+
+    crawl_of = {}
+    for s in schemes.values():
+        for p in s.payment_methods:
+            if crawl_of.setdefault(p.name, p.crawl_name) != p.crawl_name:
+                raise RulesError(f'{where}:行動支付「{p.name}」在不同方案中的 crawl_name 不一致')
 
     max_chosen = settings.get('max_chosen_merchants')
     if any(s.pick_merchants_when_plan for s in schemes.values()):
@@ -320,6 +353,33 @@ def _str_list(value, at):
     if not isinstance(value, list) or not all(isinstance(v, str) for v in value):
         raise RulesError(f'{at} 要是文字清單,例如 [a, b]')
     return value
+
+
+def _payment_methods(value, at):
+    if value is None:
+        return ()
+    if not isinstance(value, list):
+        raise RulesError(f'{at} 要是清單,例如 [LINE Pay, 街口支付]')
+    result = []
+    for i, item in enumerate(value):
+        if isinstance(item, str):
+            item = {'name': item}
+        _require_mapping(item, f'{at}[{i}]')
+        _no_unknown_keys(item, _PAYMENT_KEYS, f'{at}[{i}]')
+        name = item.get('name')
+        crawl_name = item.get('crawl_name', name)
+        if not isinstance(name, str) or not name.strip() or not isinstance(crawl_name, str) or not crawl_name.strip():
+            raise RulesError(f'{at}[{i}] 要有名稱')
+        result.append(PaymentMethod(name=name, crawl_name=crawl_name))
+    names = [p.name for p in result]
+    dup = {n for n in names if names.count(n) > 1}
+    if dup:
+        raise RulesError(f'{at} 有重複的行動支付:{"、".join(sorted(dup))}')
+    return tuple(result)
+
+
+def _unique(items):
+    return tuple(dict.fromkeys(items))
 
 
 def _decimal(value, at):

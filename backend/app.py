@@ -23,7 +23,7 @@ from .cardconfig import validate_config
 from .config import load_settings
 from .db import connection
 from .errors import ApiError
-from .recommend import recommend as compute_recommendations, today_in_taiwan
+from .recommend import payment_suggestion, recommend as compute_recommendations, today_in_taiwan
 from .rules import consistency_warnings, load_rules
 
 log = logging.getLogger('backend')
@@ -139,7 +139,9 @@ def create_app(settings=None, rules=None):
             card_ids = [cid for cid, _ in user_cards if cid in rules.cards]
             rows = service.scheme_rows(conn, card_ids, merchant.merchant_id if merchant else None)
 
-        results = compute_recommendations(rules, user_cards, rows, merchant, birthday, today_in_taiwan())
+        today = today_in_taiwan()
+        results = compute_recommendations(rules, user_cards, rows, merchant, birthday, today)
+        suggestion = payment_suggestion(rules, user_cards, rows, merchant, birthday, today)
         return jsonify({
             'merchant': None if merchant is None else {
                 'merchant_id': merchant.merchant_id, 'name': merchant.name,
@@ -147,6 +149,10 @@ def create_app(settings=None, rules=None):
             'merchant_found': merchant is not None,
             'message': None if merchant is not None else NOT_FOUND_MESSAGE,
             'results': [_result_json(r) for r in results],
+            # 用行動支付付款比主清單第 1 名高時才有;不知道店家收不收,要讓使用者自己判斷
+            'payment_suggestion': None if suggestion is None else dict(
+                _result_json(suggestion.result),
+                direct_reward_rate=float(suggestion.direct_reward_rate)),
         })
 
     # ---- 卡片設定選項 ----
@@ -207,6 +213,7 @@ def _result_json(r):
         'is_general': r.is_general,
         'required_action': r.required_action,
         'notes': list(r.notes),
+        'payment_methods': list(r.payment_methods),        # 空的 = 直接刷卡
     }
 
 
@@ -219,7 +226,9 @@ def _card_json(c):
         'options': list(c.options),                         # 等級或方案的選項
         'toggles': [{'key': k, 'label': v} for k, v in c.toggles.items()],
         'pick_merchants_when': sorted(c.pick_plans),        # 選到這些方案時要挑店
-        'max_chosen_merchants': c.max_chosen_merchants,
+        'max_chosen_merchants': c.max_chosen_merchants,   # 店家與行動支付合計
+        'payment_methods': list(c.payment_methods),          # 可以勾選「有綁定」的行動支付
+        'pickable_payment_methods': list(c.pickable_payment_methods),   # 挑店時也可以挑的行動支付
     }
 
 

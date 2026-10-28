@@ -131,5 +131,7 @@ class UserCardsStore extends ChangeNotifier {
         'toggles': [for (final t in o.toggles) {'key': t.key, 'label': t.label}],
         'pick_merchants_when': o.pickMerchantsWhen,
         'max_chosen_merchants': o.maxChosenMerchants,
+        'payment_methods': o.paymentMethods,
+        'pickable_payment_methods': o.pickablePaymentMethods,
       };
 }

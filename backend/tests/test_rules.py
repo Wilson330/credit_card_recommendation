@@ -23,6 +23,16 @@ def test_real_cards_yaml_loads(rules):
     assert rules.by_crawl_name('吉鶴卡').card_id == 'ubot_jiho'
 
 
+def test_payment_methods(rules):
+    uni, cube, jiho = (rules.cards[c] for c in ('esun_unicard', 'cathay_cube', 'ubot_jiho'))
+    assert uni.payment_methods[:2] == ('LINE Pay', '街口支付') and len(uni.payment_methods) == 11
+    assert uni.pickable_payment_methods == uni.payment_methods       # 任意選都可以挑
+    assert cube.payment_methods == ('全支付',) and cube.pickable_payment_methods == ()
+    assert cube.schemes['全支付'].payment_methods[0].crawl_name == '全支付國內合作通路'
+    assert uni.schemes['百大特店'].payment_methods[0].crawl_name == 'LINE Pay'   # 只寫名稱時兩者相同
+    assert jiho.payment_methods == ()
+
+
 def test_rates_are_decimal_not_float(rules):
     rate = rules.cards['cathay_cube'].general[0].rate
     assert rate == Decimal('0.3') and isinstance(rate, Decimal)
@@ -64,6 +74,12 @@ def test_minimal_card_loads(tmp_path):
     (BASE + '    bonuses:\n      - {requires: [vip], add: 0.5, applies_to: [不存在]}\n', '不是這張卡的方案'),
     (BASE + '    skip_crawl_schemes: {方案A: 重複}\n', '同時出現在'),
     (BASE.replace('    general:\n      - {name: 一般消費, rate: 1}\n', ''), '至少要有一層一般消費'),
+    (BASE.replace('方案A: {}', '方案A: {payment_methods: [甲Pay, 甲Pay]}'), '重複的行動支付'),
+    (BASE.replace('方案A: {}', '方案A: {payment_methods: [{name: 甲Pay, url: x}]}'), '不認得的欄位'),
+    (BASE.replace('方案A: {}', '方案A: {payment_methods: 甲Pay}'), '要是清單'),
+    (BASE.replace('方案A: {}', '方案A: {payment_methods: [甲Pay]}\n      方案B: {payment_methods: [{name: 甲Pay, crawl_name: 乙}]}'),
+     'crawl_name 不一致'),
+    (BASE.replace('toggles: {vip: 貴賓}', 'toggles: {payment_methods: 行動支付}'), '保留名稱'),
 ])
 def test_invalid_yaml_is_rejected_with_a_clear_message(tmp_path, bad, message):
     with pytest.raises(RulesError, match=message):

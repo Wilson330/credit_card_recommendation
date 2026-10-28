@@ -5,13 +5,32 @@ import '../api/api_client.dart';
 import '../api/models.dart';
 import 'widgets/dialogs.dart';
 
-/// Unicard 任意選:從百大特店名單挑店。完成時回傳挑選的店家編號。
+/// 挑店的結果:店家編號與行動支付名稱。
+typedef PickResult = ({List<int> merchants, List<String> paymentMethods});
+
+/// Unicard 任意選:從百大特店名單挑店,也可以挑行動支付(兩者合計最多 [maxCount] 家)。
+/// 完成時回傳 [PickResult]。
 class PickMerchantsPage extends StatefulWidget {
   final String cardId;
   final int maxCount;
   final List<int> initial;
 
-  const PickMerchantsPage({super.key, required this.cardId, required this.maxCount, required this.initial});
+  /// 可以挑的行動支付。
+  final List<String> paymentMethods;
+
+  /// 使用者有綁定的行動支付;挑了但沒綁定的不會計算,畫面上要提示。
+  final List<String> boundPaymentMethods;
+  final List<String> initialPaymentMethods;
+
+  const PickMerchantsPage({
+    super.key,
+    required this.cardId,
+    required this.maxCount,
+    required this.initial,
+    this.paymentMethods = const [],
+    this.boundPaymentMethods = const [],
+    this.initialPaymentMethods = const [],
+  });
 
   @override
   State<PickMerchantsPage> createState() => _PickMerchantsPageState();
@@ -19,6 +38,7 @@ class PickMerchantsPage extends StatefulWidget {
 
 class _PickMerchantsPageState extends State<PickMerchantsPage> {
   late final Set<int> _selected = {...widget.initial};
+  late final Set<String> _selectedPayments = {...widget.initialPaymentMethods};
   final _filter = TextEditingController();
   List<MerchantSuggestion>? _merchants;
   String? _error;
@@ -40,12 +60,24 @@ class _PickMerchantsPageState extends State<PickMerchantsPage> {
     }
   }
 
-  void _toggle(int id) {
-    if (!_selected.contains(id) && _selected.length >= widget.maxCount) {
-      showMessageDialog(context, '最多只能挑 ${widget.maxCount} 家,請先取消其他店家', title: '已達上限');
-      return;
+  int get _count => _selected.length + _selectedPayments.length;
+
+  bool _checkLimit(bool adding) {
+    if (adding && _count >= widget.maxCount) {
+      showMessageDialog(context, '最多只能挑 ${widget.maxCount} 家(行動支付也算在內),請先取消其他項目', title: '已達上限');
+      return false;
     }
+    return true;
+  }
+
+  void _toggle(int id) {
+    if (!_checkLimit(!_selected.contains(id))) return;
     setState(() => _selected.contains(id) ? _selected.remove(id) : _selected.add(id));
+  }
+
+  void _togglePayment(String name) {
+    if (!_checkLimit(!_selectedPayments.contains(name))) return;
+    setState(() => _selectedPayments.contains(name) ? _selectedPayments.remove(name) : _selectedPayments.add(name));
   }
 
   @override
@@ -69,13 +101,22 @@ class _PickMerchantsPageState extends State<PickMerchantsPage> {
       final pb = _selected.contains(b.merchantId) ? 0 : 1;
       return pa != pb ? pa - pb : a.name.compareTo(b.name);
     });
+    final payments = [
+      for (final p in widget.paymentMethods)
+        if (keyword.isEmpty || p.toLowerCase().contains(keyword)) p,
+    ];
+    final check = Icon(CupertinoIcons.check_mark, color: CupertinoColors.systemBlue.resolveFrom(context));
+    final secondary = CupertinoColors.secondaryLabel.resolveFrom(context);
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text('挑選店家 ${_selected.length} / ${widget.maxCount}'),
+        middle: Text('挑選店家 $_count / ${widget.maxCount}'),
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
-          onPressed: () => Navigator.of(context).pop(_selected.toList()),
+          onPressed: () => Navigator.of(context).pop<PickResult>((
+            merchants: _selected.toList(),
+            paymentMethods: [for (final p in widget.paymentMethods) if (_selectedPayments.contains(p)) p],
+          )),
           child: const Text('完成'),
         ),
       ),
@@ -99,19 +140,26 @@ class _PickMerchantsPageState extends State<PickMerchantsPage> {
                     )
                   : merchants == null
                       ? const Center(child: CupertinoActivityIndicator())
-                      : ListView.builder(
-                          itemCount: visible.length,
-                          itemBuilder: (context, i) {
-                            final m = visible[i];
-                            final picked = _selected.contains(m.merchantId);
-                            return CupertinoListTile(
-                              title: Text(m.name),
-                              trailing: picked
-                                  ? Icon(CupertinoIcons.check_mark, color: CupertinoColors.systemBlue.resolveFrom(context))
-                                  : null,
-                              onTap: () => _toggle(m.merchantId),
-                            );
-                          },
+                      : ListView(
+                          children: [
+                            if (payments.isNotEmpty) ...[
+                              _Header('行動支付', color: secondary),
+                              for (final p in payments)
+                                CupertinoListTile(
+                                  title: Text(p),
+                                  subtitle: widget.boundPaymentMethods.contains(p) ? null : const Text('尚未綁定,不會計算'),
+                                  trailing: _selectedPayments.contains(p) ? check : null,
+                                  onTap: () => _togglePayment(p),
+                                ),
+                              _Header('店家', color: secondary),
+                            ],
+                            for (final m in visible)
+                              CupertinoListTile(
+                                title: Text(m.name),
+                                trailing: _selected.contains(m.merchantId) ? check : null,
+                                onTap: () => _toggle(m.merchantId),
+                              ),
+                          ],
                         ),
             ),
           ],
@@ -119,4 +167,17 @@ class _PickMerchantsPageState extends State<PickMerchantsPage> {
       ),
     );
   }
+}
+
+class _Header extends StatelessWidget {
+  final String text;
+  final Color color;
+
+  const _Header(this.text, {required this.color});
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+        child: Text(text, style: TextStyle(fontSize: 13, color: color)),
+      );
 }

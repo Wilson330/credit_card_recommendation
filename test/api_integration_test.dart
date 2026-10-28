@@ -30,6 +30,9 @@ void main() {
     expect(options['esun_unicard']!.pickMerchantsWhen, ['任意選']);
     expect(options['esun_unicard']!.maxChosenMerchants, 8);
     expect(options['ubot_jiho']!.toggles.single.label, '新戶自動扣繳');
+    expect(options['esun_unicard']!.paymentMethods.first, 'LINE Pay');
+    expect(options['esun_unicard']!.pickablePaymentMethods, options['esun_unicard']!.paymentMethods);
+    expect(options['cathay_cube']!.paymentMethods, ['全支付']);
 
     // 自動補全(含別名)
     expect((await api.suggest('小七')).first.name, '7-ELEVEN (7-11) 實體門市');
@@ -38,11 +41,12 @@ void main() {
 
     // 儲存卡片
     final cube = await api.saveCard('cathay_cube', {'level': 'Level 2'});
-    expect(cube.config, {'level': 'Level 2', 'kids_club': false});
+    expect(cube.config, {'level': 'Level 2', 'kids_club': false, 'payment_methods': []});
     final pickable = await api.pickableMerchants('esun_unicard');
     expect(pickable.map((m) => m.merchantId), contains(taipei101.merchantId));
     await api.saveCard('esun_unicard', {
-      'plan': '任意選', 'e_bill': true, 'auto_debit': true, 'chosen_merchants': [taipei101.merchantId],
+      'plan': '任意選', 'e_bill': true, 'auto_debit': true, 'payment_methods': ['LINE Pay'],
+      'chosen_merchants': [taipei101.merchantId], 'chosen_payment_methods': ['LINE Pay'],
     });
     expect((await api.myCards()).map((c) => c.cardId), containsAll(['cathay_cube', 'esun_unicard']));
 
@@ -59,10 +63,17 @@ void main() {
     expect(rates['esun_unicard']!.rewardRate, 3.5);         // 任意選 2.5% + 一般消費 1%
     expect(rates['cathay_cube']!.rewardRate, 3.0);
     expect(rates['cathay_cube']!.requiredAction, '需切換至樂饗購權益方案');
+    expect(rates['cathay_cube']!.paymentMethods, isEmpty);
+    expect(byId.paymentSuggestion, isNull);                 // 台北101 直接刷卡已經 3.5%
 
     final notFound = await api.recommendByQuery('完全不存在的店家xyz');
     expect(notFound.merchantFound, isFalse);
     expect(notFound.message, '此店家不在回饋名單中,以一般消費計算');
+    final suggestion = notFound.paymentSuggestion!;          // 挑了 LINE Pay:2.5% + 1%
+    expect(suggestion.result.cardId, 'esun_unicard');
+    expect(suggestion.result.paymentMethods, ['LINE Pay']);
+    expect(suggestion.result.rewardRate, 3.5);
+    expect(suggestion.directRewardRate, 1.0);
 
     // 移除
     await api.deleteCard('esun_unicard');

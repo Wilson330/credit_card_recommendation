@@ -17,6 +17,10 @@
 #     covers               涵蓋範圍,符合任何一組就適用:category / country / overseas
 #     stacks_with_general  回饋率是否加上一般消費
 #     pick_merchants_when_plan  這些方案下,只算使用者在 config.chosen_merchants 挑的店
+#                          (行動支付則要在 config.chosen_payment_methods 中)
+#     payment_methods      用這些行動支付綁定本卡付款也算這個方案(只限國內的店,不限哪家);
+#                          寫名稱,或 { name: 顯示名稱, crawl_name: 爬蟲中的名稱 }
+#                          使用者在 config.payment_methods 勾選有綁定的才會計算
 #     notes                限制說明
 #   general                一般消費,可多層,取符合條件與地點中最高的
 #     where                省略 = 不分國內外;domestic / overseas / 國別代碼(例:JP)
@@ -38,6 +42,8 @@ cards:
     schemes:
       全支付:
         action: 需切換至全支付權益方案
+        payment_methods:
+          - { name: 全支付, crawl_name: 全支付國內合作通路 }
       台塑家:
         action: 需切換至台塑家權益方案
       樂饗購:
@@ -90,6 +96,9 @@ cards:
       百大特店:
         stacks_with_general: true            # 爬蟲數字不含基本回饋,要加上一般消費
         pick_merchants_when_plan: [任意選]    # 任意選只算使用者挑的店
+        payment_methods: [LINE Pay, 街口支付, 全支付, 全盈+PAY, icash Pay, 悠遊付, iPASS MONEY,
+                          玉山Wallet電子支付, 支付寶, 台塑石油PAY, 王品瘋Pay]
+                                              # 爬蟲中的「玉山Wallet愛心捐款」是捐款,列在 import_ignore.txt
     general:                                  # 國內外相同(請 Allen 確認)
       - { name: 一般消費, rate: 0 }
       - { name: 一般消費, rate: 0.3, requires: [e_bill] }

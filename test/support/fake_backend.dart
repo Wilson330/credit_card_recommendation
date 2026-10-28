@@ -59,18 +59,21 @@ class FakeBackend {
       'options': ['Level 1', 'Level 2', 'Level 3'],
       'toggles': [{'key': 'kids_club', 'label': '童樂匯'}],
       'pick_merchants_when': <String>[], 'max_chosen_merchants': null,
+      'payment_methods': ['全支付'], 'pickable_payment_methods': <String>[],
     },
     {
       'card_id': 'esun_unicard', 'name': 'Unicard', 'bank': '玉山銀行', 'rate_by': 'plan',
       'options': ['簡單選', '任意選', 'UP選'],
       'toggles': [{'key': 'e_bill', 'label': '電子帳單'}, {'key': 'auto_debit', 'label': '自動扣繳'}],
       'pick_merchants_when': ['任意選'], 'max_chosen_merchants': 8,
+      'payment_methods': ['LINE Pay', '街口支付'], 'pickable_payment_methods': ['LINE Pay', '街口支付'],
     },
     {
       'card_id': 'ubot_jiho', 'name': '吉鶴卡', 'bank': '聯邦銀行', 'rate_by': null,
       'options': <String>[],
       'toggles': [{'key': 'new_customer', 'label': '新戶自動扣繳'}],
       'pick_merchants_when': <String>[], 'max_chosen_merchants': null,
+      'payment_methods': <String>[], 'pickable_payment_methods': <String>[],
     },
   ];
 
@@ -123,6 +126,7 @@ class FakeBackend {
     }
     if (path == '/api/recommend') {
       final merchant = _resolve(body!);
+      final unicardPayments = (cards['esun_unicard']?['payment_methods'] as List?) ?? const [];
       return _json(200, {
         'merchant': merchant == null ? null : {...merchant, 'category': 'dining', 'country': 'TW'},
         'merchant_found': merchant != null,
@@ -136,8 +140,21 @@ class FakeBackend {
               'is_general': merchant == null,
               'required_action': merchant == null ? null : '需切換至樂饗購權益方案',
               'notes': ['實際回饋依當期公告為準', if (merchant == null) '不含保費'],
+              'payment_methods': <String>[],
             },
         ],
+        // 有綁定行動支付的 Unicard:模擬 UP選 3.5% 高於 CUBE
+        'payment_suggestion': unicardPayments.isEmpty
+            ? null
+            : {
+                'card_id': 'esun_unicard', 'card_name': 'Unicard', 'bank_name': '玉山銀行',
+                'reward_rate': 3.5, 'scheme_name': '百大特店', 'is_general': false,
+                'required_action': '用 ${unicardPayments.join('、')} '
+                    '${unicardPayments.length > 1 ? '其中一種' : ''}綁定 Unicard 付款',
+                'notes': ['實際回饋依當期公告為準'],
+                'payment_methods': unicardPayments,
+                'direct_reward_rate': 1.0,
+              },
       });
     }
     return _json(404, {'error': '找不到這個 API'});

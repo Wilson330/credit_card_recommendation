@@ -9,6 +9,7 @@
 
 | 版本 | 內容 |
 |---|---|
+| v0.5 | 行動支付:`cards.yaml` 的方案可列出 `payment_methods`(Unicard 百大特店 11 種、CUBE 全支付);使用者在卡片設定勾選有綁定的行動支付(`config.payment_methods`),任意選另可挑行動支付(`chosen_payment_methods`,與店家合計 8 家);推薦結果多一筆 `payment_suggestion`,只在高於主清單第 1 名時出現;匯入時比對爬蟲與 `cards.yaml` 的行動支付清單。不改資料表 |
 | v0.4 | 新增登入與 token(第 5 節);一般消費可依店家國內外分層,CUBE 海外 2.5%、吉鶴卡日本 2.5%;每張卡改為「方案與一般消費一起比,取最高」;吉鶴卡改用卡片層級加碼(新戶自動扣繳 +0.5%,只加在國內一般消費與國內日系特店),爬蟲數字視為已含基本回饋;分類涵蓋可限國別(樂饗購限國內;趣旅行涵蓋飯店、旅行類與所有國外的店);任意選最多 8 家;慶生月需切換方案;開關有顯示名稱;55688 併入台灣大車隊;`users` 定義定案;`merchants.country` 放寬為 `VARCHAR(10)`,可填 `global`;模糊比對第二層改依命中程度排序;token 有效期 30 天;待確認事項全部定案 |
 | v0.3 | 推薦計算改為「SQL 撈資料 + 後端 Python 判斷」;卡片規則改寫在 `cards.yaml`;使用者卡片設定改存 `user_cards.config`(JSON);`scheme_rates.card_level` 改名 `variant`;一般消費改由 `cards.yaml` 維護。移除 `cards`、`scheme_categories`、`user_card_conditions`,`card_schemes` 瘦身 |
 | v0.2 | 回饋規則從單一 `reward_rules` 表改為 `card_schemes` + `scheme_rates` + `scheme_merchants` + `scheme_categories`;移除 `card_levels`、`merchant_source_pending` |
@@ -16,7 +17,7 @@
 
 ### 實作狀態
 
-v0.4 已全部實作(2026-10-05):
+v0.4 已全部實作(2026-10-05);v0.5 行動支付已實作(2026-10-17):
 
 | 部分 | 位置 |
 |---|---|
@@ -282,7 +283,7 @@ CREATE TABLE user_cards (
 | 卡片 | 代號、名稱、銀行、爬蟲中的卡名 |
 | `rate_by` | 哪個設定決定回饋率(`level` / `plan` / 無) |
 | `settings` | 設定畫面的選項:等級或方案的清單、開關(每個開關附顯示名稱)、可挑店的上限 |
-| `schemes` | 每個方案的規則:要做的動作、需要的條件、涵蓋的範圍(`covers`)、是否疊加一般消費、哪些方案要挑店、限制說明 |
+| `schemes` | 每個方案的規則:要做的動作、需要的條件、涵蓋的範圍(`covers`)、是否疊加一般消費、哪些方案要挑店、適用的行動支付(`payment_methods`)、限制說明 |
 | `general` | 一般消費:可以有多層,每層有名稱、回饋率、需要的條件、適用的地點(`where`) |
 | `bonuses` | 卡片層級的加碼:滿足條件時,加在指定的方案或一般消費上 |
 | `skip_crawl_schemes` | 爬蟲中整個略過的方案,以及原因 |
@@ -293,6 +294,8 @@ CREATE TABLE user_cards (
 - `overseas: true`:所有國外的店(國別不是 `TW`)
 
 **`where`(一般消費的適用地點)**:省略 = 不分國內外;`domestic` = 國內的店;`overseas` = 國外的店;或填國別代碼(例如 `JP`)。
+
+**`payment_methods`(行動支付)**:用這些行動支付綁定本卡付款,也算這個方案,不限哪家店,但只限國內。每項寫名稱,或 `{ name: 顯示名稱, crawl_name: 爬蟲中的名稱 }`(CUBE 的「全支付」在爬蟲中叫「全支付國內合作通路」)。回饋率用方案的回饋率(資料庫),清單本身寫在這裡、匯入時與爬蟲比對(第 8 節)。卡片支援哪些行動支付 = 各方案 `payment_methods` 的聯集。
 
 **為什麼一般消費寫在這裡而不是資料庫:** 一般消費都是人確認過的數字,Unicard 的「依電子帳單、自動扣繳分三層」本身就是規則。由人維護,爬蟲的值就不會悄悄蓋掉確認過的數字(0908 爬蟲中 CUBE 的一般消費是 1.2%,實際為 0.3%)。匯入時若爬蟲的一般消費與這裡不同,報告會提醒。
 
@@ -313,7 +316,9 @@ cards:
         kids_club: 童樂匯
     notes: [實際回饋依當期公告為準]
     schemes:
-      全支付:   { action: 需切換至全支付權益方案 }
+      全支付:
+        action: 需切換至全支付權益方案
+        payment_methods: [{ name: 全支付, crawl_name: 全支付國內合作通路 }]
       台塑家:   { action: 需切換至台塑家權益方案 }
       樂饗購:
         action: 需切換至樂饗購權益方案
@@ -354,7 +359,9 @@ cards:
     schemes:
       百大特店:
         stacks_with_general: true          # 爬蟲數字不含基本回饋,要加上一般消費
-        pick_merchants_when_plan: [任意選]  # 任意選只算使用者挑的店
+        pick_merchants_when_plan: [任意選]  # 任意選只算使用者挑的店(行動支付也要挑)
+        payment_methods: [LINE Pay, 街口支付, 全支付, 全盈+PAY, icash Pay, 悠遊付, iPASS MONEY,
+                          玉山Wallet電子支付, 支付寶, 台塑石油PAY, 王品瘋Pay]
     general:                                # 取符合條件中最高的;國內外相同(請 Allen 確認)
       - { name: 一般消費, requires: [],                   rate: 0 }
       - { name: 一般消費, requires: [e_bill],             rate: 0.3 }
@@ -395,14 +402,16 @@ config 的欄位由該卡在 `cards.yaml` 的 `settings` 決定:
 
 | 卡片 | config 範例 |
 |---|---|
-| CUBE | `{"level": "Level 2", "kids_club": false}` |
+| CUBE | `{"level": "Level 2", "kids_club": false, "payment_methods": ["全支付"]}` |
 | 吉鶴卡 | `{"new_customer": true}` |
-| Unicard | `{"plan": "任意選", "e_bill": true, "auto_debit": true, "chosen_merchants": [12, 87]}` |
+| Unicard | `{"plan": "任意選", "e_bill": true, "auto_debit": true, "payment_methods": ["LINE Pay"], "chosen_merchants": [12, 87], "chosen_payment_methods": ["LINE Pay"]}` |
 
 後端儲存時的檢查:
 - `level` / `plan` 必須在 `settings` 列出的選項中(擋掉 `level_1` 這種拼錯的值)
 - 開關只能是 `settings.toggles` 列出的,值為 `true` / `false`
-- `chosen_merchants` 只有在方案屬於 `pick_merchants_when_plan` 時才允許;最多 `max_chosen_merchants`(Unicard 8 家);每個編號都必須在該方案的點名店家中
+- `chosen_merchants` 只有在方案屬於 `pick_merchants_when_plan` 時才允許;每個編號都必須在該方案的點名店家中
+- `payment_methods`(有綁定這張卡的行動支付):只有支援行動支付的卡才有,值必須在 `cards.yaml` 列出的清單中;沒給時存 `[]`,依 `cards.yaml` 的順序存
+- `chosen_payment_methods`(任意選挑的行動支付):規則同 `chosen_merchants`,值必須是需要挑店的方案中列出的行動支付;**與 `chosen_merchants` 合計**最多 `max_chosen_merchants`(Unicard 8 家)。不要求先綁定,沒綁定的計算時不算
 - 不允許其他欄位
 
 Unicard 實際規則是「每月最多切換 30 次方案,以當月最後一個方案計算整月」。App 不限制切換次數,一律以使用者**目前**設定的方案計算。
@@ -550,6 +559,13 @@ WHERE s.card_id IN (:user_card_ids);
    - 加碼:加上 `bonuses` 中條件滿足、且 `applies_to` 包含這個方案的加碼
 5. **取最好的一筆**:第 3 步的一般消費與第 4 步的所有方案**一起比**,取回饋率最高者。同分時優先不需要做任何動作的(一般消費),其次是店家被點名的方案
 6. **卡片之間**:回饋率高到低,同分依卡名,取前 3 名
+7. **行動支付建議**(另外算,不放進主清單):
+   - 每張卡、每個有 `payment_methods` 的方案:使用者有綁定(`config.payment_methods`)的行動支付才算;目前方案在 `pick_merchants_when_plan` 中時,還要在 `chosen_payment_methods` 中(**兩邊都有才算**)
+   - **只限國內的店**(`country` 是 `TW`;找不到店家視為國內),國外的店不建議行動支付
+   - 回饋率:方案的回饋率(不用店家的 `rate_override`),照第 4 步疊加一般消費與加碼。國內不限哪家店,也不看 `covers`
+   - 同一張卡回饋率相同的行動支付**全部列出**(依 `cards.yaml` 順序),使用者挑店家有收的那一種
+   - 只有**高於所有卡直接刷卡的最高回饋(主清單第 1 名)**才建議,同分不建議;因此店家本身被點名、直接刷卡一樣高時不會出現。多張卡都符合時取最高的一張,同分依卡名
+   - 不疊加:直接刷卡與行動支付二擇一,取高的
 
 > 第 5 步在 v0.3 是「有方案適用就不看一般消費」。改成一起比,是因為一般消費現在可能比方案高:CUBE Level 1 在國外的店,趣旅行 2%、海外消費 2.5%,應該推薦不用切換的 2.5%。
 
@@ -610,6 +626,12 @@ def best_reward(card, rows, merchant, birthday):
 - 百大特店:台北101 被點名、在 `chosen_merchants` 中;任意選 2.5% + 1% = **3.5%**
 - 若沒挑台北101 → **1%**
 
+**Unicard UP選、綁定 LINE Pay 與街口支付;CUBE Level 2**
+- 查「鼎泰豐」:主清單 CUBE 樂饗購 3%、Unicard 一般消費 0%;行動支付建議 **Unicard 用 LINE Pay 或街口支付 3.5%**(直接刷卡 0%)
+- 查「台北101」:Unicard 直接刷卡已是百大特店 3.5%,**不另外建議**
+- 改成簡單選(2%):低於 CUBE 的 3%,不建議
+- 查「日本三越」:國外的店,不建議
+
 **吉鶴卡、新戶自動扣繳**
 - UNIQLO(國內日系特店):5% + 0.5% = **5.5%**
 - 國內人氣餐廳的店:**10%**(沒有新戶加碼)
@@ -621,6 +643,8 @@ def best_reward(card, rows, merchant, birthday):
 - 每筆顯示:卡名、回饋率、方案名稱(一般消費顯示該層名稱,例如「海外消費」)、要做的動作、限制說明(卡片、方案、一般消費層的 `notes`,加上店家層級的 `merchant_notes`)
 - 找不到店家時:結果上方顯示「此店家不在回饋名單中,以一般消費計算」,下方照常列出各卡一般消費
 - 找得到店家、但某些卡只有一般消費:正常顯示,不跳提示
+- 每筆顯示付款方式:`payment_methods` 空的顯示「直接刷卡」
+- 有 `payment_suggestion` 時,主清單下方多一張建議卡:「若店家接受 LINE Pay / 街口支付,用 Unicard 綁定付款可拿 3.5%(直接刷卡 0%)」,加上要做的動作。不知道店家收哪些行動支付,所以一律寫成「若店家接受」
 
 ### 7.6 API(建議,由 Allen 定案)
 
@@ -629,8 +653,8 @@ def best_reward(card, rows, merchant, birthday):
 | `POST /api/register` | email、密碼、姓名、生日 | 成功與否 | 否 |
 | `POST /api/login` | email、密碼 | token、姓名、生日 | 否 |
 | `GET /api/merchants/suggest?q=` | 輸入文字 | `[{merchant_id, name}]`,最多 10 筆 | 是 |
-| `POST /api/recommend` | `{merchant_id}` 或 `{query}`(二擇一) | `{merchant: {merchant_id, name} \| null, results: [...]}` | 是 |
-| `GET /api/cards` | — | 各卡的名稱與設定選項(來自 `cards.yaml` 的 `settings`) | 是 |
+| `POST /api/recommend` | `{merchant_id}` 或 `{query}`(二擇一) | `{merchant: {merchant_id, name} \| null, results: [...], payment_suggestion: {...} \| null}`;每筆結果有 `payment_methods`(空的 = 直接刷卡),`payment_suggestion` 另有 `direct_reward_rate` | 是 |
+| `GET /api/cards` | — | 各卡的名稱與設定選項(來自 `cards.yaml` 的 `settings`),含 `payment_methods`、`pickable_payment_methods` | 是 |
 | `GET /api/cards/{card_id}/pickable_merchants` | — | 需要挑店的方案中可挑的店家(例如 Unicard 百大特店) | 是 |
 | `GET /api/user/cards` | — | 使用者的卡片與 config | 是 |
 | `PUT /api/user/cards/{card_id}` | config | 新增或更新一張卡(依 6.3 檢查) | 是 |
@@ -669,7 +693,11 @@ import --ignore "悠遊卡"                                     # 加入略過�
 
 非店家的判斷樣式與略過清單屬於匯入腳本自己的設定,不放在 `cards.yaml`。
 
-**已知限制**:Unicard 百大特店名單中有 LINE Pay、街口支付等行動支付,銀行規則允許選入任意選的 8 家。系統以「店家」查詢、不記錄付款方式,這些會被當成非店家略過,使用者在 App 中也選不到。
+**行動支付**:方案的 `payment_methods` 列出的爬蟲名稱不當店家處理、不寫入資料庫(計算時用方案的回饋率),報告中會:
+- 列出對到的行動支付
+- `cards.yaml` 有、爬蟲沒有的行動支付 → 提醒(銀行可能拿掉了)
+- 爬蟲中被判斷為付款工具、`cards.yaml` 沒列的 → 提醒(要計算就加進 `cards.yaml`,不是就 `--ignore`)。Unicard 的「玉山Wallet愛心捐款」是捐款,已列在 `backend/import_ignore.txt`
+- 行動支付的回饋率與方案不同 → 提醒
 
 **報告中的異常提醒**:例外回饋率無法用單一值表示的店家、上次有這次沒有的方案、離開方案名單的店家、別名衝突、爬蟲的一般消費與 `cards.yaml` 不同。
 
@@ -702,6 +730,13 @@ import --ignore "悠遊卡"                                     # 加入略過�
 | 搜尋完全不存在的店 | 顯示「不在回饋名單中」,各卡一般消費(以國內計) |
 | 自動補全打 `藏` | 清單中有藏壽司 |
 | 儲存 config:不存在的等級(`level_1`)、未定義的欄位、簡單選卻帶 `chosen_merchants`、挑了第 9 家、挑了不在百大名單的店 | 後端拒絕 |
+| 儲存 config:不支援的行動支付、吉鶴卡帶 `payment_methods`、任意選挑 7 家店 + 2 種行動支付 | 後端拒絕 |
+| Unicard UP選綁定 LINE Pay,搜尋鼎泰豐 / 台北101 | 建議 LINE Pay 3.5% / 不建議(直接刷卡一樣 3.5%) |
+| 同上,另有 CUBE Level 2;Unicard 改簡單選 | 不建議(2% 低於 CUBE 樂饗購 3%) |
+| Unicard 任意選:有綁有挑 / 有綁沒挑 / 有挑沒綁 LINE Pay | 建議 / 不建議 / 不建議 |
+| CUBE Level 1 綁定全支付,搜尋未知店家 | 建議 2%,動作「需切換至全支付權益方案,並用 全支付 綁定 CUBE卡 付款」 |
+| 綁定多種回饋率相同的行動支付 | 一筆建議,全部列出,依 `cards.yaml` 順序 |
+| 綁定行動支付,搜尋國外的店(日本三越、`global` 的飯店) | 不建議 |
 | 未帶 token、token 被竄改或過期 | 401 |
 | 登入時帳號不存在 / 密碼錯誤 | 兩者回同樣的「帳號或密碼錯誤」 |
 | 資料庫有方案但 `cards.yaml` 沒有 | 啟動時警告,計算時忽略 |
@@ -754,6 +789,7 @@ import --ignore "悠遊卡"                                     # 加入略過�
 - Unicard 在國外的一般消費與國內相同(0% / 0.3% / 1%)
 
 **要通知 Allen 的事項**:
+- v0.5 行動支付:`/api/recommend` 多了 `payment_suggestion`、每筆結果多了 `payment_methods`;`/api/cards` 多了 `payment_methods`、`pickable_payment_methods`;卡片 config 多了 `payment_methods`、`chosen_payment_methods`(見 6.3、7.3、7.6)
 - `users` 表改用本文件 4.6 的定義,`app.py` 的 `init_db()` 跟著改
 - 登入改為發 token(有效 30 天),後續 API 都要帶 token
 - `app.py` 目前 `debug=True` 且監聽 `0.0.0.0`,同網路的人可透過除錯頁面執行程式;要給手機連時請關掉 debug。資料庫密碼不要寫死在檔案裡
@@ -763,6 +799,7 @@ import --ignore "悠遊卡"                                     # 加入略過�
 - Unicard 一般消費依電子帳單 / 自動扣繳分 0% / 0.3% / 1%,疊加在百大特店上;以使用者目前設定的方案為準,不限切換次數;任意選最多 8 家
 - 吉鶴卡爬蟲數字已含基本回饋;新戶自動扣繳 +0.5%,只加在國內一般消費與國內日系特店
 - 慶生月用 `users.birthday` 在後端判斷,需切換至慶生月權益方案
+- 行動支付(2026-10-17):第一版做 Unicard 百大特店與 CUBE 全支付,吉鶴卡日本行動支付 5% 先不做;店家本身被點名且回饋較高時不顯示行動支付建議(不疊加);CUBE 全支付要切換方案**並**用全支付付款;行動支付建議只限國內的店;儲值、繳費不在範圍內(系統只處理到店消費)
 - 樂饗購只涵蓋國內餐廳;趣旅行涵蓋飯店、旅行類(含叫車)與所有國外的店
 - 登入發 token(有效 30 天),登入失敗一律回「帳號或密碼錯誤」
 - `users` 表 `id` 為 `INT UNSIGNED`、定序 `utf8mb4_unicode_ci`
