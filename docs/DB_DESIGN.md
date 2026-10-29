@@ -666,10 +666,13 @@ def best_reward(card, rows, merchant, birthday):
 
 ## 8. 爬蟲匯入流程
 
+匯出檔的格式見 [CRAWL_FORMAT.md](CRAWL_FORMAT.md)。匯入前先用 `--check` 檢查格式(不需要資料庫),有錯誤就不匯入;`valid_from` 未到或 `valid_to` 已過的列略過。
+
 ```
 爬蟲匯出檔
  ① 對照卡片:爬蟲 card_name → cards.yaml 的 crawl_name      對不到 → 中止,先在 cards.yaml 加入新卡
- ② 特殊列:一般消費與 cards.yaml 的 general 比對,不同則提醒;國別、付款工具等略過
+ ② 特殊列:依 db/crawl/labels.yaml 的標記分成店家、一般消費、行動支付、類別、略過(見下方「標記」);
+    跳過的方案(skip_crawl_schemes)中的一般消費與 cards.yaml 的 general 比對,不同則提醒
  ③ 對照方案:cards.yaml 的 schemes 或 skip_crawl_schemes      對不到 → 本次略過,先在 cards.yaml 加入
  ④ 對照店名:merchant_source_names                          對不到 → 列入報告並附配對建議
  ⑤ 計算:每個方案每個 variant,取多數店家的回饋率當方案費率,少數不同者記為例外
@@ -688,15 +691,29 @@ def best_reward(card, rows, merchant, birthday):
 ```bash
 import --map    "7-ELEVEN 實體門市" 12                       # 對到既有店家
 import --new    "一蘭拉麵" --category dining --country TW    # 建立新店並建立對照
-import --ignore "悠遊卡"                                     # 加入略過清單
 ```
 
-非店家的判斷樣式與略過清單屬於匯入腳本自己的設定,不放在 `cards.yaml`。
+**標記**:爬蟲的 `merchant_name` 除了店名,也會出現一般消費、行動支付、國家或一整類消費。每個原文的類型記在 `db/crawl/labels.yaml`(在 git 中,改動看得到 diff),判斷順序:
+
+1. 列在方案的 `payment_methods` → 行動支付(`cards.yaml` 優先)
+2. `labels.yaml` 有標記 → 照標記
+3. 都沒有 → 依店名關鍵字猜(國別、「支付」「Pay」、「一般消費」等),報告列為「未標記的列」,確認後用 `--label` 補進 `labels.yaml`
+4. 猜不出來 → 當成店家,用 `merchant_source_names` 對照
+
+| 類型 | 匯入時的處理 |
+|---|---|
+| `merchant` | 店家。只有被關鍵字誤判時才需要標 |
+| `general` | 不寫入。報告提醒「方案內的一般消費列」 |
+| `payment_method` | 不寫入。`cards.yaml` 有列 → 依方案計算;沒列 → 提醒 |
+| `category` | 不寫入。報告依方案有沒有設定 `covers` 分成「確認涵蓋範圍一致」與「目前不計算」 |
+| `ignore` | 略過(例如 Unicard 的「玉山Wallet愛心捐款」) |
+
+標記和爬蟲原名對照一樣是全域的,不分卡片。標記由後端這邊做,不放進爬蟲格式:判斷要依 `cards.yaml` 與資料庫,爬蟲只負責照抄原文;爬蟲提供的 `section`(網頁段落標題)是判斷時最有用的線索。
 
 **行動支付**:方案的 `payment_methods` 列出的爬蟲名稱不當店家處理、不寫入資料庫(計算時用方案的回饋率),報告中會:
 - 列出對到的行動支付
 - `cards.yaml` 有、爬蟲沒有的行動支付 → 提醒(銀行可能拿掉了)
-- 爬蟲中被判斷為付款工具、`cards.yaml` 沒列的 → 提醒(要計算就加進 `cards.yaml`,不是就 `--ignore`)。Unicard 的「玉山Wallet愛心捐款」是捐款,已列在 `backend/import_ignore.txt`
+- 標記為行動支付、`cards.yaml` 沒列的 → 提醒(要計算就加進 `cards.yaml`)
 - 行動支付的回饋率與方案不同 → 提醒
 
 **報告中的異常提醒**:例外回饋率無法用單一值表示的店家、上次有這次沒有的方案、離開方案名單的店家、別名衝突、爬蟲的一般消費與 `cards.yaml` 不同。

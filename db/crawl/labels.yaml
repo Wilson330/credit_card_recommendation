@@ -1,0 +1,70 @@
+# 爬蟲列的標記:爬蟲 merchant_name 原文 → 這一列是什麼(docs/CRAWL_FORMAT.md「標記」一節)
+#
+# 爬蟲的 merchant_name 除了店名,也會出現一般消費、行動支付、國家或一整類消費。
+# 匯入工具依這裡的標記決定怎麼處理;沒有標記的列只能依店名關鍵字猜,報告中會列出來,
+# 確認後補進這裡,下次就不用再猜。真正的店家不用標記,用 importer 的 --map / --new 對照到店家。
+#
+# 類型:
+#   merchant        店家。只有店名被關鍵字誤判成別的類型時才需要標(例如店名裡有「Pay」)
+#   general         一般消費。不寫入資料庫,匯入時跟 cards.yaml 的 general 比對數字
+#   payment_method  行動支付。要計算的話列在 cards.yaml 該方案的 payment_methods
+#   category        一整類消費或一個地區。要計算的話寫在 cards.yaml 該方案的 covers
+#   ignore          不是消費(例如捐款),直接略過
+#
+# 寫法:「原文: 類型」,或「原文: { type: 類型, note: "說明" }」。原文要跟爬蟲一字不差。
+# 對照是全域的,不分卡片;同一個原文在不同卡代表不同東西時,要改成依卡片標記。
+#
+# labels 必須是本檔最後一個區塊(importer --label / --ignore 會加在檔案最後)。
+
+labels:
+  # ---- 一般消費 ----
+  一般消費(不含保費): general                               # CUBE 固定回饋
+  海外實體消費(含國外餐飲、飯店到店付款等): general            # CUBE 固定回饋
+  國內一般消費: general                                     # 吉鶴卡
+  國外一般消費(非日幣): general                              # 吉鶴卡
+  日本日幣消費: general                                     # 吉鶴卡
+
+  # ---- 行動支付 ----
+  全支付國內合作通路: payment_method                         # CUBE 全支付
+  LINE Pay: payment_method                                  # Unicard 百大特店(以下 11 個)
+  街口支付: payment_method
+  全支付: payment_method
+  全盈+PAY: payment_method
+  icash Pay: payment_method
+  悠遊付: payment_method
+  iPASS MONEY: payment_method
+  玉山Wallet電子支付: payment_method
+  支付寶: payment_method
+  台塑石油PAY: payment_method
+  王品瘋Pay: payment_method
+  "日本行動支付(Google Pay/Apple Pay)": { type: payment_method, note: "吉鶴卡日本消費;需要付款方式資訊,未納入計算" }
+  Apple錢包指定交通卡: { type: payment_method, note: "CUBE 趣旅行;cards.yaml 未列出,目前不計算" }
+
+  # ---- 一整類消費或地區 ----
+  國內餐飲(不含餐券): { type: category, note: "CUBE 樂饗購,由 covers 的國內 dining 處理" }
+  國內飯店住宿: { type: category, note: "CUBE 趣旅行,由 covers 的 hotel 處理" }
+  海外實體消費: { type: category, note: "CUBE 趣旅行,由 covers 的 overseas 處理" }
+  國內各大壽險公司保費: { type: category, note: "CUBE 童樂匯;沒有保費分類,目前不計算" }
+  國內各大產險公司保費: { type: category, note: "CUBE 童樂匯;沒有保費分類,目前不計算" }
+  # Unicard 百大特店名單中的國家:在這些國家消費也算百大特店。cards.yaml 尚未設定,目前不計算
+  日本: category
+  韓國: category
+  中國: category
+  香港: category
+  澳門: category
+  新加坡: category
+  馬來西亞: category
+  泰國: category
+  越南: category
+  菲律賓: category
+  澳洲: category
+  紐西蘭: category
+  美國: category
+  加拿大: category
+  英國: category
+  法國: category
+  德國: category
+  義大利: category
+
+  # ---- 不是消費 ----
+  玉山Wallet愛心捐款: { type: ignore, note: "捐款,不是付款方式" }

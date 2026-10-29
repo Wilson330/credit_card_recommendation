@@ -11,7 +11,8 @@ MySQL 8.0,資料庫名稱 `credit_card_app`。資料表設計見 [docs/DB_DESIGN
 | `schema.sql` | 建立資料庫與 8 張資料表 |
 | `seed.sql` | 店家、別名、爬蟲原名對照、方案、回饋率、點名店家的資料(不含使用者) |
 | `changes/` | 資料庫的人工修改紀錄,檔名以日期開頭 |
-| `crawl/` | Allen 的爬蟲匯出檔,匯入時用 |
+| `crawl/` | Allen 的爬蟲匯出檔,匯入時用(格式見 [docs/CRAWL_FORMAT.md](../docs/CRAWL_FORMAT.md)) |
+| `crawl/labels.yaml` | 爬蟲列的標記:每個原文是店家、一般消費、行動支付、類別還是略過 |
 | `my.local.cnf.example` | 連線設定範本 |
 | `my.local.cnf` | 你自己的連線設定,含密碼,不進 git |
 | `reset-root-password.ps1` | 忘記 MySQL root 密碼時重設(Windows,需系統管理員 PowerShell) |

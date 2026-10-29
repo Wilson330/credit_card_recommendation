@@ -69,18 +69,32 @@ python -m pytest backend/tests -q
 
 ## 6. 匯入新的爬蟲資料
 
+匯出檔的格式見 [docs/CRAWL_FORMAT.md](../docs/CRAWL_FORMAT.md),JSON 或 CSV 都可以。
+
 ```powershell
-python -m backend.importer db/crawl/新的匯出檔.json --dry-run   # 先看報告
+python -m backend.importer db/crawl/新的匯出檔.json --check     # 只檢查格式,不需要資料庫
+python -m backend.importer db/crawl/新的匯出檔.json --dry-run   # 看匯入報告
 python -m backend.importer db/crawl/新的匯出檔.json             # 正式匯入
 ```
 
-報告中「對不到店家的爬蟲店名」會附上建議,用以下指令處理後再重跑:
+報告中要處理的兩種東西,處理完再重跑 `--dry-run`:
+
+**未標記的列**:爬蟲的 `merchant_name` 不一定是店家,也可能是一般消費、行動支付、國家或整類消費。每個原文的類型記在 `db/crawl/labels.yaml`,沒有標記的只能依關鍵字猜,報告會列出來請你確認:
+
+```powershell
+python -m backend.importer --label "國內一般消費" general                       # 類型見 labels.yaml 開頭
+python -m backend.importer --label "日本" category --note "百大特店含日本消費"
+python -m backend.importer --ignore "玉山Wallet愛心捐款"                        # 等於 --label 原文 ignore
+```
+
+**對不到店家的爬蟲店名**:報告會附上建議。
 
 ```powershell
 python -m backend.importer --map "店名" 店家編號                       # 是既有的店(改名、異寫)
 python -m backend.importer --new "店名" --category dining --country TW # 是新店
-python -m backend.importer --ignore "店名"                             # 不是店家,以後略過
 ```
+
+匯入或修改店家之後,照 [db/README.md](../db/README.md) 重新匯出 `db/seed.sql` 並 commit。
 
 ## API 一覽
 

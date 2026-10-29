@@ -242,6 +242,6 @@ curl -s -X POST http://127.0.0.1:5000/api/recommend \
 - 不疊加:直接刷卡與行動支付二擇一,取高的。
 - CUBE 全支付要切換到全支付權益方案,**並且**用全支付付款,所以提示寫成「需切換至全支付權益方案,並用 全支付 綁定 CUBE卡 付款」。
 - 儲值、繳費不在範圍內:這個系統只處理到店消費。
-- 爬蟲中的「玉山Wallet愛心捐款」是捐款,不是付款方式,已經列在 `backend/import_ignore.txt`,匯入時略過。
+- 爬蟲中的「玉山Wallet愛心捐款」是捐款,不是付款方式,匯入時略過(原本列在 `backend/import_ignore.txt`,現在改記在 `db/crawl/labels.yaml`,見 [CRAWL_FORMAT.md](CRAWL_FORMAT.md))。
 
 有問題或發現對不上的地方,直接找 Wilson。
