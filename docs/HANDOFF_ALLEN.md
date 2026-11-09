@@ -158,7 +158,7 @@ Allen 你好,這份說明 iOS App 要怎麼改接新的後端。
 }
 ```
 
-- `results` 已經依回饋率由高到低排好,第一張就是推薦的卡。
+- `results` 已經依回饋率由高到低排好,最多 3 張,第一張就是推薦的卡。
 - `reward_rate` 是百分比數字:`3.5` 代表 3.5%。
 - `required_action` 不是 null 時要顯示,提醒使用者刷卡前先切換方案。
 - 找不到店時 `merchant` 是 null、`merchant_found` 是 false,`message` 是「此店家不在回饋名單中,以一般消費計算」。`results` 照樣有資料,是各卡的一般消費回饋。

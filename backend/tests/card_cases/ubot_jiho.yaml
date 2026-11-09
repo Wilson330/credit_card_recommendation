@@ -1,0 +1,45 @@
+# 吉鶴卡的驗證案例(格式見 backend/tests/test_card_cases.py)
+card_id: ubot_jiho
+sources:
+  - db/crawl/card_rewards_export_0908.json(數字已含基本 1%)
+  - docs/DB_DESIGN.md 第 9 節、docs/WORKFLOW.html「吉鶴卡回饋率速查」(與 Wilson 確認過的規則)
+cases:
+  - name: 國內日系特店,新戶自動扣繳加碼 0.5%
+    merchant: UNIQLO
+    config: { new_customer: true }
+    expect: { rate: 5.5, scheme: 國內日系特店 }
+
+  - name: 國內日系特店,一般持卡人
+    merchant: UNIQLO
+    config: { new_customer: false }
+    expect: { rate: 5.0, scheme: 國內日系特店 }
+
+  - name: 國內人氣餐廳沒有新戶加碼
+    merchant: 一風堂
+    config: { new_customer: true }
+    expect: { rate: 10.0, scheme: 國內人氣餐廳 }
+
+  - name: 日本熱門商店
+    merchant: 日本三越
+    config: { new_customer: false }
+    expect: { rate: 8.0, scheme: 日本熱門商店 }
+
+  - name: 日本交通卡儲值 1.5% 低於日本消費 2.5%,取一般消費
+    merchant: 日本 SUICA
+    config: { new_customer: false }
+    expect: { rate: 2.5, scheme: 日本消費 }
+
+  - name: 國內一般消費,新戶加碼
+    merchant: 鼎泰豐
+    config: { new_customer: true }
+    expect: { rate: 1.5, scheme: 國內一般消費 }
+
+  - name: 國別 global 不算日本,國外一般消費沒有新戶加碼
+    merchant: 全球迪士尼飯店
+    config: { new_customer: true }
+    expect: { rate: 1.0, scheme: 國外一般消費 }
+
+  - name: 找不到店家,以國內一般消費計算
+    merchant: null
+    config: { new_customer: false }
+    expect: { rate: 1.0, scheme: 國內一般消費 }

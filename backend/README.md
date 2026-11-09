@@ -66,6 +66,8 @@ python -m pytest backend/tests -q
 
 - `test_recommend.py`、`test_rules.py`、`test_cardconfig.py`:計算與檢查邏輯,不需要資料庫
 - `test_api.py`:連本機 MySQL 跑完整流程(註冊、登入、加卡、搜尋、推薦)。測試帳號都是 `pytest-*@test.local`,跑完自動刪除
+- `test_card_cases.py`:每張卡的驗證案例,案例寫在 `tests/card_cases/<card_id>.yaml`(店家、設定、預期回饋率),用真的 `cards.yaml` 與資料庫計算。新增卡片時用 `.claude/skills/add-card` 的流程補案例
+- `test_crawl.py`:爬蟲檔的格式檢查、標記與匯入計畫,不需要資料庫
 
 ## 6. 匯入新的爬蟲資料
 

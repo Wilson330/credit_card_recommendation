@@ -1,0 +1,79 @@
+# CUBE卡的驗證案例(格式見 backend/tests/test_card_cases.py)
+card_id: cathay_cube
+sources:
+  - db/crawl/card_rewards_export_0908.json
+  - docs/DB_DESIGN.md 第 9 節、docs/WORKFLOW.html「回饋怎麼算」(與 Wilson 確認過的規則)
+cases:
+  - name: 國內餐廳沒被點名,靠樂饗購涵蓋
+    merchant: 鼎泰豐
+    config: { level: Level 2 }
+    expect: { rate: 3.0, scheme: 樂饗購, action: 需切換至樂饗購權益方案 }
+
+  - name: 樂饗購點名的店
+    merchant: 台北101
+    config: { level: Level 3 }
+    expect: { rate: 3.3, scheme: 樂饗購, action: 需切換至樂饗購權益方案 }
+
+  - name: Level 1 國外的店,海外消費 2.5% 高於趣旅行 2%
+    merchant: 日本三越
+    config: { level: Level 1 }
+    expect: { rate: 2.5, scheme: 海外消費 }
+
+  - name: Level 2 國外的店,趣旅行 3% 勝出
+    merchant: 日本三越
+    config: { level: Level 2 }
+    expect: { rate: 3.0, scheme: 趣旅行, action: 需切換至趣旅行權益方案 }
+
+  - name: 國別 global 算國外,趣旅行點名
+    merchant: 全球迪士尼飯店
+    config: { level: Level 2 }
+    expect: { rate: 3.0, scheme: 趣旅行, action: 需切換至趣旅行權益方案 }
+
+  - name: 國內旅行類點名
+    merchant: 台灣高鐵
+    config: { level: Level 3 }
+    expect: { rate: 3.3, scheme: 趣旅行, action: 需切換至趣旅行權益方案 }
+
+  - name: 童樂匯例外回饋率 10%
+    merchant: 10mois台灣官網
+    config: { level: Level 1, kids_club: true }
+    expect: { rate: 10.0, scheme: 童樂匯, action: 需切換至童樂匯權益方案 }
+
+  - name: 沒加入童樂匯,只剩一般消費
+    merchant: 10mois台灣官網
+    config: { level: Level 1, kids_club: false }
+    expect: { rate: 0.3, scheme: 一般消費 }
+
+  - name: 生日月,慶生月例外 3.5% 高於樂饗購 Level 1 2%
+    merchant: 新光三越
+    config: { level: Level 1 }
+    birthday_month: true
+    expect: { rate: 3.5, scheme: 慶生月, action: 需切換至慶生月權益方案 }
+
+  - name: 不是生日月,回到樂饗購
+    merchant: 新光三越
+    config: { level: Level 1 }
+    expect: { rate: 2.0, scheme: 樂饗購, action: 需切換至樂饗購權益方案 }
+
+  - name: 找不到店家,以國內一般消費計算
+    merchant: null
+    config: { level: Level 2 }
+    expect: { rate: 0.3, scheme: 一般消費 }
+
+  - name: 綁定全支付,國內店家直接刷卡只有 0.3%,建議用全支付
+    merchant: 10mois台灣官網
+    config: { level: Level 2, payment_methods: [全支付] }
+    expect: { rate: 0.3, scheme: 一般消費 }
+    payment_suggestion: { rate: 2.0, scheme: 全支付, methods: [全支付] }
+
+  - name: 直接刷卡已經比全支付高,不建議
+    merchant: 鼎泰豐
+    config: { level: Level 2, payment_methods: [全支付] }
+    expect: { rate: 3.0, scheme: 樂饗購, action: 需切換至樂饗購權益方案 }
+    payment_suggestion: null
+
+  - name: 國外的店不建議行動支付
+    merchant: 全球迪士尼飯店
+    config: { level: Level 1, payment_methods: [全支付] }
+    expect: { rate: 2.5, scheme: 海外消費 }
+    payment_suggestion: null
