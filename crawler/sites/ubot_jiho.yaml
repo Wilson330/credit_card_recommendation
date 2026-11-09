@@ -1,0 +1,63 @@
+# 聯邦吉鶴卡的食譜。格式見 crawler/sites/README.md。
+#
+# 卡片頁 https://card.ubot.com.tw/CardDetail/cardDetail202 是 Vue 單頁應用,HTML 只有空殼;
+# 內容是另外載入的 HTML 片段(下方 url)。片段的檔名來自卡片清單 API
+# https://card.ubot.com.tw/eCardServiceAPI/api/Cards 中吉鶴卡的 "url": "CardDetail/cardDetail202"。
+#
+# scheme_name、card_level 沿用 0908 的寫法,後端 cards.yaml 才對得上。
+# 回饋率照抄網頁上的數字,不加總(2026-11-10 決定):例如日系名店寫「活動加碼4%」就是 4,
+# 國內消費 1%、日幣消費 2.5%、行動支付加碼 2.5% 各自是獨立的列,由後端決定怎麼疊加。
+
+card_id: ubot_jiho
+bank_name: 聯邦銀行
+card_name: 吉鶴卡
+url: https://card.ubot.com.tw/ecard_source/html/CardDetail/cardDetail202.htm
+source_url: https://card.ubot.com.tw/CardDetail/cardDetail202
+terms_urls:
+  - https://activity.ubot.com.tw/2026JiHoCard/index.htm
+levels: [Standard]
+
+blocks:
+  - scheme_name: 國內人氣餐廳
+    section: 指定人氣餐廳
+    list: { after: 指定人氣餐廳：, until: 一般消費回饋無上限, separators: 、 }
+    rate: 10
+    rate_evidence: 人氣餐廳最高現折10%
+
+  - scheme_name: 國內日系特店
+    section: 指定日系名店
+    list: { after: 指定日系名店：, until: 人氣餐廳最高現折10%, separators: 、 }
+    rate: 4
+    rate_evidence: 享活動加碼4%(月上限500元)
+
+  - scheme_name: 日本熱門商店
+    section: 指定日本熱門商店
+    list: { after: 指定日本熱門商店：, until: 嚴選日系名店最高5.5%, separators: 、, group_pattern: '\(\d+\)([^：]+)：' }
+    rate: 3
+    rate_evidence: 享活動加碼3%回饋(活動期間上限600元)
+    valid_evidence: 活動期間115/7/1-115/12/31，於日本熱門商店
+
+  - scheme_name: 日本交通卡儲值
+    section: 日本三大交通卡儲值最高1.5%
+    list: { after: 活動期間使用吉鶴卡日幣儲值, until: 享1.5%回饋, separators: 、 }
+    rate: 1.5
+    rate_evidence: 享1.5%回饋
+    valid_evidence: 活動期間115/7/1-115/12/31，使用聯邦吉鶴卡日幣儲值
+
+  - scheme_name: 日本消費
+    section: 日本旅遊祭最高11%
+    items: [日幣消費, 行動支付(Google Pay/Apple Pay)]
+    rate: 2.5
+    rate_evidence: [日幣消費 2.5%, 最高加碼2.5%]
+
+  - scheme_name: 國內一般消費
+    section: 一般消費回饋無上限
+    items: [國內消費]
+    rate: 1
+    rate_evidence: 國內消費 1%
+
+  - scheme_name: 國外一般消費
+    section: 一般消費回饋無上限
+    items: [國外消費]
+    rate: 1
+    rate_evidence: 國外消費 1%

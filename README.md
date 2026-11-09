@@ -27,4 +27,5 @@ iOS App(Allen,SwiftUI)    ─┘           └ cards.yaml(卡片規則)
 | `.claude/skills/add-card/` | 新增卡片的流程(給 agent 用的 skill) |
 | `docs/WORKFLOW.html` | 圖解:架構、搜尋、回饋怎麼算、三張卡的規則(用瀏覽器開) |
 | `docs/DB_TABLES.html` | 圖解:8 張資料表的欄位與設計理由、查詢用到哪些表(用瀏覽器開) |
+| `docs/CRAWLER.html` | 圖解:agent 介入的爬蟲流程、食譜與模組、自動檢查、目前成果(用瀏覽器開) |
 | [docs/HANDOFF_ALLEN.md](docs/HANDOFF_ALLEN.md) | 給 Allen:iOS App 改接新後端要做的事 |

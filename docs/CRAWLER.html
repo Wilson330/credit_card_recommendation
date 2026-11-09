@@ -1,0 +1,635 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>爬蟲說明</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<style>
+/* Layout: one reading column (~52rem) for prose; diagrams and tables may widen to 60rem inside their own scroll boxes. */
+:root {
+  --paper: #f3f4f1;
+  --surface: #ffffff;
+  --ink: #1b2027;
+  --muted: #5a636d;
+  --rule: #d5dad3;
+  --rule-strong: #98a198;
+  --accent: #2b4c9e;
+  --accent-soft: #e5eaf6;
+  --open: #a3501b;
+  --open-soft: #f7e9de;
+  --cube: #17756a;
+  --jiho: #b03a3a;
+  --unicard: #946512;
+
+  --font-display: "Noto Serif TC", "Songti TC", serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2.125rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #12161b;
+    --surface: #1a2027;
+    --ink: #e4e7eb;
+    --muted: #9aa3ad;
+    --rule: #2c343d;
+    --rule-strong: #56616c;
+    --accent: #93abeb;
+    --accent-soft: #1f2a46;
+    --open: #e59c66;
+    --open-soft: #3a2618;
+    --cube: #55c2b2;
+    --jiho: #e47e7e;
+    --unicard: #d9aa52;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #12161b;
+  --surface: #1a2027;
+  --ink: #e4e7eb;
+  --muted: #9aa3ad;
+  --rule: #2c343d;
+  --rule-strong: #56616c;
+  --accent: #93abeb;
+  --accent-soft: #1f2a46;
+  --open: #e59c66;
+  --open-soft: #3a2618;
+  --cube: #55c2b2;
+  --jiho: #e47e7e;
+  --unicard: #d9aa52;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.75;
+  padding-inline: 20px;
+  padding-block: 0 64px;
+}
+.wrap { max-width: 60rem; margin-inline: auto; }
+.prose { max-width: 46rem; }
+
+header.top {
+  padding-block: 48px 28px;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 14px;
+}
+.eyebrow {
+  font-size: var(--step--1);
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: 1.25;
+  margin: 0;
+  text-wrap: balance;
+}
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.35;
+  margin: 0;
+  text-wrap: balance;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+h2 .num {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--accent);
+  font-weight: 500;
+}
+h3 {
+  font-size: var(--step-1);
+  margin: 0;
+  text-wrap: balance;
+}
+p { margin: 0; }
+code, .mono { font-family: var(--font-mono); font-size: 0.88em; }
+code { background: var(--accent-soft); padding: 0.05em 0.35em; border-radius: 4px; }
+
+.lede { color: var(--muted); max-width: 46rem; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: var(--step--1); color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.chip {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  vertical-align: 0.15em;
+}
+.chip.done { background: var(--accent-soft); color: var(--accent); }
+.chip.open { background: var(--open-soft); color: var(--open); }
+.chip.new  { border: 1px dashed var(--accent); color: var(--accent); padding: 3px 7px; }
+
+nav.toc {
+  padding-block: 20px;
+  border-bottom: 1px solid var(--rule);
+}
+nav.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 4px 24px;
+  font-size: var(--step--1);
+}
+nav.toc a { color: var(--ink); text-decoration: none; display: flex; gap: 8px; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+nav.toc .n { font-family: var(--font-mono); color: var(--accent); }
+
+section {
+  padding-block: 44px;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 18px;
+}
+section:last-of-type { border-bottom: 0; }
+
+/* Diagrams */
+figure { margin: 0; display: grid; gap: 10px; }
+.diagram {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  overflow-x: auto;
+}
+.diagram svg { display: block; width: 100%; min-width: 640px; height: auto; color: var(--ink); }
+figcaption { font-size: var(--step--1); color: var(--muted); max-width: 46rem; }
+
+svg text { font-family: var(--font-body); }
+svg .bx     { fill: var(--surface); stroke: var(--rule-strong); stroke-width: 1.2; }
+svg .bx-acc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+svg .bx-open{ fill: var(--open-soft); stroke: var(--open); stroke-width: 1.2; }
+svg .bx-new { fill: var(--surface); stroke: var(--accent); stroke-width: 1.3; stroke-dasharray: 5 4; }
+svg .grp    { fill: none; stroke: var(--rule-strong); stroke-width: 1; stroke-dasharray: 3 4; }
+svg .ln     { stroke: var(--muted); stroke-width: 1.4; fill: none; }
+svg .ln-d   { stroke: var(--muted); stroke-width: 1.3; fill: none; stroke-dasharray: 4 4; }
+svg .ah     { fill: var(--muted); }
+svg .tt     { fill: var(--ink); font-size: 14px; font-weight: 700; }
+svg .tx     { fill: var(--ink); font-size: 12.5px; }
+svg .tm     { fill: var(--muted); font-size: 11.5px; }
+svg .tl     { fill: var(--muted); font-size: 11.5px; }
+svg .ta     { fill: var(--accent); font-size: 12.5px; font-weight: 700; }
+svg .to     { fill: var(--open); font-size: 12.5px; font-weight: 700; }
+svg .mn     { font-family: var(--font-mono); }
+
+/* User journey */
+.journey {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  counter-reset: j;
+}
+.journey li {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  counter-increment: j;
+  position: relative;
+}
+.journey li::before {
+  content: counter(j);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--accent);
+}
+.journey h3 { font-size: var(--step-0); }
+.journey p { font-size: var(--step--1); color: var(--muted); line-height: 1.65; }
+@media (max-width: 760px) { .journey { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 440px) { .journey { grid-template-columns: 1fr; } }
+
+/* Calculation pipeline: rule on the left, the running example on the right */
+.pipeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  counter-reset: s;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.pipeline li {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-top: 1px solid var(--rule);
+  counter-increment: s;
+}
+.pipeline li:first-child { border-top: 0; }
+.pipeline li::before {
+  content: counter(s);
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-weight: 500;
+  font-size: var(--step-1);
+  line-height: 1.4;
+}
+.pipeline .rule h3 { font-size: var(--step-0); margin-bottom: 4px; }
+.pipeline .rule p { font-size: 0.9375rem; }
+.pipeline .eg {
+  font-size: 0.9375rem;
+  border-left: 2px solid var(--rule);
+  padding-left: 14px;
+  color: var(--ink);
+  display: grid;
+  gap: 4px;
+  align-content: start;
+}
+.pipeline .eg .k { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
+.pipeline .hdr { background: var(--accent-soft); }
+.pipeline .hdr::before { content: ""; }
+.pipeline .hdr .eg { border-left-color: var(--accent); }
+.x { color: var(--muted); text-decoration: line-through; }
+.hit { color: var(--accent); font-weight: 700; }
+@media (max-width: 640px) {
+  .pipeline li { grid-template-columns: 1.75rem 1fr; }
+  .pipeline .eg { grid-column: 2; }
+}
+
+/* Tables */
+.tbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; }
+th, td { text-align: left; padding: 10px 14px; border-top: 1px solid var(--rule); vertical-align: top; }
+thead th { border-top: 0; font-size: var(--step--1); color: var(--muted); font-weight: 500; letter-spacing: 0.04em; background: var(--paper); }
+tbody th { font-weight: 500; white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); white-space: nowrap; }
+.card-cube { color: var(--cube); }
+.card-jiho { color: var(--jiho); }
+.card-unicard { color: var(--unicard); }
+tr.em td { background: var(--accent-soft); }
+
+.examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.example {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.example h3 { font-size: var(--step-0); }
+.example .who { font-size: var(--step--1); color: var(--muted); }
+.example .result { font-family: var(--font-mono); font-size: var(--step-2); color: var(--accent); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.example p { font-size: 0.9375rem; }
+@media (max-width: 760px) { .examples { grid-template-columns: 1fr; } }
+
+/* Options */
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.option {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  background: var(--surface);
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.option.pick { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.option h3 { font-size: var(--step-0); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.option ul { margin: 0; padding-left: 1.1em; font-size: 0.9375rem; display: grid; gap: 4px; }
+.option .lbl { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
+@media (max-width: 640px) { .options { grid-template-columns: 1fr; } }
+
+pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  overflow-x: auto;
+}
+pre .c { color: var(--muted); }
+
+.callout {
+  border-left: 3px solid var(--open);
+  background: var(--open-soft);
+  padding: 14px 16px;
+  border-radius: 0 8px 8px 0;
+  max-width: 46rem;
+  display: grid;
+  gap: 6px;
+}
+.callout.info { border-left-color: var(--accent); background: var(--accent-soft); }
+
+.qlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+.qlist li { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; padding: 14px 16px; border-top: 1px solid var(--rule); align-items: baseline; }
+.qlist li:first-child { border-top: 0; }
+.qlist .who { font-size: var(--step--1); color: var(--muted); white-space: nowrap; }
+@media (max-width: 520px) { .qlist li { grid-template-columns: 1fr; gap: 4px; } }
+
+footer { padding-block: 28px 0; font-size: var(--step--1); color: var(--muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+</style>
+
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Wilson 版爬蟲 ／ 分支 crawler-wilson ／ 整理於 2026-11-10</div>
+  <h1>爬蟲說明:agent 介入的爬蟲</h1>
+  <p class="lede">要讓 App 支援一張新卡,得先從銀行官網抓到「哪些店、幾 %」。每家銀行網頁長得都不一樣,寫一支通吃的爬蟲很難;這一版的做法是讓 agent(Claude)負責找網頁、讀懂網頁,並把讀法寫成一份「食譜」,之後由程式照食譜執行,結果固定、可以重跑。程式檢查完,agent 先當第一線審核,再交給人做最後確認。</p>
+  <div class="legend">
+    <span><span class="chip done">已確定</span> 已討論定案</span>
+    <span><span class="chip open">待決定</span> 還沒定案</span>
+    <span><span class="chip new">✋ 檢查點</span> 流程中一定要停下來給人確認</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <ol>
+    <li><a href="#flow"><span class="n">1</span>整體流程</a></li>
+    <li><a href="#steps"><span class="n">2</span>每一步在做什麼</a></li>
+    <li><a href="#parse"><span class="n">3</span>食譜與模組</a></li>
+    <li><a href="#checks"><span class="n">4</span>自動檢查</a></li>
+    <li><a href="#status"><span class="n">5</span>目前成果</a></li>
+    <li><a href="#run"><span class="n">6</span>怎麼執行</a></li>
+    <li><a href="#files"><span class="n">7</span>檔案地圖</a></li>
+    <li><a href="#decisions"><span class="n">8</span>決定與待討論</a></li>
+  </ol>
+</nav>
+
+<section id="flow">
+  <h2><span class="num">1</span>整體流程</h2>
+  <p class="prose">對 Claude 說「爬國泰的 CUBE 卡」,會觸發 skill <code>crawl-card</code>,依序走完下面六步。藍框是 agent 與程式自動做的事,橘框是要人確認的檢查點。每一步都會留下檔案(框內最下面一行),重爬既有的卡可以直接從第 ③ 步開始。</p>
+  <figure>
+    <div class="diagram">
+      <svg viewBox="0 0 760 400" role="img" aria-label="爬蟲流程圖:使用者下指令、找網頁、寫食譜、執行爬蟲、自動檢查、agent 審核、使用者審核、交給 add-card">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+
+        <rect class="bx" x="20" y="50" width="150" height="96" rx="8"/>
+        <text class="tt" x="95" y="82" text-anchor="middle">使用者下指令</text>
+        <text class="tx" x="95" y="106" text-anchor="middle">「爬國泰的 CUBE 卡」</text>
+        <text class="tm" x="95" y="130" text-anchor="middle">觸發 crawl-card skill</text>
+
+        <rect class="bx-open" x="210" y="50" width="150" height="96" rx="8"/>
+        <text class="to" x="285" y="40" text-anchor="middle">✋ 檢查點 1</text>
+        <text class="tt" x="285" y="82" text-anchor="middle">① 找網頁</text>
+        <text class="tx" x="285" y="106" text-anchor="middle">官網頁面清單</text>
+        <text class="tm mn" x="285" y="130" text-anchor="middle">banks.yaml</text>
+
+        <rect class="bx-open" x="400" y="50" width="150" height="96" rx="8"/>
+        <text class="to" x="475" y="40" text-anchor="middle">✋ 檢查點 2</text>
+        <text class="tt" x="475" y="82" text-anchor="middle">② 寫食譜</text>
+        <text class="tx" x="475" y="106" text-anchor="middle">方案、名單、回饋率</text>
+        <text class="tm mn" x="475" y="130" text-anchor="middle">sites/&lt;卡&gt;.yaml</text>
+
+        <rect class="bx-acc" x="590" y="50" width="150" height="96" rx="8"/>
+        <text class="tt" x="665" y="82" text-anchor="middle">③ 執行爬蟲</text>
+        <text class="tx" x="665" y="106" text-anchor="middle">抓網頁 → 照食譜解析</text>
+        <text class="tm" x="665" y="130" text-anchor="middle">匯出檔 · 條款檔</text>
+
+        <line class="ln" x1="170" y1="98" x2="207" y2="98" marker-end="url(#ah)"/>
+        <line class="ln" x1="360" y1="98" x2="397" y2="98" marker-end="url(#ah)"/>
+        <line class="ln" x1="550" y1="98" x2="587" y2="98" marker-end="url(#ah)"/>
+        <line class="ln" x1="665" y1="146" x2="665" y2="227" marker-end="url(#ah)"/>
+
+        <rect class="bx-acc" x="590" y="230" width="150" height="96" rx="8"/>
+        <text class="tt" x="665" y="262" text-anchor="middle">④ 自動檢查</text>
+        <text class="tx" x="665" y="286" text-anchor="middle">溯源 · 回饋率 · 差異</text>
+        <text class="tm mn" x="665" y="310" text-anchor="middle">reports/*.md</text>
+
+        <rect class="bx-acc" x="400" y="230" width="150" height="96" rx="8"/>
+        <text class="tt" x="475" y="262" text-anchor="middle">⑤ agent 審核</text>
+        <text class="tx" x="475" y="286" text-anchor="middle">對照網頁,標出疑點</text>
+        <text class="tm mn" x="475" y="310" text-anchor="middle">*.review.md</text>
+
+        <rect class="bx-open" x="210" y="230" width="150" height="96" rx="8"/>
+        <text class="to" x="285" y="346" text-anchor="middle">✋ 檢查點 3</text>
+        <text class="tt" x="285" y="262" text-anchor="middle">⑥ 使用者審核</text>
+        <text class="tx" x="285" y="286" text-anchor="middle">看報告、做決定</text>
+        <text class="tm" x="285" y="310" text-anchor="middle">第二道防線</text>
+
+        <rect class="bx-new" x="20" y="230" width="150" height="96" rx="8"/>
+        <text class="tt" x="95" y="262" text-anchor="middle">交給 add-card</text>
+        <text class="tx" x="95" y="286" text-anchor="middle">寫規則、匯入資料庫</text>
+        <text class="tm" x="95" y="310" text-anchor="middle">App 支援這張卡</text>
+
+        <line class="ln" x1="590" y1="278" x2="553" y2="278" marker-end="url(#ah)"/>
+        <line class="ln" x1="400" y1="278" x2="363" y2="278" marker-end="url(#ah)"/>
+        <line class="ln" x1="210" y1="278" x2="173" y2="278" marker-end="url(#ah)"/>
+
+        <path class="ln-d" d="M300,230 C330,190 440,190 462,150" marker-end="url(#ah)"/>
+        <text class="tl" x="340" y="176" text-anchor="end">要修 → 改食譜重跑</text>
+
+        <text class="tl" x="740" y="382" text-anchor="end">重爬既有的卡:從 ③ 開始(加 --refresh)</text>
+        <text class="tl" x="20" y="382">新卡 → add-card;既有的卡 → --dry-run</text>
+      </svg>
+    </div>
+    <figcaption>藍框:agent 與程式自動做;橘框:停下來給人確認;虛線框:交給另一個 skill。虛線箭頭是審核後要修改時的回頭路。</figcaption>
+  </figure>
+</section>
+
+<section id="steps">
+  <h2><span class="num">2</span>每一步在做什麼</h2>
+  <p class="prose">右欄以聯邦吉鶴卡為例。</p>
+  <ol class="pipeline">
+    <li>
+      <div class="rule"><h3>找網頁 <span class="chip new">✋ 檢查點 1</span></h3><p>先查 <code>crawler/banks.yaml</code> 有沒有這家銀行的記錄;沒有才用搜尋引擎。以銀行官網為準,比較網站與新聞只當線索。找到後列出頁面清單(網址、角色:回饋名單/條款/活動),請人確認,確認後寫回 <code>banks.yaml</code>,下次不用再找。</p></div>
+      <div class="eg"><span class="k">例</span><span>搜尋引擎只找到比較網站。直接到聯邦信用卡官網,發現是單頁應用(HTML 只有空殼),從 JS 找到卡片清單 API,再找到吉鶴卡內容所在的 HTML 片段。不需要模擬瀏覽器。</span></div>
+    </li>
+    <li>
+      <div class="rule"><h3>寫食譜 <span class="chip new">✋ 檢查點 2</span></h3><p>agent 讀網頁,寫一份設定檔:每個方案的名單從哪裡到哪裡、用什麼符號切開、回饋率多少。每個數字都要附上網頁原文當依據。給人看方案、回饋率、預計列數。</p></div>
+      <div class="eg"><span class="k">例</span><span>「從『指定人氣餐廳:』抓到『一般消費回饋無上限』,用『、』切開,回饋率 10%,依據『人氣餐廳最高現折10%』」。</span></div>
+    </li>
+    <li>
+      <div class="rule"><h3>執行爬蟲</h3><p>程式照食譜執行:抓網頁(遵守 robots.txt、請求間隔 3 秒、存快取)、解析、輸出符合 <code>docs/CRAWL_FORMAT.md</code> 的匯出檔,條款頁面另存成文字檔。網頁沒變時,重跑結果完全相同。</p></div>
+      <div class="eg"><span class="k">例</span><span>72 列,7 個方案。網頁改版、食譜找不到錨點時直接失敗,不會默默產出錯的資料。</span></div>
+    </li>
+    <li>
+      <div class="rule"><h3>自動檢查</h3><p>確認「抄得對不對」:店名有沒有逐字出現在網頁上、回饋率合不合理、有沒有沒切乾淨的名稱或重複列,並跟上一次爬的結果(或 0908)比較。</p></div>
+      <div class="eg"><span class="k">例</span><span>68 個店名與 0908 完全相同;一般消費 4 列名稱照抄網頁,與 0908 不同。</span></div>
+    </li>
+    <li>
+      <div class="rule"><h3>agent 審核</h3><p>agent 把網頁和匯出檔對照著看:有沒有漏抓或多抓、活動期間對不對、新舊版本注意事項有沒有矛盾、後端寫規則時要注意什麼。寫成審核報告,分「需要人決定」「已確認沒問題」「給後端參考」。</p></div>
+      <div class="eg"><span class="k">例</span><span>發現活動頁的注意事項還是上半年的舊版;「人氣餐廳 10%」其實是每家不同的現場折抵(例如滿 1,000 折 100)。</span></div>
+    </li>
+    <li>
+      <div class="rule"><h3>使用者審核,交接 <span class="chip new">✋ 檢查點 3</span></h3><p>人看審核報告做決定;要修就改食譜重跑。確認後:新卡交給 <code>add-card</code> skill 寫規則並匯入;既有的卡跑 <code>importer --dry-run</code> 看影響。</p></div>
+      <div class="eg"><span class="k">例</span><span><code>--dry-run</code>:4 個方案的店家全部對得到,沒有未標記的列。</span></div>
+    </li>
+  </ol>
+</section>
+
+<section id="parse">
+  <h2><span class="num">3</span>兩種解析方式:食譜與模組</h2>
+  <p class="prose">大部分網頁用食譜描述就夠了;資料散在網頁好幾個地方、要拼湊起來的,寫成 Python 模組。<code>crawler/run.py</code> 有食譜就用食譜,沒有就找模組。</p>
+  <div class="options">
+    <div class="option pick">
+      <h3>食譜 <code>crawler/sites/&lt;卡&gt;.yaml</code> <span class="chip done">預設</span></h3>
+      <span class="lbl">適合:名單是一段連續文字</span>
+      <pre>- scheme_name: 國內人氣餐廳
+  list:
+    after: 指定人氣餐廳：
+    until: 一般消費回饋無上限
+    separators: 、
+  rate: 10
+  rate_evidence: 人氣餐廳最高現折10%</pre>
+      <ul>
+        <li>agent 寫、人看得懂,不用寫程式</li>
+        <li>錨點或依據原文找不到就報錯</li>
+        <li>範例:聯邦吉鶴卡</li>
+      </ul>
+    </div>
+    <div class="option">
+      <h3>模組 <code>crawler/&lt;卡&gt;.py</code></h3>
+      <span class="lbl">適合:資料要從好幾處拼起來</span>
+      <pre>方案名、LEVEL2 回饋率 ← 方案卡片標籤
+段落「日常採買」     ← 卡片裡的格子標題
+LEVEL1 回饋率 1.3%   ← 頁面底部彈窗的表格</pre>
+      <ul>
+        <li>台新的一列資料來自三個地方;Chill刷 的回饋率寫在格子標題、Pay著刷 的「店家」寫在標題文字裡</li>
+        <li>範例:台新Richart卡</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="checks">
+  <h2><span class="num">4</span>自動檢查</h2>
+  <p class="prose">格式由 <code>python -m backend.importer --check</code> 負責;這裡檢查的是「抄得對不對」。結果寫在 <code>crawler/reports/&lt;卡&gt;_&lt;日期&gt;.md</code>。</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>檢查</th><th>等級</th><th>內容</th></tr></thead>
+      <tbody>
+        <tr><th>溯源</th><td>錯誤</td><td>店名、段落要逐字出現在網頁上(忽略空白)。擋解析錯誤,也擋 AI 編造</td></tr>
+        <tr><th>回饋率</th><td>錯誤</td><td>大於 0,且不超過網頁上的最高「最高 X%」</td></tr>
+        <tr><th>回饋率出處</th><td>警告</td><td>數字沒出現在網頁上,可能是推算的</td></tr>
+        <tr><th>分隔符號、句子、過長</th><td>警告</td><td>名稱可能沒切乾淨,或其實是說明文字</td></tr>
+        <tr><th>重複</th><td>警告/提示</td><td>同一等級、方案、名稱出現多次</td></tr>
+        <tr><th>等級</th><td>警告</td><td>各等級的名單應該一樣</td></tr>
+        <tr><th>期間</th><td>警告/提示</td><td>已過期或還沒開始的活動</td></tr>
+        <tr><th>差異</th><td>報告</td><td>跟上一次爬的結果或 0908 比:新增、消失的方案與名稱,回饋率變化</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout info">
+    <b>自動檢查第一次跑就抓到真的錯</b>
+    <p>台新第一次跑時,溯源檢查抓到 Chill刷 的段落名稱是程式拼出來、網頁上不存在的字串,也抓到飯店名單最後一家多帶了「。」。</p>
+  </div>
+</section>
+
+<section id="status">
+  <h2><span class="num">5</span>目前成果</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>卡</th><th>解析方式</th><th class="num">列數</th><th>結果</th></tr></thead>
+      <tbody>
+        <tr><th>台新Richart卡</th><td>模組</td><td class="num">646</td><td>8 個切換方案 + 保費、一般消費,LEVEL1/LEVEL2 各一列。新卡,<code>cards.yaml</code> 還沒有</td></tr>
+        <tr><th class="card-jiho">聯邦吉鶴卡</th><td>食譜</td><td class="num">72</td><td>7 個方案、68 個店名與 0908 相同。回饋率改為照抄網頁,2 個方案的數字與 0908 不同(見第 8 節)</td></tr>
+        <tr><th class="card-cube">國泰 CUBE 卡</th><td>—</td><td class="num">—</td><td>下一張,順便驗證方案名的寫法</td></tr>
+        <tr><th class="card-unicard">玉山 Unicard</th><td>—</td><td class="num">—</td><td>CUBE 之後</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose">兩張卡都通過 <code>importer --check</code>,重跑結果逐位元組相同;爬蟲測試 7 個、後端測試 154 個全部通過。</p>
+</section>
+
+<section id="run">
+  <h2><span class="num">6</span>怎麼執行</h2>
+  <p class="prose">在專案根目錄、Anaconda Prompt 中執行(沒 activate 時抓 https 會出現 <code>SSL module is not available</code>)。平常用法是直接跟 Claude 說要爬哪張卡;下面是手動執行的指令。</p>
+<pre><span class="c"># 安裝</span>
+pip install -r crawler/requirements.txt
+
+<span class="c"># 爬一張卡(有快取就讀快取;--refresh 重新抓網頁)</span>
+python -m crawler.run ubot_jiho
+python -m crawler.run ubot_jiho --refresh
+python -m crawler.run ubot_jiho --compare db/crawl/card_rewards_export_0908.json
+
+<span class="c"># 格式檢查與匯入預覽(--dry-run 需要本機資料庫,不會寫入)</span>
+python -m backend.importer db/crawl/card_rewards_export_20261110_ubot_jiho.json --check
+python -m backend.importer db/crawl/card_rewards_export_20261110_ubot_jiho.json --dry-run
+
+<span class="c"># 測試(不連網路)</span>
+python -m pytest crawler/tests -q</pre>
+</section>
+
+<section id="files">
+  <h2><span class="num">7</span>檔案地圖</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>檔案</th><th>內容</th></tr></thead>
+      <tbody>
+        <tr><th><code>.claude/skills/crawl-card/SKILL.md</code></th><td>整個流程給 agent 的說明,含三個檢查點</td></tr>
+        <tr><th><code>crawler/banks.yaml</code></th><td>人確認過的銀行官網入口與各卡頁面</td></tr>
+        <tr><th><code>crawler/sites/*.yaml</code></th><td>各卡食譜;格式見 <code>crawler/sites/README.md</code></td></tr>
+        <tr><th><code>crawler/recipe.py</code></th><td>食譜引擎</td></tr>
+        <tr><th><code>crawler/taishin_richart.py</code></th><td>台新的解析模組</td></tr>
+        <tr><th><code>crawler/common.py</code></th><td>共用:抓網頁、快取、切店名、寫檔</td></tr>
+        <tr><th><code>crawler/checks.py</code>、<code>diff.py</code></th><td>自動檢查、與參考檔比較</td></tr>
+        <tr><th><code>crawler/run.py</code></th><td>執行入口</td></tr>
+        <tr><th><code>crawler/reports/</code></th><td>自動報告(<code>*.md</code>)與 agent 審核(<code>*.review.md</code>)</td></tr>
+        <tr><th><code>crawler/QUESTIONS.md</code></th><td>決定與待討論</td></tr>
+        <tr><th><code>db/crawl/card_rewards_export_&lt;日期&gt;_&lt;卡&gt;.json</code></th><td>匯出檔,一卡一檔</td></tr>
+        <tr><th><code>db/crawl/terms/&lt;卡&gt;/</code></th><td>條款頁面的文字</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="decisions">
+  <h2><span class="num">8</span>決定與待討論</h2>
+  <ul class="qlist">
+    <li><span class="chip done">已確定</span><span><b>回饋率照抄網頁、不加總。</b>網頁寫「加碼 4% + 一般消費 1%」就是兩列,由後端決定怎麼疊加</span><span class="who">Wilson</span></li>
+    <li><span class="chip done">已確定</span><span><b>以網頁為準</b>,0908 只拿來比較,不當標準答案</span><span class="who">Wilson</span></li>
+    <li><span class="chip done">已確定</span><span>匯出檔一卡一檔(之後也是一張一張加入)</span><span class="who">Wilson</span></li>
+    <li><span class="chip done">已確定</span><span>官網頁面經人確認後存在 <code>crawler/banks.yaml</code></span><span class="who">Wilson</span></li>
+    <li><span class="chip done">已確定</span><span>台新維持模組;遇到第二家同類型網頁再考慮讓食譜支援</span><span class="who">Wilson</span></li>
+    <li><span class="chip done">已確定</span><span>圖片資料、模擬瀏覽器(Playwright)遇到再做</span><span class="who">Wilson</span></li>
+    <li><span class="chip open">待決定</span><span><b>方案名照抄網頁還是用整理過的名稱?</b>吉鶴卡網頁標題含數字(「嚴選日系名店最高5.5%」),每季會變;建議抄名單標籤(「指定日系名店」)。要改 <code>cards.yaml</code>,先用 CUBE 驗證再決定</span><span class="who">Wilson</span></li>
+  </ul>
+  <div class="callout">
+    <b>⚠️ 新的吉鶴卡匯出檔先不要匯入</b>
+    <p>回饋率改成照抄後,國內日系特店是 4%、日本熱門商店是 3%(加碼的部分)。<code>cards.yaml</code> 目前寫吉鶴卡「不疊加一般消費」,要先改成 <code>stacks_with_general: true</code> 才算得對;<code>--dry-run</code> 不會報這個錯。這件事要跟 <code>cards.yaml</code> 的其他修改一起好好 review。</p>
+  </div>
+</section>
+
+<footer>
+  整理自 2026-11-09 到 11-10 的實作與討論。細節見 <code>crawler/README.md</code>、<code>crawler/QUESTIONS.md</code> 與各卡審核報告。回饋資料以銀行官網公告為準。
+</footer>
+
+</div>
+
+</body></html>

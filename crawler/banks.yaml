@@ -1,0 +1,49 @@
+# 各銀行官網資訊:crawl-card skill 步驟 1 找到頁面、user 確認後記在這裡,下次直接用,不用再搜尋。
+#
+# banks.<bank_id>
+#   name            銀行名稱(匯出檔的 bank_name)
+#   card_site       信用卡官網入口
+#   how_to_find     怎麼從官網找到一張卡的頁面(給 agent 看)
+#   cards.<card_id>
+#     name          卡名
+#     pages         這張卡的頁面:url、role(rewards 回饋名單 / terms 條款 / campaign 限時活動)、note
+#     confirmed     user 確認的日期;還沒確認寫 null
+#
+# 食譜(crawler/sites/<card_id>.yaml)的 url、terms_urls 從這裡的 pages 挑。
+
+banks:
+  taishin:
+    name: 台新銀行
+    card_site: null                   # 還沒查
+    how_to_find: 活動主頁在 mkp.taishinbank.com.tw/s/<年>/<卡名>_<年>/,網址每年可能換
+    cards:
+      taishin_richart:
+        name: 台新Richart卡
+        pages:
+          - url: https://mkp.taishinbank.com.tw/s/2025/RichartCard_2025/index.html
+            role: rewards
+            note: 靜態 HTML;回饋名單、等級表、注意事項彈窗都在同一頁
+        confirmed: 2026-11-09          # Wilson 提供的網址
+
+  ubot:
+    name: 聯邦銀行
+    card_site: https://card.ubot.com.tw/
+    how_to_find: >-
+      信用卡官網是 Vue 單頁應用,HTML 只有空殼。卡片清單 API
+      https://card.ubot.com.tw/eCardServiceAPI/api/Cards 的每張卡有 "url": "CardDetail/<檔名>",
+      內容在 https://card.ubot.com.tw/ecard_source/html/CardDetail/<檔名>.htm。
+      搜尋引擎找不到官網頁面(只有比較網站與新聞)。
+    cards:
+      ubot_jiho:
+        name: 吉鶴卡
+        pages:
+          - url: https://card.ubot.com.tw/ecard_source/html/CardDetail/cardDetail202.htm
+            role: rewards
+            note: 卡片頁 https://card.ubot.com.tw/CardDetail/cardDetail202 的內容片段;名單與回饋率
+          - url: https://activity.ubot.com.tw/2026JiHoCard/index.htm
+            role: campaign
+            note: 日本旅遊祭活動頁;有各名單的細則(適用門市、各餐廳折扣條件),部分注意事項還是 115 上半年的舊版
+          - url: https://activity.ubot.com.tw/aws_act/2026/JiHoCard_Anniversary/index.htm
+            role: campaign
+            note: 5 週年活動(115/10/1-116/3/31),還沒抓
+        confirmed: null
